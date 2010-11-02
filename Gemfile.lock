@@ -41,6 +41,7 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     bson (1.1.1)
+    bson_ext (1.1.1)
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -84,5 +85,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bson_ext
   mongo_mapper!
   rails (= 3.0.1)
