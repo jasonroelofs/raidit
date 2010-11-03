@@ -3,14 +3,18 @@
 class User
   include MongoMapper::Document
 
-  # Login email
-  key :email, String
+  # Login
+  key :login, String
 
-  # Permissions setting
+  # Permissions setting (admin, raid_leader, user)
   key :role, String
+
+  key :guild_id, ObjectId
 
   belongs_to :guild
 
   # Has many characters
   many :characters
+
+  timestamps!
 end

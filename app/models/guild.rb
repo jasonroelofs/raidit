@@ -9,4 +9,6 @@ class Guild
 
   # Guilds have Users
   many :users
+
+  timestamps!
 end
