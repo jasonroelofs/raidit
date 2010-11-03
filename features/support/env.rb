@@ -11,6 +11,8 @@ require 'capybara/cucumber'
 require 'capybara/session'
 require 'cucumber/rails/capybara_javascript_emulation'
 
+require 'factory_girl/step_definitions'
+
 # Default is XPath, lets use CSS
 Capybara.default_selector = :css
 
