@@ -8,7 +8,7 @@ class Guild
   key :realm, String
 
   # Guilds have Users
-  many :users
+  many :characters
 
   timestamps!
 end
