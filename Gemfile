@@ -8,6 +8,8 @@ gem "bson_ext"
 
 gem "haml"
 
+gem "cells"
+
 group :development do
   gem "thin"
 end 
