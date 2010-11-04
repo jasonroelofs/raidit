@@ -1,6 +1,7 @@
 source :rubygems
 
-gem 'rails', '3.0.1'
+gem 'bundler', '~> 1.0.3'
+gem 'rails',   '3.0.1'
 
 gem "mongo_mapper", :git => "git://github.com/jnunemaker/mongomapper", :branch => "rails3"
 gem "bson_ext"
