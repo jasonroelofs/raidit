@@ -10,6 +10,8 @@ gem "haml"
 
 gem "cells"
 
+gem "heroku"
+
 group :development do
   gem "thin"
 end 
