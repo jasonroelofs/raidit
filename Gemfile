@@ -15,7 +15,6 @@ group :development do
 end 
 
 group :test do
-  gem 'rspec-rails',      '~> 2.0.0'
   gem 'database_cleaner', '~> 0.6.0'
 
   gem 'capybara',         '~> 0.4.0'
@@ -26,6 +25,9 @@ end
 
 group :test, :development do
   gem 'factory_girl', '~> 1.3.2'
+
+  # Give me my rake tasks!
+  gem 'rspec-rails', "~> 2.0.0"
 
   gem 'ruby-debug',   :platforms => :ruby_18
   gem 'ruby-debug19', :platforms => :ruby_19
