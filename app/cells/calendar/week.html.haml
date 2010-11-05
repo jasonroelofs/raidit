@@ -1,0 +1,5 @@
+%tr
+  - @days.each do |day|
+    %td
+      .day{:class => day.date_class}
+        = day.day_number

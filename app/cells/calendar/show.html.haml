@@ -1,0 +1,18 @@
+#calendar
+  %table
+    %tr
+      %th Monday
+      %th Tuesday
+      %th Wednesday
+      %th Thursday
+      %th Friday
+      %th Saturday
+      %th Sunday
+
+    = render_cell :calendar, :week, :which => 0
+
+    = render_cell :calendar, :week, :which => 1
+
+    = render_cell :calendar, :week, :which => 2
+
+    = render_cell :calendar, :week, :which => 3

@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: gray;
+}
+
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  width: 970px;
+
+  padding: 1em;
+
+  border: 1px solid black;
+  background-color: white;
+}
+
+#calendar table {
+  width: 100%;
+  border: 1px solid black;
+}
+
+#calendar table td {
+  width: 14%;
+  height: 90px; 
+  border: 1px solid black;
+  vertical-align: top;
+}
+
+#calendar table td .day {
+  float: right;
+  font-size: 130%;
+  font-weight: bold;
+}
+
+#calendar table td .day.past {
+  color: blue;
+}
+
+#calendar table td .day.today {
+  color: red;
+}
