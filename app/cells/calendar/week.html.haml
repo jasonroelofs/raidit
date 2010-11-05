@@ -3,3 +3,6 @@
     %td
       .day{:class => day.date_class}
         = day.day_number
+
+      .raids
+        = render_cell :calendar, :raids, :date => day.date

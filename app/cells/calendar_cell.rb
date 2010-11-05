@@ -30,6 +30,15 @@ class CalendarCell < Cell::Rails
     render
   end
 
+  # Render links for each of the raids for the given day
+  def raids
+    date = @opts[:date]
+
+    @raids = Guild.current.raids.for(date).all
+
+    render
+  end
+
   protected
 
   def get_date_class_for(date)
