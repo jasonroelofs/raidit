@@ -16,10 +16,13 @@ require 'factory_girl/step_definitions'
 # Default is XPath, lets use CSS
 Capybara.default_selector = :css
 
+Capybara.default_host = "localhost"
+Capybara.default_driver = :selenium
+
 # Propagate errors to the tests
 ActionController::Base.allow_rescue = false
 
 # Clean up the database for pristine tests
 require 'database_cleaner/cucumber'
-DatabaseCleaner.orm = 'mongo_mapper'
-#DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.orm = :mongo_mapper
+DatabaseCleaner.strategy = :truncation
