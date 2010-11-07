@@ -12,7 +12,4 @@ test:
 
 # set these environment variables on your prod server
 production:
-  <<: *defaults
-  database: raid_it
-  username: <%= ENV['MONGO_USERNAME'] %>
-  password: <%= ENV['MONGO_PASSWORD'] %>
+  url: <%= ENV["MONGOHQ_URL"]
