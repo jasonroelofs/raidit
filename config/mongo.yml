@@ -9,7 +9,3 @@ development:
 test:
   <<: *defaults
   database: raid_it_test
-
-# set these environment variables on your prod server
-production:
-  url: <%= ENV["MONGOHQ_URL"]
