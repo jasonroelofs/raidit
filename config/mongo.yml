@@ -9,3 +9,6 @@ development:
 test:
   <<: *defaults
   database: raid_it_test
+
+production:
+  uri: <%= ENV["MONGOHQ_URL"] %>
