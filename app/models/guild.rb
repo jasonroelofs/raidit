@@ -7,6 +7,8 @@ class Guild
   # Location of the guild
   key :realm, String
 
+  key :region, String
+
   # Guilds have Users
   many :characters
 
