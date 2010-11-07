@@ -3,8 +3,13 @@
 class User
   include MongoMapper::Document
 
-  # Login
-  key :login, String
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable, :lockable and :timeoutable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Login via email
+  key :email, String
 
   # Permissions setting (admin, raid_leader, user)
   key :role, String

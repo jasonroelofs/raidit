@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_current_guild
 
+  before_filter :authenticate_user!
+
   protected
 
   def set_current_guild
