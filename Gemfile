@@ -10,6 +10,11 @@ gem "haml"
 
 gem "cells"
 
+# Authentication
+gem "devise", "~> 1.1.0"
+gem "mm-devise", "~> 1.1.0"
+
+# Deployment
 gem "heroku"
 
 group :development do

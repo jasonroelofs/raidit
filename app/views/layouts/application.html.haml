@@ -8,4 +8,10 @@
 
   %body
     #content
+      #flash
+        - if flash[:notice]
+          .notice= flash[:notice]
+        - elsif flash[:error]
+          .error= flash[:error]
+
       = yield
