@@ -12,7 +12,7 @@ gem "cells"
 
 # Authentication
 gem "devise", "~> 1.1.0"
-gem "mm-devise", "~> 1.1.0"
+gem "mm-devise", "~> 1.1.6"
 
 # Deployment
 gem "heroku"
