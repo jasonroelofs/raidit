@@ -7,6 +7,20 @@ body {
   background-color: gray;
 }
 
+#header {
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 970px;
+  margin-top: 1em;
+  padding: 0.5em 1em 0.5em 1em;
+
+  border: 1px solid black;
+  background-color: white;
+
+  text-align: right;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;

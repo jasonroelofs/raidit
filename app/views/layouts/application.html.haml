@@ -7,11 +7,11 @@
     = csrf_meta_tag
 
   %body
+    - if user_signed_in?
+      #header
+        = render :partial => "shared/header"
+
     #content
-      #flash
-        - if flash[:notice]
-          .notice= flash[:notice]
-        - elsif flash[:error]
-          .error= flash[:error]
+      = render :partial => "shared/flash", :locals => {:flash => flash}
 
       = yield
