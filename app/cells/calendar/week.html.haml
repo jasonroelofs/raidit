@@ -1,8 +1,12 @@
 %tr
   - @days.each do |day|
     %td
-      .day{:class => day.date_class}
-        = day.day_number
+      .inner
+        .day{:class => day.date_class}
+          = day.day_number
 
-      .raids
-        = render_cell :calendar, :raids, :date => day.date
+        .raids
+          = render_cell :calendar, :raids, :date => day.date
+
+        .add
+          = link_to image_tag("add.png"), new_raid_path(:date => day.date), :title => "Add Raid for #{day.date.to_s(:short)}"

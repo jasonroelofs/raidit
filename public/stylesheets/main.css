@@ -40,7 +40,7 @@ body {
 
 #calendar table td {
   width: 14%;
-  height: 90px; 
+  height: 100px; 
   border: 1px solid black;
   vertical-align: top;
 }
@@ -57,4 +57,15 @@ body {
 
 #calendar table td .day.today {
   color: red;
+}
+
+#calendar table td .inner {
+  position: relative;
+}
+
+#calendar table td .inner .add {
+  position: absolute;
+
+  right: 0;
+  top: 83px;
 }

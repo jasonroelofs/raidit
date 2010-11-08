@@ -1,0 +1,23 @@
+- form_for @raid do |f|
+
+  %p
+    Date: 
+    = f.text_field :date
+
+  %p
+    Invite Time:
+    = f.text_field :start_time
+
+  %p
+    Start Time:
+    = f.text_field :start_time
+
+  %p
+    Location: 
+    = f.text_field :location
+
+  %p
+    Description: 
+    = f.text_field :description
+
+  = submit_tag "Create Raid"

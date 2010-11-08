@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
 
+  def current_guild
+    Guild.current
+  end
+  helper_method :current_guild
+
   protected
 
   def set_current_guild
