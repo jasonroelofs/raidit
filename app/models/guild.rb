@@ -29,7 +29,7 @@ class Guild
 
   protected
 
-  def find_or_create_guild(name)
+  def self.find_or_create_guild(name)
     Guild.find_by_name(name) || 
       Guild.create(:name => name, :region => "US", :realm => "Detheroc")
   end
