@@ -9,6 +9,8 @@ class Raid
 
   timestamps!
 
+  attr_accessible :location, :description, :date, :start_time, :invite_time
+
   # Get all raids that are scheduled for a given date
   scope :for, lambda {|date| 
     where(:date.gte => date.beginning_of_day, :date.lt => date.end_of_day) 

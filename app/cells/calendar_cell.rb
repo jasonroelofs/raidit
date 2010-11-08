@@ -21,7 +21,14 @@ class CalendarCell < Cell::Rails
     week_sunday.upto(week_sunday.end_of_week).each do |date|
       d = Day.new
       d.date = date
-      d.day_number = date.to_s(:day)
+
+      # Mark new month boundaries
+      if date.day == 1
+        d.day_number = date.to_s(:short)
+      else
+        d.day_number = date.to_s(:day)
+      end
+
       d.date_class = get_date_class_for(date)
 
       @days << d

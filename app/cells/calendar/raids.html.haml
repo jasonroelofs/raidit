@@ -1,2 +1,11 @@
 - @raids.each do |raid|
-  = link_to raid.location, raid_path(raid)
+  .raid
+    %p
+      = link_to raid.location, raid_path(raid)
+    %p
+      Invite: 
+      = raid.invite_time.try(:to_s, :hour_minute)
+    %p
+      Start:
+      = raid.start_time.try(:to_s, :hour_minute)
+

@@ -67,5 +67,10 @@ body {
   position: absolute;
 
   right: 0;
-  top: 83px;
+  top: 22px;
+}
+
+#calendar table .raids .raid {
+  padding: 5px;
+  width: 90%;
 }
