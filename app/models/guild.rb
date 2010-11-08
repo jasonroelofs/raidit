@@ -20,7 +20,7 @@ class Guild
   # Keep track of which guild we're working with
   # for this process
   def self.current=(name)
-    Thread.current["guild"] = Guild.find_by_name(name)
+    Thread.current["guild"] = Guild.find_or_create_by_name(name)
   end
 
   def self.current
