@@ -20,10 +20,17 @@ class Guild
   # Keep track of which guild we're working with
   # for this process
   def self.current=(name)
-    Thread.current["guild"] = Guild.find_or_create_by_name(name)
+    Thread.current["guild"] = find_or_create_guild(name)
   end
 
   def self.current
     Thread.current["guild"]
+  end
+
+  protected
+
+  def find_or_create_guild(name)
+    Guild.find_by_name(name) || 
+      Guild.create(:name => name, :region => "US", :realm => "Detheroc")
   end
 end
