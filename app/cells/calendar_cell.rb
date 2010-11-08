@@ -36,7 +36,9 @@ class CalendarCell < Cell::Rails
 
     @raids = Guild.current.raids.for(date).all
 
-    render
+    if @raids.any? 
+      render
+    end
   end
 
   protected
