@@ -28,6 +28,8 @@ group :test do
   gem 'cucumber',         '~> 0.9.3', :require => false
   gem 'cucumber-rails',   '~> 0.3.2', :require => false
   gem 'launchy',          '~> 0.3.7'
+
+  gem 'timecop'
 end
 
 group :test, :development do
