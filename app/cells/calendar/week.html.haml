@@ -9,4 +9,4 @@
           = render_cell :calendar, :raids, :date => day.date
 
         .add
-          = link_to image_tag("add.png"), new_raid_path(:date => day.date), :title => "Add Raid for #{day.date.to_s(:short)}"
+          = link_to image_tag("add.png"), new_raid_path(:date => day.date.to_s(:default)), :title => "Add Raid for #{day.date.to_s(:short)}"

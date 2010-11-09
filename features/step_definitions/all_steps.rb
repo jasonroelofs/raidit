@@ -7,12 +7,12 @@ When /^I wait (\d+) seconds$/ do |seconds|
 end
 
 Given %r{^I am logged in as "([^"]*)"$} do |email|
-  user = find_or_create_user(email, "test")
+  user = find_or_create_user(email, "testing")
 
   steps %(
     Given I am at the sign in page
     And I fill in "#{email}" for "user_email"
-    And I fill in "test" for "user_password"
+    And I fill in "testing" for "user_password"
     And I press "Sign in"
   )
 end
