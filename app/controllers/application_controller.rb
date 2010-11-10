@@ -3,9 +3,10 @@ class ApplicationController < ActionController::Base
 
   layout "application"
 
-  before_filter :set_current_guild
-
   before_filter :authenticate_user!
+
+  before_filter :set_current_guild
+  before_filter :set_current_user
 
   def current_guild
     Guild.current
@@ -16,5 +17,9 @@ class ApplicationController < ActionController::Base
 
   def set_current_guild
     Guild.current = "Exiled"
+  end
+
+  def set_current_user
+    User.current = current_user
   end
 end
