@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/gaffneyc/armory
+  revision: db3da35110e4cb76c85ac8a65102e709ee4a6757
+  specs:
+    armory (0.1.0)
+      nokogiri (~> 1.4.3)
+      typhoeus (~> 0.1.31)
+
+GIT
   remote: git://github.com/jnunemaker/mongomapper
   revision: 9f22809a04f13b37db9078371a524aff67fafd70
   branch: rails3
@@ -179,6 +187,8 @@ GEM
     timecop (0.3.5)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
+    typhoeus (0.1.31)
+      rack
     tzinfo (0.3.23)
     warden (0.10.7)
       rack (>= 1.0.0)
@@ -189,6 +199,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  armory!
   bson_ext
   bundler (~> 1.0.3)
   capybara (~> 0.4.0)

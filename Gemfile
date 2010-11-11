@@ -10,6 +10,8 @@ gem "haml"
 
 gem "cells"
 
+gem "armory", :git => "git://github.com/gaffneyc/armory"
+
 # Authentication
 gem "devise", "~> 1.1.0"
 gem "mm-devise", "~> 1.1.6"
