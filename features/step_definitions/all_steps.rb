@@ -25,3 +25,7 @@ def find_or_create_user(email, password)
   User.find_by_email(email) || 
     User.create(:email => email, :password => password, :password_confirmation => password)
 end
+
+def get_guild(name)
+  Guild.find_by_name(name)
+end

@@ -1,0 +1,10 @@
+%h2 Choose Character
+
+%p
+  Here are all the characters in 
+  = current_guild.name
+  that are not currently taken by anyone. Click on the name of
+  the character you own.
+
+- @characters.each do |character|
+  = render_cell :characters, :show, :character => character, :name_url => associate_character_path(character)

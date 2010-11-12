@@ -15,4 +15,6 @@ class Character
   timestamps!
 
   attr_accessible :name, :klass, :race, :level
+
+  scope :unchosen, :user_id => nil
 end

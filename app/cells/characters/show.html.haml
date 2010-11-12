@@ -2,6 +2,9 @@
   .class_icon
     Ico
   .name
-    = @character.name
+    - if @name_url
+      = link_to @character.name, @name_url
+    - else
+      = @character.name
   .info
     = "#{@character.level} #{@character.race} #{@character.klass}"

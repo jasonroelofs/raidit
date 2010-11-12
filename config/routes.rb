@@ -2,7 +2,11 @@ RaidIt::Application.routes.draw do
 
   resources :raids
 
-  resources :characters
+  resources :characters do
+    member do
+      get :associate
+    end
+  end
 
   devise_for :users
 
