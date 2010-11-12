@@ -3,8 +3,10 @@ source :rubygems
 gem 'bundler', '~> 1.0.3'
 gem 'rails',   '3.0.1'
 
+gem "mongo", "1.1.2"
+gem "bson_ext", "1.1.2"
+
 gem "mongo_mapper", :git => "git://github.com/jnunemaker/mongomapper", :branch => "rails3"
-gem "bson_ext"
 
 gem "haml"
 
@@ -14,7 +16,7 @@ gem "armory", :git => "git://github.com/gaffneyc/armory"
 
 # Authentication
 gem "devise", "~> 1.1.0"
-gem "mm-devise", "~> 1.1.6"
+gem "mm-devise", :git => "git://github.com/jameskilton/mm-devise"
 
 # Deployment
 gem "heroku"

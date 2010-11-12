@@ -7,6 +7,18 @@ GIT
       typhoeus (~> 0.1.31)
 
 GIT
+  remote: git://github.com/jameskilton/mm-devise
+  revision: c597f161ee210181927021f2bbd0ff4ba264ef36
+  specs:
+    mm-devise (1.1.6)
+      bcrypt-ruby (~> 2.1.2)
+      devise (>= 1.1.1)
+      jnunemaker-validatable (~> 1.8.1)
+      rails3-generators (>= 0.13.0)
+      sugar-high (~> 0.2.10)
+      warden (>= 0.10.7)
+
+GIT
   remote: git://github.com/jnunemaker/mongomapper
   revision: 9f22809a04f13b37db9078371a524aff67fafd70
   branch: rails3
@@ -51,7 +63,7 @@ GEM
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.2)
     bson (1.1.2)
-    bson_ext (1.0.9)
+    bson_ext (1.1.2)
     builder (2.1.2)
     capybara (0.4.0)
       celerity (>= 0.7.9)
@@ -114,15 +126,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mm-devise (1.1.6)
-      bcrypt-ruby (~> 2.1.2)
-      bson_ext (~> 1.0.4)
-      devise (>= 1.1.1)
-      jnunemaker-validatable (~> 1.8.1)
-      mongo_mapper (~> 0.8.4)
-      rails3-generators (>= 0.13.0)
-      sugar-high (~> 0.2.10)
-      warden (>= 0.10.7)
     mocha (0.9.9)
       rake
     mongo (1.1.2)
@@ -200,7 +203,7 @@ PLATFORMS
 
 DEPENDENCIES
   armory!
-  bson_ext
+  bson_ext (= 1.1.2)
   bundler (~> 1.0.3)
   capybara (~> 0.4.0)
   cells
@@ -212,7 +215,8 @@ DEPENDENCIES
   haml
   heroku
   launchy (~> 0.3.7)
-  mm-devise (~> 1.1.6)
+  mm-devise!
+  mongo (= 1.1.2)
   mongo_mapper!
   rails (= 3.0.1)
   ruby-debug
