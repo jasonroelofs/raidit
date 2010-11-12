@@ -33,12 +33,13 @@ class Guild
   # from the WoW Armory
   def fill_characters_from_armory!
     guild = Armory.guild_info(self.region, self.realm, self.name)
-    guild.characters.each do |char|
-      char = self.characters.find_or_create_by_name(char.name)
+    guild.characters.each do |gc|
+      char = self.characters.find_or_create_by_name(gc.name)
+
       char.update_attributes(
-        :klass => char.klass,
-        :race => char.race,
-        :level => char.level
+        :klass => gc.klass,
+        :race => gc.race,
+        :level => gc.level
       )
     end
 
