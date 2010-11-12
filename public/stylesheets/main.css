@@ -56,7 +56,7 @@ body {
 }
 
 #calendar table td .day.past {
-  color: blue;
+  color: #7d7d7d;
 }
 
 #calendar table td .day.today {
