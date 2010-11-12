@@ -17,6 +17,8 @@ class Guild
 
   timestamps!
 
+  attr_accessible :name, :realm, :region
+
   # Keep track of which guild we're working with
   # for this process
   def self.current=(name)
@@ -25,6 +27,22 @@ class Guild
 
   def self.current
     Thread.current["guild"]
+  end
+
+  # Find, create, or update character data as pulled
+  # from the WoW Armory
+  def fill_characters_from_armory!
+    guild = Armory.guild_info(self.region, self.realm, self.name)
+    guild.characters.each do |char|
+      char = self.characters.find_or_create_by_name(char.name)
+      char.update_attributes(
+        :klass => char.klass,
+        :race => char.race,
+        :level => char.level
+      )
+    end
+
+    self.save
   end
 
   protected

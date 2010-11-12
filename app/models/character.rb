@@ -13,4 +13,6 @@ class Character
   belongs_to :guild
 
   timestamps!
+
+  attr_accessible :name, :klass, :race, :level
 end
