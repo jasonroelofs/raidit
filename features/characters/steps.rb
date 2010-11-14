@@ -6,7 +6,7 @@ Given %r{^there are the following characters for the current guild$} do |table|
     c = guild.characters.create(
       :name => row["name"],
       :race => row["race"],
-      :klass => row["class"]
+      :class_name => row["class"]
     )
 
     if row["taken"] == "true"
