@@ -37,7 +37,7 @@ class Guild
       char = self.characters.find_or_create_by_name(gc.name)
 
       char.update_attributes(
-        :klass => gc.klass,
+        :class_name => gc.class_name,
         :race => gc.race,
         :level => gc.level
       )
