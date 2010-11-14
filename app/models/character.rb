@@ -17,4 +17,10 @@ class Character
   attr_accessible :name, :class_name, :race, :level
 
   scope :unchosen, :user_id => nil
+
+  # Convert the class of this character to something
+  # we use in choosing what icon to show
+  def class_slug
+    self.class_name.downcase.gsub(" ", "")
+  end
 end
