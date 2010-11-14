@@ -1,10 +1,10 @@
 GIT
   remote: git://github.com/gaffneyc/armory
-  revision: 18f770933277f3eb69e150501338e9332aaa58f8
+  revision: 50a3da25fc0bf8094ea15961c5069f0459b5ef83
   specs:
     armory (0.1.0)
       nokogiri (~> 1.4.3)
-      typhoeus (~> 0.1.31)
+      typhoeus (~> 0.2.0)
 
 GIT
   remote: git://github.com/jameskilton/mm-devise
@@ -74,7 +74,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.2)
-    celerity (0.8.2)
+    celerity (0.8.4)
     cells (3.4.2)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
@@ -190,8 +190,7 @@ GEM
     timecop (0.3.5)
     treetop (1.4.8)
       polyglot (>= 0.3.1)
-    typhoeus (0.1.31)
-      rack
+    typhoeus (0.2.0)
     tzinfo (0.3.23)
     warden (0.10.7)
       rack (>= 1.0.0)
