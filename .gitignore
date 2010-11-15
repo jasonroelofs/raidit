@@ -4,4 +4,3 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 .*.swp
-public/stylesheets/main.css
