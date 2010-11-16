@@ -12,6 +12,13 @@ class RaidsController < ApplicationController
     )
   end
 
+  # Look at the details of a selected raid.
+  # Includes ability to queue for raid, approve / deny people
+  # etc.
+  def show
+    @raid = current_guild.raids.find(params[:id])
+  end
+
   # Create a new raid for the current guild
   def create
     current_guild.raids.create(params[:raid])

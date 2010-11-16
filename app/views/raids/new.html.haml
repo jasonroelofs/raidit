@@ -22,7 +22,7 @@
 
         %tr
           %td.key= f.label :description, "Description"
-          %td= f.text_field :description
+          %td= f.text_area :description, :rows => 4, :cols => 30
 
     .queues
       %h3 Role Queue Sizes
