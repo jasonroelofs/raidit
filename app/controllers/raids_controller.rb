@@ -5,7 +5,11 @@ class RaidsController < ApplicationController
   # starting on that date. Otherwise will choose today
   def new
     date = params[:date] ? Date.parse(params[:date]) : Date.today
-    @raid = Raid.new(:date => date)
+    @raid = Raid.new(
+      :date => date,
+      :invite_time => Time.zone.parse("7:45 pm"),
+      :start_time => Time.zone.parse("8:00 pm")
+    )
   end
 
   # Create a new raid for the current guild

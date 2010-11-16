@@ -1,23 +1,43 @@
-- form_for @raid do |f|
+.raid
+  = form_for @raid do |f|
+    .info
+      %h3 New Raid
 
-  %p
-    = f.label :date, "Date"
-    = f.text_field :date
+      %table
+        %tr
+          %td.key= f.label :date, "Date"
+          %td= f.text_field :date
 
-  %p
-    = f.label :invite_time, "Invite Time"
-    = f.text_field :invite_time
+        %tr
+          %td.key= f.label :invite_time, "Invite Time"
+          %td= f.text_field :invite_time
 
-  %p
-    = f.label :start_time, "Start Time"
-    = f.text_field :start_time
+        %tr
+          %td.key= f.label :start_time, "Start Time"
+          %td= f.text_field :start_time
 
-  %p
-    = f.label :location, "Location"
-    = f.text_field :location
+        %tr
+          %td.key= f.label :location, "Location"
+          %td= f.text_field :location
 
-  %p
-    = f.label :description, "Description"
-    = f.text_field :description
+        %tr
+          %td.key= f.label :description, "Description"
+          %td= f.text_field :description
 
-  = submit_tag "Create Raid"
+    .queues
+      %h3 Role Queue Sizes
+      %table
+        %tr
+          %td.key= f.label :tanks, "Tanks"
+          %td= f.text_field :tanks, :size => 4
+
+        %tr
+          %td.key= f.label :healers, "Healers"
+          %td= f.text_field :healers, :size => 4
+
+        %tr
+          %td.key= f.label :dps, "DPS"
+          %td= f.text_field :dps, :size => 4
+
+    .submit
+      = submit_tag "Create Raid"

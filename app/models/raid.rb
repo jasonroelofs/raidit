@@ -7,6 +7,12 @@ class Raid
   key :start_time,  Time
   key :invite_time, Time
 
+  # Number of the given role we want
+  # to have in this raid
+  key :tanks, Integer
+  key :dps, Integer
+  key :healers, Integer
+
   timestamps!
 
   attr_accessible :location, :description, :date, :start_time, :invite_time
