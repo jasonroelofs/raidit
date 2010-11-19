@@ -6,6 +6,15 @@
 body 
   background-color: gray
 
+.left
+  float: left
+
+.right
+  float: right
+
+.clear
+  clear: both
+
 #content_wrapper
   margin-left: auto
   margin-right: auto
@@ -74,13 +83,18 @@ body
     padding-right: 10px
 
     img
-      width: 50px
-      height: 50px
+      width: 25px
+      height: 25px
 
   .name
     margin-top: 5px
 
   .info
+
+  &.in_raid
+    .class_icon img
+      width: 30px
+      height: 30px
 
 .raid
   form
@@ -100,3 +114,36 @@ body
 
       &.key
         text-align: right
+
+  .queues
+    margin-top: 15px
+    padding-top: 15px
+    border-top: 1px solid black
+
+    .left, .right
+      width: 440px
+
+    .left
+      margin-left: 10px
+
+    .right
+      margin-right: 10px
+
+    .queue
+      border: 1px solid blue
+      margin-top: 15px
+
+      .header
+        text-align: center
+        font-weight: bold
+        padding: 5px 10px
+        background-color: blue
+        color: white
+        font-size: 120%
+
+      .accepted, .queued, .cancelled
+        padding: 10px
+
+        h3
+          border-bottom: 1px dashed green
+      

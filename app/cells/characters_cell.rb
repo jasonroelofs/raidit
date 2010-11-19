@@ -14,4 +14,11 @@ class CharactersCell < Cell::Rails
     render
   end
 
+  # Special rendering of a character that's used when
+  # looking at a raid's queues
+  def in_raid
+    @character = @opts[:character]
+    render
+  end
+
 end

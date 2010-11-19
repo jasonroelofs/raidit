@@ -25,12 +25,14 @@
       %strong Description:
       = @raid.description
 
-.queues
+  .queues
 
-  .left
-    #tanks
+    .left
+      = render_cell :raid, :queue, :queue => :tanks, :raid => @raid
 
-    #healers
+      = render_cell :raid, :queue, :queue => :healers, :raid => @raid
 
-  .right
-    #dps
+    .right
+      = render_cell :raid, :queue, :queue => :dps, :raid => @raid
+
+    .clear

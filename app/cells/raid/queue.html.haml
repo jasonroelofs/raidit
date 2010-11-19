@@ -1,0 +1,27 @@
+%div.queue{:id => @queue}
+  .header
+    = @queue.to_s.capitalize.pluralize
+
+  .accepted
+    %h3 Accepted
+
+    = render_cell :characters, :in_raid, :character => @characters[0]
+    = render_cell :characters, :in_raid, :character => @characters[1]
+    = render_cell :characters, :in_raid, :character => @characters[2]
+    = render_cell :characters, :in_raid, :character => @characters[3]
+    = render_cell :characters, :in_raid, :character => @characters[4]
+
+  .queued
+    %h3 Queued
+
+    = render_cell :characters, :in_raid, :character => @characters[5]
+    = render_cell :characters, :in_raid, :character => @characters[6]
+    = render_cell :characters, :in_raid, :character => @characters[7]
+    = render_cell :characters, :in_raid, :character => @characters[8]
+    = render_cell :characters, :in_raid, :character => @characters[9]
+
+  .cancelled
+    %h3 Cancelled
+
+    = render_cell :characters, :in_raid, :character => @characters[10]
+    = render_cell :characters, :in_raid, :character => @characters[11]
