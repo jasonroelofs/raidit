@@ -15,6 +15,35 @@ body
 .clear
   clear: both
 
+/* CSS3 Buttons Without Images */
+ 
+button
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  -moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.4)
+  -webkit-box-shadow: 0px 0px 2px rgba(0,0,0,0.4)
+
+  color: rgba(0,0,0,0.9)
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.8)
+  border: 1px solid rgba(0,0,0,0.5)
+
+  background: -webkit-gradient(linear,0% 0%,0% 100%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)))
+  background: -moz-linear-gradient(top,rgba(255,255,255,1),rgba(185,185,185,1))
+
+  padding: 5px 5px 5px 5px
+ 
+button:hover
+  background: rgba(240,240,240,1)
+ 
+button:active, button:focus
+  background: -webkit-gradient(linear,0% 100%,0% 0%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)))
+  background: -moz-linear-gradient(bottom,rgba(255,255,255,1),rgba(185,185,185,1))
+ 
+button:disabled
+  color: rgba(0,0,0,0.4)
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.5)
+  background: rgba(220,220,220,1)
+
 #content_wrapper
   margin-left: auto
   margin-right: auto
@@ -97,6 +126,13 @@ body
       height: 30px
 
 .raid
+  .register
+    float: right
+    padding: 15px
+
+    button
+      font-size: 24px
+
   form
     h3
       margin-bottom: 10px
