@@ -3,6 +3,7 @@ class CharactersController < ApplicationController
   # List all characters for the current user
   # in the current guild
   def index
+    @characters = current_user.characters_in(current_guild)
   end
 
   # Show the user the list of all unselected characters
