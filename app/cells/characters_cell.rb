@@ -18,6 +18,11 @@ class CharactersCell < Cell::Rails
   # looking at a raid's queues
   def in_raid
     @character = @opts[:character]
+    @queue = @opts[:queue]
+
+    # up button: none, queue, accept
+    # down button: queue, cancel, none
+
     render
   end
 

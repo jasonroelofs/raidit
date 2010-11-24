@@ -9,7 +9,7 @@ class Guild
 
   key :region, String
 
-  # Guilds have Users
+  # Guilds have Characters
   many :characters, :order => "name ASC"
 
   # Guilds have many raids

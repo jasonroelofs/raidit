@@ -6,7 +6,9 @@ class RaidCell < Cell::Rails
     @queue = @opts[:queue]
     @raid = @opts[:raid]
 
-    @characters = Character.all[0..20]
+    @accepted = @raid.accepted.characters
+    @queued = @raid.queued.characters
+    @cancelled = @raid.cancelled.characters
 
     render
   end

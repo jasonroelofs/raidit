@@ -16,6 +16,10 @@ class Raid
   key :dps, Integer
   key :healers, Integer
 
+  key :accepted, RaidQueue, :default => RaidQueue.new(:name => "accepted")
+  key :queued, RaidQueue, :default => RaidQueue.new(:name => "queued")
+  key :cancelled, RaidQueue, :default => RaidQueue.new(:name => "cancelled")
+
   timestamps!
 
   attr_accessible :location, :description, :date, :start_time, :invite_time
