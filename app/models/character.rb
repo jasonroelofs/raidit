@@ -10,8 +10,9 @@ class Character
 
   key :level, Integer
 
+  # tank, healer, or dps
   key :main_role, String
-  key :alt_role, String
+  key :off_role, String
 
   belongs_to :user
   belongs_to :guild
