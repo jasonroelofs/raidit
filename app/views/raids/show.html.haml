@@ -3,24 +3,25 @@
   %h3 Raid Info
 
   .register
-    %button.large{:type => "submit"}
-      Queue With 
-      = @main.name
+    = form_tag enqueue_raid_path(@raid), :method => :put do
+      %button.large{:type => "submit"}
+        Queue With 
+        = @main.name
 
-    or
-    = link_to "Queue with another", "#", :class => "queue_another"
+      or
+      = link_to "Queue with another", "#", :class => "queue_another"
 
-    .queue_form
-      %p
-        = label_tag :character_id, "Character:"
-        = select_tag :character_id, character_list(@characters, @main)
+      .queue_form
+        %p
+          = label_tag :character_id, "Character:"
+          = select_tag :character_id, character_list(@characters, @main)
 
-      %p
-        = label_tag :role, "Role:"
-        = select_tag :role, role_list(@main)
+        %p
+          = label_tag :role, "Role:"
+          = select_tag :role, role_list(@main)
 
-      %p
-        %button.small{:type => "submit"} Add to Queue
+        %p
+          %button.small{:type => "submit"} Add to Queue
 
   .info
     %p
@@ -48,11 +49,11 @@
   .queues
 
     .left
-      = render_cell :raid, :queue, :queue => :tanks, :raid => @raid
+      = render_cell :raid, :queue, :role => :tanks, :raid => @raid
 
-      = render_cell :raid, :queue, :queue => :healers, :raid => @raid
+      = render_cell :raid, :queue, :role => :healers, :raid => @raid
 
     .right
-      = render_cell :raid, :queue, :queue => :dps, :raid => @raid
+      = render_cell :raid, :queue, :role => :dps, :raid => @raid
 
     .clear

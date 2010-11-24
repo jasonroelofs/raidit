@@ -3,12 +3,12 @@ class RaidCell < Cell::Rails
   # Render the queue view for the given raid
   # and the given queue
   def queue
-    @queue = @opts[:queue]
+    @role = @opts[:role]
     @raid = @opts[:raid]
 
-    @accepted = @raid.accepted.characters
-    @queued = @raid.queued.characters
-    @cancelled = @raid.cancelled.characters
+    @accepted = @raid.accepted.characters_for(@role)
+    @queued = @raid.queued.characters_for(@role)
+    @cancelled = @raid.cancelled.characters_for(@role)
 
     render
   end

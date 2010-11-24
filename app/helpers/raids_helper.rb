@@ -13,7 +13,7 @@ module RaidsHelper
   # to the main role of the main character
   def role_list(main)
     options_for_select(
-      [["DPS", "dps"], ["Healer", "healer"], ["Tank", "tank"]],
+      [["DPS", "dps"], ["Healer", "healers"], ["Tank", "tanks"]],
       main.main_role
     )
   end

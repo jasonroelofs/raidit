@@ -27,4 +27,15 @@ class RaidsController < ApplicationController
     redirect_to(root_path)
   end
 
+  # Add a character as 'queued' to this raid
+  def enqueue
+    raid = current_guild.raids.find(params[:id])
+    raid.queued.add!(
+      current_user.characters.find(params[:character_id]),
+      params[:role]
+    )
+
+    redirect_to(raid_path(raid))
+  end
+
 end
