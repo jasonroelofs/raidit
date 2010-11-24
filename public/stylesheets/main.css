@@ -109,6 +109,14 @@ button.large {
 .raid .register {
   float: right;
   padding: 15px; }
+  .raid .register #queue_main {
+    text-align: right;
+    width: 100%; }
+    .raid .register #queue_main p {
+      margin-top: 5px; }
+  .raid .register #queue_form {
+    width: 100%;
+    display: none; }
 .raid form h3 {
   margin-bottom: 10px; }
 .raid form .info, .raid form .queues {
