@@ -17,6 +17,8 @@ class RaidsController < ApplicationController
   # etc.
   def show
     @raid = current_guild.raids.find(params[:id])
+    @main = current_user.main_character
+    @characters = current_user.characters
   end
 
   # Create a new raid for the current guild

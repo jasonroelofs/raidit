@@ -6,8 +6,12 @@ class Character
   key :race,  String
   key :user_id, ObjectId
   key :guild_id, ObjectId
+  key :is_main, Boolean
 
   key :level, Integer
+
+  key :main_role, String
+  key :alt_role, String
 
   belongs_to :user
   belongs_to :guild

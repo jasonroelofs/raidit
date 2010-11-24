@@ -3,8 +3,24 @@
   %h3 Raid Info
 
   .register
-    %button
-      Queue With Weemuu
+    %button.large{:type => "submit"}
+      Queue With 
+      = @main.name
+
+    or
+    = link_to "Queue with another", "#", :class => "queue_another"
+
+    .queue_form
+      %p
+        = label_tag :character_id, "Character:"
+        = select_tag :character_id, character_list(@characters, @main)
+
+      %p
+        = label_tag :role, "Role:"
+        = select_tag :role, role_list(@main)
+
+      %p
+        %button.small{:type => "submit"} Add to Queue
 
   .info
     %p

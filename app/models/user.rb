@@ -37,4 +37,18 @@ class User
   def self.current
     Thread.current["user"]
   end
+
+  # Get the main character of this user.
+  # If none are yet flagged, pick the first in the list and flag it
+  def main_character
+    c = self.characters.where(:is_main => true).first
+
+    if c.nil?
+      c = self.characters.first
+      c.is_main = true
+      c.save
+    end
+
+    c
+  end
 end
