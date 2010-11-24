@@ -11,5 +11,9 @@
     = "#{@character.level} #{@character.race} #{@character.class_name}"
 
     - if @character.is_main
-      %strong (Main)
+      %strong ( Main )
+    - else
+      (
+      = link_to "Make Main", make_main_character_path(@character)
+      )
 

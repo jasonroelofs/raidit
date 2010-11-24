@@ -16,5 +16,6 @@ class RoutingTest < ActionDispatch::IntegrationTest
     # Characters
     assert_routing "/characters", :controller => "characters", :action => "index"
     assert_routing "/characters/4/associate", :controller => "characters", :action => "associate", :id => 4
+    assert_routing "/characters/4/make_main", :controller => "characters", :action => "make_main", :id => 4
   end
 end

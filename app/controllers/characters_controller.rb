@@ -13,6 +13,13 @@ class CharactersController < ApplicationController
     @characters = current_guild.characters.unchosen
   end
 
+  # Make a given character your main
+  def make_main
+    current_user.change_main_to!(params[:id])
+
+    redirect_to(characters_path) 
+  end
+
   # Given an id of a charcter, associate that character
   # with the current logged in user
   def associate

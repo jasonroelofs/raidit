@@ -9,6 +9,7 @@ RaidIt::Application.routes.draw do
   resources :characters do
     member do
       get :associate
+      get :make_main
     end
   end
 

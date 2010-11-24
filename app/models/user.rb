@@ -51,4 +51,16 @@ class User
 
     c
   end
+
+  # Change which character this user's main is. Takes character id
+  def change_main_to!(char_id)
+    change_to = self.characters.find(char_id)
+    change_from = self.main_character
+
+    change_from.is_main = false
+    change_to.is_main = true
+
+    change_from.save
+    change_to.save
+  end
 end
