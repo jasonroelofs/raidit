@@ -13,6 +13,14 @@ class CharactersController < ApplicationController
     @characters = current_guild.characters.unchosen
   end
 
+  # Update this character.
+  def update
+    c = current_user.characters.find(params[:id])
+    c.update_attributes(params[:character])
+
+    redirect_to(characters_path)
+  end
+
   # Make a given character your main
   def make_main
     current_user.change_main_to!(params[:id])
