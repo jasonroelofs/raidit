@@ -19,7 +19,7 @@ class Character
 
   timestamps!
 
-  attr_accessible :name, :class_name, :race, :level
+  attr_accessible :main_role
 
   scope :unchosen, :user_id => nil
 

@@ -36,11 +36,11 @@ class Guild
     guild.characters.each do |gc|
       char = self.characters.find_or_create_by_name(gc.name)
 
-      char.update_attributes(
-        :class_name => gc.class_name,
-        :race => gc.race,
-        :level => gc.level
-      )
+      char.class_name = gc.class_name
+      char.race = gc.race
+      char.level = gc.level
+
+      char.save
     end
 
     self.save

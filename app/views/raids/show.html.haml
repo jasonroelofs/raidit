@@ -52,9 +52,9 @@
   .queues
 
     .left
-      = render_cell :raid, :queue, :role => :tanks, :raid => @raid
+      = render_cell :raid, :queue, :role => :tank, :raid => @raid
 
-      = render_cell :raid, :queue, :role => :healers, :raid => @raid
+      = render_cell :raid, :queue, :role => :healer, :raid => @raid
 
     .right
       = render_cell :raid, :queue, :role => :dps, :raid => @raid
