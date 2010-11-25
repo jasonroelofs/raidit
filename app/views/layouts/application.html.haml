@@ -11,9 +11,8 @@
 
   %body
     #content_wrapper
-      - if user_signed_in?
-        #header
-          = render :partial => "shared/header"
+      #header
+        = render :partial => "shared/header"
 
       #content
         = render :partial => "shared/flash", :locals => {:flash => flash}

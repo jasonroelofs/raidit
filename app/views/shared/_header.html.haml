@@ -2,8 +2,11 @@
   .left
     = link_to "Calendar", root_path
 
-  %strong= current_user.email
-  |
-  = link_to "My Characters", characters_path
-  |
-  = link_to "Sign out", destroy_user_session_path(current_user)
+  - if role?(:user)
+    %strong= current_user.email
+    |
+    = link_to "My Characters", characters_path
+    |
+    = link_to "Sign out", destroy_user_session_path(current_user)
+  - else
+    = link_to "Sign in", new_user_session_path

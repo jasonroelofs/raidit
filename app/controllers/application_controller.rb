@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 
   layout "application"
 
-  before_filter :authenticate_user!
-
   before_filter :set_current_guild
   before_filter :set_current_user
 

@@ -86,6 +86,6 @@ class User
   # in multiple guilds. Given this isn't even possible yet
   # we'll "fix" it later
   def has_role?(role)
-    (ROLE_STACK[self.role] || 0) >= ROLE_STACK[role]
+    (ROLE_STACK[self.role] || 0) >= ROLE_STACK[role.to_s]
   end
 end
