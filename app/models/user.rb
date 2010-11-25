@@ -15,11 +15,10 @@ class User
   key :role, String
 
   key :guild_id, ObjectId
-
   belongs_to :guild
 
   # Has many characters
-  many :characters
+  many :characters, :order => "is_main DESC, name ASC"
 
   timestamps!
 

@@ -1,6 +1,15 @@
-%h2 My Characters
+.characters
+  %h2 My Characters
 
-- @characters.each do |character|
-  = render_cell :characters, :show, :character => character
+  - if @characters.any?
+    %h3.section Main
 
-= link_to "Add Character", new_character_path
+    = render_cell :characters, :show, :character => @characters.first
+
+    %h3.section Alts
+
+    - @characters[1..-1].each do |character|
+      = render_cell :characters, :show, :character => character
+
+  .new_character
+    = link_to "Add Character", new_character_path
