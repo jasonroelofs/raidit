@@ -1,9 +1,11 @@
 class CharactersCell < Cell::Rails
+  helper RaidsHelper
 
   # Render details for an individual character
   def show
     @character = @opts[:character]
     @name_url = @opts[:name_url]
+
     render
   end
 
