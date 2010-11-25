@@ -1,5 +1,7 @@
 class CharactersController < ApplicationController
 
+  before_filter :authenticate_user!
+
   # List all characters for the current user
   # in the current guild
   def index
