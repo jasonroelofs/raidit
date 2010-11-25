@@ -2,29 +2,30 @@
 
   %h3 Raid Info
 
-  .register
-    = form_tag enqueue_raid_path(@raid), :method => :put do
-      #queue_main
-        %button.large{:type => "submit"}
-          Queue With 
-          = @main.name
+  - if current_user
+    .register
+      = form_tag enqueue_raid_path(@raid), :method => :put do
+        #queue_main
+          %button.large{:type => "submit"}
+            Queue With
+            = @main.name
 
-        %p
-          or
-          = link_to "Queue with another", "#", :class => "queue_another"
+          %p
+            or
+            = link_to "Queue with another", "#", :class => "queue_another"
 
-      #queue_form
-        %table
-          %tr
-            %td= label_tag :character_id, "Character:"
-            %td= select_tag :character_id, character_list(@characters, @main)
-            
-            %td{:rowspan => "2"}
-              %button.small{:type => "submit"} Add to Queue
+        #queue_form
+          %table
+            %tr
+              %td= label_tag :character_id, "Character:"
+              %td= select_tag :character_id, character_list(@characters, @main)
 
-          %tr
-            %td= label_tag :role, "Role:"
-            %td= select_tag :role, role_list(@main)
+              %td{:rowspan => "2"}
+                %button.small{:type => "submit"} Add to Queue
+
+            %tr
+              %td= label_tag :role, "Role:"
+              %td= select_tag :role, role_list(@main)
 
   .info
     %p
@@ -40,7 +41,7 @@
       = @raid.start_time
 
     %br
-    
+
     %p
       %strong Where:
       = @raid.location

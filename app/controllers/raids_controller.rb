@@ -1,6 +1,6 @@
 class RaidsController < ApplicationController
 
-  # Make a new raid. 
+  # Make a new raid.
   # Can take a :date and will default the raid to be
   # starting on that date. Otherwise will choose today
   def new
@@ -17,8 +17,11 @@ class RaidsController < ApplicationController
   # etc.
   def show
     @raid = current_guild.raids.find(params[:id])
-    @main = current_user.main_character
-    @characters = current_user.characters
+
+    if current_user
+      @main = current_user.main_character
+      @characters = current_user.characters
+    end
   end
 
   # Create a new raid for the current guild
