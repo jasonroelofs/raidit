@@ -18,6 +18,8 @@ gem "armory", :git => "git://github.com/gaffneyc/armory"
 gem "devise", "~> 1.1.0"
 gem "mm-devise", :git => "git://github.com/jameskilton/mm-devise"
 
+gem "bistro_car"
+
 # Deployment
 gem "heroku"
 
