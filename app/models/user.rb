@@ -62,4 +62,30 @@ class User
     change_from.save
     change_to.save
   end
+
+  ##
+  # User Roles
+  ##
+
+  ROLES = %w(
+    user
+    raid_leader
+    admin
+  )
+
+  ROLE_STACK = {
+    "user" => 0,
+    "raid_leader" => 1,
+    "admin" => 2
+  }
+
+  # Check to see if this user has the requested role
+  # for the current guild
+  #
+  # TODO This system doesn't work for any user who is
+  # in multiple guilds. Given this isn't even possible yet
+  # we'll "fix" it later
+  def has_role?(role)
+    (ROLE_STACK[self.role] || 0) >= ROLE_STACK[role]
+  end
 end

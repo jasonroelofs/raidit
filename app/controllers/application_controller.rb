@@ -15,6 +15,14 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_guild
 
+  ##
+  # Does the current user have the requested role for the current guild?
+  ##
+  def role?(role)
+    current_user && current_user.has_role?(role)
+  end
+  helper_method :role?
+
   protected
 
   def set_time_zone
