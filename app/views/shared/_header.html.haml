@@ -4,14 +4,14 @@
 
   - if current_user
     %strong= current_user.email
-    |
+    &nbsp; 
     = link_to "My Characters", characters_path
 
-    - role(:admin) do
-      |
+    - if role?(:admin)
+      &nbsp; 
       = link_to "Admin", admin_path
 
-    |
+    &nbsp;
     = link_to "Sign out", destroy_user_session_path(current_user)
   - else
     = link_to "Sign in", new_user_session_path
