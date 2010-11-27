@@ -29,6 +29,11 @@ class Raid
     where(:date => date.to_s) 
   }
 
+  # Is this raid still in the future?
+  def upcoming?
+    self.date >= Date.today
+  end
+
   ##
   # Type conversions
   ##

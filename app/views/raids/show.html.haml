@@ -2,7 +2,7 @@
 
   %h3 Raid Info
 
-  - if current_user
+  - if current_user && @raid.upcoming?
     .register
       = form_tag enqueue_raid_path(@raid), :method => :put do
         #queue_main
