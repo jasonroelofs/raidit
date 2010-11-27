@@ -2,10 +2,15 @@
   .left
     = link_to "Calendar", root_path
 
-  - if role?(:user)
+  - if current_user
     %strong= current_user.email
     |
     = link_to "My Characters", characters_path
+
+    - role(:admin) do
+      |
+      = link_to "Admin", admin_path
+
     |
     = link_to "Sign out", destroy_user_session_path(current_user)
   - else

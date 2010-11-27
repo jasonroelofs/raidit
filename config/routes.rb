@@ -15,6 +15,8 @@ RaidIt::Application.routes.draw do
 
   devise_for :users
 
+  match "admin", :to => "admin#index"
+
   root :to => "calendar#show"
 
 end
