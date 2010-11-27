@@ -6,17 +6,16 @@
     = javascript_include_tag :jquery
 
     - if Rails.env.production?
-      = #javascript_include_tag "coffeescripts"
+      = javascript_include_tag "coffeescripts"
     - else
-      = #coffee_script_bundle
+      = coffee_script_bundle
 
-    = #stylesheet_link_tag "main"
-    = #csrf_meta_tag
+    = stylesheet_link_tag "main"
+    = csrf_meta_tag
 
   %body
     #content_wrapper
       #header
-        %p Header
         = render :partial => "shared/header"
 
       #content
