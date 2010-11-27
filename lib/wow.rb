@@ -13,6 +13,12 @@ module Wow
     "Druid" => %w(dps healer tank)
   }
 
+  Roles = %w(
+    dps
+    healer
+    tank
+  )
+
   RoleValueMap = {
     "dps" => "DPS",
     "healer" => "Healer",
