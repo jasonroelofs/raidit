@@ -4,9 +4,11 @@
     %title RaidIt for Exiled of US-Detheroc
 
     = javascript_include_tag :jquery
-    = #javascript_include_tag :app
 
-    = coffee_script_bundle
+    - if Rails.env.production?
+      = javascript_include_tag "coffeescripts"
+    - else
+      = coffee_script_bundle
 
     = stylesheet_link_tag :all
     = csrf_meta_tag

@@ -11,4 +11,5 @@ jQuery(() ->
   # Build and run code according to what page we're on
   if $(".raid").length > 0
     new Raid()
+
 )
