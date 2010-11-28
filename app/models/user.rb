@@ -3,11 +3,6 @@
 class User
   include MongoMapper::Document
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
   # Login via email
   key :email, String
 
@@ -21,6 +16,11 @@ class User
   many :characters, :order => "is_main DESC, name ASC"
 
   timestamps!
+
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable, :lockable and :timeoutable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   # Find all characters for this user in the 
   # passed in guild
