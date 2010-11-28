@@ -2,6 +2,8 @@ class RaidsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show]
 
+  requires_permission :raid_leader, :except => [:show]
+
   # Make a new raid.
   # Can take a :date and will default the raid to be
   # starting on that date. Otherwise will choose today

@@ -23,6 +23,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Check that the currently logged in user has permissions to access
+  # the action in question
+  def self.requires_permission(role, *args)
+    before_filter(*args) do |controller|
+      controller.send(:redirect_to, root_path) unless controller.role?(role)
+    end
+  end
+
   def set_time_zone
     Time.zone = "Central Time (US & Canada)"
   end
