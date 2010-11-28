@@ -2,20 +2,14 @@
   .header
     = @role.to_s.capitalize.pluralize
 
-  .accepted
-    %h3 Accepted
+  - {:accepted => @accepted, :queued => @queued, :cancelled => @cancelled}.each do |queue, list|
+    %div{:class => queue}
+      %h3= queue.capitalize
 
-    - @accepted.each do |char|
-      = render_cell :characters, :in_raid, :character => char, :queue => :accepted
-
-  .queued
-    %h3 Queued
-
-    - @queued.each do |char|
-      = render_cell :characters, :in_raid, :character => char, :queue => :queued
-
-  .cancelled
-    %h3 Cancelled
-
-    - @cancelled.each do |char|
-      = render_cell :characters, :in_raid, :character => char, :queue => :cancelled
+      - list.each do |char|
+        .character_wrapper
+          .actions
+            = render_actions(queue, @raid, @role, char)
+          .queueing
+            = render_cell :characters, :in_raid, :character => char, :queue => queue
+          .clear

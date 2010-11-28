@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   def role?(role)
     current_user && current_user.has_role?(role)
   end
-  helper_method :role?
 
   protected
 

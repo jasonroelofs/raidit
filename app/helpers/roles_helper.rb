@@ -6,4 +6,10 @@ module RolesHelper
     yield if role?(role)
   end
 
+  # Here as a duplicate of ApplicationController to
+  # allow access from Cells.
+  def role?(role)
+    User.current && User.current.has_role?(role)
+  end
+
 end

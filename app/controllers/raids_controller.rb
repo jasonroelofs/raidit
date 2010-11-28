@@ -28,6 +28,18 @@ class RaidsController < ApplicationController
     redirect_to(raid_path(raid))
   end
 
+  # Update a character queueing for the given raid
+  def update_queue
+    char = current_guild.characters.find(params[:id])
+    raid = current_guild.raids.find(params[:id])
+    action = params[:do]
+    role = params[:role]
+
+    raid.update_character_queue(role, action, character)
+
+    redirect_to(raid_path(raid))
+  end
+
   # Look at the details of a selected raid.
   # Includes ability to queue for raid, approve / deny people
   # etc.

@@ -3,6 +3,7 @@ RaidIt::Application.routes.draw do
   resources :raids do
     member do
       put :enqueue
+      get :update_queue
     end
   end
 

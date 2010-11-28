@@ -1,4 +1,6 @@
 class RaidCell < Cell::Rails
+  helper RaidsHelper
+  helper RolesHelper
 
   # Render the queue view for the given raid
   # and the given queue
@@ -12,4 +14,7 @@ class RaidCell < Cell::Rails
 
     render
   end
+
+  # Render the actions the current user can 
+  # take on the given character in the given queue
 end

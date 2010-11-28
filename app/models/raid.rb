@@ -35,6 +35,16 @@ class Raid
     self.date >= Date.today
   end
 
+  # Given a role, character and action, perform the action
+  # if it's allowed
+  #
+  # Actions: 
+  #   accept [RL]   (queued => accepted)
+  #   cancel [User] (accepted => cancelled) | (queued => cancelled)
+  #   queue  [User] (cancelled => queued) | [RL] (accepted => queued)
+  def update_character_queue(role, action, character)
+  end
+
   ##
   # Type conversions
   ##
