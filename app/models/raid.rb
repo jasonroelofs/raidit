@@ -22,7 +22,8 @@ class Raid
 
   timestamps!
 
-  attr_accessible :location, :description, :date, :start_time, :invite_time
+  attr_accessible :location, :description, :date, :start_time, :invite_time,
+    :tanks, :dps, :healers
 
   # Get all raids that are scheduled for a given date
   scope :for, lambda {|date| 

@@ -127,7 +127,7 @@ button.large {
     display: none; }
 .raid form h3 {
   margin-bottom: 10px; }
-.raid form .info, .raid form .queues {
+.raid form .form, .raid form .queues {
   width: 40%;
   float: left; }
 .raid form .submit {

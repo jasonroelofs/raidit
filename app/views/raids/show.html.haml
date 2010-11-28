@@ -50,6 +50,10 @@
       %strong Description:
       = @raid.description
 
+  - if role?(:raid_leader)
+    %p
+      = link_to "Edit", edit_raid_path(@raid)
+
   .queues
 
     .left

@@ -1,11 +1,11 @@
 .raid
   = form_for @raid do |f|
     .info
-      %h3 New Raid
+      %h3 Edit Raid
 
       = render :partial => "form", :locals => {:f => f}
 
     .submit
-      = submit_tag "Create Raid"
+      = submit_tag "Update Raid"
       or
-      = link_to "Cancel", root_path
+      = link_to "Cancel", raid_path(@raid)

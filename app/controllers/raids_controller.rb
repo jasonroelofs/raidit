@@ -1,5 +1,7 @@
 class RaidsController < ApplicationController
 
+  before_filter :authenticate_user!, :except => [:show]
+
   # Make a new raid.
   # Can take a :date and will default the raid to be
   # starting on that date. Otherwise will choose today
@@ -10,6 +12,18 @@ class RaidsController < ApplicationController
       :invite_time => Time.zone.parse("7:45 pm"),
       :start_time => Time.zone.parse("8:00 pm")
     )
+  end
+
+  # Edit an existing raid
+  def edit
+    @raid = current_guild.raids.find(params[:id])
+  end
+
+  # Update an existing raid
+  def update
+    raid = current_guild.raids.find(params[:id])
+    raid.update_attributes(params[:raid])
+    redirect_to(raid_path(raid))
   end
 
   # Look at the details of a selected raid.
