@@ -35,14 +35,18 @@ class Raid
     self.date >= Date.today
   end
 
-  # Given a role, character and action, perform the action
-  # if it's allowed
-  #
-  # Actions: 
-  #   accept [RL]   (queued => accepted)
-  #   cancel [User] (accepted => cancelled) | (queued => cancelled)
-  #   queue  [User] (cancelled => queued) | [RL] (accepted => queued)
-  def update_character_queue(role, action, character)
+  # Find out which queue the character is currently in
+  def current_character_queue(role, character)
+    self.accepted.has_character?(character, role) ? :accepted :
+      self.queued.has_character?(character, role) ? :queued :
+        self.cancelled.has_character?(character, role) ? :cancelled : nil
+  end
+
+  # Move a character from one queue to another
+  def move_character(role, character, from_queue, to_queue)
+    self.send(from_queue).remove!(character, role)
+    self.send(to_queue).add!(character, role)
+    self.save
   end
 
   ##

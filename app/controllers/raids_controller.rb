@@ -30,12 +30,12 @@ class RaidsController < ApplicationController
 
   # Update a character queueing for the given raid
   def update_queue
-    char = current_guild.characters.find(params[:id])
+    char = current_guild.characters.find(params[:character])
     raid = current_guild.raids.find(params[:id])
     action = params[:do]
     role = params[:role]
 
-    raid.update_character_queue(role, action, character)
+    QueueManager.process(action, raid, role, char)
 
     redirect_to(raid_path(raid))
   end

@@ -14,6 +14,17 @@ class RaidQueue
     Guild.current.characters.find(self.roles[role.to_s] || [])
   end
 
+  # Does this queue have the requested character in the given role?
+  def has_character?(character, role)
+    character ? (self.roles[role.to_s] || []).include?(character.id) : false
+  end
+
+  # Removes the character from the given role
+  def remove!(character, role)
+    self.roles[role.to_s].delete(character.id)
+    self.save
+  end
+
   # Add a character to this queue
   def add!(character, role)
     self.roles[role.to_s] ||= []
