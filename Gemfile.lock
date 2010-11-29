@@ -178,6 +178,7 @@ GEM
       ffi (~> 0.6.3)
       json_pure
       rubyzip
+    state_machine (0.9.4)
     sugar-high (0.2.12)
       mocha (~> 0.9.8)
       require_all (~> 1.2.0)
@@ -221,5 +222,6 @@ DEPENDENCIES
   rails (= 3.0.1)
   ruby-debug
   ruby-debug19
+  state_machine (~> 0.9.4)
   thin
   timecop

@@ -3,22 +3,23 @@ source :rubygems
 gem 'bundler', '~> 1.0.3'
 gem 'rails',   '3.0.1'
 
+# ORM
 gem "mongo", "1.1.2"
 gem "bson_ext", "1.1.2"
-
 gem "mongo_mapper", :git => "git://github.com/jnunemaker/mongomapper", :branch => "rails3"
 
+# Rendering
 gem "haml"
-
+gem "bistro_car"
 gem "cells"
 
+# Libraries
 gem "armory", :git => "git://github.com/gaffneyc/armory"
+gem "state_machine", "~> 0.9.4"
 
 # Authentication
 gem "devise", "~> 1.1.0"
 gem "mm-devise", :git => "git://github.com/jameskilton/mm-devise"
-
-gem "bistro_car"
 
 # Deployment
 gem "heroku"
