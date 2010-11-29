@@ -29,24 +29,25 @@ module RaidsHelper
   def render_actions(queue, raid, role, char)
     current_user_char = char.user == User.current
 
-    case queue
-    when :queued
-      if role?(:raid_leader)
-        build_action(raid, role, char, :accept)
-      elsif current_user_char
-        build_action(raid, role, char, :cancel)
-      end
-    when :accepted
-      if role?(:raid_leader)
-        build_action(raid, role, char, :queue)
-      elsif current_user_char
-        build_action(raid, role, char, :cancel)
-      end
-    when :cancelled
-      if current_user_char
-        build_action(raid, role, char, :cancel)
-      end
+    actions = ""
+
+    if role?(:raid_leader)
+      actions +=
+        case queue
+        when :queued
+          build_action(raid, role, char, :accept)
+        when :accepted
+          build_action(raid, role, char, :queue)
+        when :cancelled
+          ""
+        end
     end
+
+    if current_user_char
+      actions += build_action(raid, role, char, queue == :cancelled ? :queue : :cancel)
+    end
+
+    actions
   end
 
   def build_action(raid, role, char, action)

@@ -9,7 +9,7 @@
       - list.each do |char|
         .character_wrapper
           .actions
-            = render_actions(queue, @raid, @role, char)
+            != render_actions(queue, @raid, @role, char)
           .queueing
             = render_cell :characters, :in_raid, :character => char, :queue => queue
           .clear

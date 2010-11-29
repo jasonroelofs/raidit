@@ -43,6 +43,7 @@ class QueueManager
     # Raid leader wants to un-accept someone
     event :queue do
       transition :accepted => :queued, :if => :is_raid_leader?
+      transition :cancelled => :queued, :if => :is_owner_of_character?
     end
   end
 
