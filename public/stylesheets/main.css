@@ -14,6 +14,28 @@ body {
 .clear {
   clear: both; }
 
+/*
+ * Notifications
+ */
+.notice, .error, .warning {
+  padding: 5px 10px;
+  margin: 5px 0px; }
+
+.notice {
+  color: #264409;
+  background-color: #e6efc2;
+  border: 1px solid #c6d880; }
+
+.error {
+  color: #cc0000;
+  background-color: #fbe3e4;
+  border: 1px solid #fbc2c4; }
+
+.warning {
+  color: #9f6000;
+  border: 1px solid #cccccc;
+  background-color: #feefb3; }
+
 /* CSS3 Buttons Without Images */
 button, a.button {
   -moz-border-radius: 5px;
