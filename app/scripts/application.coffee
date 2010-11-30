@@ -14,6 +14,7 @@ class Raid
 
       $.get(href, {}, (data) ->
         actions.html(data)
+        $(".changes_made").show()
       , "script")
 
       false

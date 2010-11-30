@@ -11,7 +11,8 @@
       href = $(this).attr("href");
       actions = $(this).parents(".actions");
       $.get(href, {}, function(data) {
-        return actions.html(data);
+        actions.html(data);
+        return $(".changes_made").show();
       }, "script");
       return false;
     });
