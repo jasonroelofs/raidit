@@ -165,10 +165,10 @@ button.large {
         border-bottom: 1px dashed green; }
       .raid .queues .queue .accepted .actions, .raid .queues .queue .queued .actions, .raid .queues .queue .cancelled .actions {
         float: right;
-        margin-top: 10px; }
+        margin-top: 13px; }
         .raid .queues .queue .accepted .actions img, .raid .queues .queue .queued .actions img, .raid .queues .queue .cancelled .actions img {
-          height: 32px;
-          width: 32px; }
+          height: 28px;
+          width: 28px; }
       .raid .queues .queue .accepted .queueing, .raid .queues .queue .queued .queueing, .raid .queues .queue .cancelled .queueing {
         width: 70%;
         float: left; }
