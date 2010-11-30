@@ -17,7 +17,7 @@ body
 
 /* CSS3 Buttons Without Images */
  
-button
+button, a.button
   -moz-border-radius: 5px
   -webkit-border-radius: 5px
   -moz-box-shadow: 0px 0px 2px rgba(0,0,0,0.4)
@@ -32,24 +32,27 @@ button
 
   padding: 5px 5px 5px 5px
  
-button:hover
+button:hover, a.button:hover
   background: rgba(240,240,240,1)
  
-button:active, button:focus
+button:active, button:focus, a.button:active, a.button:focus
   background: -webkit-gradient(linear,0% 100%,0% 0%,from(rgba(255,255,255,1)),to(rgba(185,185,185,1)))
   background: -moz-linear-gradient(bottom,rgba(255,255,255,1),rgba(185,185,185,1))
  
-button:disabled
+button:disabled, a.button:disabled
   color: rgba(0,0,0,0.4)
   text-shadow: 1px 1px 0px rgba(255,255,255,0.5)
   background: rgba(220,220,220,1)
 
-button.small
+button.small, a.button.small
   font-size: 14px
 
-button.large
+button.large, a.button.large
   font-size: 24px
 
+a.button.small
+  padding-bottom: 10px
+  padding-top: 8px
 
 #content_wrapper
   margin-left: auto
@@ -221,9 +224,13 @@ button.large
           margin-top: 13px
           font-weight: bold
 
+          a
+            margin-left: 5px
+
           img
-            height: 28px
-            width: 28px
+            height: 20px
+            width: 20px
+            vertical-align: middle
 
         .queueing
           width: 70%

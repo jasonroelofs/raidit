@@ -54,7 +54,7 @@ module RaidsHelper
     link_to(image_tag("#{action}.png"), 
             update_queue_raid_path(raid, :role => role, :character => char.id, :do => action),
             :title => action.capitalize,
-            :class => action
+            :class => "#{action} button small"
            )
   end
 end

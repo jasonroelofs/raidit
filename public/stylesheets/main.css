@@ -15,7 +15,7 @@ body {
   clear: both; }
 
 /* CSS3 Buttons Without Images */
-button {
+button, a.button {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
@@ -27,23 +27,27 @@ button {
   background: -moz-linear-gradient(top, white, #b9b9b9);
   padding: 5px 5px 5px 5px; }
 
-button:hover {
+button:hover, a.button:hover {
   background: #f0f0f0; }
 
-button:active, button:focus {
+button:active, button:focus, a.button:active, a.button:focus {
   background: -webkit-gradient(linear, 0% 100%, 0% 0%, from(white), to(#b9b9b9));
   background: -moz-linear-gradient(bottom, white, #b9b9b9); }
 
-button:disabled {
+button:disabled, a.button:disabled {
   color: rgba(0, 0, 0, 0.4);
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
   background: #dcdcdc; }
 
-button.small {
+button.small, a.button.small {
   font-size: 14px; }
 
-button.large {
+button.large, a.button.large {
   font-size: 24px; }
+
+a.button.small {
+  padding-bottom: 10px;
+  padding-top: 8px; }
 
 #content_wrapper {
   margin-left: auto;
@@ -169,9 +173,12 @@ button.large {
         float: right;
         margin-top: 13px;
         font-weight: bold; }
+        .raid .queues div.queue .accepted .actions a, .raid .queues div.queue .queued .actions a, .raid .queues div.queue .cancelled .actions a {
+          margin-left: 5px; }
         .raid .queues div.queue .accepted .actions img, .raid .queues div.queue .queued .actions img, .raid .queues div.queue .cancelled .actions img {
-          height: 28px;
-          width: 28px; }
+          height: 20px;
+          width: 20px;
+          vertical-align: middle; }
       .raid .queues div.queue .accepted .queueing, .raid .queues div.queue .queued .queueing, .raid .queues div.queue .cancelled .queueing {
         width: 70%;
         float: left; }
