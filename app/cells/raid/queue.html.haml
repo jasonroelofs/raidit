@@ -2,6 +2,9 @@
   .header
     = @role.to_s.capitalize.pluralize
 
+    %span.status
+      = "( #{@raid.number_accepted_for(@role)} / #{@raid.send(@role.to_s.pluralize)} )"
+
   - {:accepted => @accepted, :queued => @queued, :cancelled => @cancelled}.each do |queue, list|
     %div{:class => queue}
       %h3= queue.capitalize

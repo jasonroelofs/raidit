@@ -11,12 +11,12 @@ class RaidQueue
 
   # Get all characters in this queue for the given role
   def characters_for(role)
-    Guild.current.characters.find(self.roles[role.to_s] || [])
+    Guild.current.characters.find(self.roles[role.to_s] ||= [])
   end
 
   # Does this queue have the requested character in the given role?
   def has_character?(character, role)
-    character ? (self.roles[role.to_s] || []).include?(character.id) : false
+    character ? (self.roles[role.to_s] ||= []).include?(character.id) : false
   end
 
   # Removes the character from the given role
@@ -32,5 +32,10 @@ class RaidQueue
     self.roles[role.to_s].uniq!
 
     self.save
+  end
+
+  # How many characters are in this queue for the given role?
+  def number_in_role(role)
+    (self.roles[role.to_s] ||= []).length
   end
 end

@@ -49,6 +49,11 @@ class Raid
     self.save
   end
 
+  # How many characters have been accepted for the given role?
+  def number_accepted_for(role)
+    self.accepted.number_in_role(role)
+  end
+
   ##
   # Type conversions
   ##

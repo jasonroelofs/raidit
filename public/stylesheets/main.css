@@ -157,6 +157,8 @@ button.large {
       background-color: blue;
       color: white;
       font-size: 120%; }
+      .raid .queues .queue .header .status {
+        padding-left: 10px; }
     .raid .queues .queue .accepted, .raid .queues .queue .queued, .raid .queues .queue .cancelled {
       padding: 10px; }
       .raid .queues .queue .accepted .character_wrapper:hover, .raid .queues .queue .queued .character_wrapper:hover, .raid .queues .queue .cancelled .character_wrapper:hover {
