@@ -2,6 +2,7 @@
 # They have multiple characters
 class User
   include MongoMapper::Document
+  plugin MongoMapper::Devise
 
   # Login via email
   key :email, String
