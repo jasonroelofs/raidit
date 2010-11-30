@@ -4,6 +4,8 @@ class RaidsController < ApplicationController
 
   requires_permission :raid_leader, :except => [:show, :enqueue, :update_queue]
 
+  respond_to :html, :js
+
   # Make a new raid.
   # Can take a :date and will default the raid to be
   # starting on that date. Otherwise will choose today
@@ -37,7 +39,14 @@ class RaidsController < ApplicationController
 
     QueueManager.process(action, raid, role, char)
 
-    redirect_to(raid_path(raid))
+    respond_to do |wants|
+      wants.html {
+        redirect_to(raid_path(raid))
+      }
+      wants.js {
+        render :text => results_string(action)
+      }
+    end
   end
 
   # Look at the details of a selected raid.
@@ -70,6 +79,19 @@ class RaidsController < ApplicationController
     end
 
     redirect_to(raid_path(raid))
+  end
+
+  protected
+
+  def results_string(action)
+    case action
+    when "accept"
+      "Accepted"
+    when "queue"
+      "Queued"
+    when "cancel"
+      "Cancelled"
+    end
   end
 
 end

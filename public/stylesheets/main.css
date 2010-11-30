@@ -147,32 +147,33 @@ button.large {
     margin-left: 10px; }
   .raid .queues .right {
     margin-right: 10px; }
-  .raid .queues .queue {
+  .raid .queues div.queue {
     border: 1px solid blue;
     margin-top: 15px; }
-    .raid .queues .queue .header {
+    .raid .queues div.queue .header {
       text-align: center;
       font-weight: bold;
       padding: 5px 10px;
       background-color: blue;
       color: white;
       font-size: 120%; }
-      .raid .queues .queue .header .status {
+      .raid .queues div.queue .header .status {
         padding-left: 10px; }
-    .raid .queues .queue .accepted, .raid .queues .queue .queued, .raid .queues .queue .cancelled {
+    .raid .queues div.queue .accepted, .raid .queues div.queue .queued, .raid .queues div.queue .cancelled {
       padding: 10px; }
-      .raid .queues .queue .accepted .character_wrapper:hover, .raid .queues .queue .queued .character_wrapper:hover, .raid .queues .queue .cancelled .character_wrapper:hover {
+      .raid .queues div.queue .accepted .character_wrapper:hover, .raid .queues div.queue .queued .character_wrapper:hover, .raid .queues div.queue .cancelled .character_wrapper:hover {
         background-color: #cce6ff; }
-      .raid .queues .queue .accepted h3, .raid .queues .queue .queued h3, .raid .queues .queue .cancelled h3 {
+      .raid .queues div.queue .accepted h3, .raid .queues div.queue .queued h3, .raid .queues div.queue .cancelled h3 {
         border-bottom: 1px dashed green; }
-      .raid .queues .queue .accepted .actions, .raid .queues .queue .queued .actions, .raid .queues .queue .cancelled .actions {
+      .raid .queues div.queue .accepted .actions, .raid .queues div.queue .queued .actions, .raid .queues div.queue .cancelled .actions {
         float: right;
-        margin-top: 13px; }
-        .raid .queues .queue .accepted .actions img, .raid .queues .queue .queued .actions img, .raid .queues .queue .cancelled .actions img {
+        margin-top: 13px;
+        font-weight: bold; }
+        .raid .queues div.queue .accepted .actions img, .raid .queues div.queue .queued .actions img, .raid .queues div.queue .cancelled .actions img {
           height: 28px;
           width: 28px; }
-      .raid .queues .queue .accepted .queueing, .raid .queues .queue .queued .queueing, .raid .queues .queue .cancelled .queueing {
+      .raid .queues div.queue .accepted .queueing, .raid .queues div.queue .queued .queueing, .raid .queues div.queue .cancelled .queueing {
         width: 70%;
         float: left; }
-        .raid .queues .queue .accepted .queueing h4, .raid .queues .queue .queued .queueing h4, .raid .queues .queue .cancelled .queueing h4 {
+        .raid .queues div.queue .accepted .queueing h4, .raid .queues div.queue .queued .queueing h4, .raid .queues div.queue .cancelled .queueing h4 {
           font-size: 110%; }

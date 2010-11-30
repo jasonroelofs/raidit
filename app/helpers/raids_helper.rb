@@ -53,7 +53,8 @@ module RaidsHelper
   def build_action(raid, role, char, action)
     link_to(image_tag("#{action}.png"), 
             update_queue_raid_path(raid, :role => role, :character => char.id, :do => action),
-            :title => action.capitalize
+            :title => action.capitalize,
+            :class => action
            )
   end
 end
