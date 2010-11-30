@@ -6,6 +6,15 @@
       $("#queue_form").slideDown();
       return false;
     });
+    $(".actions a.accept").live("click", function() {
+      var actions, href;
+      href = $(this).attr("href");
+      actions = $(this).parents(".actions");
+      $.get(href, {}, function(data) {
+        return actions.html(data);
+      }, "script");
+      return false;
+    });
     return this;
   };
   jQuery(function() {
