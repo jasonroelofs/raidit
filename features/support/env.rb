@@ -13,6 +13,9 @@ require 'cucumber/rails/capybara_javascript_emulation'
 
 require 'factory_girl/step_definitions'
 
+# Grab all our test helpers
+Dir["#{Rails.root}/test_helpers/**/*.rb"].each do |helper| require File.expand_path(helper) end
+
 # Default is XPath, lets use CSS
 Capybara.default_selector = :css
 

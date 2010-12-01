@@ -14,6 +14,9 @@ end
 
 Given %r{^I am logged in as "([^"]*)"$} do |email|
   user = find_or_create_user(email, "testingzoo")
+  
+  @current_user = user
+  @current_guild = get_guild("Exiled")
 
   steps %(
     Given I am at the sign in page
