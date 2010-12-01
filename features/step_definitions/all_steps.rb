@@ -13,12 +13,12 @@ When "I debug" do
 end
 
 Given %r{^I am logged in as "([^"]*)"$} do |email|
-  user = find_or_create_user(email, "testing")
+  user = find_or_create_user(email, "testingzoo")
 
   steps %(
     Given I am at the sign in page
     And I fill in "#{email}" for "user_email"
-    And I fill in "testing" for "user_password"
+    And I fill in "testingzoo" for "user_password"
     And I press "Sign in"
   )
 end
