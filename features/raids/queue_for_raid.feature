@@ -42,7 +42,7 @@ Scenario: Users can choose an alt character and role
   And I should see "DK" is queued
 
 @characters
-Scenario: User can cancel signup from any queue
+Scenario: User can cancel signup from any queue and re-queue
   Given I am logged in as "user@raidit.org"
   And a raid exists for tomorrow named "The Raid"
   And I am queued to "The Raid" with "Priest"
@@ -55,6 +55,19 @@ Scenario: User can cancel signup from any queue
   When I follow "Cancel" within ".actions"
   Then I should see "Priest" within "#healer"
   And I should see "Priest" is cancelled
+
+  When I follow "Queue" within "#healer"
+  Then I should see "Priest" is queued
+
+  Given "Priest" is accepted to "The Raid"
+  And I refresh
+
+  When I follow "Cancel" within "#healer"
+  Then I should see "Priest" is cancelled
+
+  When I follow "Queue" within "#healer"
+  Then I should see "Priest" is queued
+
 
 @characters
 Scenario: Cannot queue for raids in the past

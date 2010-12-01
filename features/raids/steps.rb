@@ -28,6 +28,12 @@ Given %r{^"([^"]*)" is queued to "([^"]*)" with "([^"]*)"$} do |email, raid_name
   raid.queued.add!(char, char.main_role)
 end
 
+Given %r{^"([^"]*)" is accepted to "([^"]*)"$} do |char_name, raid_name|
+  char = Character.find_by_name(char_name)
+  raid = @current_guild.raids.find_by_location(raid_name)
+  raid.move_character(char.main_role, char, "queued", "accepted")
+end
+
 Then %r{^I should see "([^"]*)" is (accepted|queued|cancelled)$} do |name, queue|
   page.should have_css(".#{queue}", :text => /#{name}/)
 end
