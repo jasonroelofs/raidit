@@ -7,9 +7,9 @@ Then "I should not be able to add a raid" do
   page.should_not have_css(".add")
 end
 
-Given %r{^a raid exists for tomorrow named "([^"]*)"$} do |location|
+Given %r{^a raid exists for (tomorrow|yesterday) named "([^"]*)"$} do |date_method, location|
   get_guild("Exiled").raids.create(
-    :date => Date.tomorrow,
+    :date => Date.send(date_method),
     :invite_time => "7:45 am",
     :start_time => "8:00 am",
     :location => location
@@ -22,6 +22,16 @@ Given %r{^I am queued to "([^"]*)" with "([^"]*)"$} do |raid_name, char_name|
   raid.queued.add!(char, char.main_role)
 end
 
-Then %r{^I should see "([^"]*)" is cancelled$} do |name|
-  page.should have_css(".cancelled", :text => /#{name}/)
+Given %r{^"([^"]*)" is queued to "([^"]*)" with "([^"]*)"$} do |email, raid_name, char_name|
+  char = User.find_by_email(email).characters.find_by_name(char_name)
+  raid = @current_guild.raids.find_by_location(raid_name)
+  raid.queued.add!(char, char.main_role)
+end
+
+Then %r{^I should see "([^"]*)" is (accepted|queued|cancelled)$} do |name, queue|
+  page.should have_css(".#{queue}", :text => /#{name}/)
+end
+
+Then "I should not see accept buttons" do
+  page.should_not have_css("a.accept")
 end

@@ -22,7 +22,7 @@ Scenario: Users can queue a main character
   When I press "Queue With Mage"
 
   Then I should see "Mage" within "#dps"
-  And I should see "Mage" within ".queued"
+  And I should see "Mage" is queued
 
 @characters
 Scenario: Users can choose an alt character and role
@@ -39,7 +39,7 @@ Scenario: Users can choose an alt character and role
   And I press "Add to Queue"
 
   Then I should see "DK" within "#healer"
-  And I should see "DK" within ".queued"
+  And I should see "DK" is queued
 
 @characters
 Scenario: User can cancel signup from any queue
@@ -55,3 +55,14 @@ Scenario: User can cancel signup from any queue
   When I follow "Cancel" within ".actions"
   Then I should see "Priest" within "#healer"
   And I should see "Priest" is cancelled
+
+@characters
+Scenario: Cannot queue for raids in the past
+  Given I am logged in as "user@raidit.org"
+  And a raid exists for yesterday named "The Raid"
+  And I am queued to "The Raid" with "Priest"
+
+  When I follow "Calendar"
+  And I follow "The Raid"
+
+  Then I should not see "Queue With Priest"

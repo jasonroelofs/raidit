@@ -12,6 +12,10 @@ When "I debug" do
   true
 end
 
+When "I refresh" do 
+  visit page.current_url
+end
+
 Given %r{^I am logged in as "([^"]*)"$} do |email|
   user = find_or_create_user(email, "testingzoo")
   
