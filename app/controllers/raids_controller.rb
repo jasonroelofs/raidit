@@ -55,7 +55,7 @@ class RaidsController < ApplicationController
   def show
     @raid = current_guild.raids.find(params[:id])
 
-    if current_user
+    if current_user && current_user.characters.any?
       @main = current_user.main_character
       @characters = current_user.characters
     end
