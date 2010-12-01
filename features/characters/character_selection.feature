@@ -1,3 +1,4 @@
+@users @characters
 Feature: User can assign guild characters to account
 
 Scenario: User can see all unselected charcters for the guild and choose one to add
