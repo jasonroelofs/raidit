@@ -91,6 +91,9 @@ a.button.small {
   border: 1px solid black;
   background-color: white; }
 
+.admin_nav {
+  text-align: right; }
+
 #calendar table {
   width: 100%;
   border: 1px solid black; }
