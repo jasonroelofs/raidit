@@ -4,7 +4,7 @@
   - if @characters.any?
     %h3.section Main
 
-    = render_cell :characters, :show, :character => @characters.first
+    = render_cell :characters, :show, :character => @characters.first, :with_form => true
 
     %h3.section Alts
 
