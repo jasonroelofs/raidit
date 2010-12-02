@@ -24,6 +24,7 @@ gem "devise-mongo_mapper", :git => "git://github.com/collectiveidea/devise-mongo
 
 # Deployment
 gem "heroku"
+gem "hoptoad_notifier"
 
 group :development do
   gem "thin"
