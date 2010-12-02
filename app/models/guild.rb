@@ -36,6 +36,7 @@ class Guild
     guild.characters.each do |gc|
       char = self.characters.find_or_create_by_name(gc.name)
 
+      char.name = gc.name
       char.class_name = gc.class_name
       char.race = gc.race
       char.level = gc.level
