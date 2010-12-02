@@ -10,17 +10,18 @@
   .info
     = "#{@character.level} #{@character.race} #{@character.class_name}"
 
-    - unless @character.is_main
-      (
-      = link_to "Make Main", make_main_character_path(@character)
-      )
+    - if @with_form
+      - unless @character.is_main
+        (
+        = link_to "Make Main", make_main_character_path(@character)
+        )
 
-    - # Ick, figure out a better way to write this
-    - list = role_list(@character, true)
-    - if list.length > 1
-      = form_for @character do |f|
-        = f.select :main_role, role_list(@character)
-        = submit_tag "Update"
-    - else
-      %strong= Wow::RoleValueMap[list.first]
+      - # Ick, figure out a better way to write this
+      - list = role_list(@character, true)
+      - if list.length > 1
+        = form_for @character do |f|
+          = f.select :main_role, role_list(@character)
+          = submit_tag "Update"
+      - else
+        %strong= Wow::RoleValueMap[list.first]
 

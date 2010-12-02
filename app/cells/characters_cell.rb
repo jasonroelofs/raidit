@@ -5,6 +5,7 @@ class CharactersCell < Cell::Rails
   def show
     @character = @opts[:character]
     @name_url = @opts[:name_url]
+    @with_form = @opts[:with_form]
 
     render
   end

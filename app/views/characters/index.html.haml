@@ -9,7 +9,7 @@
     %h3.section Alts
 
     - @characters[1..-1].each do |character|
-      = render_cell :characters, :show, :character => character
+      = render_cell :characters, :show, :character => character, :with_form => true
 
   .new_character
     = link_to "Add Character", new_character_path
