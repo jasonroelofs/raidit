@@ -1,5 +1,5 @@
 (function() {
-  var Raid;
+  var Characters, Raid;
   Raid = function() {
     $(".queue_another").live("click", function() {
       $("#queue_main").slideUp();
@@ -18,7 +18,38 @@
     });
     return this;
   };
+  Characters = function() {
+    var self;
+    self = this;
+    $("#name").live("keyup", function() {
+      return self.setTimer();
+    });
+    return this;
+  };
+  Characters.prototype.timer = null;
+  Characters.prototype.setTimer = function() {
+    var self, timer;
+    if (!timer) {
+      self = this;
+      return (timer = setTimeout(function() {
+        return self.runQuery();
+      }, 500));
+    }
+  };
+  Characters.prototype.runQuery = function() {
+    var href, name;
+    href = $("#new_character").attr("action");
+    name = $("#name").val();
+    return name !== "" ? $.get(href, {
+      name: name
+    }, function(data) {
+      return $("#characters").html(data);
+    }) : null;
+  };
   jQuery(function() {
-    return $(".raid").length > 0 ? new Raid() : null;
+    if ($(".raid").length > 0) {
+      new Raid();
+    }
+    return $("#new_character").length > 0 ? new Characters() : null;
   });
 })();
