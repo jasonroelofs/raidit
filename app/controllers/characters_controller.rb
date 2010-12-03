@@ -8,11 +8,14 @@ class CharactersController < ApplicationController
     @characters = current_user.characters_in(current_guild)
   end
 
-  # Show the user the list of all unselected characters
-  # in the current guild and select which one to
-  # add to that user's list
+  # Page for users to find and assign characters to their account
   def new
-    @characters = current_guild.characters.unchosen
+  end
+
+  # Look for characters according to name given
+  def search
+    @characters = current_guild.characters.unchosen.where(:name => /#{params[:name]}/i).all
+    render :layout => nil
   end
 
   # Update this character.

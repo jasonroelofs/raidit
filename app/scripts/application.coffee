@@ -20,10 +20,38 @@ class Raid
       false
     )
 
+class Characters
+  timer: null
+
+  constructor: ->
+    self = this
+    $("#name").live("keyup", () ->
+      self.setTimer()
+    )
+
+  setTimer: ->
+    if !timer
+      self = this
+      timer = setTimeout(() ->
+        self.runQuery()
+      , 500)
+
+  runQuery: ->
+    href = $("#new_character").attr("action")
+    name = $("#name").val()
+
+    if name != ""
+      $.get(href, {name: name}, (data) ->
+        $("#characters").html(data)
+      )
+
 jQuery(() ->
 
   # Build and run code according to what page we're on
   if $(".raid").length > 0
     new Raid()
+
+  if $("#new_character").length > 0
+    new Characters()
 
 )

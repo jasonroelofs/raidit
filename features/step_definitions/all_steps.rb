@@ -2,7 +2,7 @@ Given "I am at the sign in page" do
   visit("/users/sign_in")
 end
 
-When /^I wait (\d+) seconds$/ do |seconds|
+When /^I wait (\d+) second(?:|s)$/ do |seconds|
   sleep seconds.to_i
 end
 

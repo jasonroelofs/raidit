@@ -1,7 +1,7 @@
 @users @characters
 Feature: User can assign guild characters to account
 
-Scenario: User can see all unselected charcters for the guild and choose one to add
+Scenario: User can search and add their character(s) to their account
   Given I am logged in as "jason@raidit.org"
   And there are the following characters for the current guild
     | name    | race    | class   | taken |
@@ -12,8 +12,18 @@ Scenario: User can see all unselected charcters for the guild and choose one to 
   When I follow "My Characters"
   And I follow "Add Character"
 
+  When I fill in "Wee" for "Character Name"
+  And I wait 1 second
+
   Then I should see "Weemuu"
   And I should see "Weemoo"
+  And I should not see "Wonko"
+
+  When I fill in "muu" for "Character Name"
+  And I wait 1 second
+
+  Then I should see "Weemuu"
+  And I should not see "Weemoo"
   And I should not see "Wonko"
 
   When I follow "Weemuu"

@@ -15,7 +15,14 @@ class RoutingTest < ActionDispatch::IntegrationTest
 
     # Characters
     assert_routing "/characters", :controller => "characters", :action => "index"
+    assert_routing "/characters/search", :controller => "characters", :action => "search"
     assert_routing "/characters/4/associate", :controller => "characters", :action => "associate", :id => 4
     assert_routing "/characters/4/make_main", :controller => "characters", :action => "make_main", :id => 4
+
+    # Admin
+    assert_routing "/admin", :controller => "admin", :action => "index"
+    assert_routing "/admin/raids", :controller => "admin", :action => "raids"
+    assert_routing "/admin/logs", :controller => "admin", :action => "logs"
+    assert_routing "/admin/api", :controller => "admin", :action => "api"
   end
 end
