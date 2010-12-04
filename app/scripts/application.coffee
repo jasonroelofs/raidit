@@ -21,24 +21,24 @@ class Raid
     )
 
 class Characters
-  timer: null
-
   constructor: ->
-    self = this
-    $("#name").live("keyup", () ->
-      self.setTimer()
+    @timer = null
+    $("#name").live("keyup", () =>
+      @setTimer()
     )
 
   setTimer: ->
-    if !timer
-      self = this
-      timer = setTimeout(() ->
-        self.runQuery()
-      , 500)
+    if @timer
+      clearTimeout(@timer)
+
+    @timer = setTimeout(() =>
+      @runQuery()
+    , 300)
 
   runQuery: ->
     href = $("#new_character").attr("action")
     name = $("#name").val()
+    @timer = null
 
     if name != ""
       $.get(href, {name: name}, (data) ->

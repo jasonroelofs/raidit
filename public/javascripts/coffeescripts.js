@@ -1,5 +1,8 @@
 (function() {
   var Characters, Raid;
+  var __bind = function(func, context) {
+    return function(){ return func.apply(context, arguments); };
+  };
   Raid = function() {
     $(".queue_another").live("click", function() {
       $("#queue_main").slideUp();
@@ -19,27 +22,25 @@
     return this;
   };
   Characters = function() {
-    var self;
-    self = this;
-    $("#name").live("keyup", function() {
-      return self.setTimer();
-    });
+    this.timer = null;
+    $("#name").live("keyup", __bind(function() {
+      return this.setTimer();
+    }, this));
     return this;
   };
-  Characters.prototype.timer = null;
   Characters.prototype.setTimer = function() {
-    var self, timer;
-    if (!timer) {
-      self = this;
-      return (timer = setTimeout(function() {
-        return self.runQuery();
-      }, 500));
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
+    return (this.timer = setTimeout(__bind(function() {
+      return this.runQuery();
+    }, this), 300));
   };
   Characters.prototype.runQuery = function() {
     var href, name;
     href = $("#new_character").attr("action");
     name = $("#name").val();
+    this.timer = null;
     return name !== "" ? $.get(href, {
       name: name
     }, function(data) {
@@ -52,4 +53,4 @@
     }
     return $("#new_character").length > 0 ? new Characters() : null;
   });
-})();
+}).call(this);
