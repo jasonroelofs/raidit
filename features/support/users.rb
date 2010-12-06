@@ -17,7 +17,7 @@ Before("@characters") do
   Factory(:character, :user => jason, :guild => guild, :name => "Mage", :class_name => "Mage", :race => "Troll", :level => 80, :main_role => "dps", :is_main => true)
   Factory(:character, :user => jason, :guild => guild, :name => "DK", :class_name => "Death Knight", :race => "Troll", :level => 80, :main_role => "tank")
 
-  Factory(:character, :user => leader, :guild => guild, :name => "Warrior", :class_name => "Warrior", :race => "Tauren", :level => 80, :main_role => "tank", :is_main => true)
+  Factory(:character, :user => leader, :guild => guild, :name => "Warrior", :class_name => "Warrior", :race => "Tauren", :level => 80, :main_role => "tank")
 
   Factory(:character, :user => user, :guild => guild, :name => "Priest", :class_name => "Priest", :race => "Tauren", :level => 80, :main_role => "healer", :is_main => true)
 end

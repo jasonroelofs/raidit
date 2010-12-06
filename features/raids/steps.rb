@@ -7,7 +7,7 @@ Then "I should not be able to add a raid" do
   page.should_not have_css(".add")
 end
 
-Given %r{^a raid exists for "([^"]*)" named "([^"]*)"$} do |date_or_method, location|
+Given %r{^a raid exists for ([^"]*) named "([^"]*)"$} do |date_or_method, location|
   date = 
     if date_or_method =~ /(tomorrow|yesterday)/
       Date.send($1)

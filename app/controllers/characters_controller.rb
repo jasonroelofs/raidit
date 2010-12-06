@@ -8,6 +8,15 @@ class CharactersController < ApplicationController
   # in the current guild
   def index
     @characters = current_user.characters_in(current_guild)
+
+    # Fix main if one isn't set
+    c = @characters.first
+
+    if !c.is_main
+      c.is_main = true
+      c.save
+      c.reload
+    end
   end
 
   # Page for users to find and assign characters to their account
@@ -50,7 +59,9 @@ class CharactersController < ApplicationController
     character = current_guild.characters.find(params[:id])
     old_user_id = character.user.id
 
+    character.is_main = false
     character.user = nil
+
     character.save
 
     flash[:notice] = "Character #{character.name} was unassociated"

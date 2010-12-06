@@ -17,3 +17,8 @@ Given %r{^there are the following characters for the current guild$} do |table|
     end
   end
 end
+
+Then %r{^I should see that "([^"]*)" is my main$} do |name|
+  c = Character.find_by_name(name)
+  c.is_main.should be_true
+end

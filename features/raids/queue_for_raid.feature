@@ -73,7 +73,7 @@ Scenario: User can cancel signup from any queue and re-queue
 Scenario: Cannot queue for raids in the past
   Given I am logged in as "user@raidit.org"
   And today is "2010/11/18"
-  And a raid exists for "2010/11/16" named "The Raid"
+  And a raid exists for 2010/11/16 named "The Raid"
 
   When I follow "Calendar"
   And I follow "The Raid"

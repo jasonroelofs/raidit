@@ -30,3 +30,12 @@ Scenario: User can search and add their character(s) to their account
   Then I should see "My Characters"
   And I should see "Weemuu"
   
+Scenario: First character is auto-main'd
+  Given I am logged in as "leader@raidit.org"
+  When I follow "My Characters"
+  Then I should see "Warrior" within ".main"
+  And I should see that "Warrior" is my main
+
+Scenario: Can 'main' a character
+
+Scenario: Can change the main role of a character
