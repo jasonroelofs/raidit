@@ -2,6 +2,8 @@ class CharactersController < ApplicationController
 
   before_filter :authenticate_user!
 
+  requires_permission :admin, :only => [:unassociate]
+
   # List all characters for the current user
   # in the current guild
   def index
@@ -41,5 +43,18 @@ class CharactersController < ApplicationController
     character.save
 
     redirect_to(characters_path) 
+  end
+
+  # Remove the user association from this character
+  def unassociate
+    character = current_guild.characters.find(params[:id])
+    old_user_id = character.user.id
+
+    character.user = nil
+    character.save
+
+    flash[:notice] = "Character #{character.name} was unassociated"
+
+    redirect_to(admin_edit_user_path(old_user_id)) 
   end
 end

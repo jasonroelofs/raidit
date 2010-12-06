@@ -1,0 +1,23 @@
+= render :partial => "nav"
+
+.manage_users
+  %h3 
+    Editing
+    = @user.email
+
+  .user
+    = form_for :user do |f|
+      %p
+        = f.label :role, "Role: "
+        = f.select :role, options_for_select(["admin", "raid_leader", "user"])
+        = f.submit "Submit"
+
+  %p
+  .characters
+    %h4 Characters
+    - @user.characters.each do |char|
+      .character{:id => dom_id(char)}
+        = char.name
+        - if char.is_main
+          %strong Main
+        = link_to "Unassociate", unassociate_character_path(char)

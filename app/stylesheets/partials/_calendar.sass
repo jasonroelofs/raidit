@@ -1,0 +1,36 @@
+#calendar 
+  table 
+    width: 100%
+    border: 1px solid black
+
+    td
+      width: 14%
+      height: 100px 
+      border: 1px solid black
+      vertical-align: top
+
+      .day
+        float: right
+        font-size: 130%
+        font-weight: bold
+
+        &.past
+          color: #7d7d7d
+
+        &.today
+          color: red
+
+      .inner
+        position: relative
+
+        .add 
+          position: absolute
+
+          right: 0
+          top: 22px
+
+
+      .raids .raid 
+        padding: 5px
+        width: 90%
+

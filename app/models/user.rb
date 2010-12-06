@@ -29,6 +29,11 @@ class User
     self.characters.where(:guild_id => guild.id).all
   end
 
+  # Get the list of character names assigned to this user
+  def character_names
+    self.characters.map {|c| c.name }
+  end
+
   # Keep track of which user we're logged in as
   def self.current=(user)
     Thread.current["user"] = user
