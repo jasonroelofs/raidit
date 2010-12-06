@@ -7,9 +7,16 @@ Then "I should not be able to add a raid" do
   page.should_not have_css(".add")
 end
 
-Given %r{^a raid exists for (tomorrow|yesterday) named "([^"]*)"$} do |date_method, location|
+Given %r{^a raid exists for "([^"]*)" named "([^"]*)"$} do |date_or_method, location|
+  date = 
+    if date_or_method =~ /(tomorrow|yesterday)/
+      Date.send($1)
+    else
+      Date.parse(date_or_method)
+    end
+
   get_guild("Exiled").raids.create(
-    :date => Date.send(date_method),
+    :date => date,
     :invite_time => "7:45 am",
     :start_time => "8:00 am",
     :location => location
