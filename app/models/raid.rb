@@ -57,6 +57,8 @@ class Raid
   # For the current user look to see if he/she has a character
   # in the given raid, and return what queue that character is in
   def status_of_current_user
+    return nil unless User.current
+
     user = User.current
     status = nil
 
