@@ -3,6 +3,16 @@
     width: 100%
     border: 1px solid black
 
+    tr
+      font-size: 16px
+      td
+        height: 150px
+
+      &.future
+        font-size: 12px
+        td
+          height: 100px
+
     td
       width: 14%
       height: 100px 
@@ -24,13 +34,21 @@
         position: relative
 
         .add 
-          position: absolute
-
-          right: 0
-          top: 22px
-
+          margin-top: 3px
+          margin-left: 3px
+          float: left
 
       .raids .raid 
+        clear: both
         padding: 5px
         width: 90%
+
+        &.queued
+          @include yellow-box
+
+        &.accepted
+          @include green-box
+
+        &.cancelled
+          @include red-box
 

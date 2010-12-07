@@ -27,7 +27,7 @@ module CalendarHelper
       days << d
     end
 
-    render :partial => "calendar/week", :locals => {:days => days}
+    render :partial => "calendar/week", :locals => {:days => days, :this_week => which == 0}
   end
 
   def get_date_class_for(date)

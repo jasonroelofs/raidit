@@ -54,6 +54,27 @@ class Raid
     self.accepted.number_in_role(role)
   end
 
+  # For the current user look to see if he/she has a character
+  # in the given raid, and return what queue that character is in
+  def status_of_current_user
+    user = User.current
+    status = nil
+
+    user.characters.each do |char|
+      if self.accepted.has_character_id?(char.id)
+        status = "accepted"
+      elsif self.queued.has_character_id?(char.id)
+        status = "queued"
+      elsif self.cancelled.has_character_id?(char.id)
+        status = "cancelled"
+      end
+
+      break if status
+    end
+
+    status
+  end
+
   ##
   # Type conversions
   ##

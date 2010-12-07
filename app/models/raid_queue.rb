@@ -19,6 +19,10 @@ class RaidQueue
     character ? (self.roles[role.to_s] ||= []).include?(character.id) : false
   end
 
+  def has_character_id?(character_id)
+    self.roles.values.flatten.include?(character_id)
+  end
+
   # Removes the character from the given role
   def remove!(character, role)
     self.roles[role.to_s].delete(character.id)

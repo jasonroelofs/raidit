@@ -100,6 +100,14 @@ a.button.small {
 #calendar table {
   width: 100%;
   border: 1px solid black; }
+  #calendar table tr {
+    font-size: 16px; }
+    #calendar table tr td {
+      height: 150px; }
+    #calendar table tr.future {
+      font-size: 12px; }
+      #calendar table tr.future td {
+        height: 100px; }
   #calendar table td {
     width: 14%;
     height: 100px;
@@ -116,12 +124,25 @@ a.button.small {
     #calendar table td .inner {
       position: relative; }
       #calendar table td .inner .add {
-        position: absolute;
-        right: 0;
-        top: 22px; }
+        margin-top: 3px;
+        margin-left: 3px;
+        float: left; }
     #calendar table td .raids .raid {
+      clear: both;
       padding: 5px;
       width: 90%; }
+      #calendar table td .raids .raid.queued {
+        color: #9f6000;
+        border: 1px solid #cccccc;
+        background-color: #feefb3; }
+      #calendar table td .raids .raid.accepted {
+        color: #264409;
+        background-color: #e6efc2;
+        border: 1px solid #c6d880; }
+      #calendar table td .raids .raid.cancelled {
+        color: #cc0000;
+        background-color: #fbe3e4;
+        border: 1px solid #fbc2c4; }
 
 .characters h3.section {
   margin-top: 10px;

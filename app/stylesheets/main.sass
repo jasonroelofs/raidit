@@ -18,6 +18,21 @@ body
 p
   margin-top: 10px
 
+@mixin green-box
+  color: #264409
+  background-color: #E6EFC2
+  border: 1px solid #C6D880
+
+@mixin yellow-box
+  color: #9F6000
+  border: 1px solid #ccc
+  background-color: #FEEFB3
+
+@mixin red-box
+  color: #c00
+  background-color: #FBE3E4
+  border: 1px solid #FBC2C4
+
 /**
  * Notifications
  */
@@ -26,19 +41,13 @@ p
   margin: 5px 0px
 
 .notice
-  color: #264409
-  background-color: #E6EFC2
-  border: 1px solid #C6D880
+  @include green-box
 
 .error
-  color: #c00
-  background-color: #FBE3E4
-  border: 1px solid #FBC2C4
+  @include red-box
 
 .warning
-  color: #9F6000
-  border: 1px solid #ccc
-  background-color: #FEEFB3
+  @include yellow-box
 
 /* CSS3 Buttons Without Images */
  

@@ -1,11 +1,3 @@
 - @raids.each do |raid|
-  .raid
-    %p
-      = link_to raid.location, raid_path(raid)
-    %p
-      Invite: 
-      = raid.invite_time
-    %p
-      Start:
-      = raid.start_time
-
+  .raid{"data-start_time" => raid.start_time, "data-invite_time" => raid.invite_time, :class => raid.status_of_current_user}
+    = link_to raid.location, raid_path(raid)
