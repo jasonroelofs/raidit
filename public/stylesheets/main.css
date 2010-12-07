@@ -29,18 +29,18 @@ p {
 
 .notice {
   color: #264409;
-  background-color: #e6efc2;
-  border: 1px solid #c6d880; }
+  border: 2px solid #399c07;
+  background-color: #d7ffaf; }
 
 .error {
   color: #cc0000;
-  background-color: #fbe3e4;
-  border: 1px solid #fbc2c4; }
+  border: 2px solid #cc2f00;
+  background-color: #ff9999; }
 
 .warning {
   color: #9f6000;
-  border: 1px solid #cccccc;
-  background-color: #feefb3; }
+  border: 2px solid #ff7700;
+  background-color: #ffc28d; }
 
 /* CSS3 Buttons Without Images */
 button, a.button {
@@ -136,16 +136,16 @@ a.button.small {
       width: 90%; }
       #calendar table td .raids .raid.queued {
         color: #9f6000;
-        border: 1px solid #cccccc;
-        background-color: #feefb3; }
+        border: 2px solid #ff7700;
+        background-color: #ffc28d; }
       #calendar table td .raids .raid.accepted {
         color: #264409;
-        background-color: #e6efc2;
-        border: 1px solid #c6d880; }
+        border: 2px solid #399c07;
+        background-color: #d7ffaf; }
       #calendar table td .raids .raid.cancelled {
         color: #cc0000;
-        background-color: #fbe3e4;
-        border: 1px solid #fbc2c4; }
+        border: 2px solid #cc2f00;
+        background-color: #ff9999; }
 
 .characters h3.section {
   margin-top: 10px;
