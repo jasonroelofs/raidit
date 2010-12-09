@@ -28,6 +28,11 @@ class AdminController < ApplicationController
 
   # API information page
   def api
+    @guild = current_guild
+
+    if @guild.api_key.nil?
+      @guild.generate_api_key!
+    end
   end
 
 end

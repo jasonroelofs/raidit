@@ -6,8 +6,10 @@ class Guild
 
   # Location of the guild
   key :realm, String
-
   key :region, String
+
+  # Secret API key for token requests
+  key :api_key, String
 
   # Guilds have Characters
   many :characters, :order => "name ASC"
@@ -44,6 +46,11 @@ class Guild
       char.save
     end
 
+    self.save
+  end
+
+  def generate_api_key!
+    self.api_key = Digest::SHA1.hexdigest("#{rand}--#{Time.now}--#{self.name}")
     self.save
   end
 
