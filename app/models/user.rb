@@ -24,7 +24,9 @@ class User
          :recoverable, :rememberable, :trackable, :validatable,
          :token_authenticatable
 
-  token_authentication_key :token
+  def token_authentication_key
+    :token
+  end
 
   # Find all characters for this user in the 
   # passed in guild
