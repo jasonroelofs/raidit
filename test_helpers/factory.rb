@@ -10,3 +10,6 @@ end
 Factory.define(:character) do |f|
 
 end
+
+Factory.define(:guild) do |f|
+end

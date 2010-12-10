@@ -29,6 +29,8 @@ RaidIt::Application.routes.draw do
   match "admin/logs", :to => "admin#logs"
   match "admin/api", :to => "admin#api"
 
+  match "api/token", :to => "api#token"
+
   root :to => "calendar#show"
 
 end
