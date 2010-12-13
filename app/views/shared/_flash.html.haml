@@ -1,7 +1,7 @@
 #flash
   - if flash[:notice]
     .notice= flash[:notice]
-  - elsif flash[:error]
+  - if flash[:error]
     .error= flash[:error]
-  - elsif flash[:alert]
-    .error= flash[:alert]
+  - if flash[:warning]
+    .warning= flash[:warning]

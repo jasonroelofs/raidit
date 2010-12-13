@@ -28,17 +28,17 @@ p {
   margin: 5px 0px; }
 
 .notice {
-  color: #264409;
+  color: black;
   border: 2px solid #399c07;
   background-color: #d7ffaf; }
 
 .error {
-  color: #cc0000;
+  color: black;
   border: 2px solid #cc2f00;
   background-color: #ff9999; }
 
 .warning {
-  color: #9f6000;
+  color: black;
   border: 2px solid #ff7700;
   background-color: #ffc28d; }
 
@@ -136,15 +136,15 @@ a.button.small {
       padding: 5px;
       width: 90%; }
       #calendar table td .raids .raid.queued {
-        color: #9f6000;
+        color: black;
         border: 2px solid #ff7700;
         background-color: #ffc28d; }
       #calendar table td .raids .raid.accepted {
-        color: #264409;
+        color: black;
         border: 2px solid #399c07;
         background-color: #d7ffaf; }
       #calendar table td .raids .raid.cancelled {
-        color: #cc0000;
+        color: black;
         border: 2px solid #cc2f00;
         background-color: #ff9999; }
 
