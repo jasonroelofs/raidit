@@ -18,8 +18,6 @@ class CharactersController < ApplicationController
         c.save
         c.reload
       end
-    else
-      flash[:notice] = "You don't have any characters assigned. Click 'My Characters' above to do so."
     end
   end
 
