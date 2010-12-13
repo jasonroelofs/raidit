@@ -9,13 +9,17 @@ class CharactersController < ApplicationController
   def index
     @characters = current_user.characters_in(current_guild)
 
-    # Fix main if one isn't set
-    c = @characters.first
+    if @characters.any?
+      # Fix main if one isn't set
+      c = @characters.first
 
-    if !c.is_main
-      c.is_main = true
-      c.save
-      c.reload
+      if !c.is_main
+        c.is_main = true
+        c.save
+        c.reload
+      end
+    else
+      flash[:notice] = "You don't have any characters assigned. Click 'My Characters' above to do so."
     end
   end
 
