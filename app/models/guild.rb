@@ -11,6 +11,11 @@ class Guild
   # Secret API key for token requests
   key :api_key, String
 
+  # What kind of loot system is this guild using?
+  # Needs to match with the name of implemented LootSystem-s
+  # See lib/loot_systems for currently implemented LootSystems
+  key :loot_type, String
+
   # Guilds have Characters
   many :characters, :order => "name ASC"
 
@@ -52,6 +57,14 @@ class Guild
   def generate_api_key!
     self.api_key = Digest::SHA1.hexdigest("#{rand}--#{Time.now}--#{self.name}")
     self.save
+  end
+
+  # Get a loot system implementation according to what this guild is currently
+  # configured to be using.
+  def loot_system
+    if self.loot_type
+      LootSystems.const_get(self.loot_type).new(self)
+    end
   end
 
   protected

@@ -2,6 +2,9 @@
   .left
     = link_to "Calendar", root_path
 
+    - if current_guild.loot_system
+      = link_to current_guild.loot_system.name, loot_path
+
   - if current_user
     %strong= current_user.email
     &nbsp; 

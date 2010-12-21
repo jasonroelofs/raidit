@@ -20,6 +20,8 @@ RaidIt::Application.routes.draw do
     end
   end
 
+  resource :loot, :controller => "loot"
+
   devise_for :users
 
   match "admin", :to => "admin#index"

@@ -1,0 +1,11 @@
+%table
+  %tr
+    %th Character
+    %th Current
+    %th Lifetime
+
+  - loot.each_character do |entry|
+    %tr
+      %td= entry.name
+      %td= entry.current
+      %td= entry.lifetime
