@@ -140,3 +140,22 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
   # end
 end
+
+# Patch the test helper to not crash on integration tests
+module Devise
+  module TestHelpers
+
+    # We need to setup the environment variables and the response in the controller.
+    def setup_controller_for_warden #:nodoc:
+      if @request
+        @request.env['action_controller.instance'] = @controller
+      end
+    end
+
+    def warden
+      if @controller && @request
+        @warden ||= (@request.env['warden'] = TestWarden.new(@controller))
+      end
+    end
+  end
+end
