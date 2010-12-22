@@ -56,10 +56,14 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    bcrypt-ruby (2.1.2)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
+    bcrypt-ruby (2.1.3)
     bistro_car (0.2.2)
       jsmin (>= 1.0.1)
-    bson (1.1.4)
+    bson (1.1.5)
     bson_ext (1.1.4)
     builder (2.1.2)
     capybara (0.4.0)
@@ -71,8 +75,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.2)
-    celerity (0.8.4)
-    cells (3.4.2)
+    celerity (0.8.6)
+    cells (3.4.3)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
     columnize (0.3.2)
@@ -85,7 +89,7 @@ GEM
       term-ansicolor (~> 1.0.5)
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
-    culerity (0.2.12)
+    culerity (0.2.13)
     daemons (1.1.0)
     database_cleaner (0.6.0)
     devise (1.1.5)
@@ -101,8 +105,8 @@ GEM
     gherkin (2.2.9)
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
-    haml (3.0.24)
-    heroku (1.14.6)
+    haml (3.0.25)
+    heroku (1.15.0)
       json_pure (>= 1.2.0, < 1.5.0)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
@@ -119,15 +123,18 @@ GEM
     linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
-    mail (2.2.10)
+    mail (2.2.12)
       activesupport (>= 2.3.6)
-      i18n (~> 0.4.1)
+      i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
     mongo (1.1.4)
       bson (>= 1.1.1)
     nokogiri (1.4.4)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     plucky (0.3.6)
       mongo (~> 1.1)
     polyglot (0.3.1)
@@ -185,8 +192,9 @@ GEM
       polyglot (>= 0.3.1)
     typhoeus (0.2.0)
     tzinfo (0.3.23)
-    warden (1.0.2)
+    warden (1.0.3)
       rack (>= 1.0.0)
+    xml-simple (1.0.12)
     xpath (0.1.2)
       nokogiri (~> 1.3)
 
@@ -195,6 +203,7 @@ PLATFORMS
 
 DEPENDENCIES
   armory!
+  aws-s3 (~> 0.6.2)
   bistro_car
   bson_ext (= 1.1.4)
   bundler (~> 1.0.3)
@@ -212,6 +221,7 @@ DEPENDENCIES
   launchy (~> 0.3.7)
   mongo (= 1.1.4)
   mongo_mapper!
+  paperclip (~> 2.3.8)
   rails (= 3.0.1)
   ruby-debug
   ruby-debug19

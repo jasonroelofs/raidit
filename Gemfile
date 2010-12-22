@@ -15,11 +15,12 @@ gem "cells"
 
 # Libraries
 gem "armory", :git => "git://github.com/gaffneyc/armory"
+gem "aws-s3", "~> 0.6.2"
+gem "paperclip", "~> 2.3.8"
 gem "state_machine", "~> 0.9.4"
 
 # Authentication
 gem "devise", "~> 1.1.0"
-#gem "mm-devise", :git => "git://github.com/jameskilton/mm-devise"
 gem "devise-mongo_mapper", :git => "git://github.com/collectiveidea/devise-mongo_mapper"
 
 # Deployment
