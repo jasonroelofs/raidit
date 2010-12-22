@@ -4,8 +4,8 @@ gem 'bundler', '~> 1.0.3'
 gem 'rails',   '3.0.1'
 
 # ORM
-gem "mongo", "1.1.4"
-gem "bson_ext", "1.1.4"
+gem "mongo", "1.1.5"
+gem "bson_ext", "1.1.5"
 gem "mongo_mapper", :git => "git://github.com/jnunemaker/mongomapper", :branch => "rails3"
 
 # Rendering

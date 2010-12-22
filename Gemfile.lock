@@ -64,7 +64,7 @@ GEM
     bistro_car (0.2.2)
       jsmin (>= 1.0.1)
     bson (1.1.5)
-    bson_ext (1.1.4)
+    bson_ext (1.1.5)
     builder (2.1.2)
     capybara (0.4.0)
       celerity (>= 0.7.9)
@@ -129,8 +129,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
-    mongo (1.1.4)
-      bson (>= 1.1.1)
+    mongo (1.1.5)
+      bson (>= 1.1.5)
     nokogiri (1.4.4)
     paperclip (2.3.8)
       activerecord
@@ -205,7 +205,7 @@ DEPENDENCIES
   armory!
   aws-s3 (~> 0.6.2)
   bistro_car
-  bson_ext (= 1.1.4)
+  bson_ext (= 1.1.5)
   bundler (~> 1.0.3)
   capybara (~> 0.4.0)
   cells
@@ -219,7 +219,7 @@ DEPENDENCIES
   heroku
   hoptoad_notifier
   launchy (~> 0.3.7)
-  mongo (= 1.1.4)
+  mongo (= 1.1.5)
   mongo_mapper!
   paperclip (~> 2.3.8)
   rails (= 3.0.1)
