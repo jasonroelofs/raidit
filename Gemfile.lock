@@ -75,9 +75,11 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.2)
+    carrierwave (0.5.1)
+      activesupport (~> 3.0)
     celerity (0.8.6)
     cells (3.4.3)
-    childprocess (0.1.4)
+    childprocess (0.1.6)
       ffi (~> 0.6.3)
     columnize (0.3.2)
     configuration (1.2.0)
@@ -106,7 +108,7 @@ GEM
       json (~> 1.4.6)
       term-ansicolor (~> 1.0.5)
     haml (3.0.25)
-    heroku (1.15.0)
+    heroku (1.15.1)
       json_pure (>= 1.2.0, < 1.5.0)
       launchy (~> 0.3.2)
       rest-client (>= 1.4.0, < 1.7.0)
@@ -123,7 +125,7 @@ GEM
     linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
-    mail (2.2.12)
+    mail (2.2.13)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -132,9 +134,6 @@ GEM
     mongo (1.1.5)
       bson (>= 1.1.5)
     nokogiri (1.4.4)
-    paperclip (2.3.8)
-      activerecord
-      activesupport
     plucky (0.3.6)
       mongo (~> 1.1)
     polyglot (0.3.1)
@@ -175,8 +174,8 @@ GEM
     ruby_core_source (0.1.4)
       archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
-    selenium-webdriver (0.1.1)
-      childprocess (= 0.1.4)
+    selenium-webdriver (0.1.2)
+      childprocess (~> 0.1.5)
       ffi (~> 0.6.3)
       json_pure
       rubyzip
@@ -208,6 +207,7 @@ DEPENDENCIES
   bson_ext (= 1.1.5)
   bundler (~> 1.0.3)
   capybara (~> 0.4.0)
+  carrierwave (~> 0.5.0)
   cells
   cucumber (~> 0.9.3)
   cucumber-rails (~> 0.3.2)
@@ -221,7 +221,6 @@ DEPENDENCIES
   launchy (~> 0.3.7)
   mongo (= 1.1.5)
   mongo_mapper!
-  paperclip (~> 2.3.8)
   rails (= 3.0.1)
   ruby-debug
   ruby-debug19
