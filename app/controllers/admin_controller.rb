@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
   before_filter :authenticate_user!
-  requires_permission :admin
+  requires_permission :admin, :only => [:index, :edit_user, :api]
+  requires_permission :raid_leader, :only => [:loot, :raids, :logs]
 
   # TODO : multiple guild support
 
