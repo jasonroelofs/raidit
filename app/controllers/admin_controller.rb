@@ -22,6 +22,15 @@ class AdminController < ApplicationController
   def raids
   end
 
+  # Loot system management
+  def loot
+    if request.post?
+      current_guild.loot_uploads.create(:loot_file => params[:file])
+      flash[:notice] = "File uploaded"
+      redirect_to admin_loot_path
+    end
+  end
+
   # Log / Events page
   def logs
   end

@@ -29,6 +29,7 @@ class RoutingTest < ActionDispatch::IntegrationTest
     assert_routing "/admin/raids", :controller => "admin", :action => "raids"
     assert_routing "/admin/logs", :controller => "admin", :action => "logs"
     assert_routing "/admin/api", :controller => "admin", :action => "api"
+    assert_routing "/admin/loot", :controller => "admin", :action => "loot"
 
     assert_routing "/admin/users/14/edit", :controller => "admin", :action => "edit_user", :id => "14"
 

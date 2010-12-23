@@ -22,6 +22,9 @@ class Guild
   # Guilds have many raids
   many :raids
 
+  # List of uploaded Loot files, saved to S3
+  many :loot_uploads
+
   timestamps!
 
   attr_accessible :name, :realm, :region

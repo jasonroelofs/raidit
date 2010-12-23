@@ -30,6 +30,7 @@ RaidIt::Application.routes.draw do
   match "admin/raids", :to => "admin#raids"
   match "admin/logs", :to => "admin#logs"
   match "admin/api", :to => "admin#api"
+  match "admin/loot", :to => "admin#loot"
 
   match "api/token", :to => "api#token"
 

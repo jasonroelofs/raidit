@@ -266,3 +266,10 @@ a.button.small {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px; }
+
+.manage_loot .loot_system {
+  padding: 10px;
+  border: 1px solid black;
+  margin: 10px 0px; }
+  .manage_loot .loot_system form {
+    padding: 10px; }

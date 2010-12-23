@@ -1,0 +1,13 @@
+= render :partial => "nav"
+
+.manage_loot
+  %h2 Loot System
+
+  .loot_system
+    %h3 Ni Karma
+
+    = form_tag admin_loot_path, :multipart => true do
+      Upload new loot file: 
+      = file_field_tag :file
+      %br
+      = submit_tag "Upload"
