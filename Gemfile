@@ -15,8 +15,8 @@ gem "cells"
 
 # Libraries
 gem "armory", :git => "git://github.com/gaffneyc/armory"
-gem "aws-s3", "~> 0.6.2", :require => "aws/s3"
 gem "carrierwave", "~> 0.5.0"
+gem "fog", "~> 0.3.34"
 gem "state_machine", "~> 0.9.4"
 
 # Authentication
