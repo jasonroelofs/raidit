@@ -26,8 +26,12 @@ class AdminController < ApplicationController
   # Loot system management
   def loot
     if request.post?
-      current_guild.loot_uploads.create(:loot_file => params[:file])
-      flash[:notice] = "File uploaded"
+      if params[:file]
+        current_guild.loot_uploads.create(:loot_file => params[:file])
+        flash[:notice] = "File uploaded"
+      else
+        flash[:error] = "File missing"
+      end
       redirect_to admin_loot_path
     end
   end

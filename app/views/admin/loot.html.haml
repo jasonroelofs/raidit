@@ -14,9 +14,10 @@
         %br
         = submit_tag "Upload"
 
-    %fieldset.download
-      %legend Download latest karma file
+    - if current_guild.loot_uploads.any?
+      %fieldset.download
+        %legend Download latest karma file
 
-      = link_to current_guild.newest_loot_file_name, current_guild.newest_loot_file_url, :class => 'button medium'
+        = link_to current_guild.newest_loot_file_name, current_guild.newest_loot_file_url, :class => 'button medium'
 
     .clear
