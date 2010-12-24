@@ -24,6 +24,10 @@
   %h3 Role Queue Sizes
   %table
     %tr
+      %td.presets{:colspan => 2}
+        = link_to "10-man", "#", "data-tanks" => "2", "data-healers" => "2", "data-dps" => "6", :class => "button preset"
+        = link_to "25-man", "#", "data-tanks" => "3", "data-healers" => "6", "data-dps" => "16", :class => "button preset"
+    %tr
       %td.key= f.label :tanks, "Tanks"
       %td= f.text_field :tanks, :size => 4
 

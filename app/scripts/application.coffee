@@ -20,6 +20,14 @@ class Raid
       false
     )
 
+    $("a.preset").live("click", () ->
+      $("#raid_tanks").val($(this).attr("data-tanks"))
+      $("#raid_healers").val($(this).attr("data-healers"))
+      $("#raid_dps").val($(this).attr("data-dps"))
+
+      false
+    )
+
 class Characters
   constructor: ->
     @timer = null

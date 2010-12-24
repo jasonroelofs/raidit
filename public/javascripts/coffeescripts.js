@@ -19,6 +19,12 @@
       }, "script");
       return false;
     });
+    $("a.preset").live("click", function() {
+      $("#raid_tanks").val($(this).attr("data-tanks"));
+      $("#raid_healers").val($(this).attr("data-healers"));
+      $("#raid_dps").val($(this).attr("data-dps"));
+      return false;
+    });
     return this;
   };
   Characters = function() {
