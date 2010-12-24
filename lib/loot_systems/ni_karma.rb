@@ -10,8 +10,8 @@ module LootSystems
     end
 
     def each_character
-      10.times do 
-        yield LootEntry.new("Some Name", rand, rand)
+      guild.characters.assigned.each do |character|
+        yield LootEntry.new(character.name, character.loot_current_amount, character.loot_lifetime_amount)
       end
     end
   end

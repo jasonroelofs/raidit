@@ -7,5 +7,5 @@
   - loot.each_character do |entry|
     %tr
       %td= entry.name
-      %td= entry.current
-      %td= entry.lifetime
+      %td.amount= entry.current
+      %td.amount= entry.lifetime

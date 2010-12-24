@@ -240,6 +240,16 @@ a.button.small {
         .raid .queues div.queue .accepted .queueing h4, .raid .queues div.queue .queued .queueing h4, .raid .queues div.queue .cancelled .queueing h4 {
           font-size: 110%; }
 
+#loot.ni_karma table {
+  margin: 20px; }
+  #loot.ni_karma table tr td, #loot.ni_karma table tr th {
+    padding-right: 20px;
+    padding-bottom: 6px; }
+  #loot.ni_karma table tr th {
+    padding-bottom: 10px; }
+  #loot.ni_karma table tr td.amount {
+    text-align: center; }
+
 .manage_users table {
   margin-top: 15px; }
   .manage_users table tr td {

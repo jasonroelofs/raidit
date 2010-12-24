@@ -17,11 +17,19 @@ class Character
   belongs_to :user
   belongs_to :guild
 
+  many :loot_history_entries
+  key :loot_current_amount, Float, :default => 0.0
+  key :loot_lifetime_amount, Float, :default => 0.0
+
   timestamps!
 
   attr_accessible :main_role
 
+  # All characters not currently assigned to a user
   scope :unchosen, :user_id => nil
+
+  # All characters currently assigned to a user
+  scope :assigned, :user_id => {"$ne" => nil}
 
   # Convert the class of this character to something
   # we use in choosing what icon to show

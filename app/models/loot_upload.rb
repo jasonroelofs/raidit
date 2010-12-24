@@ -25,6 +25,8 @@ class LootUpload
   key :guild_id
   belongs_to :guild
 
+  key :processed, Boolean, :default => false
+
   timestamps!
 
 end
