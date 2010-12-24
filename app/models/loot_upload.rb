@@ -25,4 +25,6 @@ class LootUpload
   key :guild_id
   belongs_to :guild
 
+  timestamps!
+
 end

@@ -23,7 +23,7 @@ class Guild
   many :raids
 
   # List of uploaded Loot files, saved to S3
-  many :loot_uploads
+  many :loot_uploads, :order => "created_at DESC"
 
   timestamps!
 
@@ -68,6 +68,14 @@ class Guild
     if self.loot_type
       LootSystems.const_get(self.loot_type).new(self)
     end
+  end
+
+  def newest_loot_file_url
+    self.loot_uploads.first.loot_file.to_s
+  end
+
+  def newest_loot_file_name
+    self.loot_uploads.first.loot_file_filename
   end
 
   protected

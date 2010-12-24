@@ -271,5 +271,12 @@ a.button.small {
   padding: 10px;
   border: 1px solid black;
   margin: 10px 0px; }
+  .manage_loot .loot_system fieldset {
+    width: 48%;
+    float: left; }
+    .manage_loot .loot_system fieldset.download {
+      padding-left: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px; }
   .manage_loot .loot_system form {
     padding: 10px; }
