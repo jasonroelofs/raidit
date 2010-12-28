@@ -166,6 +166,14 @@ GEM
     rake (0.8.7)
     rest-client (1.6.1)
       mime-types (>= 1.16)
+    rspec (2.3.0)
+      rspec-core (~> 2.3.0)
+      rspec-expectations (~> 2.3.0)
+      rspec-mocks (~> 2.3.0)
+    rspec-core (2.3.1)
+    rspec-expectations (2.3.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.3.0)
     ruby-debug (0.10.4)
       columnize (>= 0.1)
       ruby-debug-base (~> 0.10.4.0)
@@ -230,6 +238,7 @@ DEPENDENCIES
   mongo (= 1.1.5)
   mongo_mapper!
   rails (= 3.0.1)
+  rspec (~> 2.3.0)
   ruby-debug
   ruby-debug19
   state_machine (~> 0.9.4)
