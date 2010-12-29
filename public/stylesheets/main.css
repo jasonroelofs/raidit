@@ -118,6 +118,8 @@ a.button.small {
     height: 100px;
     border: 1px solid black;
     vertical-align: top; }
+    #calendar table td.past {
+      background-color: #dfdfdf; }
     #calendar table td .day {
       float: right;
       font-size: 130%;

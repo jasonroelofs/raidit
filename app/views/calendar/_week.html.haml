@@ -1,6 +1,6 @@
 %tr{:class => this_week ? nil : "future"}
   - days.each do |day|
-    %td
+    %td{:class => day.date < Date.today ? "past" : nil}
       .inner
         - if role?(:raid_leader)
           .add
