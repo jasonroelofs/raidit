@@ -5,7 +5,7 @@
     %th Lifetime
 
   - loot.each_character do |entry|
-    %tr
+    %tr{:id => "karma_#{entry.name}"}
       %td= entry.name
-      %td.amount= entry.current
-      %td.amount= entry.lifetime
+      %td.current.amount= entry.current
+      %td.lifetime.amount= entry.lifetime

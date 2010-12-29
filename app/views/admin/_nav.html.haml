@@ -1,10 +1,12 @@
 .admin_nav
-  = link_to "Users", admin_path
-  \|
-  = link_to "Raids", admin_raids_path
-  \|
+  - if role?(:admin)
+    = link_to "Users", admin_path
+    \|
+    = link_to "Raids", admin_raids_path
+    \|
   = link_to "Loot", admin_loot_path
   \|
   = link_to "Event Logs", admin_logs_path
-  \|
-  = link_to "API", admin_api_path
+  - if role?(:admin)
+    \|
+    = link_to "API", admin_api_path

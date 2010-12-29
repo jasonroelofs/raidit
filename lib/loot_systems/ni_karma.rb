@@ -14,5 +14,11 @@ module LootSystems
         yield LootEntry.new(character.name, character.loot_current_amount, character.loot_lifetime_amount)
       end
     end
+
+    def parse_uploaded_file
+      # From http://stackoverflow.com/questions/2370153/i-need-a-tool-to-parse-lua-tables-preferrably-in-ruby-or-java
+      # Just take the lua table we want, convert it to JSON and parse it that way
+      JSON.parse(s.gsub("=", ":").gsub(/[\[\]]/,"").gsub('" :','":').gsub(/,\n(.+)\}/,"\n\\1}"))
+    end
   end
 end

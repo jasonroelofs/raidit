@@ -12,6 +12,7 @@ class LootUploadProcessor
     #  - Build the list of entries that are newer than our saved history
     #  - Enter each history line to the character's loot_history_entry
     #  - Update current and lifetime values
+    # Mark file as processed
   end
 
 end

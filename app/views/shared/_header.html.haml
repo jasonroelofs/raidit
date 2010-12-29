@@ -11,9 +11,9 @@
     &nbsp; 
     = link_to "My Characters", characters_path
 
-    - if role?(:admin)
+    - if role?(:raid_leader)
       &nbsp; 
-      = link_to "Admin", admin_path
+      = link_to "Admin", role?(:admin) ? admin_path : admin_loot_path
 
     &nbsp;
     = link_to "Sign out", destroy_user_session_path(current_user)
