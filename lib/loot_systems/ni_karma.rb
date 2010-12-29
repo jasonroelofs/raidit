@@ -11,7 +11,9 @@ module LootSystems
 
     def each_character
       guild.characters.assigned.each do |character|
-        yield LootEntry.new(character.name, character.loot_current_amount, character.loot_lifetime_amount)
+        if character.loot_lifetime_amount > 0
+          yield LootEntry.new(character.name, character.loot_current_amount, character.loot_lifetime_amount)
+        end
       end
     end
 
