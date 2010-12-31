@@ -127,3 +127,19 @@ KarmaList = {
 		},
   },
 }
+
+KarmaConfig = {
+	["MAX_KARMA_CLASS_DEDUCTION"] = 0,
+	["NOTIFY_ON_CHANGE"] = true,
+	["MIN_KARMA_NONCLASS_DEDUCTION"] = 25,
+	["CURRENT RAID"] = "Exiled",
+	["ALLOW_NEGATIVE_KARMA"] = false,
+	["MAX_KARMA_ACCUMULATION"] = 400,
+	["MAX_KARMA_NONCLASS_DEDUCTION"] = 0,
+	["KARMA_ROUNDING"] = 1,
+	["VERSION"] = "3.0 rel 03",
+	["SHOW_WHISPERS"] = false,
+	["DATAVERSION"] = 1,
+	["LASTUPDATE"] = "Sat Mar 01 10:33:36 2008",
+	["MIN_KARMA_CLASS_DEDUCTION"] = 25,
+}

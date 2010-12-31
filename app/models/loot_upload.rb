@@ -4,7 +4,7 @@ class LootUpload
 
   ##
   # See +CarrierWave::Mount#mount_uploader+ for documentation
-  #
+  ##
   def self.mount_uploader(column, uploader, options={}, &block)
     # We need to set the mount_on column (or key in MongoMapper's case)
     # since MongoMapper will attempt to set the filename on 
@@ -29,4 +29,7 @@ class LootUpload
 
   timestamps!
 
+  def self.unprocessed
+    where(:processed => false).order(:created_at => "DESC")
+  end
 end

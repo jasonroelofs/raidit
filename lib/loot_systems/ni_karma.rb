@@ -1,4 +1,43 @@
 module LootSystems
+
+  class NiKarmaData < LootData
+    def initialize(data)
+      @data = data
+      process
+    end
+
+    def get_history_for(character_name)
+      @data[character_name.downcase]["history"]
+    end
+
+    def current_amount_for(character_name)
+      @data[character_name.downcase]["points"]
+    end
+
+    def lifetime_amount_for(character_name)
+      @data[character_name.downcase]["lifetime"]
+    end
+
+    protected
+
+    # Take the resulting hash we get and do some conversions
+    # to make it easier to work with
+    #
+    #  * Wrap up all history entries in a :history array
+    def process
+      @data.each do |char_name, char_data|
+        history = []
+        char_data.each do |key, value|
+          if key =~ /(\d+)/
+            history[$1.to_i - 1] = value
+          end
+        end
+
+        char_data["history"] = history
+      end 
+    end
+  end
+
   # LootSystem Implementation for the NiKarma loot system:
   # http://www.wowpedia.org/Ni_Karma
   class NiKarma < LootSystem
@@ -12,15 +51,22 @@ module LootSystems
     def each_character
       guild.characters.assigned.each do |character|
         if character.loot_lifetime_amount > 0
-          yield LootEntry.new(character.name, character.loot_current_amount, character.loot_lifetime_amount)
+          yield LootEntry.new(character.name,
+                              character.loot_current_amount,
+                              character.loot_lifetime_amount)
         end
       end
     end
 
-    def parse_uploaded_file
-      # From http://stackoverflow.com/questions/2370153/i-need-a-tool-to-parse-lua-tables-preferrably-in-ruby-or-java
-      # Just take the lua table we want, convert it to JSON and parse it that way
-      JSON.parse(s.gsub("=", ":").gsub(/[\[\]]/,"").gsub('" :','":').gsub(/,\n(.+)\}/,"\n\\1}"))
+    # The file we're working with is a Lua file. We need to take it's contents and convert
+    # it to something Ruby can work with, in this case JSON. This conversion is done in
+    # lib/lua/ni_karma_parser.lua.
+    #
+    # Returns a NiKarmaData object
+    def process_file(file)
+      file_path = file.path
+      data = LuaProcessor.run("ni_karma_parser.lua", file_path, "Exiled")
+      NiKarmaData.new(data)
     end
   end
 end
