@@ -17,14 +17,13 @@ Scenario: Uploading and processing ni karma file sets current, lifetime, and his
     | character | current | lifetime  |
     | Mage      | 0       | 15        |
     | DK        | 25      | 65        |
-    | Warrior   | 10      | 10        |
     | Priest    | 20      | 20        |
 
   And there are the following history entries
     | character | count |
     | Mage      | 4     |
     | DK        | 6     |
-    | Warrior   | 2     |
+    | Warrior   | 0     |
     | Priest    | 4    |
     
 
@@ -49,5 +48,4 @@ Scenario: Multiple uploads don't duplicate history entries
     | character | count |
     | Mage      | 4     |
     | DK        | 6     |
-    | Warrior   | 2     |
     | Priest    | 4     |

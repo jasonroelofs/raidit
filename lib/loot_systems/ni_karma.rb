@@ -7,18 +7,26 @@ module LootSystems
     end
 
     def get_history_for(character_name)
-      @data[character_name.downcase]["history"]
+      get_data(character_name.downcase, "history")
     end
 
     def current_amount_for(character_name)
-      @data[character_name.downcase]["points"]
+      get_data(character_name.downcase, "points")
     end
 
     def lifetime_amount_for(character_name)
-      @data[character_name.downcase]["lifetime"]
+      get_data(character_name.downcase, "lifetime")
     end
 
     protected
+
+    def get_data(char_name, key)
+      if data = @data[char_name]
+        data[key]
+      else
+        nil
+      end
+    end
 
     # Take the resulting hash we get and do some conversions
     # to make it easier to work with

@@ -75,25 +75,6 @@ KarmaList = {
 			["points"] = 25,
 			["lastadd"] = "03/19/10 22:10:41",
 		},
-		["warrior"] = {
-			{
-				["value"] = 5,
-				["type"] = "P",
-				["DT"] = "03/18/10 21:19:48",
-				["reason"] = "Start of Raid",
-			}, -- [1]
-			{
-				["value"] = 5,
-				["type"] = "P",
-				["reason"] = "Boss Kill",
-				["DT"] = "03/18/10 21:36:47",
-			}, -- [2]
-			["lifetime"] = 10,
-			["fullname"] = "Warrior",
-			["class"] = "Warrior",
-			["points"] = 10,
-			["lastadd"] = "03/18/10 21:47:08",
-		},
 		["priest"] = {
 			{
 				["value"] = 5,
@@ -124,6 +105,25 @@ KarmaList = {
 			["class"] = "Priest",
 			["points"] = 20,
 			["lastadd"] = "03/18/10 21:50:08",
+		},
+		["pugger"] = {
+			{
+				["value"] = 5,
+				["type"] = "P",
+				["DT"] = "03/18/10 21:19:48",
+				["reason"] = "We like pugs",
+			}, -- [1]
+			{
+				["value"] = -500000,
+				["type"] = "P",
+				["reason"] = "Except when the PUG sucks",
+				["DT"] = "03/18/10 21:36:47",
+			}, -- [2]
+			["lifetime"] = 5,
+			["fullname"] = "Pugger",
+			["class"] = "Warrior",
+			["points"] = 0,
+			["lastadd"] = "03/18/10 21:47:08",
 		},
   },
 }
