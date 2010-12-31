@@ -11,6 +11,10 @@ class LootFileUploader < CarrierWave::Uploader::Base
     "loot_files/#{model.guild.id}/#{model.id}"
   end
 
+  def cache_dir
+    Rails.root.join("tmp", "loot_files")
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
