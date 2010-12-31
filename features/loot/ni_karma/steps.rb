@@ -1,4 +1,4 @@
-Then /^I should see the following karma values$/ do |table|
+Then "I should see the following karma values" do |table|
   table.hashes.each do |row|
     character = Character.find_by_name(row[:character])
     within(:css, "tr#karma_#{character.name}") do
@@ -9,3 +9,9 @@ Then /^I should see the following karma values$/ do |table|
   end
 end
 
+Then "there are the following history entries" do |table|
+  table.hashes.each do |row|
+    character = Character.find_by_name(row[:character])
+    character.loot_history_entries.count.should == row[:count].to_i
+  end
+end

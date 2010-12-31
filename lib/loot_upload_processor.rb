@@ -21,11 +21,7 @@ class LootUploadProcessor
         guild.characters.assigned.each do |char|
           #  - Build the list of entries that are newer than our saved history
           history = loot_data.get_history_for(char.name)
-
-          history.each do |entry|
-            #  - Enter each history line to the character's loot_history_entry
-            char.loot_history_entries << LootHistoryEntry.new(entry)
-          end
+          char.save_new_history(history)
 
           #  - Update current and lifetime values
           char.loot_current_amount = loot_data.current_amount_for(char.name)

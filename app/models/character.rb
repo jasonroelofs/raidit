@@ -36,4 +36,21 @@ class Character
   def class_slug
     self.class_name.downcase.gsub(" ", "")
   end
+
+  # Given a list of history entries from the loot file,
+  # and add a new LootHistoryEntry for ones we don't have yet
+  def save_new_history(history)
+    newest = self.loot_history_entries.last
+
+    self.loot_history_entries.each do |entry|
+      newest = entry if entry.timestamp > newest.timestamp
+    end
+
+    history.each do |entry|
+      if newest.nil? || entry["timestamp"] > newest.timestamp
+        self.loot_history_entries << LootHistoryEntry.new(entry)
+      end
+    end
+  end
+
 end

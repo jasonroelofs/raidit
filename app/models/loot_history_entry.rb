@@ -3,7 +3,7 @@
 class LootHistoryEntry
   include MongoMapper::EmbeddedDocument
 
-  key :timestamp, DateTime
+  key :timestamp, Time
   key :amount, Integer
   key :item, String
   key :reason, String

@@ -29,7 +29,14 @@ module LootSystems
         history = []
         char_data.each do |key, value|
           if key =~ /(\d+)/
-            history[$1.to_i - 1] = value
+            id = $1.to_i
+
+            # Build out a Time object from the DT field
+            dt = value.delete("DT")
+            dt =~ /(\d+)\/(\d+)\/(\d+) (\d+):(\d+):(\d+)/
+            value["timestamp"] = Time.mktime("20#{$3}", $1, $2, $4, $5, $6)
+
+            history[id - 1] = value
           end
         end
 
