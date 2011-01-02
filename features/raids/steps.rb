@@ -48,3 +48,16 @@ end
 Then "I should not see accept buttons" do
   page.should_not have_css("a.accept")
 end
+
+Then %r{^the raid to "([^"]*)" should have the following logs$} do |location, table|
+  raid = Raid.find_by_location(location)
+
+  table.hashes.each do |row|
+    log = raid.event_logs.select do |log|
+      log.who == row[:who] && log.event == row[:event]
+    end.first
+
+    log.should_not be_nil
+    log.when.to_date.should == Date.parse(row[:when])
+  end
+end

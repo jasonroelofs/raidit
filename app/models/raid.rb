@@ -27,6 +27,8 @@ class Raid
 
   timestamps!
 
+  after_create :log_creation
+
   attr_accessible :location, :description, :date, :start_time, :invite_time,
     :tanks, :dps, :healers
 
@@ -96,4 +98,12 @@ class Raid
   end
 
   # Start time and Invite time can just be strings
+
+  protected
+
+  def log_creation
+    user = User.current
+    self.event_logs << EventLog.new(:who => user.event_name, :event => "created the raid", :when => Time.now)
+    self.save
+  end
 end

@@ -44,6 +44,17 @@ class User
     Thread.current["user"]
   end
 
+  # When building the 'who' for raid events we need
+  # a good name. This will be the main character's name, or
+  # if there is no character the user's email
+  def event_name
+    if self.characters.empty?
+      self.email
+    else
+      self.main_character.name
+    end
+  end
+
   # Get the main character of this user.
   # If none are yet flagged, pick the first in the list and flag it
   def main_character

@@ -64,3 +64,21 @@ Scenario: RL can use default buttons for raid sizes
 Scenario: Users cannot create raids
   Given I am logged in as "user@raidit.org"
   Then I should not be able to add a raid 
+
+@characters
+Scenario: Logs creator of the raid
+  Given I am logged in as "jason@raidit.org"
+  And today is "2010/11/01"
+  When I want to make a raid for "2010/11/04"
+  And I fill in "3:34 am" for "Invite Time"
+  And I fill in "4:40 am" for "Start Time"
+  And I fill in "Papa John's" for "Location"
+  And I fill in "Cause we LOVE pizza" for "Description"
+  And I fill in "10" for "Tanks"
+  And I fill in "20" for "Healers"
+  And I fill in "100" for "DPS"
+  And I press "Create Raid"
+
+  Then the raid to "Papa John's" should have the following logs
+    | who | event | when |
+    | Mage | created the raid | 2010/11/01 |
