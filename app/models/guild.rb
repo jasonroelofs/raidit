@@ -20,7 +20,7 @@ class Guild
   many :characters, :order => "name ASC"
 
   # Guilds have many raids
-  many :raids
+  many :raids, :order => "date DESC"
 
   # List of uploaded Loot files, saved to S3
   many :loot_uploads, :order => "created_at DESC"

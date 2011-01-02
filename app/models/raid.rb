@@ -20,6 +20,9 @@ class Raid
   key :queued, RaidQueue, :default => RaidQueue.new(:name => "queued")
   key :cancelled, RaidQueue, :default => RaidQueue.new(:name => "cancelled")
 
+  key :guild_id
+  belongs_to :guild
+
   timestamps!
 
   attr_accessible :location, :description, :date, :start_time, :invite_time,

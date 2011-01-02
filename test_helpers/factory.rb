@@ -8,8 +8,10 @@ Factory.define(:user) do |f|
 end
 
 Factory.define(:character) do |f|
-
 end
 
 Factory.define(:guild) do |f|
+end
+
+Factory.define(:raid) do |f|
 end

@@ -21,6 +21,7 @@ class AdminController < ApplicationController
 
   # Raids history page
   def raids
+    @raids = current_guild.raids
   end
 
   # Loot system management

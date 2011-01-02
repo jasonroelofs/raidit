@@ -1,1 +1,20 @@
 = render :partial => "nav"
+
+.manage_raids
+  %h2 Raids
+
+  %table
+    %tr
+      %th Date
+      %th Location
+      %th Invite Time
+      %th Start Time
+      %th &nbsp;
+
+    - @raids.each do |raid|
+      %tr{:id => dom_id(raid)}
+        %td= raid.date
+        %td= raid.location
+        %td= raid.invite_time
+        %td= raid.start_time
+        %td= link_to "View", raid_path(raid)
