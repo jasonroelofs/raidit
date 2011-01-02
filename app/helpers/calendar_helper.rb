@@ -6,8 +6,8 @@ module CalendarHelper
 
   # Render a week's worth of raids, offset from the current week
   def render_week(which)
-    this_sunday = (Date.today.beginning_of_week - 1.day).to_date
-    week_sunday = this_sunday + (which * 7).days
+    this_sunday = Date.today.traditional_beginning_of_week
+    week_sunday = (this_sunday + (which * 7).days).to_date
 
     days = []
 
