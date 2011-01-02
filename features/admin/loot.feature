@@ -15,8 +15,8 @@ Scenario: Raid Leader can upload a loot file, then download it
   And I follow "Loot"
   Then I should see "Loot System"
 
-  When I attach the file "loot_file.lua" to "file"
+  When I attach the file "LootFile.lua" to "file"
   And I press "Upload"
 
   Then I should see "File uploaded"
-  And I should see "loot_file.lua"
+  And I should see "LootFile.lua"
