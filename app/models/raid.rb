@@ -23,6 +23,8 @@ class Raid
   key :guild_id
   belongs_to :guild
 
+  many :event_logs
+
   timestamps!
 
   attr_accessible :location, :description, :date, :start_time, :invite_time,

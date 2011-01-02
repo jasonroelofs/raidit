@@ -28,7 +28,7 @@ RaidIt::Application.routes.draw do
   match "admin/users/:id/edit", :to => "admin#edit_user", :as => :admin_edit_user
 
   match "admin/raids", :to => "admin#raids"
-  match "admin/logs", :to => "admin#logs"
+  match "admin/logs/:id", :to => "admin#logs", :as => :admin_logs
   match "admin/api", :to => "admin#api"
   match "admin/loot", :to => "admin#loot"
 

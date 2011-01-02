@@ -39,6 +39,8 @@ class AdminController < ApplicationController
 
   # Log / Events page
   def logs
+    @raid = current_guild.raids.find(params[:id])
+    @logs = @raid.event_logs
   end
 
   # API information page
