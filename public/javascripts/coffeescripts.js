@@ -57,6 +57,23 @@
     if ($(".raid").length > 0) {
       new Raid();
     }
-    return $("#new_character").length > 0 ? new Characters() : null;
+    if ($("#new_character").length > 0) {
+      new Characters();
+    }
+    return $("table.tablesorter").each(function() {
+      var defaultSorting, headers, table;
+      table = $(this);
+      defaultSorting = table.attr("data-default").split(",");
+      headers = {};
+      table.find("tr th").each(function(index, element) {
+        return $(this).hasClass("nosort") ? (headers[index] = {
+          sorter: false
+        }) : null;
+      });
+      return table.tablesorter({
+        sortList: [defaultSorting],
+        headers: headers
+      });
+    });
   });
 }).call(this);

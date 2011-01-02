@@ -62,4 +62,20 @@ jQuery(() ->
   if $("#new_character").length > 0
     new Characters()
 
+  # Set up tablesorter
+  $("table.tablesorter").each( ->
+    table = $(this)
+    defaultSorting = table.attr("data-default").split(",")
+    headers = {}
+
+    table.find("tr th").each( (index, element) ->
+      if $(this).hasClass("nosort")
+        headers[index] = {sorter: false}
+    )
+
+    table.tablesorter({
+      sortList: [ defaultSorting ],
+      headers: headers
+    })
+  )
 )
