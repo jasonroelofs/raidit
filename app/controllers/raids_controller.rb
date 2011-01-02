@@ -72,10 +72,12 @@ class RaidsController < ApplicationController
     raid = current_guild.raids.find(params[:id])
 
     if raid.upcoming?
+      char_being_queued = current_user.characters.find(params[:character_id])
       raid.queued.add!(
-        current_user.characters.find(params[:character_id]),
+        char_being_queued,
         params[:role]
       )
+      raid.mark_event!("queued #{char_being_queued.name} as #{params[:role]}")
     end
 
     redirect_to(raid_path(raid))

@@ -56,6 +56,14 @@ class Raid
     self.save
   end
 
+  # Create an event for this raid. Assumes the current signed in user
+  def mark_event!(event)
+    user = User.current
+    self.event_logs << EventLog.new(:who => user.try(:event_name), :event => event, :when => Time.now)
+    self.save
+  end
+
+
   # How many characters have been accepted for the given role?
   def number_accepted_for(role)
     self.accepted.number_in_role(role)
@@ -102,8 +110,6 @@ class Raid
   protected
 
   def log_creation
-    user = User.current
-    self.event_logs << EventLog.new(:who => user.event_name, :event => "created the raid", :when => Time.now)
-    self.save
+    self.mark_event!("created the raid")
   end
 end

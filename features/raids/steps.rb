@@ -57,7 +57,14 @@ Then %r{^the raid to "([^"]*)" should have the following logs$} do |location, ta
       log.who == row[:who] && log.event == row[:event]
     end.first
 
+    date = 
+      if row[:when] == "today"
+        Date.today
+      else
+        Date.parse(row[:when])
+      end
+
     log.should_not be_nil
-    log.when.to_date.should == Date.parse(row[:when])
+    log.when.to_date.should == date
   end
 end

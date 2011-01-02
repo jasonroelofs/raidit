@@ -24,6 +24,10 @@ Scenario: Users can queue a main character
   Then I should see "Mage" within "#dps"
   And I should see "Mage" is queued
 
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Mage | queued Mage as dps | today |
+
 @characters
 Scenario: Users can choose an alt character and role
   Given I am logged in as "jason@raidit.org"
@@ -40,6 +44,10 @@ Scenario: Users can choose an alt character and role
 
   Then I should see "DK" within "#healer"
   And I should see "DK" is queued
+
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Mage | queued DK as healer | today |
 
 @characters
 Scenario: User can cancel signup from any queue and re-queue
