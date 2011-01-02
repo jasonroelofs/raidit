@@ -15,8 +15,7 @@ Scenario: Admin can get to api page
   When I follow "Admin"
   Then I should see "Users"
   And I should see "Raids"
-  And I should see "Event Logs"
   And I should see "API"
 
   When I follow "API"
-  Then I should see "Event Logs"
+  Then I should see "Your current API key is:"

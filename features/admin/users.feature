@@ -15,7 +15,6 @@ Scenario: Admin can get to Users management
   When I follow "Admin"
   Then I should see "Users"
   And I should see "Raids"
-  And I should see "Event Logs"
   And I should see "API"
 
 Scenario: Admin sees users and what characters they have
