@@ -2,8 +2,10 @@
   - if role?(:admin)
     = link_to "Users", admin_path
     \|
+  - if role?(:raid_leader)
     = link_to "Raids", admin_raids_path
     \|
+
   = link_to "Loot", admin_loot_path
 
   - if role?(:admin)
