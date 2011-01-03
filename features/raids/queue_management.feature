@@ -25,6 +25,11 @@ Scenario: Raid leaders can approve and unapprove signups
   When I follow "Accept" within "#dps"
   And I follow "Accept" within "#tank"
 
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Warrior | accepted Warrior as tank | today |
+    | Warrior | accepted Mage as dps | today |
+
   And I refresh
 
   Then I should see "Mage" is accepted
@@ -33,6 +38,10 @@ Scenario: Raid leaders can approve and unapprove signups
 
   When I follow "Queue" within "#dps"
   And I refresh
+
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Warrior | re-queued Mage as dps | today |
 
   Then I should see "Mage" is queued
   And I should see "Warrior" is accepted
@@ -51,6 +60,11 @@ Scenario: Admins can approve and unapprove signups
 
   When I follow "Accept" within "#dps"
   And I follow "Accept" within "#tank"
+
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Mage | accepted Warrior as tank | today |
+    | Mage | accepted Mage as dps | today |
 
   And I refresh
 

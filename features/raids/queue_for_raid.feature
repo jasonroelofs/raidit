@@ -64,8 +64,16 @@ Scenario: User can cancel signup from any queue and re-queue
   Then I should see "Priest" within "#healer"
   And I should see "Priest" is cancelled
 
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Priest | cancelled Priest as healer | today |
+
   When I follow "Queue" within "#healer"
   Then I should see "Priest" is queued
+
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Priest | re-queued Priest as healer | today |
 
   Given "Priest" is accepted to "The Raid"
   And I refresh
@@ -73,9 +81,16 @@ Scenario: User can cancel signup from any queue and re-queue
   When I follow "Cancel" within "#healer"
   Then I should see "Priest" is cancelled
 
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Priest | cancelled Priest as healer | today |
+
   When I follow "Queue" within "#healer"
   Then I should see "Priest" is queued
 
+  Then the raid to "The Raid" should have the following logs
+    | who | event | when |
+    | Priest | re-queued Priest as healer | today |
 
 @characters
 Scenario: Cannot queue for raids in the past

@@ -35,9 +35,17 @@ class QueueManager
       transition :queued => :accepted, :if => :is_raid_leader?
     end
 
+    after_transition :on => :accept do |obj|
+      obj.raid.mark_event!("accepted #{obj.character.name} as #{obj.role}")
+    end
+
     # User wants to cancel a queueing
     event :cancel do
       transition [:accepted, :queued] => :cancelled, :if => :is_owner_of_character?
+    end
+
+    after_transition :on => :cancel do |obj|
+      obj.raid.mark_event!("cancelled #{obj.character.name} as #{obj.role}")
     end
 
     # Raid leader wants to un-accept someone
@@ -45,7 +53,13 @@ class QueueManager
       transition :accepted => :queued, :if => :is_raid_leader?
       transition :cancelled => :queued, :if => :is_owner_of_character?
     end
+
+    after_transition :on => :queue do |obj|
+      obj.raid.mark_event!("re-queued #{obj.character.name} as #{obj.role}")
+    end
   end
+
+  attr_accessor :character, :role, :raid
 
   def initialize(action, raid, role, character)
     @action = action

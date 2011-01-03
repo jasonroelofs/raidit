@@ -81,4 +81,4 @@ Scenario: Logs creator of the raid
 
   Then the raid to "Papa John's" should have the following logs
     | who | event | when |
-    | Mage | created the raid | 2010/11/01 |
+    | Mage | created the raid | 2010/10/31 |
