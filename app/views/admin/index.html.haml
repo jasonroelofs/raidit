@@ -3,17 +3,19 @@
 .manage_users
   %h2 Users Management
 
-  %table
-    %tr
-      %th User
-      %th Role
-      %th Characters
-      %th
+  %table.tablesorter{"data-default" => "1,1"}
+    %thead
+      %tr
+        %th User
+        %th Role
+        %th Characters
+        %th.nosort
 
-    - @users.each do |user|
-      %tr{:id => dom_id(user)}
-        %td= user.email
-        %td= user.role
-        %td= user.character_names.join(", ")
-        %td= link_to "Edit", admin_edit_user_path(user)
+    %tbody
+      - @users.each do |user|
+        %tr{:id => dom_id(user)}
+          %td= user.email
+          %td= user.role
+          %td= user.character_names.join(", ")
+          %td= link_to "Edit", admin_edit_user_path(user)
 
