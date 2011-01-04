@@ -25,6 +25,14 @@
       $("#raid_dps").val($(this).attr("data-dps"));
       return false;
     });
+    $("a.has_notes").each(function() {
+      return $(this).qtip({
+        content: $(this).siblings(".notes"),
+        position: {
+          at: "bottom center"
+        }
+      });
+    });
     return this;
   };
   Characters = function() {

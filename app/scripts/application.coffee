@@ -28,6 +28,15 @@ class Raid
       false
     )
 
+    $("a.has_notes").each( () ->
+      $(this).qtip({
+        content: $(this).siblings(".notes"),
+        position: {
+          at: "bottom center"
+        }
+      })
+    )
+
 class Characters
   constructor: ->
     @timer = null

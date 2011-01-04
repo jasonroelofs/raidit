@@ -13,6 +13,23 @@
         .character_wrapper
           .actions
             != render_actions(queue, @raid, @role, char)
+
+          = link_to image_tag("note.png", :size => "20x20"), "#", :class => "has_notes"
+          .notes
+            .note
+              I like to eat pie
+              .by - Weemuu
+            .note
+              But you are a moron!
+              .by - Wonko
+            .note
+              Lets go kill bosses
+              .by - Kill head
+
+            .note
+              I eat you
+              .by - The Lich King
+
           .queueing
             = render_cell :characters, :in_raid, :character => char, :queue => queue
           .clear
