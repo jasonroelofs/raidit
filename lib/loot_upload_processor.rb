@@ -52,7 +52,7 @@ class LootUploadProcessor
   def self.download_loot_file(loot_upload)
     temp = Tempfile.new("loot_upload_#{Process.pid}")
     open(loot_upload.loot_file_url) do |f|
-      temp.write(f.read)
+      temp.write(f.read.force_encoding("UTF-8"))
     end       
     # Re-open the file to put ourselves in Read mode
     temp.open

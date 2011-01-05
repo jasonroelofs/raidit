@@ -125,6 +125,25 @@ KarmaList = {
 			["points"] = 0,
 			["lastadd"] = "03/18/10 21:47:08",
 		},
+		["purpä"] = {
+			{
+				["value"] = 5,
+				["type"] = "P",
+				["reason"] = "We wins at boss killing",
+				["DT"] = "01/04/11 23:48:45",
+			}, -- [1]
+			{
+				["value"] = 10,
+				["type"] = "P",
+				["reason"] = "End of Raid",
+				["DT"] = "01/04/11 23:55:19",
+			}, -- [3]
+			["lastadd"] = "01/04/11 23:55:19",
+			["lifetime"] = 25,
+			["points"] = 25,
+			["class"] = "Warrior",
+			["fullname"] = "Purpä",
+		},
   },
 }
 
