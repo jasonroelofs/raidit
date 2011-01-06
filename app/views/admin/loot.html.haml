@@ -20,4 +20,8 @@
 
         = link_to current_guild.newest_loot_file_name, current_guild.newest_loot_file_url, :class => 'button medium'
 
+        %span{:style => "padding-left: 10px"}
+          Uploaded on 
+          = current_guild.newest_loot_file_upload_date.to_s(:expanded)
+
     .clear

@@ -78,6 +78,10 @@ class Guild
     self.loot_uploads.first.loot_file_filename
   end
 
+  def newest_loot_file_upload_date
+    self.loot_uploads.first.created_at.to_date
+  end
+
   protected
 
   def self.find_or_create_guild(name)

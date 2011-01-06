@@ -5,6 +5,9 @@ Time::DATE_FORMATS[:with_date] = "%Y/%m/%d %l:%M %P"
 # 10/20/2010
 Date::DATE_FORMATS[:default] = "%Y/%m/%d"
 
+# September 14, 2027
+Date::DATE_FORMATS[:expanded] = "%b %d, %Y"
+
 # 14
 Time::DATE_FORMATS[:day] = "%d"
 Date::DATE_FORMATS[:day] = "%d"
