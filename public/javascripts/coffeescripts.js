@@ -61,19 +61,22 @@
       new Characters();
     }
     return $("table.tablesorter").each(function() {
-      var defaultSorting, headers, table;
+      var defaultSorting, headers, options, sorting, table;
       table = $(this);
-      defaultSorting = table.attr("data-default").split(",");
+      defaultSorting = table.attr("data-default");
       headers = {};
+      options = {};
+      if (defaultSorting) {
+        sorting = defaultSorting.split(",");
+        options.sortList = [sorting];
+      }
       table.find("tr th").each(function(index, element) {
         return $(this).hasClass("nosort") ? (headers[index] = {
           sorter: false
         }) : null;
       });
-      return table.tablesorter({
-        sortList: [defaultSorting],
-        headers: headers
-      });
+      options.headers = headers;
+      return table.tablesorter(options);
     });
   });
 }).call(this);

@@ -65,17 +65,21 @@ jQuery(() ->
   # Set up tablesorter
   $("table.tablesorter").each( ->
     table = $(this)
-    defaultSorting = table.attr("data-default").split(",")
+    defaultSorting = table.attr("data-default")
     headers = {}
+    options = {}
+
+    if defaultSorting
+      sorting = defaultSorting.split(",")
+      options.sortList = [ sorting ]
 
     table.find("tr th").each( (index, element) ->
       if $(this).hasClass("nosort")
         headers[index] = {sorter: false}
     )
 
-    table.tablesorter({
-      sortList: [ defaultSorting ],
-      headers: headers
-    })
+    options.headers = headers
+
+    table.tablesorter(options)
   )
 )
