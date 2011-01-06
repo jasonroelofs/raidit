@@ -280,7 +280,8 @@ table.tablesorter {
           font-size: 110%; }
 
 #loot.ni_karma table {
-  margin: 20px; }
+  margin: 20px;
+  width: 50%; }
   #loot.ni_karma table tr td, #loot.ni_karma table tr th {
     padding-right: 20px;
     padding-bottom: 6px; }

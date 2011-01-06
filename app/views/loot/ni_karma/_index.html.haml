@@ -1,11 +1,13 @@
-%table
-  %tr
-    %th Character
-    %th Current
-    %th Lifetime
+%table.tablesorter{"data-default" => "0,0"}
+  %thead
+    %tr
+      %th Character
+      %th Current
+      %th Lifetime
 
-  - loot.each_character do |entry|
-    %tr{:id => "karma_#{entry.name}"}
-      %td= entry.name
-      %td.current.amount= entry.current
-      %td.lifetime.amount= entry.lifetime
+  %tbody
+    - loot.each_character do |entry|
+      %tr{:id => "karma_#{entry.name}"}
+        %td= entry.name
+        %td.current.amount= entry.current
+        %td.lifetime.amount= entry.lifetime
