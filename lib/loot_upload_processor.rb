@@ -17,8 +17,8 @@ class LootUploadProcessor
         loot_file = download_loot_file(loot_upload)
         loot_data = loot_system.process_file(loot_file)
 
-        # For each assigned character in the guild
-        guild.characters.assigned.each do |char|
+        # For each character in the guild
+        guild.characters.each do |char|
           #  - Build the list of entries that are newer than our saved history
           history = loot_data.get_history_for(char.name)
 
