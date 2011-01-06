@@ -16,6 +16,7 @@ class RoutingTest < ActionDispatch::IntegrationTest
 
     # Loot System
     assert_routing "/loot", :controller => "loot", :action => "show"
+    assert_routing "/loot/history/parker", :controller => "loot", :action => "history", :name => "parker"
 
     # Characters
     assert_routing "/characters", :controller => "characters", :action => "index"

@@ -20,7 +20,8 @@ RaidIt::Application.routes.draw do
     end
   end
 
-  resource :loot, :controller => "loot"
+  match "loot", :to => "loot#show"
+  match "loot/history/:name", :to => "loot#history", :as => :loot_history
 
   devise_for :users
 
