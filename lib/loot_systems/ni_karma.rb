@@ -43,6 +43,7 @@ module LootSystems
             dt = value.delete("DT")
             dt =~ /(\d+)\/(\d+)\/(\d+) (\d+):(\d+):(\d+)/
             value["timestamp"] = Time.mktime("20#{$3}", $1, $2, $4, $5, $6)
+            value["reason"] = value.delete("value")
 
             history[id - 1] = value
           end

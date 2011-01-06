@@ -67,7 +67,7 @@ KarmaList = {
 				["value"] = -25,
 				["type"] = "I",
 				["DT"] = "03/19/10 22:10:41",
-				["reason"] = "|cffa335ee|Hitem:47258:0:0:0:0:0:0:-900679040:80|h[Belt of the Tenebrous Mist]|h|r",
+				["reason"] = "You won a |cffa335ee|Hitem:47258:0:0:0:0:0:0:-900679040:80|h[Belt of the Tenebrous Mist]|h|r. How awesome is that?!",
 			}, -- [6]
 			["lifetime"] = 65,
 			["fullname"] = "DK",

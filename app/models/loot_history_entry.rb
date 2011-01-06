@@ -5,6 +5,5 @@ class LootHistoryEntry
 
   key :timestamp, Time
   key :amount, Integer
-  key :item, String
   key :reason, String
 end
