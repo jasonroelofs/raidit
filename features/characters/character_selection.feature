@@ -37,5 +37,22 @@ Scenario: First character is auto-main'd
   And I should see that "Warrior" is my main
 
 Scenario: Can 'main' a character
+  Given I am logged in as "jason@raidit.org"
+  And I follow "My Characters"
+  Then I should see "Mage" within ".main"
+  And I should see "DK" within ".alts"
+
+  When I follow "Make Main"
+  Then I should see "DK" within ".main"
+  And I should see "Mage" within ".alts"
 
 Scenario: Can change the main role of a character
+  Given I am logged in as "jason@raidit.org"
+  And I follow "My Characters"
+
+  Then the "character[main_role]" field within ".alts" should contain "tank"
+
+  When I select "DPS" from "character[main_role]" within ".alts"
+  And I press "Update"
+
+  Then the "character[main_role]" field within ".alts" should contain "dps"
