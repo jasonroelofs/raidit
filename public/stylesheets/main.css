@@ -78,6 +78,10 @@ a.button.small {
   padding-bottom: 10px;
   padding-top: 8px; }
 
+.epic {
+  color: #a335ee;
+  font-weight: bold; }
+
 #content_wrapper {
   margin-left: auto;
   margin-right: auto;
