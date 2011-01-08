@@ -1,4 +1,4 @@
-%table.tablesorter
+%table.tablesorter{"data-default" => "0,1"}
   %thead
     %tr
       %th When
@@ -8,6 +8,6 @@
   %tbody
     - history.each do |entry|
       %tr
-        %td= entry.timestamp
+        %td= entry.timestamp.to_s(:with_date)
         %td= entry.amount
         %td= raw parse_item(entry.reason)
