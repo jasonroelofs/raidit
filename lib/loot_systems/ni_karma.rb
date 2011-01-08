@@ -68,8 +68,8 @@ module LootSystems
       guild.characters.each do |character|
         if character.loot_lifetime_amount > 0
           yield LootEntry.new(character.name,
-                              character.loot_current_amount,
-                              character.loot_lifetime_amount)
+                              character.loot_current_amount.to_i,
+                              character.loot_lifetime_amount.to_i)
         end
       end
     end
