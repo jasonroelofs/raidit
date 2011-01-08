@@ -17,11 +17,12 @@
         )
 
       - # Ick, figure out a better way to write this
-      - list = role_list(@character, true)
+      - list = Wow::AvailableRoles[@character.class_name]
       - if list.length > 1
         = form_for @character do |f|
           = f.select :main_role, role_list(@character)
           = submit_tag "Update"
       - else
+        %br
         %strong= Wow::RoleValueMap[list.first]
 
