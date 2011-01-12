@@ -102,6 +102,9 @@ a.button.small {
 .admin_nav {
   text-align: right; }
 
+.dialogs {
+  display: none; }
+
 /* tables */
 table.tablesorter {
   background-color: #cdcdcd;
@@ -266,13 +269,21 @@ table.tablesorter {
       .raid .queues div.queue .accepted a.has_notes, .raid .queues div.queue .queued a.has_notes, .raid .queues div.queue .cancelled a.has_notes {
         float: right;
         margin-top: 13px;
-        margin-right: 20px; }
+        margin-right: 80px; }
       .raid .queues div.queue .accepted .notes, .raid .queues div.queue .queued .notes, .raid .queues div.queue .cancelled .notes {
         display: none; }
       .raid .queues div.queue .accepted .actions, .raid .queues div.queue .queued .actions, .raid .queues div.queue .cancelled .actions {
-        float: right;
-        margin-top: 13px;
-        font-weight: bold; }
+        position: relative; }
+        .raid .queues div.queue .accepted .actions .main, .raid .queues div.queue .queued .actions .main, .raid .queues div.queue .cancelled .actions .main {
+          float: right;
+          font-weight: bold;
+          margin-top: 13px; }
+        .raid .queues div.queue .accepted .actions .all, .raid .queues div.queue .queued .actions .all, .raid .queues div.queue .cancelled .actions .all {
+          display: none;
+          position: absolute;
+          margin-top: 13px;
+          right: 0;
+          top: 0; }
         .raid .queues div.queue .accepted .actions a, .raid .queues div.queue .queued .actions a, .raid .queues div.queue .cancelled .actions a {
           margin-left: 5px; }
         .raid .queues div.queue .accepted .actions img, .raid .queues div.queue .queued .actions img, .raid .queues div.queue .cancelled .actions img {
