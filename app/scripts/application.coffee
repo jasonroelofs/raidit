@@ -6,6 +6,19 @@ class Raid
       false
     )
 
+    $(".actions .main").mouseenter( () ->
+      console.log("Mouse enter!")
+      actions = $(this).parents(".actions")
+      actions.find(".all").show()
+      false
+    )
+    $(".actions .all").mouseleave( () ->
+      console.log("Mouse leave!")
+      actions = $(this).parents(".actions")
+      actions.find(".all").hide()
+      false
+    )
+
     # Ajax update for acceptance to allow for
     # quick run through a list
     $(".actions a.accept").live("click", () ->
@@ -17,6 +30,11 @@ class Raid
         $(".changes_made").show()
       , "script")
 
+      false
+    )
+
+    $(".actions a.note").live("click", () ->
+      $("#add_notes_dialog").dialog("open")
       false
     )
 
@@ -36,6 +54,12 @@ class Raid
         }
       })
     )
+
+    $("#add_notes_dialog").dialog({
+      autoOpen: false,
+      title: "Add Note",
+      modal: true
+    })
 
 class Characters
   constructor: ->
@@ -87,4 +111,11 @@ jQuery(() ->
       headers: headers
     })
   )
+
+  # Any link with a title attribute gets qtip'd
+  $("a[title]").qtip({
+    position: {
+      at: "bottom center"
+    }
+  })
 )
