@@ -21,7 +21,9 @@
               - notes.each do |note|
                 .note
                   = note.note
-                  .by= note.by
+                  .by
+                    &mdash;
+                    = note.by
 
           .queueing
             = render_cell :characters, :in_raid, :character => char, :queue => queue

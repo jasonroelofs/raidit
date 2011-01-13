@@ -48,7 +48,8 @@ module RaidsHelper
     end
 
     if role?(:raid_leader) || current_user_char
-      actions << build_action(raid, role, char, :note)
+      actions << link_to(image_tag("note.png"), add_note_raid_path(raid, :character_id => char.id),
+                         :class => "note button small")
     end
 
     content_tag(:div, :class => "main") { actions.first } + content_tag(:div, :class => "all") { actions.reverse.join }

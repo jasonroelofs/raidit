@@ -7,13 +7,11 @@ class Raid
     )
 
     $(".actions .main").mouseenter( () ->
-      console.log("Mouse enter!")
       actions = $(this).parents(".actions")
       actions.find(".all").show()
       false
     )
     $(".actions .all").mouseleave( () ->
-      console.log("Mouse leave!")
       actions = $(this).parents(".actions")
       actions.find(".all").hide()
       false
@@ -34,7 +32,7 @@ class Raid
     )
 
     $(".actions a.note").live("click", () ->
-      $("#add_notes_dialog").dialog("open")
+      $("#add_notes_dialog").data("raidit.update_url", $(this).attr("href")).dialog("open")
       false
     )
 
@@ -58,7 +56,22 @@ class Raid
     $("#add_notes_dialog").dialog({
       autoOpen: false,
       title: "Add Note",
-      modal: true
+      modal: true,
+      draggable: false,
+      resizable: false,
+      width: "450px",
+      position: "center",
+      buttons: {
+        "Cancel" : () ->
+          $(this).dialog("close")
+        ,"Add Note": () ->
+          href = $(this).data("raidit.update_url")
+          val = $(this).find("textarea").val()
+          dialog = $(this)
+          $.get(href, {note: val}, () ->
+            dialog.dialog("close")
+          )
+      }
     })
 
 class Characters

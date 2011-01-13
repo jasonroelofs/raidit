@@ -78,4 +78,6 @@
 
   .dialogs
     #add_notes_dialog
-      %p Add Notes Here!
+      %label{:for => "note"} Note:
+      %br
+      %textarea{:name => "note", :rows => "4", :cols => "45"}

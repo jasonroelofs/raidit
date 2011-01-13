@@ -83,6 +83,19 @@ class RaidsController < ApplicationController
     redirect_to(raid_path(raid))
   end
 
+  # Takes a character_id and note, adds the note
+  # to the given character
+  def add_note
+    raid = current_guild.raids.find(params[:id])
+    char = current_guild.characters.find(params[:character_id]) 
+
+    if current_user.has_role?(:raid_leader) || current_user.character_ids.include?(char.id)
+      char.add_note!(raid, params[:note], current_user.main_character.name)
+    end
+    
+    render :nothing => true, :status => 200
+  end
+
   protected
 
   def results_string(action)

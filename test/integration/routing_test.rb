@@ -13,6 +13,7 @@ class RoutingTest < ActionDispatch::IntegrationTest
     assert_routing "/raids", :controller => "raids", :action => "index"
     #assert_routing "/raids/37/enqueue", :controller => "raids", :action => "enqueue", :id => 37, :method => :put
     assert_routing "/raids/37/update_queue", :controller => "raids", :action => "update_queue", :id => "37"
+    assert_routing "/raids/14/add_note", :controller => "raids", :action => "add_note", :id => "14"
 
     # Loot System
     assert_routing "/loot", :controller => "loot", :action => "show"

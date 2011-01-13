@@ -11,14 +11,12 @@
     });
     $(".actions .main").mouseenter(function() {
       var actions;
-      console.log("Mouse enter!");
       actions = $(this).parents(".actions");
       actions.find(".all").show();
       return false;
     });
     $(".actions .all").mouseleave(function() {
       var actions;
-      console.log("Mouse leave!");
       actions = $(this).parents(".actions");
       actions.find(".all").hide();
       return false;
@@ -34,7 +32,7 @@
       return false;
     });
     $(".actions a.note").live("click", function() {
-      $("#add_notes_dialog").dialog("open");
+      $("#add_notes_dialog").data("raidit.update_url", $(this).attr("href")).dialog("open");
       return false;
     });
     $("a.preset").live("click", function() {
@@ -54,7 +52,27 @@
     $("#add_notes_dialog").dialog({
       autoOpen: false,
       title: "Add Note",
-      modal: true
+      modal: true,
+      draggable: false,
+      resizable: false,
+      width: "450px",
+      position: "center",
+      buttons: {
+        "Cancel": function() {
+          return $(this).dialog("close");
+        },
+        "Add Note": function() {
+          var dialog, href, val;
+          href = $(this).data("raidit.update_url");
+          val = $(this).find("textarea").val();
+          dialog = $(this);
+          return $.get(href, {
+            note: val
+          }, function() {
+            return dialog.dialog("close");
+          });
+        }
+      }
     });
     return this;
   };

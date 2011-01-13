@@ -22,8 +22,7 @@ class Character
   key :loot_current_amount, Float, :default => 0.0
   key :loot_lifetime_amount, Float, :default => 0.0
 
-  # Notes. Hash is raid_id => [RaidNote]
-  key :raid_notes, Hash
+  many :raid_notes
 
   timestamps!
 
@@ -59,7 +58,13 @@ class Character
 
   # Get the list of notes for the passed in raid
   def notes_for(raid)
-    self.raid_notes[raid.id] || []
+    self.raid_notes.select {|r| r.raid == raid }
+  end
+
+  # Add a note for the given raid
+  def add_note!(raid, note, by)
+    self.raid_notes << RaidNote.new(:note => note, :by => by, :raid => raid, :created_at => Time.now)
+    self.save
   end
 
 end
