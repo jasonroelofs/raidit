@@ -75,8 +75,6 @@ Then %r{^"([^"]*)" should have the following notes$} do |char, table|
   table.hashes.each do |row|
     r = Raid.find_by_location(row[:raid])
     notes = c.notes_for(r)
-    puts "Notes for #{c.name} and #{r.location}"
-    p notes
     notes.find {|n| n.note == row[:note] && n.by == row[:by]}.should_not be_nil
   end
 end
