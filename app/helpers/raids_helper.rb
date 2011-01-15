@@ -52,7 +52,7 @@ module RaidsHelper
                          :class => "note button small")
     end
 
-    content_tag(:div, :class => "main") { actions.first } + content_tag(:div, :class => "all") { actions.reverse.join }
+    actions.reverse.join
   end
 
   def build_action(raid, role, char, action)

@@ -2,7 +2,7 @@ class RaidsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:show]
 
-  requires_permission :raid_leader, :except => [:show, :enqueue, :update_queue]
+  requires_permission :raid_leader, :except => [:show, :enqueue, :update_queue, :add_note]
 
   respond_to :html, :js
 
@@ -89,7 +89,7 @@ class RaidsController < ApplicationController
     raid = current_guild.raids.find(params[:id])
     char = current_guild.characters.find(params[:character_id]) 
 
-    if current_user.has_role?(:raid_leader) || current_user.character_ids.include?(char.id)
+    if current_user.has_role?(:raid_leader) || current_user.characters.include?(char)
       char.add_note!(raid, params[:note], current_user.main_character.name)
     end
     
