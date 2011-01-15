@@ -75,3 +75,9 @@
       = render_cell :raid, :queue, :role => :dps, :raid => @raid
 
     .clear
+
+  .dialogs
+    #add_notes_dialog
+      %label{:for => "note"} Note:
+      %br
+      %textarea{:name => "note", :rows => "4", :cols => "45"}

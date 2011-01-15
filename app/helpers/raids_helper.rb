@@ -29,10 +29,10 @@ module RaidsHelper
   def render_actions(queue, raid, role, char)
     current_user_char = char.user == User.current
 
-    actions = ""
+    actions = []
 
     if role?(:raid_leader)
-      actions +=
+      actions <<
         case queue
         when :queued
           build_action(raid, role, char, :accept)
@@ -44,10 +44,15 @@ module RaidsHelper
     end
 
     if current_user_char
-      actions += build_action(raid, role, char, queue == :cancelled ? :queue : :cancel)
+      actions << build_action(raid, role, char, queue == :cancelled ? :queue : :cancel)
     end
 
-    actions
+    if role?(:raid_leader) || current_user_char
+      actions << link_to(image_tag("note.png"), add_note_raid_path(raid, :character_id => char.id),
+                         :class => "note button small")
+    end
+
+    actions.reverse.join
   end
 
   def build_action(raid, role, char, action)

@@ -68,3 +68,15 @@ Then %r{^the raid to "([^"]*)" should have the following logs$} do |location, ta
     log.when.to_date.should == date
   end
 end
+
+Then %r{^"([^"]*)" should have the following notes$} do |char, table|
+  c = Character.find_by_name(char)
+
+  table.hashes.each do |row|
+    r = Raid.find_by_location(row[:raid])
+    notes = c.notes_for(r)
+    puts "Notes for #{c.name} and #{r.location}"
+    p notes
+    notes.find {|n| n.note == row[:note] && n.by == row[:by]}.should_not be_nil
+  end
+end

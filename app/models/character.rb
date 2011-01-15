@@ -17,9 +17,12 @@ class Character
   belongs_to :user
   belongs_to :guild
 
+  # Loot history
   many :loot_history_entries
   key :loot_current_amount, Float, :default => 0.0
   key :loot_lifetime_amount, Float, :default => 0.0
+
+  many :raid_notes
 
   timestamps!
 
@@ -51,6 +54,17 @@ class Character
         self.loot_history_entries << LootHistoryEntry.new(entry)
       end
     end
+  end
+
+  # Get the list of notes for the passed in raid
+  def notes_for(raid)
+    self.raid_notes.select {|r| r.raid == raid }
+  end
+
+  # Add a note for the given raid
+  def add_note!(raid, note, by)
+    self.raid_notes << RaidNote.new(:note => note, :by => by, :raid => raid, :created_at => Time.now)
+    self.save
   end
 
 end

@@ -4,6 +4,7 @@ RaidIt::Application.routes.draw do
     member do
       put :enqueue
       get :update_queue
+      get :add_note
     end
   end
 

@@ -6,6 +6,17 @@ class Raid
       false
     )
 
+    $(".actions .main").mouseenter( () ->
+      actions = $(this).parents(".actions")
+      actions.find(".all").show()
+      false
+    )
+    $(".actions .all").mouseleave( () ->
+      actions = $(this).parents(".actions")
+      actions.find(".all").hide()
+      false
+    )
+
     # Ajax update for acceptance to allow for
     # quick run through a list
     $(".actions a.accept").live("click", () ->
@@ -20,6 +31,11 @@ class Raid
       false
     )
 
+    $(".actions a.note").live("click", () ->
+      $("#add_notes_dialog").data("raidit.update_url", $(this).attr("href")).dialog("open")
+      false
+    )
+
     $("a.preset").live("click", () ->
       $("#raid_tanks").val($(this).attr("data-tanks"))
       $("#raid_healers").val($(this).attr("data-healers"))
@@ -27,6 +43,36 @@ class Raid
 
       false
     )
+
+    $("a.has_notes").each( () ->
+      $(this).qtip({
+        content: $(this).siblings(".notes"),
+        position: {
+          at: "bottom center"
+        }
+      })
+    )
+
+    $("#add_notes_dialog").dialog({
+      autoOpen: false,
+      title: "Add Note",
+      modal: true,
+      draggable: false,
+      resizable: false,
+      width: "450px",
+      position: "center",
+      buttons: {
+        "Cancel" : () ->
+          $(this).dialog("close")
+        ,"Add Note": () ->
+          href = $(this).data("raidit.update_url")
+          val = $(this).find("textarea").val()
+          dialog = $(this)
+          $.get(href, {note: val}, () ->
+            dialog.dialog("close")
+          )
+      }
+    })
 
 class Characters
   constructor: ->
@@ -82,4 +128,11 @@ jQuery(() ->
 
     table.tablesorter(options)
   )
+
+  # Any link with a title attribute gets qtip'd
+  $("a[title]").qtip({
+    position: {
+      at: "bottom center"
+    }
+  })
 )
