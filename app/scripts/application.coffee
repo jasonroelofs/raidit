@@ -49,7 +49,12 @@ class Raid
         content: $(this).siblings(".notes"),
         position: {
           at: "bottom center"
-        }
+        },
+        hide: {
+          delay: 100,
+          fixed: true,
+          when: { event: "inactive" }
+        },
       })
     )
 
@@ -63,14 +68,18 @@ class Raid
       position: "center",
       buttons: {
         "Cancel" : () ->
+          $(this).data("raidit.processing", false)
           $(this).dialog("close")
         ,"Add Note": () ->
-          href = $(this).data("raidit.update_url")
-          val = $(this).find("textarea").val()
-          dialog = $(this)
-          $.get(href, {note: val}, () ->
-            dialog.dialog("close")
-          )
+          if !$(this).data("raidit.processing")
+            $(this).data("raidit.processing", true)
+
+            href = $(this).data("raidit.update_url")
+            val = $(this).find("textarea").val()
+            dialog = $(this)
+            $.get(href, {note: val}, () ->
+              window.location.reload()
+            )
       }
     })
 
