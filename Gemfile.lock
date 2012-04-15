@@ -1,0 +1,14 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    metaclass (0.0.1)
+    minitest (2.12.1)
+    mocha (0.10.5)
+      metaclass (~> 0.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  mocha
