@@ -1,8 +1,0 @@
-#loot{:class => @loot.tokenized_name}
-  %h2
-    = @loot.name
-    History for 
-    = @character.name
-
-  = render :partial => "loot/#{@loot.tokenized_name}/history", 
-    :locals => {:loot => @loot, :history => @history, :character => @character}

@@ -1,3 +1,0 @@
-- @raids.each do |raid|
-  .raid{"data-start_time" => raid.start_time, "data-invite_time" => raid.invite_time, :class => raid.status_of_current_user}
-    = link_to raid.location, raid_path(raid)
