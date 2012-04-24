@@ -26,7 +26,7 @@ describe RegisterGuild do
       @action = RegisterGuild.new
       @leader = User.new
       @action.leader = @leader
-      @action.name = "Exiled"
+      @action.name = "Johnson"
     end
 
     it "requires a name" do
@@ -45,7 +45,7 @@ describe RegisterGuild do
 
     it "creates and saves the guild" do
       @action.run
-      guild = GuildRepository.find_by_name "Exiled"
+      guild = GuildRepository.find_by_name "Johnson"
       guild.wont_be_nil
       guild.leader.must_equal @leader
     end

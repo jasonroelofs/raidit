@@ -1,6 +1,10 @@
 require 'models/guild'
 require 'repositories/guild_repository'
 
+##
+# Register a guild with a given User as the Guild Leader
+# and a name
+##
 class RegisterGuild
 
   attr_accessor :name, :leader

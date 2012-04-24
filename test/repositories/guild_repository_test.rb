@@ -4,7 +4,7 @@ require 'repositories/guild_repository'
 describe GuildRepository do
   describe ".find_by_name" do
     it "can find a guild by name" do
-      g = GuildRepository.find_by_name("Guild")
+      g = GuildRepository.find_by_name("Exiled")
       g.wont_be_nil
     end
 

@@ -11,7 +11,7 @@ class InMemoryStore
 
   def initialize
     @guilds = [
-      Guild.new(name: "Guild")
+      Guild.new(name: "Exiled")
     ]
   end
 
