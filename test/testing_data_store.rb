@@ -7,12 +7,14 @@ require 'models/guild'
 ##
 class TestingDataStore
 
-  attr_reader :guilds
+  attr_reader :guilds, :raids
 
   def initialize
     @guilds = [
       Guild.new(id: 1, name: "Exiled")
     ]
+
+    @raids = []
   end
 
   def save(object)
