@@ -4,6 +4,10 @@ class GuildRepository
       @store = data_store
     end
 
+    def find(id)
+      @store.guilds.find {|g| g.id == id }
+    end
+
     def find_by_name(name)
       @store.guilds.find {|g| g.name == name }
     end
