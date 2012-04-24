@@ -5,7 +5,7 @@ require 'models/guild'
 # Used in tests to ensure that the repository interface is properly
 # called when expected
 ##
-class InMemoryStore
+class TestingDataStore
 
   attr_reader :guilds
 
