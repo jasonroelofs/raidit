@@ -1,6 +1,8 @@
 source :rubygems
 
-gem "rake"
+group :development do
+  gem "rake"
+end
 
 group :test do
   gem "minitest"
