@@ -7,5 +7,9 @@ class RaidRepository
     def all
       @store.raids
     end
+
+    def save(raid)
+      @store.save raid
+    end
   end
 end

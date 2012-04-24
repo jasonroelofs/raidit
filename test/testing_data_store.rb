@@ -18,8 +18,11 @@ class TestingDataStore
   end
 
   def save(object)
-    if object.is_a?(Guild)
+    case object
+    when Guild
       @guilds << object
+    when Raid
+      @raids << object
     end
   end
 
