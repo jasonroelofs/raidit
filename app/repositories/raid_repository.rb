@@ -1,15 +1,18 @@
+require 'repositories/repository'
+
 class RaidRepository
   class << self
-    def store=(data_store)
-      @store = data_store
-    end
-
     def all
-      @store.raids
+      data_store.raids
     end
 
     def save(raid)
-      @store.save raid
+      data_store.save raid
+    end
+
+    # See GuildRepository.data_store
+    def data_store
+      Repository.store
     end
   end
 end
