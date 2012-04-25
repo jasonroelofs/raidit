@@ -1,4 +1,6 @@
 require 'models/guild'
+require 'models/raid'
+require 'models/user'
 
 ##
 # This repository stores everything recieved in memory.
@@ -7,7 +9,7 @@ require 'models/guild'
 ##
 class TestingDataStore
 
-  attr_reader :guilds, :raids
+  attr_reader :guilds, :raids, :users
 
   def initialize
     @guilds = [
@@ -15,6 +17,7 @@ class TestingDataStore
     ]
 
     @raids = []
+    @users = []
   end
 
   def save(object)
@@ -23,6 +26,8 @@ class TestingDataStore
       @guilds << object
     when Raid
       @raids << object
+    when User
+      @users << object
     end
   end
 
