@@ -1,21 +1,32 @@
 require 'rubygems'
 gem 'minitest'
 require 'minitest/autorun'
-require 'repositories/repository'
-require 'testing_data_store'
 
 require 'mocha_standalone'
+
+require 'repository'
+require 'test_repositories'
 
 class MiniTest::Unit::TestCase
   include Mocha::API
 
   def setup
     mocha_teardown
-    Repository.store = TestingDataStore.new
+    configure_repositories
   end
 
   def teardown
     mocha_verify
+  end
+
+  def configure_repositories
+    Repository.reset!
+    Repository.configure(
+      "Guild" => GuildTestRepo.new,
+      "User" => UserTestRepo.new,
+      "Character" => CharacterTestRepo.new,
+      "Raid" => RaidTestRepo.new
+    )
   end
 end
 

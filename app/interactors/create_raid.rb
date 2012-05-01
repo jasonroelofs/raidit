@@ -1,5 +1,5 @@
 require 'models/raid'
-require 'repositories/raid_repository'
+require 'repository'
 
 class CreateRaid
 
@@ -10,7 +10,7 @@ class CreateRaid
     raise "Date / Time is required" unless @when
 
     raid = Raid.new when: @when, leader: @leader
-    RaidRepository.save raid
+    Repository.for(Raid).save raid
   end
 
 end

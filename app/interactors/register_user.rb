@@ -1,5 +1,5 @@
 require 'models/user'
-require 'repositories/user_repository'
+require 'repository'
 
 class RegisterUser
 
@@ -13,6 +13,6 @@ class RegisterUser
     end
 
     user = User.new email: @email
-    UserRepository.save user
+    Repository.for(User).save user
   end
 end

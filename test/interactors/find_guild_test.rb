@@ -1,12 +1,16 @@
 require 'test_helper'
+require 'models/guild'
 require 'interactors/find_guild'
 
 describe FindGuild do
+
   it "exists" do
     FindGuild.new.wont_be_nil
   end
 
   it "can find a guild by id" do
+    Repository.for(Guild).save Guild.new(name: "Exiled", id: 1)
+
     action = FindGuild.new
     action.by_id = 1
 
@@ -16,6 +20,8 @@ describe FindGuild do
   end
 
   it "can find a guild by name" do
+    Repository.for(Guild).save Guild.new(name: "Exiled", id: 1)
+
     action = FindGuild.new
     action.by_name = "Exiled"
 

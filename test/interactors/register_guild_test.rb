@@ -45,7 +45,7 @@ describe RegisterGuild do
 
     it "creates and saves the guild" do
       @action.run
-      guild = GuildRepository.find_by_name "Johnson"
+      guild = Repository.for(Guild).find_by_name "Johnson"
       guild.wont_be_nil
       guild.leader.must_equal @leader
     end

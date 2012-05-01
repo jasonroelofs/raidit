@@ -66,7 +66,7 @@ describe CreateRaid do
     it "saves the raid to the repo if valid" do
       @action.run
 
-      raid = RaidRepository.all.first
+      raid = Repository.for(Raid).all.first
       raid.wont_be_nil
       raid.when.must_equal @when
       raid.leader.must_equal @leader

@@ -1,5 +1,5 @@
 require 'models/guild'
-require 'repositories/guild_repository'
+require 'repository'
 
 ##
 # Register a guild with a given User as the Guild Leader
@@ -14,7 +14,7 @@ class RegisterGuild
     raise "Requires a name" unless @name
 
     guild = Guild.new name: @name, leader: @leader
-    GuildRepository.save guild
+    Repository.for(Guild).save guild
   end
 
 end

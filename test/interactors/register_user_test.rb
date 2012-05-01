@@ -65,7 +65,7 @@ describe  RegisterUser do
     it "saves a valid user to the data store" do
       @action.run
 
-      user = UserRepository.all.first
+      user = Repository.for(User).all.first
       user.email.must_equal @email
     end
 
