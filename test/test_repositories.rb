@@ -58,3 +58,17 @@ class RaidTestRepo
     @raids
   end
 end
+
+class SignupTestRepo
+  def initialize
+    @signups = []
+  end
+
+  def save(signup)
+    @signups << signup
+  end
+
+  def all
+    @signups
+  end
+end
