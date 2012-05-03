@@ -16,4 +16,10 @@ describe Raid do
     r.when.must_equal time
     r.leader.must_equal user
   end
+
+  it "has groups" do
+    r = Raid.new
+    r.groups = [:dps, :tank]
+    r.groups.must_equal [:dps, :tank]
+  end
 end
