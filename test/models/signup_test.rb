@@ -16,4 +16,27 @@ describe Signup do
     s = Signup.new group: :dps
     s.group.must_equal :dps
   end
+
+  it "defaults to the available state" do
+    s = Signup.new
+    s.state.must_equal :available
+    s.available?.must_equal true
+  end
+
+  it "can be in the accepted state" do
+    s = Signup.new
+    s.accepted?.must_equal false
+
+    s.state = :accepted
+    s.accepted?.must_equal true
+  end
+
+  it "can be in the cancelled state" do
+    s = Signup.new
+    s.cancelled?.must_equal false
+
+    s.state = :cancelled
+    s.cancelled?.must_equal true
+  end
+
 end
