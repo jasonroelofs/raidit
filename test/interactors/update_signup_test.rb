@@ -29,10 +29,10 @@ describe UpdateSignup do
     action.signup.must_equal s
   end
 
-  it "takes the state to change to" do
+  it "takes the action to be run" do
     action = UpdateSignup.new
-    action.new_state = :accepted
-    action.new_state.must_equal :accepted
+    action.action = :accept
+    action.action.must_equal :accept
   end
 
   describe "#run" do
@@ -45,7 +45,7 @@ describe UpdateSignup do
       @action.current_user = @user
       @action.raid = @raid
       @action.signup = @signup
-      @action.new_state = :accepted
+      @action.action = :accept
     end
 
     it "errors if no raid" do
@@ -78,14 +78,14 @@ describe UpdateSignup do
 
     describe "available -> accepted" do
       it "moves the signup to accepted" do
-        @action.new_state = :accepted
+        @action.action = :accept
         @action.run
 
         @signup.state.must_equal :accepted
       end
 
       it "saves the changes" do
-        @action.new_state = :accepted
+        @action.action = :accept
         @action.run
 
         s = Repository.for(Signup).all.first
@@ -102,7 +102,7 @@ describe UpdateSignup do
     describe "accepted -> available" do
       it "updates the signup accordingly" do
         @signup.state = :accepted
-        @action.new_state = :available
+        @action.action = :unaccept
         @action.run
 
         @signup.state.must_equal :available
@@ -118,7 +118,7 @@ describe UpdateSignup do
     describe "available -> cancelled" do
       it "updates the signup accordingly" do
         @signup.state = :available
-        @action.new_state = :cancelled
+        @action.action = :cancel
         @action.run
 
         @signup.state.must_equal :cancelled
@@ -132,7 +132,7 @@ describe UpdateSignup do
     describe "cancelled -> available" do
       it "updates the signup accordingly" do
         @signup.state = :cancelled
-        @action.new_state = :available
+        @action.action = :enqueue
         @action.run
 
         @signup.state.must_equal :available
@@ -146,7 +146,7 @@ describe UpdateSignup do
     describe "accepted -> cancelled" do
       it "updates the signup accordingly" do
         @signup.state = :accepted
-        @action.new_state = :cancelled
+        @action.action = :cancel
         @action.run
 
         @signup.state.must_equal :cancelled
@@ -163,7 +163,7 @@ describe UpdateSignup do
 
     #it "doesn't allow transition from cancelled to accepted" do
       #@signup.state = :cancelled
-      #@action.new_state = :accepted
+      #@action.action = :accept
       #@action.run
 
       #@signup.state.must_equal :cancelled
