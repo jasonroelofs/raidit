@@ -6,6 +6,7 @@ GEM
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     rake (0.9.2.2)
+    state_machine (1.1.2)
 
 PLATFORMS
   ruby
@@ -14,3 +15,4 @@ DEPENDENCIES
   minitest
   mocha
   rake
+  state_machine (~> 1.1.0)
