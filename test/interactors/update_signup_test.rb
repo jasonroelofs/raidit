@@ -169,13 +169,13 @@ describe UpdateSignup do
     # Invalid state transitions
     ##
 
-    #it "doesn't allow transition from cancelled to accepted" do
-      #@signup.state = :cancelled
-      #@action.action = :accept
-      #@action.run
+    it "doesn't allow transition from cancelled to accepted" do
+      @signup.state = :cancelled
+      @action.action = :accept
+      @action.run
 
-      #@signup.state.must_equal :cancelled
-    #end
+      @signup.state.must_equal :cancelled
+    end
 
   end
 end
