@@ -72,6 +72,14 @@ describe UpdateSignup do
       }.must_raise RuntimeError
     end
 
+    it "errors if no action was given" do
+      @action.action = nil
+
+      -> {
+        @action.run
+      }.must_raise RuntimeError
+    end
+
     ##
     # Valid state transitions
     ##

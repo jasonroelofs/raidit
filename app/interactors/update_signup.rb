@@ -10,6 +10,7 @@ class UpdateSignup
     raise "Requires a raid" unless @raid
     raise "Requires a signup" unless @signup
     raise "Requires a user" unless @current_user
+    raise "Requires an action" unless @action
 
     processor = StateProcessor.new @signup.state
     processor.send @action
