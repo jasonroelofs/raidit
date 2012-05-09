@@ -4,12 +4,6 @@ require 'minitest/autorun'
 
 require 'mocha_standalone'
 
-begin
-  require 'debugger'
-rescue LoadError
-  # ignore
-end
-
 require 'repository'
 require 'test_repositories'
 
