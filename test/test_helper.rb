@@ -3,6 +3,7 @@ gem 'minitest'
 require 'minitest/autorun'
 
 require 'mocha_standalone'
+require 'debugger'
 
 require 'repository'
 require 'test_repositories'

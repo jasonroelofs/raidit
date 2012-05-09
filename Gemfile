@@ -9,4 +9,5 @@ end
 group :test do
   gem "minitest"
   gem "mocha"
+  gem "debugger", "~> 1.1.0"
 end
