@@ -26,7 +26,8 @@ class MiniTest::Unit::TestCase
       "User" => UserTestRepo.new,
       "Character" => CharacterTestRepo.new,
       "Raid" => RaidTestRepo.new,
-      "Signup" => SignupTestRepo.new
+      "Signup" => SignupTestRepo.new,
+      "Permission" => PermissionTestRepo.new
     )
   end
 end

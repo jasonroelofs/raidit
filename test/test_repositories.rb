@@ -72,3 +72,19 @@ class SignupTestRepo
     @signups
   end
 end
+
+class PermissionTestRepo
+  def initialize
+    @perms = []
+  end
+
+  def find_by_user_and_guild(user, guild)
+    @perms.find {|perm|
+      perm.user == user && perm.guild == guild
+    }
+  end
+
+  def save(perm)
+    @perms << perm
+  end
+end
