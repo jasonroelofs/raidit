@@ -10,6 +10,7 @@ class CheckUserPermissions
     @current_guild = params[:current_guild]
   end
 
+  # Should this be #run to be consistent with other interactors?
   def allowed?(permission)
     user_permissions = Repository.for(Permission).
       find_by_user_and_guild(@current_user, @current_guild)

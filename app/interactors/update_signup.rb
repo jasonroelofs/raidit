@@ -1,6 +1,7 @@
 require 'repository'
 require 'models/signup'
 require 'state_machine'
+require 'interactors/check_user_permissions'
 
 class UpdateSignup
 
@@ -12,7 +13,11 @@ class UpdateSignup
     raise "Requires a user" unless @current_user
     raise "Requires an action" unless @action
 
-    processor = StateProcessor.new @signup.state
+    permissions = CheckUserPermissions.new(
+      :current_user => @current_user
+    )
+
+    processor = StateProcessor.new @signup.state, permissions
     processor.send @action
     @signup.state = processor.new_state
 
@@ -20,10 +25,11 @@ class UpdateSignup
   end
 
   class StateProcessor
-    def initialize(initial_state)
+    def initialize(initial_state, permissions)
       super()
 
       self.signup_state = initial_state
+      @permissions = permissions
     end
 
     def new_state
@@ -54,19 +60,19 @@ class UpdateSignup
     end
 
     def can_accept_signup?
-      true
+      @permissions.allowed? :accept_signup
     end
 
     def can_unaccept_signup?
-      true
+      @permissions.allowed? :unaccept_signup
     end
 
     def can_enqueue_signup?
-      true
+      @permissions.allowed? :enqueue_signup
     end
 
     def can_cancel_signup?
-      true
+      @permissions.allowed? :cancel_signup
     end
   end
 

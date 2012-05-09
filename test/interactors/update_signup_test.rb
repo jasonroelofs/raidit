@@ -2,6 +2,7 @@ require 'test_helper'
 require 'interactors/update_signup'
 require 'models/user'
 require 'models/raid'
+require 'models/permission'
 
 describe UpdateSignup do
   it "exists" do
@@ -85,84 +86,131 @@ describe UpdateSignup do
     ##
 
     describe "available -> accepted" do
-      it "moves the signup to accepted" do
+      before do
+        @perm = Permission.new
+        @perm.user = @user
+        Repository.for(Permission).save(@perm)
+
         @action.action = :accept
+        @signup.state = :available
+      end
+
+      it "fails without the accept_sign_up permission" do
+        @action.run
+
+        @signup.state.must_equal :available
+      end
+
+      it "moves the signup to accepted" do
+        @perm.allow :accept_signup
         @action.run
 
         @signup.state.must_equal :accepted
       end
 
       it "saves the changes" do
-        @action.action = :accept
+        @perm.allow :accept_signup
         @action.run
 
         s = Repository.for(Signup).all.first
         s.state.must_equal :accepted
       end
-
-      it "only allows raid leaders to accept"
-
-      it "does not allow signup owner to move"
-
-      it "does not allow non RL and non owners to move"
     end
 
     describe "accepted -> available" do
-      it "updates the signup accordingly" do
-        @signup.state = :accepted
+      before do
+        @perm = Permission.new
+        @perm.user = @user
+        Repository.for(Permission).save(@perm)
+
         @action.action = :unaccept
+        @signup.state = :accepted
+      end
+
+      it "fails without the unaccept_signup permission" do
+        @action.run
+
+        @signup.state.must_equal :accepted
+      end
+
+      it "updates the signup accordingly" do
+        @perm.allow :unaccept_signup
         @action.run
 
         @signup.state.must_equal :available
       end
-
-      it "allows raid leaders to move"
-
-      it "allows the owners of the signup to move"
-
-      it "does not allow non RL and non owners to move"
     end
 
     describe "available -> cancelled" do
-      it "updates the signup accordingly" do
-        @signup.state = :available
-        @action.action = :cancel
-        @action.run
+      before do
+        @perm = Permission.new
+        @perm.user = @user
+        Repository.for(Permission).save(@perm)
 
-        @signup.state.must_equal :cancelled
+        @action.action = :cancel
+        @signup.state = :available
       end
 
-      it "allows the owner of the signup to move"
-
-      it "does not allow RL and non owners to move"
-    end
-
-    describe "cancelled -> available" do
-      it "updates the signup accordingly" do
-        @signup.state = :cancelled
-        @action.action = :enqueue
+      it "fails without cancel_signup permissions" do
         @action.run
 
         @signup.state.must_equal :available
       end
 
-      it "allows the owner of the signup to move"
+      it "updates the signup accordingly" do
+        @perm.allow :cancel_signup
+        @action.run
 
-      it "does not allow RL and non owners to move"
+        @signup.state.must_equal :cancelled
+      end
     end
 
-    describe "accepted -> cancelled" do
-      it "updates the signup accordingly" do
-        @signup.state = :accepted
-        @action.action = :cancel
+    describe "cancelled -> available" do
+      before do
+        @perm = Permission.new
+        @perm.user = @user
+        Repository.for(Permission).save(@perm)
+
+        @action.action = :enqueue
+        @signup.state = :cancelled
+      end
+
+      it "fails without the enqueue_signup permission" do
         @action.run
 
         @signup.state.must_equal :cancelled
       end
 
-      it "allows the owner of the signup to move"
+      it "updates the signup accordingly" do
+        @perm.allow :enqueue_signup
+        @action.run
 
-      it "does not allow RL and non owners to move"
+        @signup.state.must_equal :available
+      end
+    end
+
+    describe "accepted -> cancelled" do
+      before do
+        @perm = Permission.new
+        @perm.user = @user
+        Repository.for(Permission).save(@perm)
+
+        @action.action = :cancel
+        @signup.state = :accepted
+      end
+
+      it "fails without the cancel_signup permissions" do
+        @action.run
+
+        @signup.state.must_equal :accepted
+      end
+
+      it "updates the signup accordingly" do
+        @perm.allow :cancel_signup
+        @action.run
+
+        @signup.state.must_equal :cancelled
+      end
     end
 
     ##
