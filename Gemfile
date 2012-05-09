@@ -9,5 +9,5 @@ end
 group :test do
   gem "minitest"
   gem "mocha"
-  gem "debugger", "~> 1.1.0"
+  gem "debugger", "~> 1.1.0", :platform => :ruby_19
 end

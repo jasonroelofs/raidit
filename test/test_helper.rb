@@ -3,7 +3,12 @@ gem 'minitest'
 require 'minitest/autorun'
 
 require 'mocha_standalone'
-require 'debugger'
+
+begin
+  require 'debugger'
+rescue LoadError
+  # ignore
+end
 
 require 'repository'
 require 'test_repositories'
