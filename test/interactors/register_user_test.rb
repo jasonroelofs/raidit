@@ -6,24 +6,6 @@ describe  RegisterUser do
     RegisterUser.new.wont_be_nil
   end
 
-  it "takes an email" do
-    action = RegisterUser.new
-    action.email = "email@me.com"
-    action.email.must_equal "email@me.com"
-  end
-
-  it "takes a password" do
-    action = RegisterUser.new
-    action.password = "test"
-    action.password.must_equal "test"
-  end
-
-  it "takes a password confirmation" do
-    action = RegisterUser.new
-    action.password_confirmation = "test"
-    action.password_confirmation.must_equal "test"
-  end
-
   describe "#run" do
     before do
       @email = "email@me.com"
@@ -31,25 +13,6 @@ describe  RegisterUser do
       @pw_confirmation = "password"
 
       @action = RegisterUser.new
-      @action.email = @email
-      @action.password = @password
-      @action.password_confirmation = @pw_confirmation
-    end
-
-    it "errors if no email" do
-      @action.email = nil
-
-      -> {
-        @action.run
-      }.must_raise RuntimeError
-    end
-
-    it "errors if no password" do
-      @action.password = nil
-
-      -> {
-        @action.run
-      }.must_raise RuntimeError
     end
 
     it "errors if email doesn't match an email address"
@@ -58,12 +21,12 @@ describe  RegisterUser do
       @action.password = "johnson"
 
       -> {
-        @action.run
+        @action.run @email, @password, "not matching"
       }.must_raise RuntimeError
     end
 
     it "saves a valid user to the data store" do
-      @action.run
+      @action.run @email, @password, @pw_confirmation
 
       user = Repository.for(User).all.first
       user.email.must_equal @email
