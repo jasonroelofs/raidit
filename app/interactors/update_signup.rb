@@ -5,10 +5,9 @@ require 'interactors/check_user_permissions'
 
 class UpdateSignup
 
-  attr_accessor :current_user, :raid, :signup, :action
+  attr_accessor :current_user, :signup, :action
 
   def run
-    raise "Requires a raid" unless @raid
     raise "Requires a signup" unless @signup
     raise "Requires a user" unless @current_user
     raise "Requires an action" unless @action

@@ -16,13 +16,6 @@ describe UpdateSignup do
     action.current_user.must_equal user
   end
 
-  it "takes a raid" do
-    raid = Raid.new
-    action = UpdateSignup.new
-    action.raid = raid
-    action.raid.must_equal raid
-  end
-
   it "takes a signup" do
     s = Signup.new
     action = UpdateSignup.new
@@ -41,20 +34,10 @@ describe UpdateSignup do
     before do
       @user = User.new
       @signup = Signup.new
-      @raid = Raid.new
       @action = UpdateSignup.new
       @action.current_user = @user
-      @action.raid = @raid
       @action.signup = @signup
       @action.action = :accept
-    end
-
-    it "errors if no raid" do
-      @action.raid = nil
-
-      -> {
-        @action.run
-      }.must_raise RuntimeError
     end
 
     it "errors if no current user" do
