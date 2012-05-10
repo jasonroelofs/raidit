@@ -5,19 +5,21 @@ require 'interactors/check_user_permissions'
 
 class UpdateSignup
 
-  attr_accessor :current_user, :signup, :action
+  attr_accessor :current_user, :signup
 
-  def run
-    raise "Requires a signup" unless @signup
-    raise "Requires a user" unless @current_user
-    raise "Requires an action" unless @action
+  def initialize(current_user, signup)
+    @current_user = current_user
+    @signup = signup
+  end
 
-    permissions = CheckUserPermissions.new(
-      :current_user => @current_user
-    )
+  ##
+  # +action+ can be one of :accept, :unaccept, :enqueue, or :cancel
+  ##
+  def run(action)
+    permissions = CheckUserPermissions.new @current_user
 
     processor = StateProcessor.new @signup.state, permissions
-    processor.send @action
+    processor.send action
     @signup.state = processor.new_state
 
     Repository.for(Signup).save @signup
