@@ -5,9 +5,9 @@ class CheckUserPermissions
 
   attr_reader :current_user, :current_guild
 
-  def initialize(params = {})
-    @current_user = params[:current_user]
-    @current_guild = params[:current_guild]
+  def initialize(current_user, current_guild = nil)
+    @current_user = current_user
+    @current_guild = current_guild
   end
 
   # Should this be #run to be consistent with other interactors?

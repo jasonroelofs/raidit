@@ -5,14 +5,13 @@ require 'models/guild'
 
 describe CheckUserPermissions do
   it "exists" do
-    CheckUserPermissions.new.wont_be_nil
+    CheckUserPermissions.new(nil, nil).wont_be_nil
   end
 
-  it "takes a hash on construction" do
+  it "takes the current user and guild on construction" do
     user = User.new
     guild = Guild.new
-    action = CheckUserPermissions.new :current_user => user,
-      :current_guild => guild
+    action = CheckUserPermissions.new user, guild
 
     action.current_user.must_equal user
     action.current_guild.must_equal guild
@@ -31,7 +30,7 @@ describe CheckUserPermissions do
     end
 
     it "checks that the user has the given permission" do
-      action = CheckUserPermissions.new :current_user => @user
+      action = CheckUserPermissions.new @user
 
       action.allowed?(:test_permission1).must_equal true
       action.allowed?(:test_permission4).must_equal false
@@ -45,7 +44,7 @@ describe CheckUserPermissions do
       g_perm.allow :dancing
       Repository.for(Permission).save(g_perm)
 
-      action = CheckUserPermissions.new :current_user => @user, :current_guild => guild
+      action = CheckUserPermissions.new @user, guild
       action.allowed?(:dancing).must_equal true
       action.allowed?(:testing).must_equal false
     end
@@ -53,7 +52,7 @@ describe CheckUserPermissions do
     it "returns false if no permissions set found for the user and guild" do
       user2 = User.new
 
-      action = CheckUserPermissions.new :current_user => user2
+      action = CheckUserPermissions.new user2
       action.allowed?(:testing).must_equal false
     end
   end
