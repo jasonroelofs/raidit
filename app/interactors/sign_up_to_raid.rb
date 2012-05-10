@@ -3,17 +3,19 @@ require 'models/signup'
 
 class SignUpToRaid
 
-  attr_accessor :user, :raid, :character, :group
+  attr_accessor :current_user, :current_raid
 
-  def run
-    raise "Requires a raid" unless @raid
-    raise "Requires a character" unless @character
-    raise "Requires a user" unless @user
-    if @group && !@raid.groups.include?(@group)
+  def initialize(current_user, current_raid)
+    @current_user = current_user
+    @current_raid = current_raid
+  end
+
+  def run(character, group = nil)
+    if group && !@current_raid.groups.include?(group)
       raise "This raid doesn't have the #{@group} group"
     end
 
-    signup = Signup.new raid: @raid, character: @character, group: @group
+    signup = Signup.new raid: @current_raid, character: character, group: group
     Repository.for(Signup).save signup
   end
 
