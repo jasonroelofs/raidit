@@ -4,50 +4,27 @@ require 'models/user'
 
 describe RegisterGuild do
   it "exists" do
-    RegisterGuild.new.wont_be_nil
+    RegisterGuild.new(nil).wont_be_nil
   end
 
-  it "takes a name" do
-    g = RegisterGuild.new
-    g.name = "Guild Name"
-    g.name.must_equal "Guild Name"
-  end
-
-  it "takes a leader" do
-    g = RegisterGuild.new
-    leader = User.new
-
-    g.leader = leader
-    g.leader.must_equal leader
+  it "takes the current user in construction" do
+    user = User.new
+    g = RegisterGuild.new user
+    g.current_user.must_equal user
   end
 
   describe "#run" do
     before do
-      @action = RegisterGuild.new
-      @leader = User.new
-      @action.leader = @leader
-      @action.name = "Johnson"
-    end
-
-    it "requires a name" do
-      @action.name = nil
-      -> {
-        @action.run
-      }.must_raise RuntimeError
-    end
-
-    it "requires a leader" do
-      @action.leader = nil
-      -> {
-        @action.run
-      }.must_raise RuntimeError
+      @user = User.new
+      @action = RegisterGuild.new @user
     end
 
     it "creates and saves the guild" do
-      @action.run
+      @action.run "Johnson"
+
       guild = Repository.for(Guild).find_by_name "Johnson"
       guild.wont_be_nil
-      guild.leader.must_equal @leader
+      guild.leader.must_equal @user
     end
   end
 

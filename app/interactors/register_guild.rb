@@ -7,13 +7,14 @@ require 'repository'
 ##
 class RegisterGuild
 
-  attr_accessor :name, :leader
+  attr_accessor :current_user
 
-  def run
-    raise "Guild must have a leader" unless @leader
-    raise "Requires a name" unless @name
+  def initialize(current_user)
+    @current_user = current_user
+  end
 
-    guild = Guild.new name: @name, leader: @leader
+  def run(guild_name)
+    guild = Guild.new name: guild_name, leader: @current_user
     Repository.for(Guild).save guild
   end
 

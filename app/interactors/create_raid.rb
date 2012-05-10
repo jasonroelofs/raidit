@@ -3,13 +3,15 @@ require 'repository'
 
 class CreateRaid
 
-  attr_accessor :when, :leader, :guild
+  attr_accessor :current_user, :current_guild
 
-  def run
-    raise "Leader is required" unless @leader
-    raise "Date / Time is required" unless @when
+  def initialize(current_user, current_guild = nil)
+    @current_user = current_user
+    @current_guild = current_guild
+  end
 
-    raid = Raid.new when: @when, leader: @leader
+  def run(raid_time)
+    raid = Raid.new when: raid_time, leader: @current_user
     Repository.for(Raid).save raid
   end
 
