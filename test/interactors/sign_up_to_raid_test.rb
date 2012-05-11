@@ -36,6 +36,7 @@ describe SignUpToRaid do
 
       signup.raid.must_equal @raid
       signup.character.must_equal @character
+      signup.user.must_equal @user
     end
 
     describe "groups" do

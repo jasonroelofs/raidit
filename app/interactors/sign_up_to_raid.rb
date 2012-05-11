@@ -15,7 +15,9 @@ class SignUpToRaid
       raise "This raid doesn't have the #{@group} group"
     end
 
-    signup = Signup.new raid: @current_raid, character: character, group: group
+    signup = Signup.new raid: @current_raid, user: @current_user,
+      character: character, group: group
+
     Repository.for(Signup).save signup
   end
 
