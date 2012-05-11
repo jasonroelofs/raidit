@@ -18,7 +18,7 @@ class UpdateSignup
   def run(action)
     permissions = CheckUserPermissions.new @current_user
 
-    processor = StateProcessor.new @signup.state, permissions
+    processor = StateProcessor.new @current_user, @signup, permissions
     processor.send action
     @signup.state = processor.new_state
 
@@ -26,10 +26,12 @@ class UpdateSignup
   end
 
   class StateProcessor
-    def initialize(initial_state, permissions)
+    def initialize(current_user, signup, permissions)
       super()
 
-      self.signup_state = initial_state
+      @signup = signup
+      @current_user = current_user
+      self.signup_state = @signup.state
       @permissions = permissions
     end
 
@@ -69,11 +71,11 @@ class UpdateSignup
     end
 
     def can_enqueue_signup?
-      @permissions.allowed? :enqueue_signup
+      @current_user == @signup.user
     end
 
     def can_cancel_signup?
-      @permissions.allowed? :cancel_signup
+      @current_user == @signup.user
     end
   end
 

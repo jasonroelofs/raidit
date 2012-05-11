@@ -22,7 +22,7 @@ describe UpdateSignup do
 
     before do
       @user = User.new
-      @signup = Signup.new
+      @signup = Signup.new user: @user
       @action = UpdateSignup.new @user, @signup
     end
 
@@ -93,14 +93,16 @@ describe UpdateSignup do
         @signup.state = :available
       end
 
-      it "fails without cancel_signup permissions" do
+      it "fails if user tries to cancel a signup he doesn't own" do
+        other_user = User.new
+        @signup.user = other_user
+
         @action.run :cancel
 
         @signup.state.must_equal :available
       end
 
       it "updates the signup accordingly" do
-        @perm.allow :cancel_signup
         @action.run :cancel
 
         @signup.state.must_equal :cancelled
@@ -116,14 +118,16 @@ describe UpdateSignup do
         @signup.state = :cancelled
       end
 
-      it "fails without the enqueue_signup permission" do
+      it "fails if user tries to enqueue a signup he doesn't own" do
+        other_user = User.new
+        @signup.user = other_user
+
         @action.run :enqueue
 
         @signup.state.must_equal :cancelled
       end
 
       it "updates the signup accordingly" do
-        @perm.allow :enqueue_signup
         @action.run :enqueue
 
         @signup.state.must_equal :available
@@ -139,14 +143,16 @@ describe UpdateSignup do
         @signup.state = :accepted
       end
 
-      it "fails without the cancel_signup permissions" do
+      it "fails if user tries to cancel a signup he doesn't own" do
+        other_user = User.new
+        @signup.user = other_user
+
         @action.run :cancel
 
         @signup.state.must_equal :accepted
       end
 
       it "updates the signup accordingly" do
-        @perm.allow :cancel_signup
         @action.run :cancel
 
         @signup.state.must_equal :cancelled
