@@ -7,7 +7,8 @@ describe Signup do
   end
 
   it "takes attributes in a hash" do
-    s = Signup.new raid: "raid", character: "character"
+    s = Signup.new user: "user", raid: "raid", character: "character"
+    s.user.must_equal "user"
     s.raid.must_equal "raid"
     s.character.must_equal "character"
   end
