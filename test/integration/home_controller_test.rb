@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'integration/test_helper'
 
 class HomeControllerTest < ActionController::TestCase
   tests HomeController
