@@ -10,7 +10,7 @@ class ApplicationControllerTest < ActionController::TestCase
 
     it "finds the user according to the web token cookie" do
       user = User.new
-      user.web_session_token = "1234567890"
+      user.set_login_token :web, "1234567890"
 
       Repository.for(User).save(user)
 
