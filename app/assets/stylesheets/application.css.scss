@@ -1,2 +1,26 @@
+$bodyBackground: #eee;
 
- @import "bootstrap";
+@import "bootstrap";
+
+.container {
+  margin-top: 30px;
+}
+
+.container > footer {
+  clear: both;
+
+  p {
+    text-align: center;
+    margin-top: 1em;
+  }
+}
+
+.content {
+  @include border-radius(5px);
+  background-color: $white;
+}
+
+.content .nav {
+  margin-top: 1em;
+  float: right;
+}

@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Raidit</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Raid It</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
 
-<%= yield %>
+    <%= yield :header %>
+  </head>
+  <body>
 
-</body>
+    <div class="container">
+      <div class="content">
+        <div class="main-nav clearfix">
+          <ul class="nav nav-pills">
+            <li class="active">
+              <%= link_to "Home", root_path %>
+            </li>
+            <li>
+              <%= link_to "Characters", "#" %>
+            </li>
+            <li>
+              <%= link_to "Raids", "#" %>
+            </li>
+          </ul>
+        </div>
+
+        <%= yield %>
+      </div>
+
+      <footer>
+        <p>&copy; RaidIt <%= Date.today.year %></p>
+      </footer>
+
+    </div>
+  </body>
 </html>
