@@ -1,4 +1,7 @@
+require File.expand_path("../config/application", __FILE__)
 require 'rake/testtask'
+
+Raidit::Application.load_tasks
 
 task :default => "test:all"
 
