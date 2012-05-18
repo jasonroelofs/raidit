@@ -14,15 +14,27 @@
       <div class="content">
         <div class="main-nav clearfix">
           <ul class="nav nav-pills">
-            <li class="active">
-              <%= link_to "Home", root_path %>
-            </li>
-            <li>
-              <%= link_to "Characters", "#" %>
-            </li>
-            <li>
-              <%= link_to "Raids", "#" %>
-            </li>
+            <% if current_user %>
+              <li class="active">
+                <%= link_to "Home", root_path %>
+              </li>
+              <li>
+                <%= link_to "Characters", "#" %>
+              </li>
+              <li>
+                <%= link_to "Raids", "#" %>
+              </li>
+              <li>
+                <%= link_to "Log Out", "#" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "Log In", "#" %>
+              </li>
+              <li>
+                <%= link_to "Sign Up", "#" %>
+              </li>
+            <% end %>
           </ul>
         </div>
 
