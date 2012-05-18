@@ -11,6 +11,7 @@ gem "state_machine", "~> 1.1.0"
 #end
 
 group :development do
+  gem "pry", :require => false
   gem "rake"
   gem "thin"
 end
