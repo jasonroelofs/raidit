@@ -12,12 +12,12 @@ namespace :test do
   desc "Run all unit tests"
   Rake::TestTask.new :units do |t|
     t.pattern = "test/unit/**/*_test.rb"
-    t.libs = ["lib", "app", "test/unit"]
+    t.libs = ["lib", "app", "test"]
   end
 
   desc "Run all integration tests"
   Rake::TestTask.new :integrations do |t|
     t.pattern = "test/integration/**/*_test.rb"
-    t.libs = ["lib", "app", "test/integration"]
+    t.libs = ["lib", "app", "test"]
   end
 end
