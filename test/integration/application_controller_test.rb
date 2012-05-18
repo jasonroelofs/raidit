@@ -5,16 +5,20 @@ class ApplicationControllerTest < ActionController::TestCase
 
   describe "#current_user" do
     it "returns nil if no current user" do
-      c = ApplicationController.new
-      c.current_user.must_be_nil
+      @controller.current_user.must_be_nil
     end
 
-    it "returns the current signed in user" do
+    it "finds the user according to the web token cookie" do
       user = User.new
-      c = ApplicationController.new
-      c.current_user = user
+      user.web_session_token = "1234567890"
 
-      c.current_user.must_equal user
+      Repository.for(User).save(user)
+
+      @request.cookies[:web_session_token] = "1234567890"
+
+      @controller.current_user.must_equal user
     end
+
   end
+
 end
