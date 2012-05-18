@@ -11,9 +11,17 @@ describe User do
     u.email.must_equal "email"
   end
 
-  it "has a web session token" do
-    u = User.new
-    u.web_session_token = "session token"
-    u.web_session_token.must_equal "session token"
+  describe "login tokens" do
+    it "defaults to nil token" do
+      u = User.new
+      u.login_token(:web).must_be_nil
+      u.login_token(:boomer).must_be_nil
+    end
+
+    it "has typed login token" do
+      u = User.new
+      u.set_login_token :web, "session token"
+      u.login_token(:web).must_equal "session token"
+    end
   end
 end
