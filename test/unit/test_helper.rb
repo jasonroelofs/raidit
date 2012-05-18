@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'mocha_standalone'
 
 require 'repository'
-require 'test_repositories'
+require 'unit/test_repositories'
 
 class MiniTest::Unit::TestCase
   include Mocha::API

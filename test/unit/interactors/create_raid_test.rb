@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit/test_helper'
 require 'interactors/create_raid'
 require 'models/user'
 require 'models/guild'

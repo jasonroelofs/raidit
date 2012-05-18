@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit/test_helper'
 require 'interactors/register_guild'
 require 'models/user'
 

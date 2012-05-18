@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit/test_helper'
 require 'interactors/list_characters'
 require 'models/user'
 require 'models/character'

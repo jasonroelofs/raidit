@@ -1,5 +1,4 @@
-require 'test_helper'
-require 'repository'
+require 'unit/test_helper'
 
 describe Repository do
   class Johnson

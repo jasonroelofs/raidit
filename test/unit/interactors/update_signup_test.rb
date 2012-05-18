@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit/test_helper'
 require 'interactors/update_signup'
 require 'models/user'
 require 'models/raid'

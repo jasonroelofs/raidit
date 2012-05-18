@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'unit/test_helper'
 require 'models/raid'
 require 'models/user'
 
