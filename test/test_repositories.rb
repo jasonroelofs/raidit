@@ -26,8 +26,8 @@ class UserTestRepo
     @users << user
   end
 
-  def find_by_web_session_token(token)
-    @users.find {|u| u.web_session_token == token }
+  def find_by_login_token(type, token)
+    @users.find {|u| u.login_token(type) == token }
   end
 
   def all
