@@ -68,3 +68,16 @@ action.run :enqueue
 ```
 
 Now it's still just as easy to see what values are required, but it now also documents which ones are exactly required, and with this I was able to remove the ugly developer error handling entirely, leading to less, cleaner code. So yeah, use parameters, that's what they're there for, and let them tell you when dependencies are getting untennable. Also, when Ruby 2.0 comes out with named parameters (possibly), they'll just work.
+
+
+Front End vs API
+----------------
+
+I started this project without any framework, any system at all to build on. I put together a number of use cases, fleshed out the details of these cases and started implementing Interactors that implemented these use cases. Thus, the application is pure Ruby and only plain Ruby. This also has the side effect that tests are really, really fast.
+
+Unfortunately this is *really* hard to develop with. I'm used to top-down driven development, where the UI drives which features I implement next. Now that I have a few interactors implemented and a basic structure for how to create others, I'm going to pull Rails into the app and start implementing a UI, and from that driving which features I implement next.
+
+The main rule for the Rails side is that Rails controllers have as little logic as possible. They get information from the user, run the interactors, and return the results. That's it.
+
+Also I won't be including a database yet. I don't know what my data structure needs to be.
+
