@@ -20,5 +20,6 @@ end
 
 group :test do
   gem "minitest"
+  gem "minitest-spec-rails"
   gem "mocha"
 end
