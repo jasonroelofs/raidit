@@ -2,15 +2,12 @@ require 'repository'
 
 class FindGuild
 
-  attr_accessor :by_id, :by_name
-
-  def run
-    repo = Repository.for(Guild)
-
-    if @by_id
-      repo.find @by_id
-    elsif @by_name
-      repo.find_by_name @by_name
-    end
+  def by_id(id)
+    Repository.for(Guild).find id
   end
+
+  def by_name(name)
+    Repository.for(Guild).find_by_name name
+  end
+
 end
