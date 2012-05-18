@@ -1,5 +1,7 @@
 source :rubygems
 
+gem "rails", "~> 3.2.0"
+
 gem "state_machine", "~> 1.1.0"
 
 group :development do
