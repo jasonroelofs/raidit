@@ -2,8 +2,21 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../../config/environment', __FILE__)
 require 'rails/test_help'
 
-class ActiveSupport::TestCase
-  # Add more helper methods to be used by all tests here...
+require 'test_repositories'
+
+class MiniTest::Unit::TestCase
+
+  def setup
+    configure_repositories
+  end
+
+  def configure_repositories
+    Repository.reset!
+    Repository.configure(
+      "User" => UserTestRepo.new
+    )
+  end
+
 end
 
 if ENV["NO_COLOR_OUTPUT"].nil?
