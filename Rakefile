@@ -1,9 +1,14 @@
 require 'rake/testtask'
 
-task :default => :test
+task :default => "test:all"
 
-desc "Run all tests"
-Rake::TestTask.new :test do |t|
-  t.pattern = "test/**/*_test.rb"
-  t.libs = ["lib", "app", "test"]
+namespace :test do
+  desc "Run all tests"
+  task :all => [:units]
+
+  desc "Run all unit tests"
+  Rake::TestTask.new :units do |t|
+    t.pattern = "test/unit/**/*_test.rb"
+    t.libs = ["lib", "app", "test/unit"]
+  end
 end
