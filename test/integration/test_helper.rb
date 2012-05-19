@@ -4,6 +4,12 @@ require 'rails/test_help'
 
 require 'test_repositories'
 
+module MiniTest::Expectations
+  infect_an_assertion :assert_redirected_to, :must_redirect_to
+  infect_an_assertion :assert_template, :must_render_template
+  infect_an_assertion :assert_response, :must_respond_with
+end
+
 class MiniTest::Unit::TestCase
 
   def setup
