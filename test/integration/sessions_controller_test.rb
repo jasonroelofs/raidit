@@ -33,7 +33,15 @@ class SessionsControllerTest < ActionController::TestCase
     end
 
     it "re-renders with an error if no user found" do
+      post :create, :login => "sandwich", :password => "poodoo"
+      must_respond_with 200
+      must_render_template "new"
+
+      flash[:login_error].must_equal true
+      cookies[:web_session_token].must_be_nil
     end
+
+    it "makes the cookie permanent if remember_me passed in"
   end
 
 end
