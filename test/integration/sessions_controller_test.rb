@@ -7,6 +7,7 @@ class SessionsControllerTest < ActionController::TestCase
     it "renders the login page" do
       get :new
       must_respond_with 200
+      must_render_template "new"
     end
   end
 

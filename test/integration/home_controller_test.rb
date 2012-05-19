@@ -6,7 +6,7 @@ class HomeControllerTest < ActionController::TestCase
   describe "#index" do
     it "renders the home page" do
       get :index
-      @response.status.must_equal 200
+      must_respond_with 200
     end
   end
 
