@@ -26,6 +26,10 @@ class UserTestRepo
     @users << user
   end
 
+  def find_by_login(login)
+    @users.find {|u| u.login == login }
+  end
+
   def find_by_login_token(type, token)
     @users.find {|u| u.login_token(type) == token }
   end
