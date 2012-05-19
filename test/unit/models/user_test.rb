@@ -7,8 +7,10 @@ describe User do
   end
 
   it "takes attributes in a hash" do
-    u = User.new email: "email"
+    u = User.new email: "email", login: "login", password: "pass"
+    u.login.must_equal "login"
     u.email.must_equal "email"
+    u.password.must_equal "pass"
   end
 
   describe "login tokens" do

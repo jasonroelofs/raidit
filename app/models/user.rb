@@ -1,9 +1,11 @@
 class User
 
-  attr_reader :email
+  attr_reader :email, :login, :password
 
   def initialize(attrs = {})
     @email = attrs[:email]
+    @login = attrs[:login]
+    @password = attrs[:password]
     @login_tokens = {}
   end
 
