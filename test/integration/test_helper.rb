@@ -3,6 +3,7 @@ require File.expand_path('../../../config/environment', __FILE__)
 require 'rails/test_help'
 
 require 'test_repositories'
+require 'rails_test_patches'
 
 module MiniTest::Expectations
   infect_an_assertion :assert_redirected_to, :must_redirect_to
@@ -22,7 +23,6 @@ class MiniTest::Unit::TestCase
       "User" => UserTestRepo.new
     )
   end
-
 end
 
 if ENV["NO_COLOR_OUTPUT"].nil?
