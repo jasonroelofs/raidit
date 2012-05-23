@@ -35,6 +35,16 @@ describe FindUser do
 
       found.must_equal user2
     end
+
+    it "returns nil if the requested token is nil" do
+      user = User.new
+      Repository.for(User).save user
+
+      action = FindUser.new
+      found = action.by_login_token :web, nil
+
+      found.must_be_nil
+    end
   end
 
   describe "#by_login" do

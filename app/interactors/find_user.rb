@@ -8,7 +8,7 @@ class FindUser
   end
 
   def by_login_token(type, token)
-    Repository.for(User).find_by_login_token type, token
+    Repository.for(User).find_by_login_token type, token if token
   end
 
 end
