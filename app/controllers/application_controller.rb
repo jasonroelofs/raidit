@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper :all
 
   def current_user
     @current_user ||= find_logged_in_user
