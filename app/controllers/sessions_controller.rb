@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     action = LogUserIn.new :web
 
     if user = action.run(params[:login], params[:password])
+      reset_session
       cookies[:web_session_token] = {
         value: user.login_token(:web),
         httponly: true
@@ -23,6 +24,15 @@ class SessionsController < ApplicationController
       flash.now[:login_error] = true
       render action: "new"
     end
+  end
+
+  ##
+  # Log the user out
+  ##
+  def destroy
+    cookies.delete :web_session_token
+    reset_session
+    redirect_to root_path
   end
 
 end

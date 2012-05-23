@@ -4,4 +4,5 @@ Raidit::Application.routes.draw do
   resources :sessions
 
   match "/login", :to => "sessions#new", :as => "login"
+  match "/logout", :to => "sessions#destroy", :as => "logout"
 end

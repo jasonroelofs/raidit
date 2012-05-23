@@ -44,4 +44,23 @@ class SessionsControllerTest < ActionController::TestCase
     it "makes the cookie permanent if remember_me passed in"
   end
 
+  describe "#destroy" do
+    it "clears out the login cookies and redirects" do
+      @request.cookies[:web_session_token] = "1234567890"
+
+      delete :destroy
+
+      cookies[:web_session_token].must_be_nil
+      must_redirect_to root_path
+    end
+
+    it "does nothing if no user currently logged in" do
+      delete :destroy
+
+      cookies[:web_session_token].must_be_nil
+      must_redirect_to root_path
+    end
+
+  end
+
 end
