@@ -26,4 +26,17 @@ describe User do
       u.login_token(:web).must_equal "session token"
     end
   end
+
+  describe "onboarding flags" do
+    it "returns true if no flag set" do
+      u = User.new
+      u.onboarding_value(:testing).must_equal true
+    end
+
+    it "returns the set value of an onboarding flag" do
+      u = User.new
+      u.set_onboarding_flag :testing, "pwomp"
+      u.onboarding_value(:testing).must_equal "pwomp"
+    end
+  end
 end
