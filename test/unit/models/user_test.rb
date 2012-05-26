@@ -30,13 +30,13 @@ describe User do
   describe "onboarding flags" do
     it "returns true if no flag set" do
       u = User.new
-      u.onboarding_value(:testing).must_equal true
+      u.requires_onboarding?(:testing).must_equal true
     end
 
     it "returns the set value of an onboarding flag" do
       u = User.new
-      u.set_onboarding_flag :testing, "pwomp"
-      u.onboarding_value(:testing).must_equal "pwomp"
+      u.onboarded! :testing
+      u.requires_onboarding?(:testing).must_equal false
     end
   end
 end

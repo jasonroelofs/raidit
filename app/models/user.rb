@@ -7,7 +7,7 @@ class User
     @login = attrs[:login]
     @password = attrs[:password]
     @login_tokens = {}
-    @onboarding = Hash.new true
+    @onboarding = {}
   end
 
   def set_login_token(type, token)
@@ -18,12 +18,12 @@ class User
     @login_tokens[type]
   end
 
-  def set_onboarding_flag(flag, value)
-    @onboarding[flag] = value
+  def onboarded!(flag)
+    @onboarding[flag] = true
   end
 
-  def onboarding_value(flag)
-    @onboarding[flag]
+  def requires_onboarding?(flag)
+    @onboarding[flag].nil?
   end
 
 end
