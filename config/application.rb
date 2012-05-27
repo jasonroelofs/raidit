@@ -22,6 +22,7 @@ module Raidit
 
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += [
+        "#{config.root}/lib",
         "#{config.root}/app",
         "#{config.root}/app/interactors",
         "#{config.root}/app/repositories"
