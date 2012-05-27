@@ -81,3 +81,9 @@ The main rule for the Rails side is that Rails controllers have as little logic 
 
 Also I won't be including a database yet. I don't know what my data structure needs to be.
 
+Mocking
+-------
+
+Moching is a tough topic. On one hand, you can mock everything that's not your current object. On the other hand, you can choose to mock nothing at all and just ensure that all objects are set up appropriately. There are problems with both of these approaches. If you mock too much, you've made your tests very coupled to your code's implementation, and have set yourself up to making tests hard to maintain, as well as the situation where changing your code still passes all tests, but when run the code dies horribly, because all calls to dependencies have been mocked out and you missed a changed dependency call. On the contrary, never mocking anything can lead to forcing tests in one area to know about intimate data details about other code for the code under test to properly work, leading to messy test setup requirements. Both of these situations are serious test smell, though the "no mocks ever" make it easy to see where the test pain is very quickly.
+
+My main rule with raidit is to not mock objects I own. This is starting to get tricky as I implement controllers as I'm finding myself needing to set up multiple objects in the Repository for controllers to be able to use certain interactors. This goes against the whole "Rails is simply a user of your application" ideal. In this case I will start playing with mocking out interactor usage in the controllers, aka the Rails app does not own the Application, so I can mock the interaction. To protect myself from mock tests passing but the code itself failing, I shall start putting together a cucumber (Rack::Test) suite that hits the site proper to ensure that things are hooked up properly.
