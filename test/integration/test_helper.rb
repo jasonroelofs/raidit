@@ -4,6 +4,7 @@ require 'rails/test_help'
 
 require 'test_repositories'
 require 'rails_test_patches'
+require 'mocha_standalone'
 
 module MiniTest::Expectations
   infect_an_assertion :assert_redirected_to, :must_redirect_to
@@ -12,9 +13,15 @@ module MiniTest::Expectations
 end
 
 class MiniTest::Unit::TestCase
+  include Mocha::API
 
   def setup
+    mocha_teardown
     configure_repositories
+  end
+
+  def teardown
+    mocha_verify
   end
 
   def configure_repositories
