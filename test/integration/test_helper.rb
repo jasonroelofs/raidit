@@ -2,7 +2,6 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../../config/environment', __FILE__)
 require 'rails/test_help'
 
-require 'test_repositories'
 require 'rails_test_patches'
 require 'mocha_standalone'
 
@@ -17,18 +16,18 @@ class MiniTest::Unit::TestCase
 
   def setup
     mocha_teardown
-    configure_repositories
   end
 
   def teardown
     mocha_verify
   end
 
-  def configure_repositories
-    Repository.reset!
-    Repository.configure(
-      "User" => UserTestRepo.new
-    )
+  def login_as_user
+    @user = User.new login: "test", password: "password"
+    @user.set_login_token(:web, "1234")
+    @request.cookies[:web_session_token] = "1234"
+
+    FindUser.any_instance.stubs(:by_login_token).with(:web, "1234").returns(@user)
   end
 end
 
