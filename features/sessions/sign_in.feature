@@ -5,7 +5,7 @@ Scenario: User can sign into the app
   Then I should see "Login"
   And I should see "Password"
 
-  When I fill in "raider" for "login"
+  When I fill in "jason" for "login"
   And I fill in "password" for "password"
   And I press "Log In"
 
