@@ -1,7 +1,9 @@
 Feature: User Signs In
 
 Scenario: User can sign into the app
-  Given I visit /login
+  Given I am at the home page
+  And I follow "Log In"
+
   Then I should see "Login"
   And I should see "Password"
 
@@ -13,7 +15,9 @@ Scenario: User can sign into the app
 
 
 Scenario: Unknown user sees error when trying to sign in
-  Given I visit /login
+  Given I am at the home page
+  And I follow "Log In"
+
   Then I should see "Login"
   And I should see "Password"
 
