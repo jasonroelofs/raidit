@@ -23,3 +23,7 @@ group :test do
   gem "minitest-spec-rails"
   gem "mocha"
 end
+
+group :cucumber do
+  gem "cucumber-rails", :require => false
+end
