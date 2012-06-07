@@ -16,9 +16,41 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     it "renders the list of characters the current user has" do
+      list = [Character.new]
+      ListCharacters.any_instance.expects(:run).returns(list)
+      get :index
+      assigns(:characters).must_equal list
+    end
+
+    it "redirects to #new if there are no characters" do
       ListCharacters.any_instance.expects(:run).returns([])
       get :index
-      assigns(:characters).must_equal []
+
+      assert_redirected_to new_character_path
+    end
+  end
+
+  describe "#new" do
+    before do
+      login_as_user
+    end
+
+    it "renders the new character page" do
+      get :new
+      must_render_template "new"
+    end
+  end
+
+  describe "#create" do
+    before do
+      login_as_user
+    end
+
+    it "creates a new character for the current user and redirects to index" do
+      AddCharacter.any_instance.expects(:run).with("wow", "US", "Detheroc", "Weemuu")
+      post :create, :game => "wow", :region => "US", :server => "Detheroc", :name => "Weemuu"
+
+      assert_redirected_to characters_path
     end
   end
 end

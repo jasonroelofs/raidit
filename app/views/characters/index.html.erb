@@ -1,0 +1,8 @@
+<h2>You have the following Characters</h2>
+
+<% @characters.each do |character| %>
+  <div class="character">
+    <span class="server"><%= character.region %> - <%= character.server %></span>
+    <span class="name"><%= character.name %></span>
+  </div>
+<% end %>
