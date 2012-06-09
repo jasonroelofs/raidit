@@ -2,6 +2,7 @@ require 'unit/test_helper'
 require 'interactors/schedule_raid'
 require 'models/user'
 require 'models/guild'
+require 'time'
 
 describe ScheduleRaid do
   it "exists" do
@@ -21,7 +22,10 @@ describe ScheduleRaid do
 
     before do
       @user = User.new
-      @when = Time.now
+      @when = Date.today
+      @start = Time.parse("20:00")
+      @where = "ICC"
+
       @action = ScheduleRaid.new @user
     end
 
@@ -30,12 +34,18 @@ describe ScheduleRaid do
     it "errors if guild is set and user is not raid leader of guild"
 
     it "saves the raid to the repo if valid" do
-      @action.run @when
+      @action.run @where, @when, @start
 
       raid = Repository.for(Raid).all.first
       raid.wont_be_nil
+
+      raid.owner.must_equal @user
+      raid.where.must_equal @where
       raid.when.must_equal @when
+      raid.start_at.must_equal @start
       raid.leader.must_equal @user
+
+      raid.invite_at.must_equal Time.parse("19:45")
     end
 
   end
