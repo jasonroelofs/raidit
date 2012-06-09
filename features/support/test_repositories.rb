@@ -68,6 +68,10 @@ module TestRepos
     def all
       @raids
     end
+
+    def find_raids_for_user(user)
+      @raids.select {|r| r.owner == user }
+    end
   end
 
   class SignupRepo
