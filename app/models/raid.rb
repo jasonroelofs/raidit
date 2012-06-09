@@ -1,6 +1,6 @@
 class Raid
 
-  attr_reader :id, :when, :leader
+  attr_reader :id, :when, :leader, :owner
 
   attr_accessor :groups
 
@@ -8,6 +8,7 @@ class Raid
     @id = attrs[:id]
     @when = attrs[:when]
     @leader = attrs[:leader]
+    @owner = attrs[:owner]
     @groups = attrs[:groups] || []
   end
 end

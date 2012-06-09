@@ -10,11 +10,12 @@ describe Raid do
   it "takes a hash on construction" do
     time = Time.now
     user = User.new
-    r = Raid.new id: 14, when: time, leader: user
+    r = Raid.new id: 14, when: time, leader: user, owner: user
 
     r.id.must_equal 14
     r.when.must_equal time
     r.leader.must_equal user
+    r.owner.must_equal user
   end
 
   it "has groups" do
