@@ -16,6 +16,7 @@ group :development do
   gem "pry", :require => false
   gem "rake"
   gem "thin"
+  gem "debugger"
 end
 
 group :test do
