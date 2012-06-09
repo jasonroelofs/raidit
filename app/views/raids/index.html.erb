@@ -1,0 +1,12 @@
+<h1>Your Raids</h1>
+
+<div class="raids">
+  <% @raids.each do |raid| %>
+    <div class="raid">
+      <%= raid.where %> on <%= raid.when.to_s(:full) %> at <%= raid.start_at.to_s(:with_am_pm) %> Server
+      <span class="invites">Invites start at <%= raid.invite_at.to_s(:with_am_pm) %> Server</span>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Schedule a Raid", new_raid_path %>
