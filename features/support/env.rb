@@ -5,7 +5,6 @@
 # files.
 
 require 'cucumber/rails'
-require Rails.root.join("features", "support", "test_repositories")
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -61,11 +60,15 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 Before do
   Repository.reset!
   Repository.configure(
-    "User" => TestRepos::UserRepo.new,
-    "Guild" => TestRepos::GuildRepo.new,
-    "Character" => TestRepos::CharacterRepo.new,
-    "Raid" => TestRepos::RaidRepo.new,
-    "Signup" => TestRepos::SignupRepo.new,
-    "Permission" => TestRepos::PermissionRepo.new
+    "User"        => InMemory::UserRepo.new,
+    "Guild"       => InMemory::GuildRepo.new,
+    "Character"   => InMemory::CharacterRepo.new,
+    "Raid"        => InMemory::RaidRepo.new,
+    "Signup"      => InMemory::SignupRepo.new,
+    "Permission"  => InMemory::PermissionRepo.new
+  )
+
+  Repository.for(User).save(
+    User.new(:login => "jason", :password => "password")
   )
 end

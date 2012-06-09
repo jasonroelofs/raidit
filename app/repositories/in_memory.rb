@@ -20,9 +20,7 @@ module InMemory
 
   class UserRepo
     def initialize
-      @users = [
-        User.new(:login => "jason", :password => "password")
-      ]
+      @users = []
     end
 
     def save(user)

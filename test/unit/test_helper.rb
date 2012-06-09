@@ -5,7 +5,7 @@ require 'minitest/autorun'
 require 'mocha_standalone'
 
 require 'repository'
-require 'test_repositories'
+require 'repositories/in_memory'
 
 class MiniTest::Unit::TestCase
   include Mocha::API
@@ -22,12 +22,12 @@ class MiniTest::Unit::TestCase
   def configure_repositories
     Repository.reset!
     Repository.configure(
-      "Guild" => GuildTestRepo.new,
-      "User" => UserTestRepo.new,
-      "Character" => CharacterTestRepo.new,
-      "Raid" => RaidTestRepo.new,
-      "Signup" => SignupTestRepo.new,
-      "Permission" => PermissionTestRepo.new
+      "User"        => InMemory::UserRepo.new,
+      "Guild"       => InMemory::GuildRepo.new,
+      "Character"   => InMemory::CharacterRepo.new,
+      "Raid"        => InMemory::RaidRepo.new,
+      "Signup"      => InMemory::SignupRepo.new,
+      "Permission"  => InMemory::PermissionRepo.new
     )
   end
 end
