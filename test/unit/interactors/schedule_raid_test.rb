@@ -1,17 +1,17 @@
 require 'unit/test_helper'
-require 'interactors/create_raid'
+require 'interactors/schedule_raid'
 require 'models/user'
 require 'models/guild'
 
-describe CreateRaid do
+describe ScheduleRaid do
   it "exists" do
-    CreateRaid.new(nil).wont_be_nil
+    ScheduleRaid.new(nil).wont_be_nil
   end
 
   it "takes the current user and guild in constructor" do
     user = User.new
     guild = Guild.new
-    action = CreateRaid.new user, guild
+    action = ScheduleRaid.new user, guild
 
     action.current_user.must_equal user
     action.current_guild.must_equal guild
@@ -22,7 +22,7 @@ describe CreateRaid do
     before do
       @user = User.new
       @when = Time.now
-      @action = CreateRaid.new @user
+      @action = ScheduleRaid.new @user
     end
 
     it "errors if guild is set and user is not of the guild"

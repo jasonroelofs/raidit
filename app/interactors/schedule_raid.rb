@@ -1,7 +1,7 @@
 require 'models/raid'
 require 'repository'
 
-class CreateRaid
+class ScheduleRaid
 
   attr_accessor :current_user, :current_guild
 
