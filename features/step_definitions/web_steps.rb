@@ -1,21 +1,10 @@
 require 'uri'
 require 'cgi'
 
-module WithinHelpers
-  def with_scope(locator)
-    locator ? within(*selector_for(locator)) { yield } : yield
+Then /^I should see "(.*?)" within "(.*?)"$/ do |text, element|
+  within(element) do
+    assert page.has_content?(text), %|Unable to find "#{text}" inside of #{element}|
   end
-end
-World(WithinHelpers)
-
-# Single-line step scoper
-When /^(.*) within (.*[^:])$/ do |step_statement, parent|
-  with_scope(parent) { step step_statement }
-end
-
-# Multi-line step scoper
-When /^(.*) within (.*[^:]):$/ do |step_statement, parent, table_or_string|
-  with_scope(parent) { step "#{step_statement}:", table_or_string }
 end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
