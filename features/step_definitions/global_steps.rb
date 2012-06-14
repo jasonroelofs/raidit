@@ -11,3 +11,7 @@ When "I debug" do
   debugger
   true
 end
+
+Given /^today is "(.*?)"$/ do |date|
+  Timecop.travel Date.parse(date)
+end
