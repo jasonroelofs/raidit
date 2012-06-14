@@ -27,4 +27,5 @@ end
 
 group :cucumber do
   gem "cucumber-rails", :require => false
+  gem "timecop"
 end
