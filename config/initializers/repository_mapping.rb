@@ -15,8 +15,22 @@ Raidit::Application.configure do
     # Set up our seed data for the development setup
     if Rails.env.development?
       Repository.for(User).save(
-        User.new(:login => "jason", :password => "password")
+        jason = User.new(:login => "jason", :password => "password")
       )
+
+      jason.onboarded! :characters
+
+      Repository.for(Character).save(
+        weemuu = Character.new(:name => "Weemuu", :game => "wow", :server => "Kil'Jaeden",
+          :region => "US", :user => jason)
+      )
+
+      (Date.today..2.weeks.from_now.to_date).each do |day|
+        raid = Raid.new :when => day, :owner => jason, :where => "ICC",
+          :start_at => Time.parse("20:00"), :invite_at => Time.parse("19:30")
+
+        Repository.for(Raid).save(raid)
+      end
     end
   end
 
