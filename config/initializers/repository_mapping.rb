@@ -18,8 +18,6 @@ Raidit::Application.configure do
         jason = User.new(:login => "jason", :password => "password")
       )
 
-      jason.onboarded! :characters
-
       Repository.for(Character).save(
         weemuu = Character.new(:name => "Weemuu", :game => "wow", :server => "Kil'Jaeden",
           :region => "US", :user => jason)
