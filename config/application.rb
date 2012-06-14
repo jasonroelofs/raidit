@@ -25,7 +25,8 @@ module Raidit
         "#{config.root}/lib",
         "#{config.root}/app",
         "#{config.root}/app/interactors",
-        "#{config.root}/app/repositories"
+        "#{config.root}/app/repositories",
+        "#{config.root}/app/presenters"
     ]
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

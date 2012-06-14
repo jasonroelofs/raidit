@@ -1,0 +1,29 @@
+<table class="raid-calendar table table-bordered">
+  <thead>
+    <tr>
+      <th>Sunday</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th>Saturday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% presenter.weeks.each do |week| %>
+      <tr>
+        <% presenter.days_for_week(week).each do |day| %>
+          <td data-date="<%= day.to_s(:ymd) %>">
+            <div class="day"><%= day.day %></div>
+            <%# presenter.raids_on(day).each do |raid| %>
+              <div class="raid">
+                <%#= raid.invite_at %> - <%#= raid.location %>
+              </div>
+            <%# end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
