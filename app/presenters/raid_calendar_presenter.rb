@@ -2,15 +2,22 @@ require 'ostruct'
 
 class RaidCalendarPresenter
 
-  attr_reader :start_date, :weeks_to_show
+  attr_accessor :start_date, :weeks_to_show
+
+  attr_reader :raid_finder
 
   ##
-  # Set up a new presenter with a date in the first week to show, and configure
-  # how many weeks the presenter should show.
+  # Set up a new presenter with a raid finder object.
+  # This object needs to respond to #run(date) and return the list of
+  # raids that should be displayed for that date.
+  #
+  # Defaults start_date to today and weeks_to_show to 4
   ##
-  def initialize(start_date, weeks_to_show = 4)
-    @start_date = start_date
-    @weeks_to_show = weeks_to_show
+  def initialize(raid_finder)
+    @raid_finder = raid_finder
+
+    @start_date = Date.today
+    @weeks_to_show = 4
   end
 
   ##
@@ -40,7 +47,7 @@ class RaidCalendarPresenter
   end
 
   ##
-  # Figure out the apporpriate class for the cell day we are
+  # Figure out the appropriate class for the cell day we are
   # currently rendering.
   ##
   def class_for(day)
@@ -49,6 +56,14 @@ class RaidCalendarPresenter
     elsif day < @start_date
       "past"
     end
+  end
+
+  ##
+  # Find all raids to be shown for the given day.
+  # Returns an Enumerable of Raid objects
+  ##
+  def raids_on(day)
+    []
   end
 
   # Represent a given week in the raid calendar

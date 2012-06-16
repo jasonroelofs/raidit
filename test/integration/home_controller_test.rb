@@ -13,7 +13,9 @@ class HomeControllerTest < ActionController::TestCase
       get :index
 
       p = assigns(:raid_calendar_presenter)
+
       p.wont_be_nil
+      p.raid_finder.wont_be_nil
       p.start_date.must_equal Date.today
       p.weeks_to_show.must_equal 4
     end

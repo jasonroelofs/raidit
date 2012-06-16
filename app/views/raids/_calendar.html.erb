@@ -16,11 +16,16 @@
         <% presenter.days_for_week(week).each do |day| %>
           <td data-date="<%= day.to_s(:ymd) %>" class="<%= presenter.class_for(day) %>">
             <div class="day"><%= day.day %></div>
-            <%# presenter.raids_on(day).each do |raid| %>
+            <% presenter.raids_on(day).each do |raid| %>
               <div class="raid">
-                <%#= raid.invite_at %> - <%#= raid.location %>
+                <span class="invite-time">
+                  <%= raid.invite_at %>
+                </span>
+                <span class="location">
+                  <%= raid.location %>
+                </span>
               </div>
-            <%# end %>
+            <% end %>
           </td>
         <% end %>
       </tr>
