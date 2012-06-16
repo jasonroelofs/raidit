@@ -70,6 +70,15 @@ module InMemory
     def find_raids_for_user(user)
       @raids.select {|r| r.owner == user }
     end
+
+    def find_raids_for_user_and_day(user, day)
+      raids = find_raids_for_user(user)
+      if day
+        raids.select {|raid| raid.when == day }
+      else
+        raids
+      end
+    end
   end
 
   class SignupRepo

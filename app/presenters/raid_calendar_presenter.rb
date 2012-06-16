@@ -63,7 +63,7 @@ class RaidCalendarPresenter
   # Returns an Enumerable of Raid objects
   ##
   def raids_on(day)
-    []
+    @raid_finder.run(day)
   end
 
   # Represent a given week in the raid calendar

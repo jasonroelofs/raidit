@@ -19,6 +19,6 @@ Scenario: Users can see raids on the calendar they own
     | Molten Core | 2012/03/28 | 21:00 | 30            |
   When I am signed in as "jason"
 
-  Then I should see "19:45 ICC" within "td[data-date='2012/04/01']"
-  And I should see "20:30 Firelands" within "td[data-date='2012/04/08']"
+  Then I should see "7:45 PM ICC" within "td[data-date='2012/04/01']"
+  And I should see "8:30 PM Firelands" within "td[data-date='2012/04/08']"
   And I should not see "Molten Core"

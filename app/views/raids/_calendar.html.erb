@@ -19,10 +19,10 @@
             <% presenter.raids_on(day).each do |raid| %>
               <div class="raid">
                 <span class="invite-time">
-                  <%= raid.invite_at %>
+                  <%= raid.invite_at.to_s(:with_am_pm) %>
                 </span>
                 <span class="location">
-                  <%= raid.location %>
+                  <%= raid.where %>
                 </span>
               </div>
             <% end %>

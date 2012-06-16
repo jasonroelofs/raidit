@@ -34,5 +34,18 @@ describe FindRaidsForUser do
 
       @action.run.must_equal [r2, r1]
     end
+
+    it "limits raids to a given date if one given" do
+      r1 = Raid.new owner: @user, when: Date.parse("2012/03/01")
+      r2 = Raid.new owner: @user, when: Date.parse("2012/04/01")
+      Repository.for(Raid).save r1
+      Repository.for(Raid).save r2
+
+      @action.run(Date.parse("2012/03/01")).must_equal [r1]
+    end
+
+    it "returns empty list if no raids for that day" do
+      @action.run(Date.parse("2012/03/01")).must_equal []
+    end
   end
 end
