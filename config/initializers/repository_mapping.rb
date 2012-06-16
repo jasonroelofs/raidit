@@ -23,7 +23,7 @@ Raidit::Application.configure do
           :region => "US", :user => jason)
       )
 
-      (Date.today..2.weeks.from_now.to_date).each do |day|
+      (1.week.ago.to_date..2.weeks.from_now.to_date).each do |day|
         raid = Raid.new :when => day, :owner => jason, :where => "ICC",
           :start_at => Time.parse("20:00"), :invite_at => Time.parse("19:30")
 
