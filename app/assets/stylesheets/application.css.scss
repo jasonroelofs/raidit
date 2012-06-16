@@ -24,3 +24,18 @@ $bodyBackground: #eee;
   margin-top: 1em;
   float: right;
 }
+
+.raid-calendar {
+
+  td.today {
+    border: 2px solid black;
+  }
+
+  td.past {
+    background-color: grey;
+  }
+
+  .day {
+    float: right;
+  }
+}

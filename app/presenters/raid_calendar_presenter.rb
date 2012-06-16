@@ -39,6 +39,18 @@ class RaidCalendarPresenter
     (week.start_date..week.end_date).to_a
   end
 
+  ##
+  # Figure out the apporpriate class for the cell day we are
+  # currently rendering.
+  ##
+  def class_for(day)
+    if day == @start_date
+      "today"
+    elsif day < @start_date
+      "past"
+    end
+  end
+
   # Represent a given week in the raid calendar
   class Week < Struct.new(:start_date, :end_date)
   end

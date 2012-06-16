@@ -14,7 +14,7 @@
     <% presenter.weeks.each do |week| %>
       <tr>
         <% presenter.days_for_week(week).each do |day| %>
-          <td data-date="<%= day.to_s(:ymd) %>">
+          <td data-date="<%= day.to_s(:ymd) %>" class="<%= presenter.class_for(day) %>">
             <div class="day"><%= day.day %></div>
             <%# presenter.raids_on(day).each do |raid| %>
               <div class="raid">

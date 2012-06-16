@@ -55,4 +55,22 @@ describe RaidCalendarPresenter do
       @presenter.days_for_week(week).length.must_equal 7
     end
   end
+
+  describe "#class_for" do
+    before do
+      @presenter = RaidCalendarPresenter.new Date.parse("2012/06/13"), 2
+    end
+
+    it "returns 'past' if the day is in the past" do
+      @presenter.class_for(Date.parse("2012/06/12")).must_equal "past"
+    end
+
+    it "returns 'today' if the day is the given start date" do
+      @presenter.class_for(Date.parse("2012/06/13")).must_equal "today"
+    end
+
+    it "returns nothing if the day is in the future" do
+      @presenter.class_for(Date.parse("2012/06/14")).must_be_nil
+    end
+  end
 end
