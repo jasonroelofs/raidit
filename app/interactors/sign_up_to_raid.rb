@@ -10,13 +10,13 @@ class SignUpToRaid
     @current_raid = current_raid
   end
 
-  def run(character, group = nil)
-    if group && !@current_raid.groups.include?(group)
-      raise "This raid doesn't have the #{@group} group"
+  def run(character, role = nil)
+    if role && !@current_raid.roles.include?(role)
+      raise "This raid doesn't have the #{@role} role"
     end
 
     signup = Signup.new raid: @current_raid, user: @current_user,
-      character: character, group: group
+      character: character, role: role
 
     Repository.for(Signup).save signup
   end

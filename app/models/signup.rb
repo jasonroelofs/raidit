@@ -1,13 +1,13 @@
 class Signup
 
-  attr_reader :raid, :character, :group
+  attr_reader :raid, :character, :role
 
   attr_accessor :state, :user
 
   def initialize(attrs = {})
     @raid = attrs[:raid]
     @character = attrs[:character]
-    @group = attrs[:group]
+    @role = attrs[:role]
     @user = attrs[:user]
     @state = :available
   end

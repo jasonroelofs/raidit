@@ -4,7 +4,7 @@ class Raid
 
   attr_reader :start_at, :invite_at
 
-  attr_accessor :groups
+  attr_reader :roles
 
   def initialize(attrs = {})
     @id = attrs[:id]

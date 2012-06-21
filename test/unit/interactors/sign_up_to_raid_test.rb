@@ -39,26 +39,22 @@ describe SignUpToRaid do
       signup.user.must_equal @user
     end
 
-    describe "groups" do
-      before do
-        @raid.groups = [:tank, :healer]
-      end
-
-      it "errors if the raid doesn't have the named group" do
+    describe "roles" do
+      it "errors if the raid doesn't have the named role" do
         -> {
-          @action.run @character, :dps
+          @action.run @character, :cheerleader
         }.must_raise RuntimeError
       end
 
-      it "puts character in the specified group" do
+      it "puts character in the specified role" do
         @action.run @character, :tank
 
         repo = Repository.for(Signup)
         signup = repo.all.first
-        signup.group.must_equal :tank
+        signup.role.must_equal :tank
       end
 
-      it "puts the character in the default group if no group specified"
+      it "puts the character in the default role if no role specified"
     end
   end
 end

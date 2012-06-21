@@ -13,9 +13,9 @@ describe Signup do
     s.character.must_equal "character"
   end
 
-  it "can have a group" do
-    s = Signup.new group: :dps
-    s.group.must_equal :dps
+  it "can have a role" do
+    s = Signup.new role: :dps
+    s.role.must_equal :dps
   end
 
   it "defaults to the available state" do
