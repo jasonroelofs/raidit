@@ -48,5 +48,22 @@ describe ScheduleRaid do
       raid.invite_at.must_equal Time.parse("19:45")
     end
 
+    it "saves the given roles to the raid if given" do
+      roles = {
+        :tank => 5,
+        :dps => 4,
+        :healer => 3
+      }
+
+      @action.run @where, @when, @start, roles
+
+      raid = Repository.for(Raid).all.first
+      raid.wont_be_nil
+
+      raid.role_limit(:tank).must_equal 5
+      raid.role_limit(:dps).must_equal 4
+      raid.role_limit(:healer).must_equal 3
+    end
+
   end
 end

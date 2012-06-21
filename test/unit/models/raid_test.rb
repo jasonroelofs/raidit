@@ -22,9 +22,22 @@ describe Raid do
     r.invite_at.must_equal time
   end
 
-  it "has groups" do
+  it "has the three default roles" do
     r = Raid.new
-    r.groups = [:dps, :tank]
-    r.groups.must_equal [:dps, :tank]
+    r.roles.must_equal [:tank, :dps, :healer]
+  end
+
+  describe "role limits" do
+
+    it "has role limits" do
+      r = Raid.new
+      r.set_role_limit :tank, 20
+      r.role_limit(:tank).must_equal 20
+    end
+
+    it "returns nil if no limit set for the requested role" do
+      r = Raid.new
+      r.role_limit(:johnson).must_be_nil
+    end
   end
 end

@@ -12,7 +12,20 @@ class RaidsController < ApplicationController
 
   def create
     action = ScheduleRaid.new current_user
-    action.run params[:where], Date.parse(params[:when]), Time.parse(params[:start])
+
+    action_params = [
+      params[:where], Date.parse(params[:when]), Time.parse(params[:start])
+    ]
+
+    if params[:tank]
+      action_params << {
+        :tank => params[:tank].to_i,
+        :dps => params[:dps].to_i,
+        :healer => params[:healer].to_i
+      }
+    end
+
+    action.run(*action_params)
     redirect_to action: "index"
   end
 

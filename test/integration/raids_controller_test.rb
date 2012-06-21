@@ -45,6 +45,18 @@ class RaidsControllerTest < ActionController::TestCase
 
       must_redirect_to raids_path
     end
+
+    it "can take limits for the various roles" do
+      login_as_user
+
+      ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
+        Time.parse("20:00"), {:tank => 10, :dps => 20, :healer => 100})
+
+      post :create, :where => "Dragon Soul", :when => "2012/01/01",
+        :start => "20:00", :tank => 10, :dps => 20, :healer => 100
+
+      must_redirect_to raids_path
+    end
   end
 
 end

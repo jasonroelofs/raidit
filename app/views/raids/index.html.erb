@@ -5,6 +5,11 @@
     <div class="raid">
       <%= raid.where %> on <%= raid.when.to_s(:full) %> at <%= raid.start_at.to_s(:with_am_pm) %> Server
       <span class="invites">Invites start at <%= raid.invite_at.to_s(:with_am_pm) %> Server</span>
+      <span class="limits">
+        Tanks: <%= raid.role_limit(:tank) %>
+        DPS: <%= raid.role_limit(:dps) %>
+        Healers: <%= raid.role_limit(:healer) %>
+      </span>
     </div>
   <% end %>
 </div>

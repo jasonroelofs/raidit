@@ -12,10 +12,17 @@ class ScheduleRaid
     @current_guild = current_guild
   end
 
-  def run(where, raid_date, raid_time)
+  def run(where, raid_date, raid_time, roles = nil)
     raid = Raid.new where: where, when: raid_date, start_at: raid_time,
       invite_at: raid_time - DEFAULT_INVITE_WINDOW,
       leader: @current_user, owner: @current_user
+
+    if roles
+      roles.each do |role, limit|
+        raid.set_role_limit(role, limit)
+      end
+    end
+
     Repository.for(Raid).save raid
   end
 
