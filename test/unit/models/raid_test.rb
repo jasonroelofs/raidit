@@ -7,6 +7,10 @@ describe Raid do
     Raid.new.wont_be_nil
   end
 
+  it "is an entity" do
+    Raid.ancestors.must_include Entity
+  end
+
   it "takes a hash on construction" do
     time = Time.now
     user = User.new

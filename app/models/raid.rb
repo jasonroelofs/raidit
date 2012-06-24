@@ -1,19 +1,16 @@
+require 'entity'
+
 class Raid
+  include Entity
 
-  attr_reader :id, :when, :leader, :owner, :where
+  attr_accessor :when, :leader, :owner, :where
 
-  attr_reader :start_at, :invite_at
+  attr_accessor :start_at, :invite_at
 
   attr_reader :roles
 
-  def initialize(attrs = {})
-    @id = attrs[:id]
-    @when = attrs[:when]
-    @leader = attrs[:leader]
-    @owner = attrs[:owner]
-    @where = attrs[:where]
-    @start_at = attrs[:start_at]
-    @invite_at = attrs[:invite_at]
+  def initialize(params = {})
+    super
 
     @roles = [:tank, :dps, :healer]
     @role_limits = {}
