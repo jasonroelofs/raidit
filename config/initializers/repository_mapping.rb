@@ -27,6 +27,10 @@ Raidit::Application.configure do
         raid = Raid.new :when => day, :owner => jason, :where => "ICC",
           :start_at => Time.parse("20:00"), :invite_at => Time.parse("19:30")
 
+        raid.set_role_limit :tank, (rand * 5).to_i
+        raid.set_role_limit :dps, (rand * 20).to_i
+        raid.set_role_limit :healer, (rand * 5).to_i
+
         Repository.for(Raid).save(raid)
       end
     end
