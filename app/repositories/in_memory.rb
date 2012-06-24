@@ -57,10 +57,16 @@ module InMemory
   class RaidRepo
     def initialize
       @raids = []
+      @id_counter = 0
     end
 
     def save(raid)
+      raid.id ||= (@id_counter += 1)
       @raids << raid
+    end
+
+    def find(id)
+      @raids.find {|r| r.id == id }
     end
 
     def all
