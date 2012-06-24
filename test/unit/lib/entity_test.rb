@@ -38,8 +38,9 @@ describe Entity do
     e.id.must_equal 14
   end
 
-  it "is persisted" do
-    TestEntity.new.persisted?.must_equal true
+  it "is knows if it is persisted" do
+    TestEntity.new.persisted?.must_equal false
+    TestEntity.new(:id => 14).persisted?.must_equal true
   end
 
 end

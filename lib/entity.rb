@@ -23,6 +23,6 @@ module Entity
   ##
 
   def persisted?
-    true
+    !!self.id
   end
 end
