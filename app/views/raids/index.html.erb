@@ -3,6 +3,9 @@
 <div class="raids">
   <% @raids.each do |raid| %>
     <div class="raid">
+      <span class="actions">
+        <%= link_to "Edit", [:edit, raid] %>
+      </span>
       <%= raid.where %> on <%= raid.when.to_s(:full) %> at <%= raid.start_at.to_s(:with_am_pm) %> Server
       <span class="invites">Invites start at <%= raid.invite_at.to_s(:with_am_pm) %> Server</span>
       <span class="limits">

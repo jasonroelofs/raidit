@@ -61,4 +61,25 @@ class RaidsControllerTest < ActionController::TestCase
     end
   end
 
+  describe "#edit" do
+    it "finds the requested Raid and renders the edit form" do
+      login_as_user
+
+      raid = Raid.new
+      FindRaid.any_instance.expects(:by_id).with(10).returns(raid)
+
+      get :edit, :id => 10
+
+      must_render_template "edit"
+      assigns(:raid).must_equal raid
+    end
+
+    it "redirects to raid index if raid not found" do
+      login_as_user
+
+      get :edit, :id => 10
+      must_redirect_to raids_path
+    end
+  end
+
 end

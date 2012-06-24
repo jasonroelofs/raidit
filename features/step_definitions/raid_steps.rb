@@ -2,8 +2,9 @@ Given /^"(.*?)" has scheduled the following raids$/ do |login, table|
   repo = Repository.for(Raid)
   current_user = Repository.for(User).find_by_login(login)
 
-  table.hashes.each do |row|
+  table.hashes.each_with_index do |row, i|
     r = Raid.new(
+      :id => i,
       :owner => current_user,
       :where => row[:where],
       :when => Date.parse(row[:when]),

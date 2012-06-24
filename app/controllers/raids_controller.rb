@@ -33,4 +33,10 @@ class RaidsController < ApplicationController
     redirect_to action: "index"
   end
 
+  def edit
+    action = FindRaid.new
+    @raid = action.by_id params[:id].to_i
+    redirect_to action: "index" unless @raid
+  end
+
 end
