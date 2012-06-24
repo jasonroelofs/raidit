@@ -8,6 +8,10 @@ class RaidsController < ApplicationController
   end
 
   def new
+    # NOTE Hmm, direct access to domain model here...
+    # At the same time this is only for presenting the form to the user
+    # so it's not really app-specific logic.
+    @raid = Raid.new
   end
 
   def create

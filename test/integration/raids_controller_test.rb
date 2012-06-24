@@ -30,6 +30,8 @@ class RaidsControllerTest < ActionController::TestCase
       login_as_user
       get :new
       must_render_template "new"
+
+      assigns(:raid).wont_be_nil
     end
   end
 
