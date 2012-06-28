@@ -32,7 +32,7 @@ Raidit::Application.configure do
         raid.id = id
         raid.set_role_limit :tank, (rand * 5).to_i
         raid.set_role_limit :dps, (rand * 20).to_i
-        raid.set_role_limit :healer, (rand * 5).to_i
+        raid.set_role_limit :heal, (rand * 5).to_i
 
         Repository.for(Raid).save(raid)
 

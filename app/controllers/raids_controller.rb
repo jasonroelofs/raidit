@@ -25,7 +25,7 @@ class RaidsController < ApplicationController
       action_params << {
         :tank => params[:tank].to_i,
         :dps => params[:dps].to_i,
-        :healer => params[:healer].to_i
+        :heal => params[:heal].to_i
       }
     end
 

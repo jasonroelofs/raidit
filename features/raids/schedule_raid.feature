@@ -28,7 +28,7 @@ Scenario: A user can add role limits to a raid
   And I fill in "20:00" for "start"
 
   And I fill in "10" for "tank"
-  And I fill in "5" for "healer"
+  And I fill in "5" for "heal"
   And I fill in "12" for "dps"
   And I press "Schedule"
 

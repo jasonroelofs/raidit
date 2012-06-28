@@ -12,7 +12,7 @@ class Raid
   def initialize(params = {})
     super
 
-    @roles = [:tank, :dps, :healer]
+    @roles = [:tank, :dps, :heal]
     @role_limits = {}
   end
 

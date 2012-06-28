@@ -52,7 +52,7 @@ describe ScheduleRaid do
       roles = {
         :tank => 5,
         :dps => 4,
-        :healer => 3
+        :heal => 3
       }
 
       @action.run @where, @when, @start, roles
@@ -62,7 +62,7 @@ describe ScheduleRaid do
 
       raid.role_limit(:tank).must_equal 5
       raid.role_limit(:dps).must_equal 4
-      raid.role_limit(:healer).must_equal 3
+      raid.role_limit(:heal).must_equal 3
     end
 
   end

@@ -28,7 +28,7 @@ describe Raid do
 
   it "has the three default roles" do
     r = Raid.new
-    r.roles.must_equal [:tank, :dps, :healer]
+    r.roles.must_equal [:tank, :dps, :heal]
   end
 
   describe "role limits" do
