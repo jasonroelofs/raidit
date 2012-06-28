@@ -20,6 +20,25 @@ class RaidsControllerTest < ActionController::TestCase
     end
   end
 
+  describe "#show" do
+    it "requires a user" do
+      get :show, :id => 10
+      must_redirect_to login_path
+    end
+
+    it "finds the given raid and renders the page" do
+      login_as_user
+
+      raid = Raid.new when: Date.today, start_at: Time.now, invite_at: Time.now
+      FindRaid.any_instance.expects(:by_id).with(10).returns(raid)
+
+      get :show, :id => 10
+      must_render_template "show"
+
+      assigns(:raid).must_equal raid
+    end
+  end
+
   describe "#new" do
     it "requires a user" do
       get :new

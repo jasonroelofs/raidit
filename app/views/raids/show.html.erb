@@ -1,0 +1,16 @@
+<h1>Raid on <%= @raid.when.to_s(:full) %> to <%= @raid.where %></h1>
+
+<h3>Invites start at <%= @raid.invite_at.to_s(:with_am_pm) %></h3>
+<h3>Raid starts at <%= @raid.start_at.to_s(:with_am_pm) %></h3>
+
+<section class="accepted">
+<h3>Accepted</h3>
+</section>
+
+<section class="available">
+<h3>Available</h3>
+</section>
+
+<section class="cancelled">
+<h3>Cancelled</h3>
+</section>

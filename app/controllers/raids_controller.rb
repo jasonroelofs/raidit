@@ -7,6 +7,10 @@ class RaidsController < ApplicationController
     @raids = action.run
   end
 
+  def show
+    @raid = find_raid params[:id]
+  end
+
   def new
     # NOTE Hmm, direct access to domain model here...
     # At the same time this is only for presenting the form to the user

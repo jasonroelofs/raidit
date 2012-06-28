@@ -22,7 +22,7 @@
                   <%= raid.invite_at.to_s(:with_am_pm) %>
                 </span>
                 <span class="location">
-                  <%= raid.where %>
+                  <%= link_to raid.where, [raid] %>
                 </span>
                 <% if size = raid.size %>
                   <span class="count">
