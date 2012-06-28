@@ -12,6 +12,12 @@ Given /^"(.*?)" has scheduled the following raids$/ do |login, table|
       :invite_at => Time.parse(row[:start]) - row[:invite_offset].to_i.minutes
     )
 
+    [:tank, :heal, :dps].each do |role|
+      if limit = row[role]
+        r.set_role_limit role, limit.to_i
+      end
+    end
+
     repo.save r
   end
 end

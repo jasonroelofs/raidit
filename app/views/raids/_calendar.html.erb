@@ -24,6 +24,11 @@
                 <span class="location">
                   <%= raid.where %>
                 </span>
+                <% if size = raid.size %>
+                  <span class="count">
+                    <%= raid.size %>
+                  </span>
+                <% end %>
               </div>
             <% end %>
           </td>

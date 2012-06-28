@@ -31,4 +31,17 @@ class Raid
   def role_limit(role)
     @role_limits[role]
   end
+
+  ##
+  # Get the max number of characters allowed in this raid
+  # according to role limits set above.
+  #
+  # Returns nil if no role limits set
+  ##
+  def size
+    if @role_limits.any?
+      @role_limits.values.inject(0) {|memo, value| memo + value }
+    end
+  end
+
 end

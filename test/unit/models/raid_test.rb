@@ -44,4 +44,20 @@ describe Raid do
       r.role_limit(:johnson).must_be_nil
     end
   end
+
+  describe "#size" do
+    it "returns the total max number of characters in the raid" do
+      r = Raid.new
+      r.set_role_limit :tank, 10
+      r.set_role_limit :dps,  5
+      r.set_role_limit :heal, 4
+
+      r.size.must_equal 19
+    end
+
+    it "returns nil if no role limits set" do
+      r = Raid.new
+      r.size.must_be_nil
+    end
+  end
 end
