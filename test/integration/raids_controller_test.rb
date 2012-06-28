@@ -82,4 +82,18 @@ class RaidsControllerTest < ActionController::TestCase
     end
   end
 
+  describe "#update" do
+    it "re-schedules the raid with the updated information" do
+      login_as_user
+
+      ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
+        Time.parse("20:00"), {:tank => 10, :dps => 20, :heal => 100})
+
+      put :update, :where => "Dragon Soul", :when => "2012/01/01",
+        :start => "20:00", :tank => 10, :dps => 20, :heal => 100
+
+      must_redirect_to raids_path
+    end
+  end
+
 end

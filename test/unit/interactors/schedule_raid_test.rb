@@ -18,6 +18,13 @@ describe ScheduleRaid do
     action.current_guild.must_equal guild
   end
 
+  it "can be given a raid to update" do
+    r = Raid.new
+    action = ScheduleRaid.new nil
+    action.current_raid = r
+    action.current_raid.must_equal r
+  end
+
   describe "#run" do
 
     before do
@@ -63,6 +70,29 @@ describe ScheduleRaid do
       raid.role_limit(:tank).must_equal 5
       raid.role_limit(:dps).must_equal 4
       raid.role_limit(:heal).must_equal 3
+    end
+
+    describe "updating an existing raid" do
+      before do
+        @raid = Raid.new where: @where, when: @when, start_at: @start
+        Repository.for(Raid).save(@raid)
+      end
+
+      it "can update the given raid instead of creating a new one" do
+        @action.current_raid = @raid
+
+        @action.run "Ulduar", Date.parse("2010/01/01"), Time.parse("10:30"), {
+          :tank => 1, :dps => 2, :heal => 3
+        }
+
+        raids = Repository.for(Raid).all
+        raids.length.must_equal 1
+        raid = raids.first
+
+        raid.role_limit(:tank).must_equal 1
+        raid.role_limit(:dps).must_equal 2
+        raid.role_limit(:heal).must_equal 3
+      end
     end
 
   end

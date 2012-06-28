@@ -16,8 +16,8 @@ Scenario: A user can view the edit form for a raid he owns
   And I fill in "2012/07/15" for "when"
   And I fill in "17:30" for "start"
 
-  #And I press "Update Raid"
+  And I press "Update Raid"
 
-  #Then I should see "Your Raids"
-  #And I should see "Dragon Soul on July 15, 2012"
-  #And I should see "5:30 PM Server"
+  Then I should see "Your Raids"
+  And I should see "Dragon Soul on July 15, 2012"
+  And I should see "5:30 PM Server"

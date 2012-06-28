@@ -63,6 +63,7 @@ module InMemory
     def save(raid)
       raid.id ||= (@id_counter += 1)
       @raids << raid
+      @raids.uniq!
     end
 
     def find(id)

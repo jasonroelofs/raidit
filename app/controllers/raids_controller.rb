@@ -15,7 +15,31 @@ class RaidsController < ApplicationController
   end
 
   def create
+    schedule_raid
+    redirect_to raids_path
+  end
+
+  def edit
+    @raid = find_raid params[:id]
+    redirect_to action: "index" unless @raid
+  end
+
+  def update
+    @raid = find_raid params[:id]
+    schedule_raid @raid
+
+    redirect_to raids_path
+  end
+
+  protected
+
+  def find_raid(id)
+    FindRaid.new.by_id id.to_i
+  end
+
+  def schedule_raid(raid = nil)
     action = ScheduleRaid.new current_user
+    action.current_raid = raid
 
     action_params = [
       params[:where], Date.parse(params[:when]), Time.parse(params[:start])
@@ -30,13 +54,6 @@ class RaidsController < ApplicationController
     end
 
     action.run(*action_params)
-    redirect_to action: "index"
-  end
-
-  def edit
-    action = FindRaid.new
-    @raid = action.by_id params[:id].to_i
-    redirect_to action: "index" unless @raid
   end
 
 end
