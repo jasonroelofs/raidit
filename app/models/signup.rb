@@ -1,14 +1,15 @@
-class Signup
+require 'entity'
 
-  attr_reader :raid, :character, :role
+class Signup
+  include Entity
+
+  attr_accessor :raid, :character, :role
 
   attr_accessor :state, :user
 
   def initialize(attrs = {})
-    @raid = attrs[:raid]
-    @character = attrs[:character]
-    @role = attrs[:role]
-    @user = attrs[:user]
+    super
+
     @state = :available
   end
 

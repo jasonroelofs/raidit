@@ -6,6 +6,10 @@ describe Signup do
     Signup.new.wont_be_nil
   end
 
+  it "is an entity" do
+    Signup.ancestors.must_include Entity
+  end
+
   it "takes attributes in a hash" do
     s = Signup.new user: "user", raid: "raid", character: "character"
     s.user.must_equal "user"
