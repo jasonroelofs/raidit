@@ -3,25 +3,25 @@ require 'entity'
 class Signup
   include Entity
 
-  attr_accessor :raid, :character, :role
+  attr_accessor :raid, :character, :user
 
-  attr_accessor :state, :user
+  attr_accessor :acceptance_status, :role
 
   def initialize(attrs = {})
     super
 
-    @state = :available
+    self.acceptance_status = :available
   end
 
   def available?
-    @state == :available
+    acceptance_status == :available
   end
 
   def accepted?
-    @state == :accepted
+    acceptance_status == :accepted
   end
 
   def cancelled?
-    @state == :cancelled
+    acceptance_status == :cancelled
   end
 end

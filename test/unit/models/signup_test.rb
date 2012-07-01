@@ -22,25 +22,25 @@ describe Signup do
     s.role.must_equal :dps
   end
 
-  it "defaults to the available state" do
+  it "defaults to the :available acceptance_status" do
     s = Signup.new
-    s.state.must_equal :available
+    s.acceptance_status.must_equal :available
     s.available?.must_equal true
   end
 
-  it "can be in the accepted state" do
+  it "can be in the :accepted acceptance_status" do
     s = Signup.new
     s.accepted?.must_equal false
 
-    s.state = :accepted
+    s.acceptance_status = :accepted
     s.accepted?.must_equal true
   end
 
-  it "can be in the cancelled state" do
+  it "can be in the :cancelled acceptance_status" do
     s = Signup.new
     s.cancelled?.must_equal false
 
-    s.state = :cancelled
+    s.acceptance_status = :cancelled
     s.cancelled?.must_equal true
   end
 
