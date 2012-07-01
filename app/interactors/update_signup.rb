@@ -20,7 +20,7 @@ class UpdateSignup
 
     processor = StateProcessor.new @current_user, @signup, permissions
     processor.send action
-    @signup.state = processor.new_state
+    @signup.acceptance_status = processor.new_status
 
     Repository.for(Signup).save @signup
   end
@@ -31,15 +31,15 @@ class UpdateSignup
 
       @signup = signup
       @current_user = current_user
-      self.signup_state = @signup.state
+      self.signup_status = @signup.acceptance_status
       @permissions = permissions
     end
 
-    def new_state
-      self.signup_state.to_sym
+    def new_status
+      self.signup_status.to_sym
     end
 
-    state_machine :signup_state do
+    state_machine :signup_status do
       state :accepted
       state :available
       state :cancelled

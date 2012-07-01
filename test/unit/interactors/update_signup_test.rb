@@ -27,7 +27,7 @@ describe UpdateSignup do
     end
 
     ##
-    # Valid state transitions
+    # Valid acceptance_status transitions
     ##
 
     describe "available -> accepted" do
@@ -36,20 +36,20 @@ describe UpdateSignup do
         @perm.user = @user
         Repository.for(Permission).save(@perm)
 
-        @signup.state = :available
+        @signup.acceptance_status = :available
       end
 
       it "fails without the accept_sign_up permission" do
         @action.run :accept
 
-        @signup.state.must_equal :available
+        @signup.acceptance_status.must_equal :available
       end
 
       it "moves the signup to accepted" do
         @perm.allow :accept_signup
         @action.run :accept
 
-        @signup.state.must_equal :accepted
+        @signup.acceptance_status.must_equal :accepted
       end
 
       it "saves the changes" do
@@ -57,7 +57,7 @@ describe UpdateSignup do
         @action.run :accept
 
         s = Repository.for(Signup).all.first
-        s.state.must_equal :accepted
+        s.acceptance_status.must_equal :accepted
       end
     end
 
@@ -67,20 +67,20 @@ describe UpdateSignup do
         @perm.user = @user
         Repository.for(Permission).save(@perm)
 
-        @signup.state = :accepted
+        @signup.acceptance_status = :accepted
       end
 
       it "fails without the unaccept_signup permission" do
         @action.run :unaccept
 
-        @signup.state.must_equal :accepted
+        @signup.acceptance_status.must_equal :accepted
       end
 
       it "updates the signup accordingly" do
         @perm.allow :unaccept_signup
         @action.run :unaccept
 
-        @signup.state.must_equal :available
+        @signup.acceptance_status.must_equal :available
       end
     end
 
@@ -90,7 +90,7 @@ describe UpdateSignup do
         @perm.user = @user
         Repository.for(Permission).save(@perm)
 
-        @signup.state = :available
+        @signup.acceptance_status = :available
       end
 
       it "fails if user tries to cancel a signup he doesn't own" do
@@ -99,13 +99,13 @@ describe UpdateSignup do
 
         @action.run :cancel
 
-        @signup.state.must_equal :available
+        @signup.acceptance_status.must_equal :available
       end
 
       it "updates the signup accordingly" do
         @action.run :cancel
 
-        @signup.state.must_equal :cancelled
+        @signup.acceptance_status.must_equal :cancelled
       end
     end
 
@@ -115,7 +115,7 @@ describe UpdateSignup do
         @perm.user = @user
         Repository.for(Permission).save(@perm)
 
-        @signup.state = :cancelled
+        @signup.acceptance_status = :cancelled
       end
 
       it "fails if user tries to enqueue a signup he doesn't own" do
@@ -124,13 +124,13 @@ describe UpdateSignup do
 
         @action.run :enqueue
 
-        @signup.state.must_equal :cancelled
+        @signup.acceptance_status.must_equal :cancelled
       end
 
       it "updates the signup accordingly" do
         @action.run :enqueue
 
-        @signup.state.must_equal :available
+        @signup.acceptance_status.must_equal :available
       end
     end
 
@@ -140,7 +140,7 @@ describe UpdateSignup do
         @perm.user = @user
         Repository.for(Permission).save(@perm)
 
-        @signup.state = :accepted
+        @signup.acceptance_status = :accepted
       end
 
       it "fails if user tries to cancel a signup he doesn't own" do
@@ -149,25 +149,25 @@ describe UpdateSignup do
 
         @action.run :cancel
 
-        @signup.state.must_equal :accepted
+        @signup.acceptance_status.must_equal :accepted
       end
 
       it "updates the signup accordingly" do
         @action.run :cancel
 
-        @signup.state.must_equal :cancelled
+        @signup.acceptance_status.must_equal :cancelled
       end
     end
 
     ##
-    # Invalid state transitions
+    # Invalid acceptance_status transitions
     ##
 
     it "doesn't allow transition from cancelled to accepted" do
-      @signup.state = :cancelled
+      @signup.acceptance_status = :cancelled
       @action.run :accept
 
-      @signup.state.must_equal :cancelled
+      @signup.acceptance_status.must_equal :cancelled
     end
 
   end
