@@ -81,6 +81,8 @@ The main rule for the Rails side is that Rails controllers have as little logic 
 
 Also I won't be including a database yet. I don't know what my data structure needs to be.
 
+2012-06-30: Another point for full Top-Down development: I just refactored the SignUpToRaid to no longer assume that it is going to be given the Raid and Character objects, but to find those objects for itself. When trying to integrate the existing interactor into the Rails stack, I found that I would need to create new interactors just for finding these objects, and potentially duplicating logic. When stepping back I realized that I'm giving the Controller too much reponsibility here, and realized that I can let the Interactor handle everything.
+
 Mocking
 -------
 
