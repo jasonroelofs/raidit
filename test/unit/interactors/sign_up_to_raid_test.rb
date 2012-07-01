@@ -6,30 +6,38 @@ require 'models/character'
 
 describe SignUpToRaid do
   it "exists" do
-    SignUpToRaid.new(nil, nil).wont_be_nil
+    SignUpToRaid.new(nil).wont_be_nil
   end
 
   it "takes the current user and raid on construction" do
     user = User.new
-    raid = Raid.new
-    action = SignUpToRaid.new user, raid
+    action = SignUpToRaid.new user
     action.current_user.must_equal user
-    action.current_raid.must_equal raid
   end
 
   describe "#run" do
     before do
       @user = User.new
-      @character = Character.new
-      @raid = Raid.new
 
-      @action = SignUpToRaid.new @user, @raid
+      @character = Character.new id: 4
+      @raid = Raid.new id: 12
+
+      Repository.for(Character).save @character
+      Repository.for(Raid).save @raid
+
+      @action = SignUpToRaid.new @user
     end
+
+    it "errors if can't find the raid"
+
+    it "errors if can't find the character"
 
     it "doesn't let users sign up characters they don't own"
 
+    it "doesn't let users sign up to raids they don't have access to"
+
     it "creates a signup record for the information given" do
-      @action.run @character
+      @action.run 12, 4
 
       repo = Repository.for(Signup)
       signup = repo.all.first
@@ -42,19 +50,17 @@ describe SignUpToRaid do
     describe "roles" do
       it "errors if the raid doesn't have the named role" do
         -> {
-          @action.run @character, :cheerleader
+          @action.run 12, 4, :cheerleader
         }.must_raise RuntimeError
       end
 
       it "puts character in the specified role" do
-        @action.run @character, :tank
+        @action.run 12, 4, :tank
 
         repo = Repository.for(Signup)
         signup = repo.all.first
         signup.role.must_equal :tank
       end
-
-      it "puts the character in the default role if no role specified"
     end
   end
 end
