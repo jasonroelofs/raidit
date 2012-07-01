@@ -49,6 +49,10 @@ module InMemory
       @characters << character
     end
 
+    def find(id)
+      @characters.find {|c| c.id == id }
+    end
+
     def find_all_for_user(user)
       @characters.select {|c| c.user == user }
     end
