@@ -1,12 +1,10 @@
+require 'entity'
+
 class Character
+  include Entity
 
-  attr_reader :name, :user, :game, :server, :region
+  attr_accessor :user
 
-  def initialize(attrs = {})
-    @name = attrs[:name]
-    @user = attrs[:user]
-    @game = attrs[:game]
-    @server = attrs[:server]
-    @region = attrs[:region]
-  end
+  attr_accessor :name, :game, :server, :region
+
 end

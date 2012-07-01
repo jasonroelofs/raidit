@@ -7,6 +7,10 @@ describe Character do
     Character.new.wont_be_nil
   end
 
+  it "is an entity" do
+    Character.ancestors.must_include Entity
+  end
+
   it "takes attributes in a hash" do
     u = User.new
     c = Character.new name: "Weemuu", user: u, game: "game", server: "Detheroc",
