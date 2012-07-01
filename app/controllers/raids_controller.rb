@@ -8,6 +8,7 @@ class RaidsController < ApplicationController
   end
 
   def show
+    @current_user_characters = ListCharacters.new(current_user).run
     @raid = find_raid params[:id]
   end
 

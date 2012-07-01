@@ -26,16 +26,30 @@ class RaidsControllerTest < ActionController::TestCase
       must_redirect_to login_path
     end
 
-    it "finds the given raid and renders the page" do
-      login_as_user
+    describe "when authenticated" do
+      before do
+        login_as_user
 
-      raid = Raid.new when: Date.today, start_at: Time.now, invite_at: Time.now
-      FindRaid.any_instance.expects(:by_id).with(10).returns(raid)
+        @raid = Raid.new when: Date.today, start_at: Time.now, invite_at: Time.now
+        FindRaid.any_instance.expects(:by_id).with(10).returns(@raid)
+        ListCharacters.any_instance.stubs(:run).returns([])
+      end
 
-      get :show, :id => 10
-      must_render_template "show"
+      it "finds the given raid and renders the page" do
+        get :show, :id => 10
+        must_render_template "show"
 
-      assigns(:raid).must_equal raid
+        assigns(:raid).must_equal @raid
+      end
+
+      it "grabs the current user's list of characters" do
+        list = [Character.new]
+        ListCharacters.any_instance.expects(:run).returns(list)
+
+        get :show, :id => 10
+
+        assigns(:current_user_characters).must_equal list
+      end
     end
   end
 
