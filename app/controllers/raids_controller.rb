@@ -39,7 +39,7 @@ class RaidsController < ApplicationController
   protected
 
   def find_raid(id)
-    FindRaid.new.by_id id.to_i
+    ShowRaid.new.by_id id.to_i
   end
 
   def schedule_raid(raid = nil)
