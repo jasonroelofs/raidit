@@ -3,9 +3,6 @@ require 'interactors/register_guild'
 require 'models/user'
 
 describe RegisterGuild do
-  it "exists" do
-    RegisterGuild.new(nil).wont_be_nil
-  end
 
   it "takes the current user in construction" do
     user = User.new

@@ -4,9 +4,6 @@ require 'models/user'
 require 'models/raid'
 
 describe ListRaids do
-  it "exists" do
-    ListRaids.new(nil).wont_be_nil
-  end
 
   it "takes the current user in constructor" do
     user = User.new
@@ -48,4 +45,5 @@ describe ListRaids do
       @action.run(Date.parse("2012/03/01")).must_equal []
     end
   end
+
 end

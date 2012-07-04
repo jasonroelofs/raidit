@@ -5,9 +5,6 @@ require 'models/guild'
 require 'time'
 
 describe ScheduleRaid do
-  it "exists" do
-    ScheduleRaid.new(nil).wont_be_nil
-  end
 
   it "takes the current user and guild in constructor" do
     user = User.new

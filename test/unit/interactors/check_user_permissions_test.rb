@@ -4,9 +4,6 @@ require 'models/user'
 require 'models/guild'
 
 describe CheckUserPermissions do
-  it "exists" do
-    CheckUserPermissions.new(nil, nil).wont_be_nil
-  end
 
   it "takes the current user and guild on construction" do
     user = User.new
@@ -56,4 +53,5 @@ describe CheckUserPermissions do
       action.allowed?(:testing).must_equal false
     end
   end
+
 end

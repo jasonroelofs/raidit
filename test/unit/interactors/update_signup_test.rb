@@ -5,9 +5,6 @@ require 'models/raid'
 require 'models/permission'
 
 describe UpdateSignup do
-  it "exists" do
-    UpdateSignup.new(nil, nil).wont_be_nil
-  end
 
   it "requires the current user and signup" do
     user = User.new

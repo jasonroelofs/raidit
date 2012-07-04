@@ -4,9 +4,6 @@ require 'models/user'
 require 'models/character'
 
 describe ListCharacters do
-  it "exists" do
-    ListCharacters.new(nil).wont_be_nil
-  end
 
   it "takes a user on construction" do
     user = User.new
@@ -31,4 +28,5 @@ describe ListCharacters do
       action.run.must_equal []
     end
   end
+
 end

@@ -4,10 +4,6 @@ require 'interactors/find_guild'
 
 describe FindGuild do
 
-  it "exists" do
-    FindGuild.new.wont_be_nil
-  end
-
   it "can find a guild by id" do
     Repository.for(Guild).save Guild.new(name: "Exiled", id: 1)
 
@@ -43,4 +39,5 @@ describe FindGuild do
     action.by_id(nil).must_be_nil
     action.by_name(nil).must_be_nil
   end
+
 end

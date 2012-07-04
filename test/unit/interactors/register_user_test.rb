@@ -2,9 +2,6 @@ require 'unit/test_helper'
 require 'interactors/register_user'
 
 describe  RegisterUser do
-  it "exists" do
-    RegisterUser.new.wont_be_nil
-  end
 
   describe "#run" do
     before do

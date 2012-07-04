@@ -5,9 +5,6 @@ require 'models/raid'
 require 'models/character'
 
 describe SignUpToRaid do
-  it "exists" do
-    SignUpToRaid.new(nil).wont_be_nil
-  end
 
   it "takes the current user and raid on construction" do
     user = User.new

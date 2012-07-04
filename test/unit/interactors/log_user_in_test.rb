@@ -2,9 +2,6 @@ require 'unit/test_helper'
 require 'interactors/log_user_in'
 
 describe LogUserIn do
-  it "exists" do
-    LogUserIn.new(nil).wont_be_nil
-  end
 
   it "takes a login type on construction" do
     action = LogUserIn.new :web
@@ -51,4 +48,5 @@ describe LogUserIn do
       user.login_token(:web).wont_equal token1
     end
   end
+
 end

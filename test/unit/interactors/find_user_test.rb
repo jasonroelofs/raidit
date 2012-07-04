@@ -4,10 +4,6 @@ require 'interactors/find_user'
 
 describe FindUser do
 
-  it "exists" do
-    FindUser.new.wont_be_nil
-  end
-
   describe "#by_login_token" do
     it "can find a user by a login token of the given type" do
       user = User.new

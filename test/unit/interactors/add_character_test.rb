@@ -4,9 +4,6 @@ require 'models/user'
 require 'models/character'
 
 describe AddCharacter do
-  it "exists" do
-    AddCharacter.new(nil).wont_be_nil
-  end
 
   it "takes the current user in construction" do
     user = User.new
@@ -34,4 +31,5 @@ describe AddCharacter do
       c.name.must_equal "Wonko"
     end
   end
+
 end

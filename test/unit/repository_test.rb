@@ -10,10 +10,6 @@ describe Repository do
   class TestClassRepository
   end
 
-  it "exists" do
-    Repository.new.wont_be_nil
-  end
-
   it "allows configuring classes to repository implementations" do
     Repository.configure TestClass => TestClassRepository
     Repository.for(TestClass).must_equal TestClassRepository

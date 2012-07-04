@@ -3,9 +3,6 @@ require 'models/raid'
 require 'models/user'
 
 describe Raid do
-  it "exists" do
-    Raid.new.wont_be_nil
-  end
 
   it "is an entity" do
     Raid.ancestors.must_include Entity

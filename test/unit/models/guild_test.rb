@@ -3,9 +3,6 @@ require 'models/guild'
 require 'models/user'
 
 describe Guild do
-  it "exists" do
-    Guild.new.wont_be_nil
-  end
 
   it "takes a hash on construction" do
     u = User.new

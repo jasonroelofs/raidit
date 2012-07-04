@@ -3,9 +3,6 @@ require 'models/signup'
 require 'models/character'
 
 describe Signup do
-  it "exists" do
-    Signup.new.wont_be_nil
-  end
 
   it "is an entity" do
     Signup.ancestors.must_include Entity

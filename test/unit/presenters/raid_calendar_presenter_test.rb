@@ -7,9 +7,6 @@ require 'presenters/raid_calendar_presenter'
 require 'models/raid'
 
 describe RaidCalendarPresenter do
-  it "exists" do
-    RaidCalendarPresenter.new(nil).wont_be_nil
-  end
 
   it "takes a raid finder object in the constructor" do
     p = RaidCalendarPresenter.new "raid_finder"

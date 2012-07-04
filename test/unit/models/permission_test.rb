@@ -4,9 +4,6 @@ require 'models/user'
 require 'models/guild'
 
 describe Permission do
-  it "exists" do
-    Permission.new.wont_be_nil
-  end
 
   it "is linked to a user" do
     user = User.new

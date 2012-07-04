@@ -3,9 +3,6 @@ require 'models/character'
 require 'models/user'
 
 describe Character do
-  it "exists" do
-    Character.new.wont_be_nil
-  end
 
   it "is an entity" do
     Character.ancestors.must_include Entity
