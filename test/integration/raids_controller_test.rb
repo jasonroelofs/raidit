@@ -11,7 +11,7 @@ class RaidsControllerTest < ActionController::TestCase
 
     it "renders the list of known raids for this user" do
       login_as_user
-      FindRaidsForUser.any_instance.expects(:run).returns([])
+      ListRaids.any_instance.expects(:run).returns([])
 
       get :index
 

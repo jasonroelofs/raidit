@@ -1,23 +1,23 @@
 require 'unit/test_helper'
-require 'interactors/find_raids_for_user'
+require 'interactors/list_raids'
 require 'models/user'
 require 'models/raid'
 
-describe FindRaidsForUser do
+describe ListRaids do
   it "exists" do
-    FindRaidsForUser.new(nil).wont_be_nil
+    ListRaids.new(nil).wont_be_nil
   end
 
   it "takes the current user in constructor" do
     user = User.new
-    action = FindRaidsForUser.new user
+    action = ListRaids.new user
     action.current_user.must_equal user
   end
 
   describe "#run" do
     before do
       @user = User.new
-      @action = FindRaidsForUser.new @user
+      @action = ListRaids.new @user
     end
 
     it "returns empty list if no raids" do

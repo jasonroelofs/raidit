@@ -1,7 +1,7 @@
 ##
 # Returns the full list of raids that given user is allowed to see.
 ##
-class FindRaidsForUser
+class ListRaids
 
   attr_reader :current_user
 
