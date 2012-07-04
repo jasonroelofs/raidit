@@ -43,9 +43,11 @@ module InMemory
   class CharacterRepo
     def initialize
       @characters = []
+      @id_counter = 0
     end
 
     def save(character)
+      character.id ||= (@id_counter += 1)
       @characters << character
     end
 
