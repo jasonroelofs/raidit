@@ -19,7 +19,7 @@ class SignupsControllerTest < ActionController::TestCase
       it "creates a new signup for the given user's character in the given raid" do
         SignUpToRaid.any_instance.expects(:run).with(7, 4)
 
-        post :create, :character => 4, :raid => 7
+        post :create, :raid_id => 7, :character => 4
         must_redirect_to raid_path(:id => 7)
       end
 

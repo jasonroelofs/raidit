@@ -3,8 +3,10 @@ Raidit::Application.routes.draw do
 
   resources :characters
   resources :sessions
-  resources :raids
-  resources :signups
+
+  resources :raids do
+    resources :signups
+  end
 
   match "/login", :to => "sessions#new", :as => "login"
   match "/logout", :to => "sessions#destroy", :as => "logout"
