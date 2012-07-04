@@ -13,6 +13,10 @@ class Signup
     self.acceptance_status = :available
   end
 
+  def character_name
+    character ? character.name : ""
+  end
+
   def available?
     acceptance_status == :available
   end

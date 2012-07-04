@@ -1,5 +1,6 @@
 require 'unit/test_helper'
 require 'models/signup'
+require 'models/character'
 
 describe Signup do
   it "exists" do
@@ -42,6 +43,20 @@ describe Signup do
 
     s.acceptance_status = :cancelled
     s.cancelled?.must_equal true
+  end
+
+  describe "#character_name" do
+    it "returns the name of the linked character" do
+      c = Character.new name: "Charzar"
+      s = Signup.new character: c
+
+      s.character_name.must_equal "Charzar"
+    end
+
+    it "returns empty string if no character or no name" do
+      s = Signup.new
+      s.character_name.must_equal ""
+    end
   end
 
 end
