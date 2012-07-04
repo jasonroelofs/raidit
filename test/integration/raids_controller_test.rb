@@ -33,7 +33,7 @@ class RaidsControllerTest < ActionController::TestCase
         @raid = Raid.new id: 10, when: Date.today, start_at: Time.now, invite_at: Time.now
         ShowRaid.any_instance.expects(:by_id).with(10).returns(@raid)
         ListCharacters.any_instance.stubs(:run).returns([])
-        ListSignups.any_instance.stubs(:for_raid).returns(Hash.new([]))
+        ListSignups.any_instance.stubs(:for_raid).returns ListSignups::SignupGroups.new
       end
 
       it "finds the given raid and renders the page" do
@@ -41,6 +41,15 @@ class RaidsControllerTest < ActionController::TestCase
         must_render_template "show"
 
         assigns(:raid).must_equal @raid
+      end
+
+      it "finds all signups for the given raid to display" do
+        signups = ListSignups::SignupGroups.new
+        ListSignups.any_instance.expects(:for_raid).with(@raid).returns signups
+
+        get :show, :id => 10
+
+        assigns(:signups).must_equal signups
       end
 
       it "grabs the current user's list of characters" do
@@ -52,14 +61,20 @@ class RaidsControllerTest < ActionController::TestCase
         assigns(:current_user_characters).must_equal list
       end
 
-      it "finds all signups for the given raid to display" do
-        signups = {:accepted => [Signup.new]}.with_indifferent_access
-        ListSignups.any_instance.expects(:for_raid).with(@raid).returns signups
+      it "removes characters already signed up from the current user's list" do
+        list = [Character.new]
+        ListCharacters.any_instance.stubs(:run).returns(list)
+
+        signups = ListSignups::SignupGroups.new
+        signups.add_signup Signup.new(character: list[0])
+
+        ListSignups.any_instance.stubs(:for_raid).returns signups
 
         get :show, :id => 10
 
         assigns(:signups).must_equal signups
       end
+
     end
   end
 

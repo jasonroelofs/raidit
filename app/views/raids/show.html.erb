@@ -5,17 +5,17 @@
 
 <section class="accepted">
   <h3>Accepted</h3>
-  <%= render :partial => "signup", :collection => @signups[:accepted] %>
+  <%= render :partial => "signup", :collection => @signups.accepted %>
 </section>
 
 <section class="available">
   <h3>Available</h3>
-  <%= render :partial => "signup", :collection => @signups[:available] %>
+  <%= render :partial => "signup", :collection => @signups.available %>
 </section>
 
 <section class="cancelled">
   <h3>Cancelled</h3>
-  <%= render :partial => "signup", :collection => @signups[:cancelled] %>
+  <%= render :partial => "signup", :collection => @signups.cancelled %>
 </section>
 
 <section class="signup">

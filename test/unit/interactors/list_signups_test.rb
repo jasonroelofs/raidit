@@ -1,6 +1,7 @@
 require 'unit/test_helper'
 require 'interactors/list_signups'
 require 'models/raid'
+require 'models/character'
 
 describe ListSignups do
 
@@ -20,21 +21,34 @@ describe ListSignups do
       Repository.for(Signup).save(s2)
 
       action = ListSignups.new
-      action.for_raid(@raid).must_equal({
-        :accepted => [s1],
-        :available => [s2],
-        :cancelled => []
-      })
+      signups = action.for_raid(@raid)
+
+      signups.accepted.must_equal [s1]
+      signups.available.must_equal [s2]
+      signups.cancelled.must_equal []
     end
 
     it "returns empty set if no signups found" do
       action = ListSignups.new
-      action.for_raid(@raid).must_equal({
-        :accepted => [],
-        :available => [],
-        :cancelled => []
-      })
+      signups = action.for_raid(@raid)
+
+      signups.accepted.must_equal []
+      signups.available.must_equal []
+      signups.cancelled.must_equal []
     end
 
+  end
+
+  describe ListSignups::SignupGroups do
+    it "knows if a given character is in a group" do
+      c = Character.new
+      s = ListSignups::SignupGroups.new
+
+      s.contains?(c).must_equal false
+
+      s.add_signup Signup.new(character: c)
+
+      s.contains?(c).must_equal true
+    end
   end
 end
