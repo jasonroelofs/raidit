@@ -104,6 +104,10 @@ module InMemory
     def all
       @signups
     end
+
+    def find_all_for_raid(raid)
+      @signups.select {|s| s.raid == raid }
+    end
   end
 
   class PermissionRepo
