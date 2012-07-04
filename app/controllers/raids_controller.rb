@@ -10,6 +10,7 @@ class RaidsController < ApplicationController
   def show
     @current_user_characters = ListCharacters.new(current_user).run
     @raid = find_raid params[:id]
+    @signups = ListSignups.new.for_raid(@raid)
   end
 
   def new
@@ -26,7 +27,10 @@ class RaidsController < ApplicationController
 
   def edit
     @raid = find_raid params[:id]
-    redirect_to action: "index" unless @raid
+
+    unless @raid
+      redirect_to action: "index"
+    end
   end
 
   def update
