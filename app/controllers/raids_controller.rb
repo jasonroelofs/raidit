@@ -8,9 +8,13 @@ class RaidsController < ApplicationController
   end
 
   def show
-    @current_user_characters = ListCharacters.new(current_user).run
     @raid = find_raid params[:id]
     @signups = ListSignups.new.for_raid(@raid)
+
+    @current_user_characters = ListCharacters.new(current_user).run
+    @choosable_characters = @current_user_characters.reject do |character|
+      @signups.contains? character
+    end
   end
 
   def new

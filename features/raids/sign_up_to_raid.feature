@@ -24,3 +24,33 @@ Feature: Signing up to a Raid
     And I press "Sign Up"
 
     Then I should see "Weemuu" within ".available"
+    And I should not see "Sign Up for this Raid"
+    And I should not see "You need a character to sign up to raid"
+    And I should see "You have no more characters to sign up!"
+
+  Scenario: User can sign up multiple of his own characters
+    When "jason" has the following characters
+      | game | region | server    | name    |
+      | wow  | US     | Detheroc  | Weemuu  |
+      | wow  | US     | Detheroc  | Wonko   |
+      | wow  | US     | Detheroc  | Stabby  |
+
+    And I am at the home page
+    And I follow "ICC"
+
+    Then I should see "Sign Up for this Raid"
+
+    When I select "Weemuu" from "character"
+    And I press "Sign Up"
+
+    And I select "Wonko" from "character"
+    And I press "Sign Up"
+
+    And I select "Stabby" from "character"
+    And I press "Sign Up"
+
+    Then I should see "Weemuu" within ".available"
+    And I should see "Wonko" within ".available"
+    And I should see "Stabby" within ".available"
+
+    And I should not see "Sign Up for this Raid"

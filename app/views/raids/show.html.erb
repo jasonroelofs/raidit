@@ -19,8 +19,10 @@
 </section>
 
 <section class="signup">
-  <% if @current_user_characters.empty? %>
+  <% if @current_user_characters.empty? && @choosable_characters.empty? %>
     <p>You need a character to sign up to raid</p>
+  <% elsif @choosable_characters.empty? %>
+    <p>You have no more characters to sign up!</p>
   <% else %>
     <h4>Sign Up for this Raid</h4>
 
