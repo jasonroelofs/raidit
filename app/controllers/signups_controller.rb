@@ -18,7 +18,7 @@ class SignupsController < ApplicationController
   #
   # Run +command+ on the given signup
   def update
-    signup = Repository.for(Signup).find params[:id].to_i
+    signup = FindSignup.by_id(params[:id].to_i)
     action = UpdateSignup.new current_user, signup
     action.run params[:command]
 

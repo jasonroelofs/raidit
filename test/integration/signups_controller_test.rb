@@ -41,7 +41,7 @@ class SignupsControllerTest < ActionController::TestCase
         raid = Raid.new id: 7
         signup = Signup.new raid: raid
 
-        Repository.for(Signup).expects(:find).with(14).returns(signup)
+        FindSignup.expects(:by_id).with(14).returns(signup)
         UpdateSignup.any_instance.expects(:run).with("accept")
 
         put :update, :id => 14, :command => :accept
