@@ -1,12 +1,12 @@
 require 'unit/test_helper'
-require 'interactors/show_raid'
+require 'interactors/find_raid'
 
-describe ShowRaid do
+describe FindRaid do
 
   it "can find a raid by id" do
     Repository.for(Raid).save Raid.new(where: "ICC", id: 1)
 
-    action = ShowRaid.new
+    action = FindRaid.new
 
     r = action.by_id 1
     r.wont_be_nil

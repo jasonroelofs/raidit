@@ -31,7 +31,7 @@ class RaidsControllerTest < ActionController::TestCase
         login_as_user
 
         @raid = Raid.new id: 10, when: Date.today, start_at: Time.now, invite_at: Time.now
-        ShowRaid.any_instance.expects(:by_id).with(10).returns(@raid)
+        FindRaid.any_instance.expects(:by_id).with(10).returns(@raid)
         ListCharacters.any_instance.stubs(:run).returns([])
         ListSignups.any_instance.stubs(:for_raid).returns ListSignups::SignupGroups.new
       end
@@ -126,7 +126,7 @@ class RaidsControllerTest < ActionController::TestCase
       login_as_user
 
       raid = Raid.new
-      ShowRaid.any_instance.expects(:by_id).with(10).returns(raid)
+      FindRaid.any_instance.expects(:by_id).with(10).returns(raid)
 
       get :edit, :id => 10
 
