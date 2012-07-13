@@ -1,4 +1,7 @@
+require 'entity'
+
 class Permission
+  include Entity
 
   attr_accessor :user, :guild, :permissions
 

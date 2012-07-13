@@ -1,10 +1,8 @@
+require 'entity'
+
 class Guild
+  include Entity
 
-  attr_reader :id, :name, :leader
+  attr_accessor :id, :name, :leader
 
-  def initialize(attrs = {})
-    @id = attrs[:id]
-    @name = attrs[:name]
-    @leader = attrs[:leader]
-  end
 end

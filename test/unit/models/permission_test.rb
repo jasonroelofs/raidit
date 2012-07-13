@@ -5,6 +5,10 @@ require 'models/guild'
 
 describe Permission do
 
+  it "is an entity" do
+    Permission.ancestors.must_include Entity
+  end
+
   it "is linked to a user" do
     user = User.new
     p = Permission.new

@@ -3,6 +3,10 @@ require 'models/user'
 
 describe User do
 
+  it "is an entity" do
+    User.ancestors.must_include Entity
+  end
+
   it "takes attributes in a hash" do
     u = User.new email: "email", login: "login", password: "pass"
     u.login.must_equal "login"

@@ -1,11 +1,13 @@
-class User
+require 'entity'
 
-  attr_reader :email, :login, :password
+class User
+  include Entity
+
+  attr_accessor :email, :login, :password
 
   def initialize(attrs = {})
-    @email = attrs[:email]
-    @login = attrs[:login]
-    @password = attrs[:password]
+    super
+
     @login_tokens = {}
     @onboarding = {}
   end

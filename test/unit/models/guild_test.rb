@@ -4,6 +4,10 @@ require 'models/user'
 
 describe Guild do
 
+  it "is an entity" do
+    Guild.ancestors.must_include Entity
+  end
+
   it "takes a hash on construction" do
     u = User.new
     g = Guild.new id: 12, name: "Exiled", :leader => u
