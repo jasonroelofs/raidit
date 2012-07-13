@@ -1,6 +1,12 @@
 require 'uri'
 require 'cgi'
 
+Then /^I should not see "(.*?)" within "(.*?)"$/ do |text, element|
+  within(element) do
+    assert page.has_no_content?(text)
+  end
+end
+
 Then /^I should see "(.*?)" within "(.*?)"$/ do |text, element|
   within(element) do
     assert page.has_content?(text), %|Unable to find "#{text}" inside of #{element}|
