@@ -1,6 +1,10 @@
+def find_user_by_login(login)
+  Repository.for(User).find_by_login(login)
+end
+
 Given /^"(.*?)" has scheduled the following raids$/ do |login, table|
   repo = Repository.for(Raid)
-  current_user = Repository.for(User).find_by_login(login)
+  current_user = find_user_by_login(login)
 
   table.hashes.each_with_index do |row, i|
     r = Raid.new(
@@ -20,4 +24,13 @@ Given /^"(.*?)" has scheduled the following raids$/ do |login, table|
 
     repo.save r
   end
+end
+
+Given /^"(.*?)" signed up "(.*?)" for "(.*?)"$/ do |login, char_name, raid_location|
+  current_user = find_user_by_login(login)
+  character = Repository.for(Character).find_all_for_user(current_user).find {|c| c.name == char_name }
+  raid = Repository.for(Raid).all.find {|r| r.where == raid_location }
+
+  s = Signup.new raid: raid, character: character, user: current_user
+  Repository.for(Signup).save s
 end

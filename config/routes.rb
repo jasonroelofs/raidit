@@ -8,6 +8,8 @@ Raidit::Application.routes.draw do
     resources :signups
   end
 
+  match "/signups/:id/:command", :to => "signups#update", :as => "update_signup"
+
   match "/login", :to => "sessions#new", :as => "login"
   match "/logout", :to => "sessions#destroy", :as => "logout"
 end

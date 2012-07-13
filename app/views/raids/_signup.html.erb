@@ -1,4 +1,9 @@
 <div class="signup">
   <span><%= signup.character_name %></span>
   <span><%= signup.role %></span>
+  <span class="actions">
+    <% list_available_signup_actions(signup).each do |action| %>
+      <%= link_to action.name, update_signup_path(signup.id, command: action.action) %>
+    <% end %>
+  </span>
 </div>

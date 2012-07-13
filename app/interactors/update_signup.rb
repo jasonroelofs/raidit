@@ -41,7 +41,6 @@ class UpdateSignup
     @signup.acceptance_status = @processor.new_status
 
     Repository.for(Signup).save @signup
-    @signup
   end
 
   def initialize_processor_and_permissions
