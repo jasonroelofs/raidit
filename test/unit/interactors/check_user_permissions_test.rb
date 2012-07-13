@@ -2,6 +2,7 @@ require 'unit/test_helper'
 require 'interactors/check_user_permissions'
 require 'models/user'
 require 'models/guild'
+require 'models/raid'
 
 describe CheckUserPermissions do
 
@@ -12,6 +13,14 @@ describe CheckUserPermissions do
 
     action.current_user.must_equal user
     action.current_guild.must_equal guild
+  end
+
+  it "optionally takes a current raid context" do
+    raid = Raid.new
+    action = CheckUserPermissions.new User.new
+    action.current_raid = raid
+
+    action.current_raid.must_equal raid
   end
 
   describe "#allowed?" do
@@ -51,6 +60,15 @@ describe CheckUserPermissions do
 
       action = CheckUserPermissions.new user2
       action.allowed?(:testing).must_equal false
+    end
+
+    it "returns true if current_raid set and user owns the current_raid" do
+      raid = Raid.new owner: @user
+      action = CheckUserPermissions.new @user
+      action.current_raid = raid
+
+      action.allowed?(:accept_signup).must_equal true
+      action.allowed?(:something_else).must_equal true
     end
   end
 
