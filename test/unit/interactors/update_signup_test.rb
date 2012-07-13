@@ -15,6 +15,77 @@ describe UpdateSignup do
     action.signup.must_equal signup
   end
 
+  describe "#available_actions" do
+    before do
+      @user = User.new
+      @signup = Signup.new user: @user
+      @action = UpdateSignup.new @user, @signup
+
+      @perm = Permission.new
+      @perm.user = @user
+      Repository.for(Permission).save(@perm)
+    end
+
+    it "includes :accept if signup available and user has :accept permissions" do
+      @signup.acceptance_status = :available
+      @perm.allow :accept_signup
+
+      actions = @action.available_actions
+      actions.must_include :accept
+      actions.wont_include :unaccept
+      actions.wont_include :enqueue
+    end
+
+    it "includes :accept if signup available and user owns the raid" do
+      raid = Raid.new owner: @user
+      Repository.for(Raid).save(raid)
+      @signup.raid = raid
+
+      @signup.acceptance_status = :available
+
+      actions = @action.available_actions
+      actions.must_include :accept
+      actions.wont_include :unaccept
+      actions.wont_include :enqueue
+    end
+
+    it "does not include :accept if signup is cancelled" do
+      @signup.acceptance_status = :cancelled
+      @perm.allow :accept_signup
+
+      actions = @action.available_actions
+      actions.wont_include :accept
+    end
+
+    it "includes :cancel if signup not cancelled and user owns the signup" do
+      @signup.acceptance_status = :accepted
+
+      actions = @action.available_actions
+      actions.must_include :cancel
+      actions.wont_include :accept
+    end
+
+    it "includes :enqueue if signup cancelled and user owns the signup" do
+      @signup.acceptance_status = :cancelled
+
+      actions = @action.available_actions
+      actions.must_include :enqueue
+      actions.wont_include :accept
+      actions.wont_include :cancel
+      actions.wont_include :unaccept
+    end
+
+    it "includes :unaccept if signup accepted and user has :unaccept permissions" do
+      @signup.acceptance_status = :accepted
+      @perm.allow :unaccept_signup
+
+      actions = @action.available_actions
+      actions.must_include :unaccept
+      actions.wont_include :accept
+      actions.wont_include :enqueue
+    end
+  end
+
   describe "#run" do
 
     before do
