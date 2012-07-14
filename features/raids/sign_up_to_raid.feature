@@ -21,7 +21,7 @@ Feature: Signing up to a Raid
 
     Then I should see "Sign Up for this Raid"
 
-    When I select "Weemuu" from "character"
+    When I select "Weemuu" from "character_id"
     And I press "Sign Up"
 
     Then I should see "Weemuu" within ".available"
@@ -41,13 +41,13 @@ Feature: Signing up to a Raid
 
     Then I should see "Sign Up for this Raid"
 
-    When I select "Weemuu" from "character"
+    When I select "Weemuu" from "character_id"
     And I press "Sign Up"
 
-    And I select "Wonko" from "character"
+    And I select "Wonko" from "character_id"
     And I press "Sign Up"
 
-    And I select "Stabby" from "character"
+    And I select "Stabby" from "character_id"
     And I press "Sign Up"
 
     Then I should see "Weemuu" within ".available"

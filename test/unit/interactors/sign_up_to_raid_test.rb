@@ -19,9 +19,6 @@ describe SignUpToRaid do
       @character = Character.new id: 4
       @raid = Raid.new id: 12
 
-      Repository.for(Character).save @character
-      Repository.for(Raid).save @raid
-
       @action = SignUpToRaid.new @user
     end
 
@@ -34,7 +31,7 @@ describe SignUpToRaid do
     it "doesn't let users sign up to raids they don't have access to"
 
     it "creates a signup record for the information given" do
-      @action.run 12, 4
+      @action.run @raid, @character
 
       repo = Repository.for(Signup)
       signup = repo.all.first
@@ -47,12 +44,12 @@ describe SignUpToRaid do
     describe "roles" do
       it "errors if the raid doesn't have the named role" do
         -> {
-          @action.run 12, 4, :cheerleader
+          @action.run @raid, @character, :cheerleader
         }.must_raise RuntimeError
       end
 
       it "puts character in the specified role" do
-        @action.run 12, 4, :tank
+        @action.run @raid, @character, :tank
 
         repo = Repository.for(Signup)
         signup = repo.all.first
