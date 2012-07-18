@@ -47,11 +47,16 @@ Feature: Signing up to a Raid
     And I select "DPS" from "role"
     And I press "Sign Up"
 
-    And I select "Wonko" from "character_id"
+    Then "character_id" should not contain "Weemuu"
+
+    When I select "Wonko" from "character_id"
     And I select "Tank" from "role"
     And I press "Sign Up"
 
-    And I select "Stabby" from "character_id"
+    Then "character_id" should not contain "Weemuu"
+    And "character_id" should not contain "Wonko"
+
+    When I select "Stabby" from "character_id"
     And I select "Healer" from "role"
     And I press "Sign Up"
 

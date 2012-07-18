@@ -15,3 +15,8 @@ end
 Given /^today is "(.*?)"$/ do |date|
   Timecop.travel Date.parse(date)
 end
+
+Then /^"(.*?)" should not contain "(.*?)"$/ do |field, value|
+  field = find_field(field)
+  assert !field.first("option", :text => value)
+end
