@@ -29,32 +29,36 @@ class ListSignups
   class SignupGroups
     def initialize
       @groups = {
-        accepted:  [],
-        available: [],
-        cancelled: []
+        accepted:  {},
+        available: {},
+        cancelled: {}
       }
     end
 
     def add_signup(signup)
-      @groups[signup.acceptance_status.to_sym] << signup
+      @groups[signup.acceptance_status.to_sym] ||= {}
+      @groups[signup.acceptance_status.to_sym][signup.role] ||= []
+      @groups[signup.acceptance_status.to_sym][signup.role] << signup
     end
 
-    def accepted
-      @groups[:accepted]
+    def accepted(role)
+      @groups[:accepted][role] || []
     end
 
-    def available
-      @groups[:available]
+    def available(role)
+      @groups[:available][role] || []
     end
 
-    def cancelled
-      @groups[:cancelled]
+    def cancelled(role)
+      @groups[:cancelled][role] || []
     end
 
     def contains?(character)
-      @groups.each do |group, list|
-        list.each do |signup|
-          return true if signup.character == character
+      @groups.each do |group, role|
+        role.each do |role, list|
+          list.each do |signup|
+            return true if signup.character == character
+          end
         end
       end
 

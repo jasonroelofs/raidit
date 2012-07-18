@@ -44,16 +44,19 @@ Feature: Signing up to a Raid
     Then I should see "Sign Up for this Raid"
 
     When I select "Weemuu" from "character_id"
+    And I select "DPS" from "role"
     And I press "Sign Up"
 
     And I select "Wonko" from "character_id"
+    And I select "Tank" from "role"
     And I press "Sign Up"
 
     And I select "Stabby" from "character_id"
+    And I select "Healer" from "role"
     And I press "Sign Up"
 
-    Then I should see "Weemuu" within ".available"
-    And I should see "Wonko" within ".available"
-    And I should see "Stabby" within ".available"
+    Then I should see "Weemuu" within ".available .dps"
+    And I should see "Wonko" within ".available .tank"
+    And I should see "Stabby" within ".available .healer"
 
     And I should not see "Sign Up for this Raid"

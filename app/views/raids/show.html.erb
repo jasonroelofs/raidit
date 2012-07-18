@@ -5,17 +5,32 @@
 
 <section class="accepted">
   <h3>Accepted</h3>
-  <%= render :partial => "signup", :collection => @signups.accepted %>
+  <% @raid.roles.each do |role| %>
+    <section class="<%= role %>">
+      <h4><%= role.upcase %></h4>
+      <%= render :partial => "signup", :collection => @signups.accepted(role) %>
+    </section>
+  <% end %>
 </section>
 
 <section class="available">
   <h3>Available</h3>
-  <%= render :partial => "signup", :collection => @signups.available %>
+  <% @raid.roles.each do |role| %>
+    <section class="<%= role %>">
+      <h4><%= role.upcase %></h4>
+      <%= render :partial => "signup", :collection => @signups.available(role) %>
+    </section>
+  <% end %>
 </section>
 
 <section class="cancelled">
   <h3>Cancelled</h3>
-  <%= render :partial => "signup", :collection => @signups.cancelled %>
+  <% @raid.roles.each do |role| %>
+    <section class="<%= role %>">
+      <h4><%= role.upcase %></h4>
+      <%= render :partial => "signup", :collection => @signups.cancelled(role) %>
+    </section>
+  <% end %>
 </section>
 
 <section class="signup">
