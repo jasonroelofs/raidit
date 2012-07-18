@@ -3,16 +3,14 @@ require 'entity'
 class Raid
   include Entity
 
+  ROLES = %w(tank healer dps).freeze
+
   attr_accessor :when, :leader, :owner, :where
 
   attr_accessor :start_at, :invite_at
 
-  attr_reader :roles
-
   def initialize(params = {})
     super
-
-    @roles = [:tank, :dps, :heal]
     @role_limits = {}
   end
 
@@ -24,12 +22,20 @@ class Raid
     @role_limits[role] = limit
   end
 
+  def roles
+    ROLES
+  end
+
   ##
   # Retrieve the previously set role limit for the
   # given role. If no role limit defined, returns nil
   ##
   def role_limit(role)
     @role_limits[role]
+  end
+
+  def has_role?(role)
+    ROLES.include?(role.to_s)
   end
 
   ##

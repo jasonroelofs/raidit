@@ -12,8 +12,8 @@ class SignUpToRaid
   end
 
   def run(raid, character, role = nil)
-    if role && !raid.roles.include?(role)
-      raise "This raid doesn't have the #{role} role"
+    if role && !raid.has_role?(role)
+      raise "Unknown role: #{role}"
     end
 
     signup = Signup.new raid: raid, user: @current_user,

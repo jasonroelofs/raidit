@@ -44,16 +44,16 @@ describe SignUpToRaid do
     describe "roles" do
       it "errors if the raid doesn't have the named role" do
         -> {
-          @action.run @raid, @character, :cheerleader
+          @action.run @raid, @character, "cheerleader"
         }.must_raise RuntimeError
       end
 
       it "puts character in the specified role" do
-        @action.run @raid, @character, :tank
+        @action.run @raid, @character, "tank"
 
         repo = Repository.for(Signup)
         signup = repo.all.first
-        signup.role.must_equal :tank
+        signup.role.must_equal "tank"
       end
     end
   end

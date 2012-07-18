@@ -23,9 +23,11 @@ describe Raid do
     r.invite_at.must_equal time
   end
 
-  it "has the three default roles" do
-    r = Raid.new
-    r.roles.must_equal [:tank, :dps, :heal]
+  describe "#roles" do
+    it "returns the list of roles this Raid contains" do
+      r = Raid.new
+      r.roles.must_equal Raid::ROLES
+    end
   end
 
   describe "role limits" do
@@ -39,6 +41,20 @@ describe Raid do
     it "returns nil if no limit set for the requested role" do
       r = Raid.new
       r.role_limit(:johnson).must_be_nil
+    end
+  end
+
+  describe "#has_role?" do
+    it "knows if the raid has a given role" do
+      r = Raid.new
+      r.has_role?(:tank).must_equal true
+      r.has_role?(:bard).must_equal false
+    end
+
+    it "works with strings as well" do
+      r = Raid.new
+      r.has_role?("tank").must_equal true
+      r.has_role?("bard").must_equal false
     end
   end
 
