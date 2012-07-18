@@ -10,38 +10,42 @@ Feature: Managing Raid Signups
       | game | region | server    | name    |
       | wow  | US     | Detheroc  | Weemuu  |
 
-    And "jason" signed up "Weemuu" for "ICC"
+    And "jason" signed up "Weemuu" for "ICC" as "dps"
     When I am at the home page
     And I follow "ICC"
 
   Scenario: Raid leader can manage signup acceptance
     # Available -> Accept
-    Then I should see "Accept" within ".available"
+    Then I should see "Accept" within ".available .dps"
 
     When I follow "Accept"
-    Then I should see "Weemuu" within ".accepted"
-    And I should see "Unaccept" within ".accepted"
+    Then I should see "Weemuu" within ".accepted .dps"
+    And I should see "Unaccept" within ".accepted .dps"
+
+    # Doesn't skip over roles
+    And I should not see "Weemuu" within ".accepted .healer"
+    And I should not see "Weemuu" within ".accepted .tank"
 
     # Accept -> Available
     When I follow "Unaccept"
-    Then I should see "Weemuu" within ".available"
-    And I should see "Accept" within ".available"
+    Then I should see "Weemuu" within ".available .dps"
+    And I should see "Accept" within ".available .dps"
 
     # Available -> Cancelled
     When I follow "Cancel"
-    Then I should see "Weemuu" within ".cancelled"
-    And I should see "Enqueue" within ".cancelled"
-    And I should not see "Accept" within ".cancelled"
+    Then I should see "Weemuu" within ".cancelled .dps"
+    And I should see "Enqueue" within ".cancelled .dps"
+    And I should not see "Accept" within ".cancelled .dps"
 
     # Cancelled -> Available
     When I follow "Enqueue"
-    Then I should see "Weemuu" within ".available"
-    And I should see "Accept" within ".available"
-    And I should see "Cancel" within ".available"
+    Then I should see "Weemuu" within ".available .dps"
+    And I should see "Accept" within ".available .dps"
+    And I should see "Cancel" within ".available .dps"
 
     # Accepted -> Cancelled
     When I follow "Accept"
     And I follow "Cancel"
-    Then I should see "Weemuu" within ".cancelled"
-    And I should see "Enqueue" within ".cancelled"
-    And I should not see "Accept" within ".cancelled"
+    Then I should see "Weemuu" within ".cancelled .dps"
+    And I should see "Enqueue" within ".cancelled .dps"
+    And I should not see "Accept" within ".cancelled .dps"

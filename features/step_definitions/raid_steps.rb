@@ -26,11 +26,11 @@ Given /^"(.*?)" has scheduled the following raids$/ do |login, table|
   end
 end
 
-Given /^"(.*?)" signed up "(.*?)" for "(.*?)"$/ do |login, char_name, raid_location|
+Given /^"(.*?)" signed up "(.*?)" for "(.*?)" as "(.*?)"$/ do |login, char_name, raid_location, role|
   current_user = find_user_by_login(login)
   character = Repository.for(Character).find_all_for_user(current_user).find {|c| c.name == char_name }
   raid = Repository.for(Raid).all.find {|r| r.where == raid_location }
 
-  s = Signup.new raid: raid, character: character, user: current_user
-  Repository.for(Signup).save s
+  action = SignUpToRaid.new current_user
+  action.run raid, character, role
 end
