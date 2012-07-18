@@ -33,7 +33,7 @@ class RaidsControllerTest < ActionController::TestCase
         @raid = Raid.new id: 10, when: Date.today, start_at: Time.now, invite_at: Time.now
         FindRaid.expects(:by_id).with(10).returns(@raid)
         ListCharacters.any_instance.stubs(:run).returns([])
-        ListSignups.any_instance.stubs(:for_raid).returns ListSignups::SignupGroups.new
+        ListSignups.any_instance.stubs(:for_raid).returns ListSignups::Signups.new
       end
 
       it "finds the given raid and renders the page" do
@@ -44,7 +44,7 @@ class RaidsControllerTest < ActionController::TestCase
       end
 
       it "finds all signups for the given raid to display" do
-        signups = ListSignups::SignupGroups.new
+        signups = ListSignups::Signups.new
         ListSignups.any_instance.expects(:for_raid).with(@raid).returns signups
 
         get :show, :id => 10
@@ -66,7 +66,7 @@ class RaidsControllerTest < ActionController::TestCase
         list = [Character.new]
         ListCharacters.any_instance.stubs(:run).returns(list)
 
-        signups = ListSignups::SignupGroups.new
+        signups = ListSignups::Signups.new
         signups.add_signup Signup.new(character: list[0])
 
         ListSignups.any_instance.stubs(:for_raid).returns signups

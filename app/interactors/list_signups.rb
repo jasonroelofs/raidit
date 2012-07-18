@@ -15,7 +15,7 @@ class ListSignups
   end
 
   def group_signups_by_status(signups)
-    signup_groups = SignupGroups.new
+    signup_groups = Signups.new
 
     signups.each do |signup|
       signup_groups.add_signup signup
@@ -26,43 +26,61 @@ class ListSignups
 
   public
 
-  class SignupGroups
+  class Signups
     def initialize
       @groups = {
-        accepted:  {},
-        available: {},
-        cancelled: {}
+        accepted:  SignupGroup.new,
+        available: SignupGroup.new,
+        cancelled: SignupGroup.new
       }
     end
 
     def add_signup(signup)
-      @groups[signup.acceptance_status.to_sym] ||= {}
-      @groups[signup.acceptance_status.to_sym][signup.role] ||= []
-      @groups[signup.acceptance_status.to_sym][signup.role] << signup
+      @groups[signup.acceptance_status.to_sym].add(signup)
     end
 
     def accepted(role)
-      @groups[:accepted][role] || []
+      @groups[:accepted].signups_in(role)
     end
 
     def available(role)
-      @groups[:available][role] || []
+      @groups[:available].signups_in(role)
     end
 
     def cancelled(role)
-      @groups[:cancelled][role] || []
+      @groups[:cancelled].signups_in(role)
     end
 
     def contains?(character)
-      @groups.each do |group, role|
-        role.each do |role, list|
-          list.each do |signup|
-            return true if signup.character == character
-          end
+      @groups.each do |key, groups|
+        if groups.contains?(character)
+          return true
         end
       end
 
       false
+    end
+
+    class SignupGroup
+      def initialize
+        @groups = Hash.new {|hash, key| hash[key] = [] }
+      end
+
+      def add(signup)
+        @groups[signup.role] << signup
+      end
+
+      def signups_in(role)
+        @groups[role]
+      end
+
+      def contains?(character)
+        @groups.values.flatten.each do |signup|
+          return true if signup.character == character
+        end
+
+        false
+      end
     end
   end
 

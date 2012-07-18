@@ -39,14 +39,14 @@ describe ListSignups do
 
   end
 
-  describe ListSignups::SignupGroups do
+  describe ListSignups::Signups do
     it "knows if a given character is in a group" do
       c = Character.new
-      s = ListSignups::SignupGroups.new
+      s = ListSignups::Signups.new
 
       s.contains?(c).must_equal false
 
-      s.add_signup Signup.new(character: c)
+      s.add_signup Signup.new(character: c, role: "tank")
 
       s.contains?(c).must_equal true
     end
