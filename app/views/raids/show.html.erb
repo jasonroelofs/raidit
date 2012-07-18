@@ -28,6 +28,7 @@
 
     <%= form_tag raid_signups_path(@raid) do %>
       <%= select_tag :character_id, option_list_of_characters(@current_user_characters) %>
+      <%= select_tag :role, options_for_select([["DPS", "dps"], ["Healer", "healer"], ["Tank", "tank"]]) %>
       <%= submit_tag "Sign Up" %>
     <% end %>
   <% end %>

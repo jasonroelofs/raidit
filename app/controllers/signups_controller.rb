@@ -10,7 +10,7 @@ class SignupsController < ApplicationController
     character = FindCharacter.by_id params[:character_id].to_i
 
     action = SignUpToRaid.new(current_user)
-    action.run(raid, character)
+    action.run(raid, character, params[:role])
 
     redirect_to raid_path(raid)
   end
