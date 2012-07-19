@@ -4,6 +4,7 @@ $bodyBackground: #eee;
 
 .container {
   margin-top: 30px;
+  width: 980px;
 }
 
 .container > footer {
@@ -26,7 +27,6 @@ $bodyBackground: #eee;
 }
 
 .raid-calendar {
-
   td.today {
     border: 2px solid black;
   }
@@ -38,4 +38,57 @@ $bodyBackground: #eee;
   .day {
     float: right;
   }
+}
+
+.raid {
+  .invites, .start {
+    text-align: center;
+    padding: 5px 0px;
+  }
+
+  section {
+    margin-bottom: 1em;
+  }
+
+  .accepted, .available, .cancelled {
+    
+  }
+
+  .signup {
+    border: 1px solid red;
+    padding: 2px 5px;
+  }
+
+  .actions {
+    display: block;
+    float: right;
+
+    a.command i {
+      display: block;
+      float: left;
+      width: 32px;
+      height: 32px;
+    }
+
+    a.command span {
+      display: none;
+    }
+
+    a.command-accept i {
+      background: image-url("arrow_up.png") no-repeat;
+    }
+
+    a.command-cancel i {
+      background: image-url("cancel.png") no-repeat;
+    }
+
+    a.command-unaccept i {
+      background: image-url("arrow_down.png") no-repeat;
+    }
+
+    a.command-enqueue i {
+      background: image-url("arrow_up.png") no-repeat;
+    }
+  }
+
 }
