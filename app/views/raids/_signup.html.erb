@@ -2,7 +2,7 @@
   <span><%= signup.character_name %></span>
   <span class="actions">
     <% list_available_signup_actions(signup).each do |action| %>
-      <%= link_to raw("<i></i><span>#{action.name}</span>"), update_signup_path(signup.id, command: action.action), :alt => action.name, :class => "command command-#{action.action}" %>
+      <%= link_to action.name, update_signup_path(signup.id, command: action.action), :alt => action.name, :class => "command command-#{action.action}" %>
     <% end %>
   </span>
 </div>

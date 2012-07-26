@@ -51,7 +51,7 @@ $bodyBackground: #eee;
   }
 
   .accepted, .available, .cancelled {
-    
+
   }
 
   .signup {
@@ -63,31 +63,23 @@ $bodyBackground: #eee;
     display: block;
     float: right;
 
-    a.command i {
-      display: block;
-      float: left;
-      width: 32px;
-      height: 32px;
+    a {
+      @extend .btn;
+      @extend .btn-mini;
     }
 
-    a.command span {
-      display: none;
+    a.command-accept {
+      @extend .btn-success;
     }
 
-    a.command-accept i {
-      background: image-url("arrow_up.png") no-repeat;
+    a.command-cancel {
     }
 
-    a.command-cancel i {
-      background: image-url("cancel.png") no-repeat;
+    a.command-unaccept {
     }
 
-    a.command-unaccept i {
-      background: image-url("arrow_down.png") no-repeat;
-    }
-
-    a.command-enqueue i {
-      background: image-url("arrow_up.png") no-repeat;
+    a.command-enqueue {
+      @extend .btn-info;
     }
   }
 
