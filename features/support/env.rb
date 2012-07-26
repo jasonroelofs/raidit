@@ -72,4 +72,8 @@ Before do
   Repository.for(User).save(
     User.new(:login => "jason", :password => "password")
   )
+
+  Repository.for(User).save(
+    User.new(:login => "raider", :password => "password")
+  )
 end
