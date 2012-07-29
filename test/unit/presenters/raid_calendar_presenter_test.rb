@@ -5,13 +5,9 @@ require 'active_support/core_ext/date/calculations'
 require 'active_support/core_ext/date/conversions'
 require 'presenters/raid_calendar_presenter'
 require 'models/raid'
+require 'models/guild'
 
 describe RaidCalendarPresenter do
-
-  it "takes a raid finder object in the constructor" do
-    p = RaidCalendarPresenter.new "raid_finder"
-    p.raid_finder.must_equal "raid_finder"
-  end
 
   it "defaults start_date to today" do
     p = RaidCalendarPresenter.new nil
