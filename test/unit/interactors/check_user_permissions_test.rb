@@ -15,17 +15,10 @@ describe CheckUserPermissions do
     action.current_guild.must_equal guild
   end
 
-  it "optionally takes a current raid context" do
-    raid = Raid.new
-    action = CheckUserPermissions.new User.new
-    action.current_raid = raid
-
-    action.current_raid.must_equal raid
-  end
-
   describe "#allowed?" do
     before do
       @user = User.new
+      @guild = Guild.new
 
       @permission = Permission.new
       @permission.user = @user
@@ -35,14 +28,7 @@ describe CheckUserPermissions do
       Repository.for(Permission).save(@permission)
     end
 
-    it "checks that the user has the given permission" do
-      action = CheckUserPermissions.new @user
-
-      action.allowed?(:test_permission1).must_equal true
-      action.allowed?(:test_permission4).must_equal false
-    end
-
-    it "scopes permission check to a guild if one given" do
+    it "checks that the user has permission inside of the given guild" do
       guild = Guild.new
       g_perm = Permission.new
       g_perm.user = @user
@@ -57,18 +43,10 @@ describe CheckUserPermissions do
 
     it "returns false if no permissions set found for the user and guild" do
       user2 = User.new
+      guild = Guild.new
 
-      action = CheckUserPermissions.new user2
+      action = CheckUserPermissions.new user2, guild
       action.allowed?(:testing).must_equal false
-    end
-
-    it "returns true if current_raid set and user owns the current_raid" do
-      raid = Raid.new owner: @user
-      action = CheckUserPermissions.new @user
-      action.current_raid = raid
-
-      action.allowed?(:accept_signup).must_equal true
-      action.allowed?(:something_else).must_equal true
     end
   end
 
