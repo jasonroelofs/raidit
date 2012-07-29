@@ -9,11 +9,24 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_guild
+    @current_guild || find_current_guild
+  end
+  helper_method :current_guild
+
   protected
 
   def find_logged_in_user
     action = FindUser.new
     action.by_login_token :web, cookies[:web_session_token]
+  end
+
+  ##
+  # TODO Update this to not be a static choice when the guild
+  # selector is built
+  ##
+  def find_current_guild
+    FindGuild.by_name "Exiled"
   end
 
 end

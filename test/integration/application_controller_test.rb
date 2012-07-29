@@ -20,4 +20,18 @@ class ApplicationControllerTest < ActionController::TestCase
 
   end
 
+  describe "#current_guild" do
+    it "returns nil if no current guild" do
+      @controller.current_guild.must_be_nil
+    end
+
+    it "finds the Exiled guild" do
+      g = Guild.new
+      FindGuild.expects(:by_name).with("Exiled").returns(g)
+
+      @controller.current_guild.must_equal g
+    end
+
+  end
+
 end
