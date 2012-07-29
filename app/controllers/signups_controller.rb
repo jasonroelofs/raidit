@@ -20,8 +20,8 @@ class SignupsController < ApplicationController
   # Run +command+ on the given signup
   def update
     signup = FindSignup.by_id(params[:id].to_i)
-    action = UpdateSignup.new current_user, signup
-    action.run params[:command]
+    action = UpdateSignup.new current_user, current_guild
+    action.run signup, params[:command]
 
     redirect_to raid_path(signup.raid)
   end
