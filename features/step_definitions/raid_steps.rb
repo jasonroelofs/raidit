@@ -2,14 +2,14 @@ def find_user_by_login(login)
   Repository.for(User).find_by_login(login)
 end
 
-Given /^"(.*?)" has scheduled the following raids$/ do |login, table|
+Given /^"(.*?)" has scheduled the following raids$/ do |guild_name, table|
+  current_guild = FindGuild.by_name(guild_name)
   repo = Repository.for(Raid)
-  current_user = find_user_by_login(login)
 
   table.hashes.each_with_index do |row, i|
     r = Raid.new(
       :id => i,
-      :owner => current_user,
+      :owner => current_guild,
       :where => row[:where],
       :when => Date.parse(row[:when]),
       :start_at => Time.parse(row[:start]),

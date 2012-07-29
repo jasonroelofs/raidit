@@ -2,7 +2,7 @@ Feature: Managing Raid Signups
 
   Background:
     Given today is "2012/07/01"
-    And "jason" has scheduled the following raids
+    And "Exiled" has scheduled the following raids
       | where     | when        | start | invite_offset |
       | ICC       | 2012/07/01  | 20:00 | 15            |
     And "jason" has the following characters
