@@ -11,15 +11,13 @@ describe Permission do
 
   it "is linked to a user" do
     user = User.new
-    p = Permission.new
-    p.user = user
+    p = Permission.new user: user
     p.user.must_equal user
   end
 
   it "can be linked to a guild" do
     guild = Guild.new
-    p = Permission.new
-    p.guild = guild
+    p = Permission.new guild: guild
     p.guild.must_equal guild
   end
 

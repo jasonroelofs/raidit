@@ -5,7 +5,8 @@ class Permission
 
   attr_accessor :user, :guild, :permissions
 
-  def initialize
+  def initialize(*)
+    super
     @permissions = []
   end
 
