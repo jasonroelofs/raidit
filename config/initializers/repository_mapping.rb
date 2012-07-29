@@ -32,8 +32,12 @@ Raidit::Application.configure do
           :region => "US", :user => raider)
       )
 
+      Repository.for(Guild).save(
+        exiled = Guild.new(:name => "Exiled")
+      )
+
       (1.week.ago.to_date..2.weeks.from_now.to_date).each do |day|
-        raid = Raid.new :when => day, :owner => jason, :where => "ICC",
+        raid = Raid.new :when => day, :owner => exiled, :where => "ICC",
           :start_at => Time.parse("20:00"), :invite_at => Time.parse("19:30")
 
         raid.set_role_limit :tank, (rand * 5).to_i
