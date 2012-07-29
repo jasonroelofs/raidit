@@ -36,6 +36,11 @@ Raidit::Application.configure do
         exiled = Guild.new(:name => "Exiled")
       )
 
+      Repository.for(Permission).save(
+        Permission.new(:user => jason, :guild => exiled,
+                       :permissions => [:accept_signup, :unaccept_signup])
+      )
+
       (1.week.ago.to_date..2.weeks.from_now.to_date).each do |day|
         raid = Raid.new :when => day, :owner => exiled, :where => "ICC",
           :start_at => Time.parse("20:00"), :invite_at => Time.parse("19:30")
