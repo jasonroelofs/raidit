@@ -33,10 +33,6 @@ describe ScheduleRaid do
       @action = ScheduleRaid.new @user
     end
 
-    it "errors if guild is set and user is not of the guild"
-
-    it "errors if guild is set and user is not raid leader of guild"
-
     it "saves the raid to the repo if valid" do
       @action.run @where, @when, @start
 
@@ -47,7 +43,6 @@ describe ScheduleRaid do
       raid.where.must_equal @where
       raid.when.must_equal @when
       raid.start_at.must_equal @start
-      raid.leader.must_equal @user
 
       raid.invite_at.must_equal Time.parse("19:45")
     end

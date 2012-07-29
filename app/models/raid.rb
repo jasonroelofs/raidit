@@ -5,7 +5,7 @@ class Raid
 
   ROLES = %w(tank healer dps).freeze
 
-  attr_accessor :when, :leader, :owner, :where
+  attr_accessor :when, :owner, :where
 
   attr_accessor :start_at, :invite_at
 

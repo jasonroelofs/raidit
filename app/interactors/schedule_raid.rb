@@ -40,7 +40,6 @@ class ScheduleRaid
     raid.start_at   = raid_time
     raid.invite_at  = raid_time - DEFAULT_INVITE_WINDOW
 
-    raid.leader     = @current_user
     raid.owner      = @current_user
 
     if roles
