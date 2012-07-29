@@ -7,7 +7,7 @@ class Permission
 
   def initialize(*)
     super
-    @permissions = []
+    @permissions ||= []
   end
 
   def allow(perm)

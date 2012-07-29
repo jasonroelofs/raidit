@@ -26,6 +26,11 @@ describe Permission do
     p.permissions.must_equal []
   end
 
+  it "lets passing in of initial permissions" do
+    p = Permission.new permissions: [:accept, :deny]
+    p.permissions.must_equal [:accept, :deny]
+  end
+
   describe "#allow" do
     it "adds a new permission to the list" do
       p = Permission.new
