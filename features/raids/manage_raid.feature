@@ -8,6 +8,7 @@ Feature: Managing Raid Signups
     And "jason" has the following characters
       | game | region | server    | name    |
       | wow  | US     | Detheroc  | Weemuu  |
+    And "jason" is a raid leader for "Exiled"
     And "jason" signed up "Weemuu" for "ICC" as "dps"
 
   Scenario: Raid leader can manage signup acceptance
