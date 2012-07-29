@@ -1,20 +1,20 @@
 Feature: Managing Raid Signups
 
   Background:
-    Given I am signed in as "jason"
-    And today is "2012/07/01"
+    Given today is "2012/07/01"
     And "jason" has scheduled the following raids
       | where     | when        | start | invite_offset |
       | ICC       | 2012/07/01  | 20:00 | 15            |
     And "jason" has the following characters
       | game | region | server    | name    |
       | wow  | US     | Detheroc  | Weemuu  |
-
     And "jason" signed up "Weemuu" for "ICC" as "dps"
+
+  Scenario: Raid leader can manage signup acceptance
+    Given I am signed in as "jason"
     When I am at the home page
     And I follow "ICC"
 
-  Scenario: Raid leader can manage signup acceptance
     # Available -> Accept
     Then I should see "Accept" within ".available .dps"
 
@@ -49,3 +49,34 @@ Feature: Managing Raid Signups
     Then I should see "Weemuu" within ".cancelled .dps"
     And I should see "Enqueue" within ".cancelled .dps"
     And I should not see "Accept" within ".cancelled .dps"
+
+  Scenario: Raid leader cannot cancel signups they don't own
+    Given I am signed in as "jason"
+    And "raider" has the following characters
+      | game | region | server    | name     |
+      | wow  | US     | Detheroc  | Phouchg  |
+    And "raider" signed up "Phouchg" for "ICC" as "tank"
+    When I am at the home page
+    And I follow "ICC"
+
+    Then I should not see "Cancel" within ".tank"
+
+#  Scenario: Raider can sign up but not accept
+#    Given I am signed in as "raider"
+#    And "raider" has the following characters
+#      | game | region | server    | name     |
+#      | wow  | US     | Detheroc  | Phouchg  |
+#    And "raider" signed up "Phouchg" for "ICC" as "tank"
+#
+#    When I am at the home page
+#    And I follow "ICC"
+#
+#    Then I should see "Weemuu"
+#    And I should see "Weemuu"
+#    And I should not see "Accept"
+#    And I should not see "Cancel" within ".dps"
+#
+#    And I should see "Cancel" within ".tank"
+#
+#  Scenario: Raider can cancel and requeue their characters
+#

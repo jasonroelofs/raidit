@@ -21,8 +21,8 @@ Scenario: Unknown user sees error when trying to sign in
   Then I should see "Login"
   And I should see "Password"
 
-  When I fill in "raider" for "login"
-  And I fill in "password" for "password"
+  When I fill in "baduser" for "login"
+  And I fill in "stupidpass" for "password"
   And I press "Log In"
 
   Then I should see "Login"
