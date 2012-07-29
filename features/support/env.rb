@@ -48,4 +48,8 @@ Before do
   Repository.for(User).save(
     User.new(:login => "raider", :password => "password")
   )
+
+  Repository.for(Guild).save(
+    Guild.new(:name => "Exiled")
+  )
 end
