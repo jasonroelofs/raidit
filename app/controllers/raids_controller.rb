@@ -50,7 +50,7 @@ class RaidsController < ApplicationController
   end
 
   def schedule_raid(raid = nil)
-    action = ScheduleRaid.new current_user
+    action = ScheduleRaid.new current_guild
     action.current_raid = raid
 
     action_params = [

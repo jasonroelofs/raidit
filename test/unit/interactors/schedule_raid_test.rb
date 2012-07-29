@@ -6,12 +6,10 @@ require 'time'
 
 describe ScheduleRaid do
 
-  it "takes the current user and guild in constructor" do
-    user = User.new
+  it "takes the current guild in constructor" do
     guild = Guild.new
-    action = ScheduleRaid.new user, guild
+    action = ScheduleRaid.new guild
 
-    action.current_user.must_equal user
     action.current_guild.must_equal guild
   end
 
@@ -25,12 +23,12 @@ describe ScheduleRaid do
   describe "#run" do
 
     before do
-      @user = User.new
+      @guild = Guild.new
       @when = Date.today
       @start = Time.parse("20:00")
       @where = "ICC"
 
-      @action = ScheduleRaid.new @user
+      @action = ScheduleRaid.new @guild
     end
 
     it "saves the raid to the repo if valid" do
@@ -39,7 +37,7 @@ describe ScheduleRaid do
       raid = Repository.for(Raid).all.first
       raid.wont_be_nil
 
-      raid.owner.must_equal @user
+      raid.owner.must_equal @guild
       raid.where.must_equal @where
       raid.when.must_equal @when
       raid.start_at.must_equal @start

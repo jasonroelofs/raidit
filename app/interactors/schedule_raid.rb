@@ -3,7 +3,7 @@ require 'repository'
 
 ##
 # Create a new raid schedule or update an existing one.
-# The raid will be owned and led by the given +current_user+.
+# The raid will be owned by the given +current_guild+.
 #
 # A raid needs a location (+where+), a date (+raid_date+),
 # a start time (+raid_time+) and optionally a hash of +roles+
@@ -19,7 +19,7 @@ class ScheduleRaid
 
   DEFAULT_INVITE_WINDOW = 15 * 60
 
-  attr_accessor :current_user, :current_guild
+  attr_reader :current_guild
 
   ##
   # Use this value to update an existing Raid instead of
@@ -27,8 +27,7 @@ class ScheduleRaid
   ##
   attr_accessor :current_raid
 
-  def initialize(current_user, current_guild = nil)
-    @current_user = current_user
+  def initialize(current_guild)
     @current_guild = current_guild
   end
 
@@ -40,7 +39,7 @@ class ScheduleRaid
     raid.start_at   = raid_time
     raid.invite_at  = raid_time - DEFAULT_INVITE_WINDOW
 
-    raid.owner      = @current_user
+    raid.owner      = @current_guild
 
     if roles
       roles.each do |role, limit|
