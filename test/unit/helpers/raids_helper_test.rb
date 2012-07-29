@@ -1,6 +1,7 @@
 require 'unit/test_helper'
 require 'interactors/update_signup'
 require 'models/user'
+require 'models/guild'
 
 require 'helpers/raids_helper'
 
@@ -11,11 +12,18 @@ describe RaidsHelper do
     @user ||= User.new
   end
 
+  def current_guild
+    @guild ||= Guild.new
+  end
+
   describe "#render_available_signup_actions" do
     it "renders the list of available actions as links for those actions" do
-      UpdateSignup.any_instance.expects(:available_actions).returns([:accept, :cancel])
+      signup = Signup.new(id: 4)
 
-      output = list_available_signup_actions(Signup.new(id: 4))
+      UpdateSignup.any_instance.expects(:available_actions).
+        with(signup).returns([:accept, :cancel])
+
+      output = list_available_signup_actions signup
       output.length.must_equal 2
 
       option = output[0]

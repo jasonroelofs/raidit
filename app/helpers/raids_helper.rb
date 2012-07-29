@@ -10,8 +10,8 @@ module RaidsHelper
   SignupAction = Struct.new(:name, :action)
 
   def list_available_signup_actions(signup)
-    action = UpdateSignup.new current_user, signup
-    action.available_actions.map do |action|
+    action = UpdateSignup.new current_user, current_guild
+    action.available_actions(signup).map do |action|
       SignupAction.new action.to_s.camelcase, action
     end
   end
