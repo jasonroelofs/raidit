@@ -3,8 +3,7 @@ class RaidsController < ApplicationController
   requires_user
 
   def index
-    action = ListRaids.new current_user
-    @raids = action.run
+    @raids = ListRaids.for_guild current_guild
   end
 
   def show

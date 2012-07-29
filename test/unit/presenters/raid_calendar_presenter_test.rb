@@ -89,35 +89,22 @@ describe RaidCalendarPresenter do
   end
 
   describe "#raids_on" do
-    class RaidFinderTester
-      attr_accessor :raids
-
-      def run(date)
-        @raids.select {|r|
-          r.when == date
-        }
-      end
-    end
-
     before do
-      @finder = RaidFinderTester.new
+      @guild = Guild.new
 
-      @presenter = RaidCalendarPresenter.new @finder
+      @presenter = RaidCalendarPresenter.new @guild
       @presenter.start_date = Date.parse("2012/07/01")
     end
 
     it "returns the list of raids viewable to the user on the given day" do
-      @finder.raids = [
-        r1 = Raid.new(:when => Date.parse("2012/06/30")),
-        r2 = Raid.new(:when => Date.parse("2012/07/01")),
-        r3 = Raid.new(:when => Date.parse("2012/07/01")),
-        r4 = Raid.new(:when => Date.parse("2012/07/02")),
-      ]
+      ListRaids.expects(:for_guild_on_date).with(@guild, Date.parse("2012/07/01")).returns(
+        [
+          r1 = Raid.new(:when => Date.parse("2012/07/01")),
+          r2 = Raid.new(:when => Date.parse("2012/07/01"))
+        ]
+      )
 
-      @presenter.raids_on(Date.parse("2012/06/30")).must_equal [r1]
-      @presenter.raids_on(Date.parse("2012/07/01")).must_equal [r2, r3]
-      @presenter.raids_on(Date.parse("2012/07/02")).must_equal [r4]
-      @presenter.raids_on(Date.parse("2012/07/03")).must_equal []
+      @presenter.raids_on(Date.parse("2012/07/01")).must_equal [r1, r2]
     end
   end
 end

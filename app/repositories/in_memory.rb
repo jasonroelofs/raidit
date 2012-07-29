@@ -45,12 +45,12 @@ module InMemory
   end
 
   class RaidRepo < IndexedRepo
-    def find_raids_for_user(user)
-      records.select {|r| r.owner == user }
+    def find_raids_for_guild(guild)
+      records.select {|r| r.owner == guild }
     end
 
-    def find_raids_for_user_and_day(user, day)
-      raids = find_raids_for_user(user)
+    def find_raids_for_guild_and_day(guild, day)
+      raids = find_raids_for_guild(guild)
       if day
         raids.select {|raid| raid.when == day }
       else

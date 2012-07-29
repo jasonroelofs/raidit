@@ -3,14 +3,13 @@
 ##
 class ListRaids
 
-  attr_reader :current_user
-
-  def initialize(current_user)
-    @current_user = current_user
+  def self.for_guild(guild)
+    for_guild_on_date(guild, nil)
   end
 
-  def run(day = nil)
-    Repository.for(Raid).find_raids_for_user_and_day(@current_user, day).
+  def self.for_guild_on_date(guild, date)
+    Repository.for(Raid).find_raids_for_guild_and_day(guild, date).
       sort {|r1, r2| r2.when <=> r1.when }
   end
+
 end
