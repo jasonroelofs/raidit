@@ -14,19 +14,19 @@ require 'interactors/check_user_permissions'
 ##
 class UpdateSignup
 
-  attr_accessor :current_user, :signup
+  attr_accessor :current_user, :current_guild
 
-  def initialize(current_user, signup)
+  def initialize(current_user, current_guild)
     @current_user = current_user
-    @signup = signup
+    @current_guild = current_guild
   end
 
   ##
   # Returns a list of all available actions the current user can take
   # on the given signup. In most cases will only be one or two actions
   ##
-  def available_actions
-    initialize_processor_and_permissions
+  def available_actions(signup)
+    initialize_processor_and_permissions signup
 
     @processor.available_actions
   end
@@ -34,20 +34,18 @@ class UpdateSignup
   ##
   # +action+ can be one of :accept, :unaccept, :enqueue, or :cancel
   ##
-  def run(action)
-    initialize_processor_and_permissions
+  def run(signup, action)
+    initialize_processor_and_permissions signup
 
     @processor.send action
-    @signup.acceptance_status = @processor.new_status
+    signup.acceptance_status = @processor.new_status
 
-    Repository.for(Signup).save @signup
+    Repository.for(Signup).save signup
   end
 
-  def initialize_processor_and_permissions
-    @permissions = CheckUserPermissions.new @current_user
-    @permissions.current_raid = @signup.raid
-
-    @processor = StateProcessor.new @current_user, @signup, @permissions
+  def initialize_processor_and_permissions(signup)
+    @permissions = CheckUserPermissions.new @current_user, @current_guild
+    @processor = StateProcessor.new @current_user, signup, @permissions
   end
 
   class StateProcessor
