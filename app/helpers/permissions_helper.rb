@@ -1,10 +1,21 @@
 module PermissionsHelper
 
-  def permission?(permission)
-    current_user_has_permission? permission
+  ##
+  # If the current user has the given permission set, then execute
+  # the given block
+  ##
+  def permission(permission_key, &block)
+    block.call if permission? permission_key
   end
 
-  def permission(permission)
-    yield if permission? permission
+  ##
+  # Returns true/false depending on if the current user has
+  # the given permission set.
+  #
+  # +current_user_has_permission?+ comes from ApplicationController
+  ##
+  def permission?(permission_key)
+    current_user_has_permission? permission_key
   end
+
 end
