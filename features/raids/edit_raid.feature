@@ -12,7 +12,6 @@ Scenario: A raider cannot edit a raid
 
 Scenario: A raid leader can edit a guild's raid
   Given I am signed in as "jason"
-  And "jason" is a raid leader for "Exiled"
   And I am at the home page
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |

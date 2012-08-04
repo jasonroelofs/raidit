@@ -42,7 +42,7 @@ Before do
   )
 
   Repository.for(User).save(
-    User.new(:login => "jason", :password => "password")
+    jason = User.new(:login => "jason", :password => "password")
   )
 
   Repository.for(User).save(
@@ -50,6 +50,11 @@ Before do
   )
 
   Repository.for(Guild).save(
-    Guild.new(:name => "Exiled")
+    exiled = Guild.new(:name => "Exiled")
+  )
+
+  Repository.for(Permission).save(
+    Permission.new(:user => jason, :guild => exiled,
+                    :permissions => Permission::RAID_LEADER)
   )
 end
