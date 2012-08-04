@@ -1,7 +1,7 @@
 Feature: User can add a character
 
 Scenario: The user can add his / her first character to the account
-  Given I am signed in as "jason"
+  Given I am signed in as "raid_leader"
   And I am at the home page
   When I follow "Characters"
 
@@ -18,9 +18,9 @@ Scenario: The user can add his / her first character to the account
 
 
 Scenario: User can add another character to the account
-  Given I am signed in as "jason"
+  Given I am signed in as "raid_leader"
   And I am at the home page
-  And "jason" has the following characters
+  And "raid_leader" has the following characters
     | game | region | server    | name    |
     | wow  | US     | Detheroc  | Weemuu  |
 

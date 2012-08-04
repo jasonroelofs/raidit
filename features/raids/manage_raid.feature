@@ -5,13 +5,13 @@ Feature: Managing Raid Signups
     And "Exiled" has scheduled the following raids
       | where     | when        | start | invite_offset |
       | ICC       | 2012/07/01  | 20:00 | 15            |
-    And "jason" has the following characters
+    And "raid_leader" has the following characters
       | game | region | server    | name    |
       | wow  | US     | Detheroc  | Weemuu  |
-    And "jason" signed up "Weemuu" for "ICC" as "dps"
+    And "raid_leader" signed up "Weemuu" for "ICC" as "dps"
 
   Scenario: Raid leader can manage signup acceptance
-    Given I am signed in as "jason"
+    Given I am signed in as "raid_leader"
     When I am at the home page
     And I follow "ICC"
 
@@ -51,7 +51,7 @@ Feature: Managing Raid Signups
     And I should not see "Accept" within ".cancelled .dps"
 
   Scenario: Raid leader cannot cancel signups they don't own
-    Given I am signed in as "jason"
+    Given I am signed in as "raid_leader"
     And "raider" has the following characters
       | game | region | server    | name     |
       | wow  | US     | Detheroc  | Phouchg  |

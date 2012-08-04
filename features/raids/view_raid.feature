@@ -6,7 +6,7 @@ Feature: Viewing a Raid
       | where       | when       | start | invite_offset | tank | heal | dps |
       | ICC         | 2012/04/01 | 20:00 | 15            | 10   | 1    | 3   |
 
-    When I am signed in as "jason"
+    When I am signed in as "raid_leader"
     Then I should see "Raid Calendar"
 
     When I follow "ICC"
@@ -24,7 +24,7 @@ Feature: Viewing a Raid
       | where       | when       | start | invite_offset | tank | heal | dps |
       | ICC         | 2012/04/01 | 20:00 | 15            | 10   | 1    | 3   |
 
-    When I am signed in as "jason"
+    When I am signed in as "raid_leader"
     And I follow "Raids"
     And I follow "View"
 

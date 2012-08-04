@@ -7,7 +7,7 @@ Scenario: A regular user cannot schedule a raid
   Then I should not see "Schedule a Raid"
 
 Scenario: A raid leader can schedule a one-time raid
-  Given I am signed in as "jason"
+  Given I am signed in as "raid_leader"
   And I am at the home page
   When I follow "Raids"
   And I follow "Schedule a Raid"
@@ -23,7 +23,7 @@ Scenario: A raid leader can schedule a one-time raid
   And I should see "Invites start at 7:45 PM Server"
 
 Scenario: A user can add role limits to a raid
-  Given I am signed in as "jason"
+  Given I am signed in as "raid_leader"
   And I am at the home page
   When I follow "Raids"
   And I follow "Schedule a Raid"

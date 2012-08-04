@@ -11,7 +11,7 @@ Scenario: A raider cannot edit a raid
   And I should see "View"
 
 Scenario: A raid leader can edit a guild's raid
-  Given I am signed in as "jason"
+  Given I am signed in as "raid_leader"
   And I am at the home page
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |

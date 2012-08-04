@@ -1,7 +1,7 @@
 Feature: Signing up to a Raid
 
   Background:
-    Given I am signed in as "jason"
+    Given I am signed in as "raid_leader"
     And today is "2012/07/01"
     And "Exiled" has scheduled the following raids
       | where     | when        | start | invite_offset |
@@ -13,7 +13,7 @@ Feature: Signing up to a Raid
     Then I should see "You need a character to sign up to raid"
 
   Scenario: User signs up to a raid, is "Available" for selected role
-    When "jason" has the following characters
+    When "raid_leader" has the following characters
       | game | region | server    | name    |
       | wow  | US     | Detheroc  | Weemuu  |
     And I am at the home page
@@ -32,7 +32,7 @@ Feature: Signing up to a Raid
     And I should see "You have no more characters to sign up!"
 
   Scenario: User can sign up multiple of his own characters
-    When "jason" has the following characters
+    When "raid_leader" has the following characters
       | game | region | server    | name    |
       | wow  | US     | Detheroc  | Weemuu  |
       | wow  | US     | Detheroc  | Wonko   |

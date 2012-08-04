@@ -1,7 +1,7 @@
 Feature: Listing Raids
 
 Scenario: A user can see raids he has scheduled
-  Given I am signed in as "jason"
+  Given I am signed in as "raid_leader"
   And I am at the home page
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |
@@ -19,7 +19,7 @@ Scenario: A user can see raids he has scheduled
 
 Scenario: A raider can see raids for his guild
   Given I am signed in as "raider"
-  And "jason" has the following characters
+  And "raid_leader" has the following characters
     | game | region | server    | name    | guild  |
     | wow  | US     | Detheroc  | Weemuu  | Exiled |
   And "raider" has the following characters
