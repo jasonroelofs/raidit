@@ -9,7 +9,12 @@ class ApplicationController < ActionController::Base
     # +options+ are passed directly into +before_filter+
     ##
     def requires_user(options = {})
-      before_filter :require_user, options
+      before_filter(options) do |controller|
+        if !controller.current_user
+          session[:login_redirect_to] = controller.request.path
+          redirect_to login_path
+        end
+      end
     end
 
     ##
@@ -61,10 +66,6 @@ class ApplicationController < ActionController::Base
   # the user is redirected to if they don't have permission to view the current page
   def permission_denied_path
     root_path
-  end
-
-  def require_user
-    redirect_to login_path unless current_user
   end
 
   def find_logged_in_user

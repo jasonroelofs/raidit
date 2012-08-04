@@ -26,6 +26,15 @@ class SessionsControllerTest < ActionController::TestCase
       cookies[:web_session_token].must_equal "1234"
     end
 
+    it "redirects to the page previously attempted if such exists" do
+      LogUserIn.any_instance.expects(:run).with("testing", "johnson").returns(@user)
+      session[:login_redirect_to] = characters_path
+
+      post :create, :login => "testing", :password => "johnson"
+      must_redirect_to characters_path
+      session[:login_redirect_to].must_be_nil
+    end
+
     it "saves the login token on the user" do
       LogUserIn.any_instance.expects(:run).with("testing", "johnson").returns(@user)
 
