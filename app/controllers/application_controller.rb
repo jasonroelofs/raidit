@@ -68,8 +68,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_logged_in_user
-    action = FindUser.new
-    action.by_login_token :web, cookies[:web_session_token]
+    FindUser.by_login_token :web, cookies[:web_session_token]
   end
 
   ##

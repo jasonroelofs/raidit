@@ -13,8 +13,7 @@ class LogUserIn
   end
 
   def run(login, password)
-    action = FindUser.new
-    user = action.by_login login
+    user = FindUser.by_login login
     if user && user.password == password
       user.set_login_token @login_type, new_login_token
       user

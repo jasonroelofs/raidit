@@ -27,7 +27,7 @@ class MiniTest::Unit::TestCase
     @user.set_login_token(:web, "1234")
     @request.cookies[:web_session_token] = "1234"
 
-    FindUser.any_instance.stubs(:by_login_token).with(:web, "1234").returns(@user)
+    FindUser.stubs(:by_login_token).with(:web, "1234").returns(@user)
   end
 
   def login_as_raid_leader

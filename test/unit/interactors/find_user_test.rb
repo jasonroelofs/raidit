@@ -10,8 +10,7 @@ describe FindUser do
       user.set_login_token :web, "token"
       Repository.for(User).save user
 
-      action = FindUser.new
-      found = action.by_login_token :web, "token"
+      found = FindUser.by_login_token :web, "token"
 
       found.must_equal user
     end
@@ -26,8 +25,7 @@ describe FindUser do
       Repository.for(User).save user
       Repository.for(User).save user2
 
-      action = FindUser.new
-      found = action.by_login_token :api, "token"
+      found = FindUser.by_login_token :api, "token"
 
       found.must_equal user2
     end
@@ -36,8 +34,7 @@ describe FindUser do
       user = User.new
       Repository.for(User).save user
 
-      action = FindUser.new
-      found = action.by_login_token :web, nil
+      found = FindUser.by_login_token :web, nil
 
       found.must_be_nil
     end
@@ -48,8 +45,7 @@ describe FindUser do
       user = User.new login: "markus"
       Repository.for(User).save user
 
-      action = FindUser.new
-      action.by_login("markus").must_equal user
+      FindUser.by_login("markus").must_equal user
     end
   end
 
