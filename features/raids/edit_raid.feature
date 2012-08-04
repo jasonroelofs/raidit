@@ -1,7 +1,18 @@
 Feature: Editing Raids
 
-Scenario: A user can view the edit form for a raid he owns
+Scenario: A raider cannot edit a raid
+  Given I am signed in as "raider"
+  And I am at the home page
+  And "Exiled" has scheduled the following raids
+    | where     | when        | start | invite_offset |
+    | ICC       | 2012/07/01  | 20:00 | 15            |
+  When I follow "Raids"
+  Then I should not see "Edit"
+  And I should see "View"
+
+Scenario: A raid leader can edit a guild's raid
   Given I am signed in as "jason"
+  And "jason" is a raid leader for "Exiled"
   And I am at the home page
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |

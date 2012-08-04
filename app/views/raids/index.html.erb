@@ -4,7 +4,7 @@
   <% @raids.each do |raid| %>
     <div class="raid">
       <span class="actions">
-        <%= link_to "Edit", [:edit, raid] %>
+        <%= link_to "Edit", [:edit, raid] if permission? :schedule_raid %>
         <%= link_to "View", [raid] %>
       </span>
       <%= raid.where %> on <%= raid.when.to_s(:full) %> at <%= raid.start_at.to_s(:with_am_pm) %> Server
