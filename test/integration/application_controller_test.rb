@@ -21,11 +21,20 @@ class ApplicationControllerTest < ActionController::TestCase
   end
 
   describe "#current_guild" do
+    it "returns nil if no current user" do
+      FindGuild.expects(:by_name).never
+      @controller.current_guild.must_be_nil
+    end
+
     it "returns nil if no current guild" do
+      login_as_user
+
       @controller.current_guild.must_be_nil
     end
 
     it "finds the Exiled guild" do
+      login_as_user
+
       g = Guild.new
       FindGuild.expects(:by_name).with("Exiled").returns(g)
 

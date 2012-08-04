@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def current_guild
-    @current_guild || find_current_guild
+    if current_user
+      @current_guild || find_current_guild
+    end
   end
   helper_method :current_guild
 
