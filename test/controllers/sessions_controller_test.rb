@@ -1,4 +1,4 @@
-require 'integration/test_helper'
+require 'controllers/test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   tests SessionsController

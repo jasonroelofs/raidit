@@ -1,4 +1,4 @@
-require 'integration/test_helper'
+require 'controllers/test_helper'
 
 class CharactersControllerTest < ActionController::TestCase
   tests CharactersController
