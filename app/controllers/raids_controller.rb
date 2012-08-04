@@ -1,6 +1,7 @@
 class RaidsController < ApplicationController
 
   requires_user
+  requires_permission :schedule_raid, :only => [:new, :create, :edit, :update]
 
   def index
     @raids = ListRaids.for_guild current_guild
@@ -44,6 +45,10 @@ class RaidsController < ApplicationController
   end
 
   protected
+
+  def permission_denied_path
+    raids_path
+  end
 
   def find_raid(id)
     FindRaid.by_id id.to_i

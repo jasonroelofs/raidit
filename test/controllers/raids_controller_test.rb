@@ -86,8 +86,14 @@ class RaidsControllerTest < ActionController::TestCase
       must_redirect_to login_path
     end
 
-    it "renders the new raid form" do
+    it "requires a raid leader of the current guild" do
       login_as_user
+      get :new
+      must_redirect_to raids_path
+    end
+
+    it "renders the new raid form" do
+      login_as_raid_leader
       get :new
       must_render_template "new"
 
@@ -96,8 +102,14 @@ class RaidsControllerTest < ActionController::TestCase
   end
 
   describe "#create" do
-    it "creates the raid and redirects to index" do
+    it "requires a raid leader" do
       login_as_user
+      post :create
+      must_redirect_to raids_path
+    end
+
+    it "creates the raid and redirects to index" do
+      login_as_raid_leader
 
       ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
         Time.parse("20:00"))
@@ -109,7 +121,7 @@ class RaidsControllerTest < ActionController::TestCase
     end
 
     it "can take limits for the various roles" do
-      login_as_user
+      login_as_raid_leader
 
       ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
         Time.parse("20:00"), {:tank => 10, :dps => 20, :heal => 100})
@@ -122,8 +134,16 @@ class RaidsControllerTest < ActionController::TestCase
   end
 
   describe "#edit" do
-    it "finds the requested Raid and renders the edit form" do
+    it "requires a raid leader" do
       login_as_user
+      FindRaid.expects(:by_id).never
+
+      get :edit, :id => 10
+      must_redirect_to raids_path
+    end
+
+    it "finds the requested Raid and renders the edit form" do
+      login_as_raid_leader
 
       raid = Raid.new
       FindRaid.expects(:by_id).with(10).returns(raid)
@@ -135,7 +155,7 @@ class RaidsControllerTest < ActionController::TestCase
     end
 
     it "redirects to raid index if raid not found" do
-      login_as_user
+      login_as_raid_leader
 
       get :edit, :id => 10
       must_redirect_to raids_path
@@ -143,8 +163,16 @@ class RaidsControllerTest < ActionController::TestCase
   end
 
   describe "#update" do
-    it "re-schedules the raid with the updated information" do
+    it "requires a raid leader" do
       login_as_user
+      ScheduleRaid.any_instance.expects(:run).never
+
+      get :update, :id => 10
+      must_redirect_to raids_path
+    end
+
+    it "re-schedules the raid with the updated information" do
+      login_as_raid_leader
 
       ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
         Time.parse("20:00"), {:tank => 10, :dps => 20, :heal => 100})

@@ -29,6 +29,13 @@ class MiniTest::Unit::TestCase
 
     FindUser.any_instance.stubs(:by_login_token).with(:web, "1234").returns(@user)
   end
+
+  def login_as_raid_leader
+    login_as_user
+    Permission::RAID_LEADER.each do |permission|
+      CheckUserPermissions.any_instance.stubs(:allowed?).with(permission).returns(true)
+    end
+  end
 end
 
 if ENV["NO_COLOR_OUTPUT"].nil?
