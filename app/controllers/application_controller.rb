@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_guild
 
+  def current_user_has_permission?(permission)
+    CheckUserPermissions.new(current_user, current_guild).allowed?(permission)
+  end
+  helper_method :current_user_has_permission?
+
   protected
 
   def find_logged_in_user

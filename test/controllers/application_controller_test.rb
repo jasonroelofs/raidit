@@ -17,7 +17,6 @@ class ApplicationControllerTest < ActionController::TestCase
 
       @controller.current_user.must_equal user
     end
-
   end
 
   describe "#current_guild" do
@@ -40,7 +39,18 @@ class ApplicationControllerTest < ActionController::TestCase
 
       @controller.current_guild.must_equal g
     end
+  end
 
+  describe "#current_user_has_permission?" do
+    it "returns false if no current user" do
+      @controller.current_user_has_permission?(:permission).must_equal false
+    end
+
+    it "runs a permission check on the given permission key" do
+      login_as_user
+      CheckUserPermissions.any_instance.expects(:allowed?).with(:permission).returns(true)
+      @controller.current_user_has_permission?(:permission).must_equal true
+    end
   end
 
 end
