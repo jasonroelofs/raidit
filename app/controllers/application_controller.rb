@@ -5,9 +5,25 @@ class ApplicationController < ActionController::Base
   class << self
     ##
     # Flag the actions that require a current user
+    #
+    # +options+ are passed directly into +before_filter+
     ##
     def requires_user(options = {})
       before_filter :require_user, options
+    end
+
+    ##
+    # Flag the actions that require a given permissions set for the
+    # current user and currently selected guild.
+    #
+    # +options+ are passed directly into +before_filter+
+    ##
+    def requires_permission(permission, options = {})
+      before_filter(options) do |controller|
+        if !controller.current_user_has_permission?(permission)
+          redirect_to permission_denied_path
+        end
+      end
     end
   end
 
@@ -40,6 +56,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_has_permission?
 
   protected
+
+  # Override this method in a sub controller to change the path
+  # the user is redirected to if they don't have permission to view the current page
+  def permission_denied_path
+    root_path
+  end
 
   def require_user
     redirect_to login_path unless current_user
