@@ -203,12 +203,12 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
   end
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
+Then /^(?:|I )should be on (.+)$/ do |expected_path|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
-    current_path.should == path_to(page_name)
+    current_path.should == expected_path
   else
-    assert_equal path_to(page_name), current_path
+    assert_equal expected_path, current_path
   end
 end
 
