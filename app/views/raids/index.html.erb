@@ -18,4 +18,6 @@
   <% end %>
 </div>
 
-<%= link_to "Schedule a Raid", new_raid_path %>
+<% permission :schedule_raid do %>
+  <%= link_to "Schedule a Raid", new_raid_path %>
+<% end %>
