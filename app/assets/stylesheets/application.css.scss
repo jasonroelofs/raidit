@@ -1,4 +1,5 @@
 $bodyBackground: #eee;
+$lightBlue: #2F96B4;
 
 @import "bootstrap";
 
@@ -27,6 +28,18 @@ $bodyBackground: #eee;
 }
 
 .raid-calendar {
+  tbody tr:hover td,
+  tbody tr:hover th {
+    background-color: $white;
+  }
+
+  td {
+    width: 14.286%;
+    padding: 0px;
+    padding-bottom: 10px;
+    height: 120px;
+  }
+
   td.today {
     border: 2px solid black;
   }
@@ -37,6 +50,22 @@ $bodyBackground: #eee;
 
   .day {
     float: right;
+    margin-right: 3px;
+    margin-top: 3px;
+  }
+
+  .raid {
+    clear: both;
+    margin: 4px;
+    margin-bottom: 8px;
+    border-top: 1px dotted $lightBlue;
+  }
+
+  .invite-time {
+    float: right;
+    font-weight: bold;
+    font-size: 85%;
+    text-align: right;
   }
 }
 

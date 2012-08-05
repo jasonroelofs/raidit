@@ -18,17 +18,12 @@
             <div class="day"><%= day.day %></div>
             <% presenter.raids_on(day).each do |raid| %>
               <div class="raid">
-                <span class="invite-time">
-                  <%= raid.invite_at.to_s(:with_am_pm) %>
-                </span>
                 <span class="location">
                   <%= link_to raid.where, [raid] %>
                 </span>
-                <% if size = raid.size %>
-                  <span class="count">
-                    <%= raid.size %>
-                  </span>
-                <% end %>
+                <div class="invite-time">
+                  <%= raid.invite_at.to_s(:with_am_pm) %>
+                </div>
               </div>
             <% end %>
           </td>
