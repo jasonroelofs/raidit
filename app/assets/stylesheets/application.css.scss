@@ -20,11 +20,26 @@ $lightBlue: #2F96B4;
 .content {
   @include border-radius(5px);
   background-color: $white;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
 }
 
-.content .nav {
+.nav {
   margin-top: 1em;
-  float: right;
+  font-size: 120%;
+
+  &.nav-left {
+    float: left;
+  }
+
+  &.nav-right {
+    float: right;
+  }
+
+  li.active {
+    font-weight: bold;
+  }
 }
 
 .raid-calendar {

@@ -14,8 +14,8 @@
       <%= render_flash_messages %>
       <div class="content clearfix">
         <div class="main-nav clearfix">
-          <ul class="nav nav-pills">
-            <% if current_user %>
+          <% if current_user %>
+            <ul class="nav nav-left nav-pills">
               <li class="active">
                 <%= link_to "Home", root_path %>
               </li>
@@ -25,15 +25,23 @@
               <li>
                 <%= link_to "Raids", raids_path %>
               </li>
+            </ul>
+          <% end %>
+
+          <ul class="nav nav-right nav-pills">
+            <% if current_user %>
+              <li>
+                <%= link_to "Profile", "#" %>
+              </li>
               <li>
                 <%= link_to "Log Out", logout_path %>
               </li>
             <% else %>
               <li>
-                <%= link_to "Log In", login_path %>
+                <%= link_to "Sign Up", "#" %>
               </li>
               <li>
-                <%= link_to "Sign Up", "#" %>
+                <%= link_to "Log In", login_path %>
               </li>
             <% end %>
           </ul>
