@@ -1,5 +1,6 @@
 $bodyBackground: #eee;
 $lightBlue: #2F96B4;
+$thePastBackground: grey;
 
 @import "bootstrap";
 
@@ -45,7 +46,11 @@ $lightBlue: #2F96B4;
 .raid-calendar {
   tbody tr:hover td,
   tbody tr:hover th {
-    background-color: $white;
+    background-color: transparent;
+
+    &.past {
+      background-color: $thePastBackground;
+    }
   }
 
   td {
@@ -60,7 +65,7 @@ $lightBlue: #2F96B4;
   }
 
   td.past {
-    background-color: grey;
+    background-color: $thePastBackground;
   }
 
   .day {
