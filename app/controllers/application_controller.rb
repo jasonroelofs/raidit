@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
 
+  attr_accessor :current_navigation
+
   class << self
     ##
     # Flag the actions that require a current user
@@ -28,6 +30,15 @@ class ApplicationController < ActionController::Base
         if !controller.current_user_has_permission?(permission)
           redirect_to permission_denied_path
         end
+      end
+    end
+
+    ##
+    # Set the current navigation section controller-wide
+    ##
+    def navigation(nav_key)
+      before_filter do |controller|
+        controller.current_navigation = nav_key
       end
     end
   end
@@ -59,6 +70,14 @@ class ApplicationController < ActionController::Base
     CheckUserPermissions.new(current_user, current_guild).allowed?(permission)
   end
   helper_method :current_user_has_permission?
+
+  ##
+  # Return the current navigation key
+  ##
+  def current_navigation
+    @current_navigation
+  end
+  helper_method :current_navigation
 
   protected
 

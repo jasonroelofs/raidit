@@ -16,13 +16,13 @@
         <div class="main-nav clearfix">
           <% if current_user %>
             <ul class="nav nav-left nav-pills">
-              <li class="active">
+              <li class="<%= nav_link_class(:home) %>">
                 <%= link_to "Home", root_path %>
               </li>
-              <li>
-                <%= link_to "Characters", characters_path %>
+              <li class="<%= nav_link_class(:characters) %>">
+              <%= link_to "Characters", characters_path %>
               </li>
-              <li>
+              <li class="<%= nav_link_class(:raids) %>">
                 <%= link_to "Raids", raids_path %>
               </li>
             </ul>
@@ -30,14 +30,14 @@
 
           <ul class="nav nav-right nav-pills">
             <% if current_user %>
-              <li>
+              <li class="<%= nav_link_class(:profile) %>">
                 <%= link_to "Profile", "#" %>
               </li>
               <li>
                 <%= link_to "Log Out", logout_path %>
               </li>
             <% else %>
-              <li>
+              <li class="<%= nav_link_class(:sign_up) %>">
                 <%= link_to "Sign Up", "#" %>
               </li>
               <li>
