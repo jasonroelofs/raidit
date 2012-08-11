@@ -2,6 +2,7 @@ class RaidsController < ApplicationController
 
   requires_user
   requires_permission :schedule_raid, :only => [:new, :create, :edit, :update]
+  navigation :raids
 
   def index
     @raids = ListRaids.for_guild current_guild

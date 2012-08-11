@@ -3,6 +3,12 @@ require 'controllers/test_helper'
 class RaidsControllerTest < ActionController::TestCase
   tests RaidsController
 
+  it "sets the site section to :characters" do
+    login_as_user
+    get :index
+    assigns(:current_navigation).must_equal :raids
+  end
+
   describe "#index" do
     it "requires a user" do
       get :index

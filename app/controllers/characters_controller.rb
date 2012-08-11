@@ -1,6 +1,7 @@
 class CharactersController < ApplicationController
 
   requires_user
+  navigation :characters
 
   def index
     action = ListCharacters.new current_user

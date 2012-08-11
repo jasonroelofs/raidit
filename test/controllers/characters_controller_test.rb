@@ -10,6 +10,12 @@ class CharactersControllerTest < ActionController::TestCase
     end
   end
 
+  it "sets the site section to :characters" do
+    login_as_user
+    get :index
+    assigns(:current_navigation).must_equal :characters
+  end
+
   describe "#index" do
     before do
       login_as_user

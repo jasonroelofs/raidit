@@ -3,6 +3,11 @@ require 'controllers/test_helper'
 class HomeControllerTest < ActionController::TestCase
   tests HomeController
 
+  it "sets the site section to :home" do
+    get :index
+    assigns(:current_navigation).must_equal :home
+  end
+
   describe "#index" do
     it "renders the home page" do
       get :index
