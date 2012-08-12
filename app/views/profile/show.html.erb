@@ -1,0 +1,21 @@
+<h2>This is you!</h2>
+
+<%= form_for @user, :url => profile_path, :html => {:class => "form-horizontal"} do |f| %>
+
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :login, "Login", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :login %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :email, "Email", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :email %>
+      </div>
+    </div>
+  </fieldset>
+
+<% end %>

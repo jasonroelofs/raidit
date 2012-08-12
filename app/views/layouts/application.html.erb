@@ -31,7 +31,7 @@
           <ul class="nav nav-right nav-pills">
             <% if current_user %>
               <li class="<%= nav_link_class(:profile) %>">
-                <%= link_to "Profile", "#" %>
+                <%= link_to "Profile", profile_path %>
               </li>
               <li>
                 <%= link_to "Log Out", logout_path %>

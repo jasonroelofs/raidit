@@ -3,6 +3,7 @@ Raidit::Application.routes.draw do
 
   resources :characters
   resources :sessions
+  resource :profile, :controller => :profile
 
   resources :raids do
     resources :signups

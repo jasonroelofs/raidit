@@ -42,11 +42,13 @@ Before do
   )
 
   Repository.for(User).save(
-    raid_leader = User.new(:login => "raid_leader", :password => "password")
+    raid_leader = User.new(:login => "raid_leader", :password => "password",
+                           :email => "raid_leader@raidit.org")
   )
 
   Repository.for(User).save(
-    User.new(:login => "raider", :password => "password")
+    User.new(:login => "raider", :password => "password",
+             :email => "raider@raidit.org")
   )
 
   Repository.for(Guild).save(
