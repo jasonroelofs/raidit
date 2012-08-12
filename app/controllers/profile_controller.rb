@@ -7,4 +7,14 @@ class ProfileController < ApplicationController
     @user = current_user
   end
 
+  def update
+    action = UpdateUser.new current_user
+    if action.run params[:user]
+      redirect_to profile_path
+    else
+      @user = current_user
+      render "show"
+    end
+  end
+
 end

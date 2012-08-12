@@ -1,9 +1,21 @@
 Feature: User can manage their personal information
 
-  Scenario: User can see their login and email on profile page
+  Background:
     Given I am signed in as "raid_leader"
     And I am at the home page
     When I follow "Profile"
 
+  Scenario: User can see their login and email on profile page
     Then the "Login" field should contain "raid_leader"
     And the "Email" field should contain "raid_leader@raidit.org"
+
+  Scenario: User can change their login
+    When I fill in "Login" with "new_user"
+    And I press "Save"
+
+    Then the "Login" field should contain "new_user"
+    When I follow "Log Out"
+    And I am signed in as "new_user"
+
+    Then I should see "Profile"
+

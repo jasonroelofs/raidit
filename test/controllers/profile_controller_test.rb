@@ -26,4 +26,31 @@ class ProfileControllerTest < ActionController::TestCase
     end
   end
 
+  describe "#update" do
+    before do
+      login_as_user
+    end
+
+    it "updates the user's information" do
+      UpdateUser.any_instance.expects(:run).with({'login' => "new_login"}).returns true
+
+      post :update, :user => {
+        :login => "new_login"
+      }
+
+      must_redirect_to profile_path
+    end
+
+    it "handles errors" do
+      UpdateUser.any_instance.expects(:run).with({'login' => "new_login"}).returns false
+
+      post :update, :user => {
+        :login => "new_login"
+      }
+
+      assigns(:user).must_equal @user
+      must_render_template "show"
+    end
+  end
+
 end
