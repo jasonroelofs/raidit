@@ -1,8 +1,4 @@
 require 'unit/test_helper'
-require 'active_support/core_ext/numeric/time'
-require 'active_support/core_ext/date/acts_like'
-require 'active_support/core_ext/date/calculations'
-require 'active_support/core_ext/date/conversions'
 require 'presenters/raid_calendar_presenter'
 require 'models/raid'
 require 'models/guild'

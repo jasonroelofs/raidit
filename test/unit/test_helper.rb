@@ -4,6 +4,8 @@ require 'minitest/autorun'
 
 require 'mocha_standalone'
 
+require 'active_support/all'
+
 require 'repository'
 require 'repositories/in_memory'
 
