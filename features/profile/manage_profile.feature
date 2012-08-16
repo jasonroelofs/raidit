@@ -32,3 +32,18 @@ Feature: User can manage their personal information
     And I fill in "newPass" for "password"
     And I press "Log In"
     Then I should see "Characters"
+
+  Scenario: User sees errors if password form incorrect
+    When I fill in "Current Password" with "whaaaaaa?"
+    When I fill in "New Password" with "newPass"
+    And I fill in "Again" with "newPass"
+    And I press "Save"
+
+    Then I should see "Current password is incorrect"
+
+    When I fill in "Current Password" with "password"
+    When I fill in "New Password" with "newPass"
+    And I fill in "Again" with "oldPass"
+    And I press "Save"
+
+    Then I should see "New passwords don't match"

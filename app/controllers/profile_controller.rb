@@ -12,7 +12,7 @@ class ProfileController < ApplicationController
     if action.run params[:user]
       redirect_to profile_path
     else
-      @user = current_user
+      @user = action.user
       render "show"
     end
   end

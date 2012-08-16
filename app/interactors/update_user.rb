@@ -7,6 +7,10 @@ class UpdateUser
     @current_user = current_user
   end
 
+  def user
+    @current_user
+  end
+
   def run(params)
     @current_user.login = params[:login] if params[:login].present?
     @current_user.email = params[:email] if params[:email].present?
@@ -16,6 +20,14 @@ class UpdateUser
         new_passwords_match?(params)
         @current_user.password = params[:new_password]
       else
+        if !current_password_matches?(params)
+          @current_user.errors.add(:current_password, "Current password is incorrect")
+        end
+
+        if !new_passwords_match?(params)
+          @current_user.errors.add(:new_password, "New passwords don't match")
+        end
+
         return false
       end
     end

@@ -43,6 +43,7 @@ class ProfileControllerTest < ActionController::TestCase
 
     it "handles errors" do
       UpdateUser.any_instance.expects(:run).with({'login' => "new_login"}).returns false
+      UpdateUser.any_instance.expects(:user).returns(@user)
 
       post :update, :user => {
         :login => "new_login"

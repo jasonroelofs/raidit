@@ -25,9 +25,6 @@ describe UpdateUser do
     user.email.must_equal "new@email.com"
   end
 
-  describe "error handling" do
-  end
-
   describe "changing the password" do
     before do
       @action = UpdateUser.new @user
@@ -40,8 +37,10 @@ describe UpdateUser do
         :confirm_new_password => "winning"
       ).must_equal false
 
-      user = Repository.for(User).find_by_login("mylogin")
+      user = @action.user
       user.password.must_equal "password"
+
+      user.errors.get(:current_password).must_equal ["Current password is incorrect"]
     end
 
     it "errors if the new and confirm don't match" do
@@ -53,6 +52,11 @@ describe UpdateUser do
 
       user = Repository.for(User).find_by_login("mylogin")
       user.password.must_equal "password"
+
+      user = @action.user
+      user.password.must_equal "password"
+
+      user.errors.get(:new_password).must_equal ["New passwords don't match"]
     end
 
     it "allows changing password if all fields are valid" do
