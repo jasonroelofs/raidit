@@ -3,6 +3,8 @@
 <%= form_for @user, :url => profile_path, :html => {:class => "form-horizontal"} do |f| %>
 
   <fieldset>
+    <legend>Personal Information</legend>
+
     <div class="control-group">
       <%= f.label :login, "Login", :class => "control-label" %>
       <div class="controls">
@@ -16,10 +18,36 @@
         <%= f.text_field :email %>
       </div>
     </div>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary">Save</button>
-    </div>
   </fieldset>
+
+  <fieldset>
+    <legend>Change Password</legend>
+
+    <div class="control-group">
+      <%= f.label :current_password, "Current Password", :class => "control-label" %>
+      <div class="controls">
+        <%= f.password_field :current_password %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :new_password, "New Password", :class => "control-label" %>
+      <div class="controls">
+        <%= f.password_field :new_password %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :confirm_new_password, "Again", :class => "control-label" %>
+      <div class="controls">
+        <%= f.password_field :confirm_new_password %>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
 
 <% end %>

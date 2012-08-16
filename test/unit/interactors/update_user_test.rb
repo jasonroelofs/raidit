@@ -3,7 +3,8 @@ require 'interactors/update_user'
 
 describe UpdateUser do
   before do
-    @user = User.new :login => "mylogin", :email => "testemail@example.com"
+    @user = User.new :login => "mylogin", :email => "testemail@example.com",
+      :password => "password"
     Repository.for(User).save(@user)
   end
 
@@ -24,13 +25,53 @@ describe UpdateUser do
     user.email.must_equal "new@email.com"
   end
 
+  describe "error handling" do
+  end
+
+  describe "changing the password" do
+    before do
+      @action = UpdateUser.new @user
+    end
+
+    it "errors if the current password isn't right" do
+      @action.run(
+        :current_password => "johnson",
+        :new_password => "winning",
+        :confirm_new_password => "winning"
+      ).must_equal false
+
+      user = Repository.for(User).find_by_login("mylogin")
+      user.password.must_equal "password"
+    end
+
+    it "errors if the new and confirm don't match" do
+      @action.run(
+        :current_password => "password",
+        :new_password => "winning",
+        :confirm_new_password => "losing"
+      ).must_equal false
+
+      user = Repository.for(User).find_by_login("mylogin")
+      user.password.must_equal "password"
+    end
+
+    it "allows changing password if all fields are valid" do
+      @action.run(
+        :current_password => "password",
+        :new_password => "winning",
+        :confirm_new_password => "winning"
+      ).must_equal true
+
+      user = Repository.for(User).find_by_login("mylogin")
+      user.password.must_equal "winning"
+    end
+
+  end
+
 
     # Error cases:
     # email already taken
     # user login already taken
-    # password confirmation doesn't match password
     # email empty
     # login empty
-    # password empty
-    # password confirmation empty
 end

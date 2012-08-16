@@ -19,3 +19,16 @@ Feature: User can manage their personal information
 
     Then I should see "Profile"
 
+  Scenario: User can change their password
+    When I fill in "Current Password" with "password"
+    When I fill in "New Password" with "newPass"
+    And I fill in "Again" with "newPass"
+    And I press "Save"
+
+    When I follow "Log Out"
+    And I follow "Log In"
+
+    Then I fill in "raid_leader" for "login"
+    And I fill in "newPass" for "password"
+    And I press "Log In"
+    Then I should see "Characters"
