@@ -1,48 +1,21 @@
 <h2>This is you!</h2>
 
-<%= form_for @user, :url => profile_path, :html => {:class => "form-horizontal"} do |f| %>
+<%= simple_form_for @user, :url => profile_path, :html => {:class => "form-horizontal"} do |f| %>
 
   <fieldset>
     <legend>Personal Information</legend>
 
-    <div class="control-group">
-      <%= f.label :login, "Login", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :login %>
-      </div>
-    </div>
+    <%= f.input :login %>
+    <%= f.input :email %>
 
-    <div class="control-group">
-      <%= f.label :email, "Email", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :email %>
-      </div>
-    </div>
   </fieldset>
 
   <fieldset>
     <legend>Change Password</legend>
 
-    <div class="control-group">
-      <%= f.label :current_password, "Current Password", :class => "control-label" %>
-      <div class="controls">
-        <%= f.password_field :current_password %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :new_password, "New Password", :class => "control-label" %>
-      <div class="controls">
-        <%= f.password_field :new_password %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :confirm_new_password, "Again", :class => "control-label" %>
-      <div class="controls">
-        <%= f.password_field :confirm_new_password %>
-      </div>
-    </div>
+    <%= f.input :current_password, :label => "Current Password" %>
+    <%= f.input :new_password, :label => "New Password" %>
+    <%= f.input :confirm_new_password, :label => "Again" %>
 
   </fieldset>
 
