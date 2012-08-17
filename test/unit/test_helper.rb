@@ -13,6 +13,8 @@ class MiniTest::Unit::TestCase
   include Mocha::API
 
   def setup
+    User.bcrypt_enabled = false
+
     mocha_teardown
     configure_repositories
   end

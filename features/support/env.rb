@@ -31,6 +31,8 @@ Capybara.default_selector = :css
 ActionController::Base.allow_rescue = false
 
 Before do
+  User.bcrypt_enabled = false
+
   Repository.reset!
   Repository.configure(
     "User"        => InMemory::UserRepo.new,

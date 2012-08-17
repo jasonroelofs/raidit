@@ -4,6 +4,11 @@ require 'bcrypt'
 class User
   include Entity
 
+  # Due to how insanely slow bcrypt is, I don't want it running
+  # continuously through the test suite, so I flag it accordingly.
+  cattr_accessor :bcrypt_enabled
+  @@bcrypt_enabled = true
+
   attr_accessor :email, :login
 
   attr_reader :password_hash
@@ -19,8 +24,12 @@ class User
   # Setting a new password, gets hashed via bcrypt
   ##
   def password=(new_password)
-    @password = nil
-    @password_hash = BCrypt::Password.create new_password
+    if self.class.bcrypt_enabled
+      @password = nil
+      @password_hash = BCrypt::Password.create new_password
+    else
+      @password = new_password
+    end
   end
 
   ##
@@ -28,7 +37,11 @@ class User
   # if two passwords match, ignoring the hashing
   ##
   def password
-    @password ||= BCrypt::Password.new(@password_hash)
+    if self.class.bcrypt_enabled
+      @password ||= BCrypt::Password.new(@password_hash)
+    else
+      @password
+    end
   end
 
   def set_login_token(type, token)

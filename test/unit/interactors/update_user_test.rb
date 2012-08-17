@@ -33,7 +33,7 @@ describe UpdateUser do
       :confirm_new_password => "winning")
 
     user = Repository.for(User).find_by_login("mylogin")
-    user.password.must_be :==, "winning"
+    user.password.must_equal "winning"
   end
 
     # Error cases:
