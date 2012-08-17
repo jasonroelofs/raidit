@@ -18,10 +18,6 @@ describe User do
   end
 
   describe "passwords" do
-    before do
-#      User.bcrypt_enabled = true
-    end
-
     it "hashes the incoming password using bcrypt" do
       u = User.new
       u.password = "anewpass"
