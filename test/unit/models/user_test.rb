@@ -11,7 +11,33 @@ describe User do
     u = User.new email: "email", login: "login", password: "pass"
     u.login.must_equal "login"
     u.email.must_equal "email"
-    u.password.must_equal "pass"
+
+    # must_equal does something scewy with == to where it
+    # doesn't work here
+    u.password.must_be :==, "pass"
+  end
+
+  describe "passwords" do
+    before do
+#      User.bcrypt_enabled = true
+    end
+
+    it "hashes the incoming password using bcrypt" do
+      u = User.new
+      u.password = "anewpass"
+
+      u.password_hash.wont_be_nil
+      u.password_hash.length.must_be :>, 20
+    end
+
+    it "returns a comparator object for password checks" do
+      u = User.new
+      u.password = "anewpass"
+
+      # See test above
+      u.password.must_be :==, "anewpass"
+      u.password.wont_be :==, "someotherpass"
+    end
   end
 
   describe "login tokens" do

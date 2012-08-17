@@ -1,15 +1,34 @@
 require 'entity'
+require 'bcrypt'
 
 class User
   include Entity
 
-  attr_accessor :email, :login, :password
+  attr_accessor :email, :login
+
+  attr_reader :password_hash
 
   def initialize(attrs = {})
     super
 
     @login_tokens = {}
     @onboarding = {}
+  end
+
+  ##
+  # Setting a new password, gets hashed via bcrypt
+  ##
+  def password=(new_password)
+    @password = nil
+    @password_hash = BCrypt::Password.create new_password
+  end
+
+  ##
+  # Return a comparison object that can be used to check
+  # if two passwords match, ignoring the hashing
+  ##
+  def password
+    @password ||= BCrypt::Password.new(@password_hash)
   end
 
   def set_login_token(type, token)
