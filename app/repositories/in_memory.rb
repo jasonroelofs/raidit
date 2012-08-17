@@ -15,10 +15,20 @@ module InMemory
       @records.find {|r| r.id == id }
     end
 
+    ##
+    # Save the record to the persistence store
+    # Will return true on success, false if there
+    # are any errors on the object.
+    ##
     def save(obj)
-      obj.id ||= (@id_counter += 1)
-      @records << obj
-      @records.uniq!
+      if obj.errors.empty?
+        obj.id ||= (@id_counter += 1)
+        @records << obj
+        @records.uniq!
+        true
+      else
+        false
+      end
     end
   end
 
