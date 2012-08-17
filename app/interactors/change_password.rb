@@ -1,14 +1,16 @@
-require 'repository'
-require 'models/user'
-
+##
+# Check that the current_password matches the user and that
+# the new password and it's confirmation match and update the
+# password on the given User.
+#
+# Will add errors to User if either of the requirements don't match.
+# Returns the updated User object.
+# Does not save to the db.
+##
 class ChangePassword
 
   def initialize(current_user)
     @current_user = current_user
-  end
-
-  def user
-    @current_user
   end
 
   def run(current_password, new_password, confirm_new_password)
@@ -22,7 +24,7 @@ class ChangePassword
       @current_user.errors.add(:current_password, "Current password is incorrect")
     end
 
-    Repository.for(User).save(@current_user)
+    @current_user
   end
 
 end

@@ -34,8 +34,7 @@ class UpdateUser
 
     if password_change_requested?(params)
       action = ChangePassword.new(@current_user)
-      action.run(*explode_password_params(params))
-      @current_user = action.user
+      @current_user = action.run *explode_password_params(params)
     end
 
     Repository.for(User).save(@current_user)
