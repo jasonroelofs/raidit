@@ -9,6 +9,9 @@ require 'active_support/all'
 require 'repository'
 require 'repositories/in_memory'
 
+require 'bcrypt'
+Kernel.silence_warnings { BCrypt::Engine::DEFAULT_COST = 1 }
+
 class MiniTest::Unit::TestCase
   include Mocha::API
 

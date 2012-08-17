@@ -5,6 +5,9 @@ require 'rails/test_help'
 require 'rails_test_patches'
 require 'mocha_standalone'
 
+require 'bcrypt'
+Kernel.silence_warnings { BCrypt::Engine::DEFAULT_COST = 1 }
+
 module MiniTest::Expectations
   infect_an_assertion :assert_redirected_to, :must_redirect_to
   infect_an_assertion :assert_template, :must_render_template
