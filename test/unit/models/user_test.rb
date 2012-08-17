@@ -12,12 +12,14 @@ describe User do
     u.login.must_equal "login"
     u.email.must_equal "email"
 
+    # must_equal does something scewy with == to where it
+    # doesn't work here
     u.password.must_be :==, "pass"
   end
 
   describe "passwords" do
     before do
-      User.bcrypt_enabled = true
+#      User.bcrypt_enabled = true
     end
 
     it "hashes the incoming password using bcrypt" do
@@ -32,8 +34,7 @@ describe User do
       u = User.new
       u.password = "anewpass"
 
-      # must_equal does something scewy with == to where it
-      # doesn't work here
+      # See test above
       u.password.must_be :==, "anewpass"
       u.password.wont_be :==, "someotherpass"
     end
