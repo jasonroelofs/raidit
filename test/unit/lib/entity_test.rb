@@ -15,8 +15,6 @@ describe Entity do
   end
 
   it "includes all of ActiveModel" do
-#    TestEntity.ancestors.must_include ActiveModel::Naming
-#    TestEntity.ancestors.must_include ActiveModel::Translation
     TestEntity.ancestors.must_include ActiveModel::Validations
     TestEntity.ancestors.must_include ActiveModel::Conversion
   end

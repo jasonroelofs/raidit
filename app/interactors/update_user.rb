@@ -1,5 +1,6 @@
 require 'repository'
 require 'models/user'
+require 'interactors/change_password'
 
 class UpdateUser
 
@@ -11,29 +12,33 @@ class UpdateUser
     @current_user
   end
 
+  ##
+  # Hmm, hash params, not my favorite.
+  # Values of hash can be:
+  #
+  #  :login
+  #  :email
+  #  :current_password
+  #  :new_password
+  #  :confirm_new_password
+  #
+  # If all three password fields are present then it's assumed
+  # the user wants the password changed, so we change it if we can.
+  #
+  # Should this object know about changing the password or should
+  # the use of ChangePassword be pulled out to the controller?
+  ##
   def run(params)
     @current_user.login = params[:login] if params[:login].present?
     @current_user.email = params[:email] if params[:email].present?
 
     if password_change_requested?(params)
-      if current_password_matches?(params) &&
-        new_passwords_match?(params)
-        @current_user.password = params[:new_password]
-      else
-        if !current_password_matches?(params)
-          @current_user.errors.add(:current_password, "Current password is incorrect")
-        end
-
-        if !new_passwords_match?(params)
-          @current_user.errors.add(:new_password, "New passwords don't match")
-        end
-
-        return false
-      end
+      action = ChangePassword.new(@current_user)
+      action.run(*explode_password_params(params))
+      @current_user = action.user
     end
 
     Repository.for(User).save(@current_user)
-    true
   end
 
   protected
@@ -44,11 +49,8 @@ class UpdateUser
       params[:confirm_new_password].present?
   end
 
-  def current_password_matches?(params)
-    @current_user.password == params[:current_password]
+  def explode_password_params(params)
+    params.values_at :current_password, :new_password, :confirm_new_password
   end
 
-  def new_passwords_match?(params)
-    params[:new_password] == params[:confirm_new_password]
-  end
 end
