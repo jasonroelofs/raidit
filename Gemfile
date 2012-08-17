@@ -2,6 +2,8 @@ source :rubygems
 
 gem "rails", "~> 3.2.0"
 
+gem "bcrypt-ruby", :require => "bcrypt"
+
 gem "simple_form"
 gem "state_machine", "~> 1.1.0"
 
