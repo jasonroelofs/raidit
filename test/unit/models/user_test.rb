@@ -14,23 +14,6 @@ describe User do
     u.password.must_equal "pass"
   end
 
-#  describe "#change_password" do
-#    it "changes the password if the given current matches the current" do
-#      u = User.new password: "password"
-#      u.change_password "password", "blorblip"
-#
-#      u.password.must_equal "blorblip"
-#    end
-#
-#    it "adds an error if the given current doesn't match" do
-#      u = User.new password: "password"
-#      u.change_password "johnson", "blorblip"
-#
-#      u.password.must_equal "password"
-#      u.errors.get(:
-#    end
-#  end
-
   describe "login tokens" do
     it "defaults to nil token" do
       u = User.new
