@@ -5,6 +5,6 @@ class Character
 
   attr_accessor :user, :guild
 
-  attr_accessor :name, :game, :server, :region
+  attr_accessor :name, :game, :server, :region, :character_class
 
 end

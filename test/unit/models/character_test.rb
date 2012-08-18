@@ -13,7 +13,7 @@ describe Character do
     u = User.new
     g = Guild.new
     c = Character.new name: "Weemuu", user: u, game: "game", server: "Detheroc",
-      region: "US", guild: g
+      region: "US", guild: g, character_class: "Mage"
 
     c.name.must_equal "Weemuu"
     c.user.must_equal u
@@ -21,5 +21,6 @@ describe Character do
     c.server.must_equal "Detheroc"
     c.region.must_equal "US"
     c.guild.must_equal g
+    c.character_class.must_equal "Mage"
   end
 end
