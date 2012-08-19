@@ -43,6 +43,11 @@ $thePastBackground: grey;
   }
 }
 
+.section-header {
+  border-bottom: 1px solid $bodyBackground;
+  margin-bottom: 1em;
+}
+
 .raid-calendar {
   tbody tr:hover td,
   tbody tr:hover th {
@@ -131,5 +136,29 @@ $thePastBackground: grey;
       @extend .btn-info;
     }
   }
+}
 
+.character-list {
+  margin-bottom: 1em;
+}
+
+.character {
+  img {
+    float: left;
+    width: 32px;
+    height: 32px;
+    padding-left: 5px;
+    padding-right: 10px;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .extra {
+    color: $gray;
+  }
+
+  margin-bottom: 1em;
 }
