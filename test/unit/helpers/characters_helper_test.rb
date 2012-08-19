@@ -1,9 +1,11 @@
 require 'unit/test_helper'
 require 'models/character'
 
+require 'helpers/application_helper'
 require 'helpers/characters_helper'
 
 describe CharactersHelper do
+  include ApplicationHelper
   include CharactersHelper
 
   describe "#character_icon" do
