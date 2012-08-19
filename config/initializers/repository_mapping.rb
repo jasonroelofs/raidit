@@ -14,6 +14,14 @@ Raidit::Application.configure do
 
     # Set up our seed data for the development setup
     if Rails.env.development?
+      Repository.for(Guild).save(
+        exiled = Guild.new(:name => "Exiled")
+      )
+
+      Repository.for(Guild).save(
+        mind_crush = Guild.new(:name => "Mind Crush")
+      )
+
       Repository.for(User).save(
         jason = User.new(:login => "jason", :password => "password")
       )
@@ -24,16 +32,17 @@ Raidit::Application.configure do
 
       Repository.for(Character).save(
         weemuu = Character.new(:name => "Weemuu", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => jason, character_class: "Mage")
+          :region => "US", :user => jason, character_class: "Mage", guild: exiled)
+      )
+
+      Repository.for(Character).save(
+        weemoo = Character.new(:name => "Weemoo", :game => "wow", :server => "Kil'Jaeden",
+          :region => "US", :user => jason, character_class: "Shaman", guild: mind_crush)
       )
 
       Repository.for(Character).save(
         phouchg = Character.new(:name => "Phouchg", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => raider, character_class: "Hunter")
-      )
-
-      Repository.for(Guild).save(
-        exiled = Guild.new(:name => "Exiled")
+          :region => "US", :user => raider, character_class: "Hunter", guild: exiled)
       )
 
       Repository.for(Permission).save(

@@ -21,15 +21,25 @@ class CharactersControllerTest < ActionController::TestCase
       login_as_user
     end
 
-    it "renders the list of characters the current user has" do
-      list = [Character.new]
-      ListCharacters.any_instance.expects(:run).returns(list)
+    it "renders the list of guilded and unguilded characters the current user has" do
+      guild1 = Guild.new
+      guild2 = Guild.new
+      guilded = {guild1 => [Character.new], guild2 => [Character.new]}
+      unguilded = [Character.new]
+
+      ListCharacters.any_instance.expects(:guilded).returns(guilded)
+      ListCharacters.any_instance.expects(:unguilded).returns(unguilded)
+
       get :index
-      assigns(:characters).must_equal list
+
+      assigns(:guilded_characters).must_equal guilded
+      assigns(:unguilded_characters).must_equal unguilded
     end
 
     it "redirects to #new if there are no characters" do
-      ListCharacters.any_instance.expects(:run).returns([])
+      ListCharacters.any_instance.expects(:guilded).returns({})
+      ListCharacters.any_instance.expects(:unguilded).returns([])
+
       get :index
 
       assert_redirected_to new_character_path

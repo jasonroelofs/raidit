@@ -58,6 +58,10 @@ Before do
     exiled = Guild.new(:name => "Exiled")
   )
 
+  Repository.for(Guild).save(
+    Guild.new(:name => "Mind Crush")
+  )
+
   Repository.for(Permission).save(
     Permission.new(:user => raid_leader, :guild => exiled,
                     :permissions => Permission::RAID_LEADER)

@@ -1,16 +1,22 @@
-<div class="unguilded character-list row">
-  <div class="section-header span12">
-    <h3>Unguilded</h3>
-  </div>
-
-  <% @characters.each do |character| %>
-    <div class="character span4">
-      <%= character_icon character %>
-      <div class="name"><%= character.name %></div>
-      <div class="extra"><%= character.region %> - <%= character.server %></div>
+<% @guilded_characters.each do |guild, characters| %>
+  <div class="guilded character-list row <%= normalize_name(guild.name) %>">
+    <div class="section-header span12">
+      <h3><%= guild.name %></h3>
     </div>
-  <% end %>
-</div>
+
+    <%= render :partial => "character", :collection => characters %>
+  </div>
+<% end %>
+
+<% if @unguilded_characters.any? %>
+  <div class="unguilded character-list row">
+    <div class="section-header span12">
+      <h3>Unguilded</h3>
+    </div>
+
+    <%= render :partial => "character", :collection => @unguilded_characters %>
+  </div>
+<% end %>
 
 <div class="actions">
   <%= link_to "Add New Character", new_character_path, :class => "btn btn-large" %>
