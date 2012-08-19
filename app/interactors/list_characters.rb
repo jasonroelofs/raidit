@@ -20,14 +20,25 @@ class ListCharacters
   #   guild => [list of characters]
   ##
   def guilded
+    characters = find_guilded_characters
+    map_characters_by_guild characters
+  end
+
+  def find_guilded_characters
     self.run.select do |character|
       character.guild.present?
-    end.inject({}) do |memo, character|
+    end
+  end
+  private :find_guilded_characters
+
+  def map_characters_by_guild(characters)
+    characters.inject({}) do |memo, character|
       memo[character.guild] ||= []
       memo[character.guild] << character
       memo
     end
   end
+  private :map_characters_by_guild
 
   ##
   # Find all characters for this user who are *not* in a guild.
@@ -35,9 +46,14 @@ class ListCharacters
   # Returns an array of found Characters
   ##
   def unguilded
+    find_unguilded_characters
+  end
+
+  def find_unguilded_characters
     self.run.select do |character|
       character.guild.nil?
     end
   end
+  private :find_unguilded_characters
 
 end
