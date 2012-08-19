@@ -12,8 +12,7 @@ describe ListCharacters do
     action.user.must_equal user
   end
 
-  describe "#guilded" do
-
+  describe "#guilded and #unguilded" do
     before do
       @user = User.new
       @guild = Guild.new
@@ -39,10 +38,6 @@ describe ListCharacters do
       found.wont_be_nil
       found.must_equal [@char2]
     end
-  end
-
-  describe "#unguilded" do
-
   end
 
   describe "#run" do
