@@ -24,12 +24,12 @@ Raidit::Application.configure do
 
       Repository.for(Character).save(
         weemuu = Character.new(:name => "Weemuu", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => jason)
+          :region => "US", :user => jason, character_class: "Mage")
       )
 
       Repository.for(Character).save(
         phouchg = Character.new(:name => "Phouchg", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => raider)
+          :region => "US", :user => raider, character_class: "Hunter")
       )
 
       Repository.for(Guild).save(
