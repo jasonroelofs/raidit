@@ -1,12 +1,17 @@
-<h2>You have the following Characters</h2>
-
-<% @characters.each do |character| %>
-  <div class="character">
-    <span class="server"><%= character.region %> - <%= character.server %></span>
-    <span class="name"><%= character.name %></span>
+<div class="unguilded character-list row">
+  <div class="section-header span12">
+    <h3>Unguilded</h3>
   </div>
-<% end %>
 
-<div>
+  <% @characters.each do |character| %>
+    <div class="character span4">
+      <%= character_icon character %>
+      <div class="name"><%= character.name %></div>
+      <div class="extra"><%= character.region %> - <%= character.server %></div>
+    </div>
+  <% end %>
+</div>
+
+<div class="actions">
   <%= link_to "Add New Character", new_character_path, :class => "btn btn-large" %>
 </div>

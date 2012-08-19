@@ -9,7 +9,8 @@ Given /^"(.*?)" has the following characters$/ do |login, table|
       server: row[:server],
       game: row[:game],
       name: row[:name],
-      user: current_user
+      user: current_user,
+      character_class: row[:character_class]
     )
 
     if row[:guild]

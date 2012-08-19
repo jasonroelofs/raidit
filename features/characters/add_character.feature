@@ -12,8 +12,7 @@ Scenario: The user can add his / her first character to the account
   And I fill in "Weemoo" for "name"
   And I press "Add Character"
 
-  Then I should see "You have the following Characters"
-  And I should see "Weemoo"
+  Then I should see "Weemoo"
   And I should see "US - Kil'Jaeden"
 
 
@@ -34,5 +33,5 @@ Scenario: User can add another character to the account
   And I fill in "Krood" for "name"
   And I press "Add Character"
 
-  Then I should see "US - Detheroc Weemuu"
-  And I should see "US - Kil'Jaeden Krood"
+  Then I should see "Weemuu US - Detheroc"
+  And I should see "Krood US - Kil'Jaeden"
