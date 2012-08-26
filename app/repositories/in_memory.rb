@@ -52,6 +52,14 @@ module InMemory
     def find_all_for_user(user)
       records.select {|c| c.user == user }
     end
+
+    def find_main_character(user, guild)
+      records.find {|c|
+        c.user == user &&
+          c.guild == guild &&
+          c.main?
+      }
+    end
   end
 
   class RaidRepo < IndexedRepo

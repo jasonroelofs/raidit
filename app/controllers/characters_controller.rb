@@ -28,4 +28,11 @@ class CharactersController < ApplicationController
     redirect_to action: "index"
   end
 
+
+  def make_main
+    character = FindCharacter.by_id params[:id].to_i
+    SelectMainCharacter.run character
+
+    redirect_to action: "index"
+  end
 end

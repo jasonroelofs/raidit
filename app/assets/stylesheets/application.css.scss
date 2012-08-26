@@ -160,5 +160,9 @@ $thePastBackground: grey;
     color: $gray;
   }
 
+  &.main-character {
+    border: 1px solid $black;
+  }
+
   margin-bottom: 1em;
 }

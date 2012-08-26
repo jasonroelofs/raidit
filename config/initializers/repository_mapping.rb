@@ -36,6 +36,11 @@ Raidit::Application.configure do
       )
 
       Repository.for(Character).save(
+        wonko = Character.new(:name => "Wonko", :game => "wow", :server => "Kil'Jaeden",
+          :region => "US", :user => jason, character_class: "Warrior", guild: mind_crush)
+      )
+
+      Repository.for(Character).save(
         weemoo = Character.new(:name => "Weemoo", :game => "wow", :server => "Kil'Jaeden",
           :region => "US", :user => jason, character_class: "Shaman", guild: mind_crush)
       )

@@ -23,4 +23,12 @@ describe Character do
     c.guild.must_equal g
     c.character_class.must_equal "Mage"
   end
+
+  it "knows if it's a main character or not" do
+    c = Character.new
+    c.main?.must_equal false
+
+    c.is_main = true
+    c.main?.must_equal true
+  end
 end

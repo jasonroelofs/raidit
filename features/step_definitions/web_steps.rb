@@ -29,8 +29,20 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )press "(.*?)" within "(.*?)"$/ do |button, element|
+  within(element) do
+    click_button(button)
+  end
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
+end
+
+When /^(?:|I )follow "(.*?)" within "(.*?)"$/ do |link, element|
+  within(element) do
+    click_link(link)
+  end
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|

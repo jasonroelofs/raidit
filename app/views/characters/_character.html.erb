@@ -1,5 +1,10 @@
-<div class="character span4">
+<div class="character span4 <%= character.main? ? "main-character" : "" %>" data-character-name="<%= normalize_name character.name %>">
   <%= character_icon character %>
   <div class="name"><%= character.name %></div>
   <div class="extra"><%= character.region %> - <%= character.server %></div>
+  <div class="actions">
+    <%= form_tag make_main_character_path(character), :method => :put do %>
+      <%= submit_tag "Make Main", :class => 'btn btn-small' %>
+    <% end %>
+  </div>
 </div>

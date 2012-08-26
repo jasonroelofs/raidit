@@ -1,7 +1,12 @@
 Raidit::Application.routes.draw do
   root :to => 'home#index'
 
-  resources :characters
+  resources :characters do
+    member do
+      put :make_main
+    end
+  end
+
   resources :sessions
   resource :profile, :controller => :profile
 

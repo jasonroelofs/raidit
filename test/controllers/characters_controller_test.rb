@@ -24,8 +24,8 @@ class CharactersControllerTest < ActionController::TestCase
     it "renders the list of guilded and unguilded characters the current user has" do
       guild1 = Guild.new
       guild2 = Guild.new
-      guilded = {guild1 => [Character.new], guild2 => [Character.new]}
-      unguilded = [Character.new]
+      guilded = {guild1 => [Character.new(id: 1)], guild2 => [Character.new(id: 2)]}
+      unguilded = [Character.new(id: 3)]
 
       ListCharacters.any_instance.expects(:guilded).returns(guilded)
       ListCharacters.any_instance.expects(:unguilded).returns(unguilded)
@@ -66,7 +66,21 @@ class CharactersControllerTest < ActionController::TestCase
       AddCharacter.any_instance.expects(:run).with("wow", "US", "Detheroc", "Weemuu")
       post :create, :game => "wow", :region => "US", :server => "Detheroc", :name => "Weemuu"
 
-      assert_redirected_to characters_path
+      must_redirect_to characters_path
+    end
+  end
+
+  describe "#make_main" do
+    it "triggers a main change for the give character" do
+      login_as_user
+      character = Character.new
+
+      FindCharacter.expects(:by_id).with(10).returns(character)
+      SelectMainCharacter.expects(:run).with(character)
+
+      put :make_main, :id => 10
+
+      must_redirect_to characters_path
     end
   end
 end

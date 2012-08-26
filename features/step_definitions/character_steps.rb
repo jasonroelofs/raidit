@@ -20,3 +20,7 @@ Given /^"(.*?)" has the following characters$/ do |login, table|
     repo.save c
   end
 end
+
+When /^I (follow|press) "(.*?)" for the character "(.*?)"$/ do |action, link_text, char_name|
+  step %|I #{action} "#{link_text}" within "div[data-character-name=#{char_name.downcase}]"|
+end
