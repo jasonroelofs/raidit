@@ -35,6 +35,7 @@ Feature: Listing a user's characters
 
     When I press "Make Main" for the character "Weemoo"
     Then I should see "Weemoo" within ".exiled .main-character"
+    And I should not see the "Make Main" button within ".exiled .main-character"
 
     When I press "Make Main" for the character "Weemuu"
     Then I should see "Weemuu" within ".exiled .main-character"
@@ -55,7 +56,10 @@ Feature: Listing a user's characters
     And I press "Make Main" for the character "Stabby"
 
     Then I should see "Weemoo" within ".exiled .main-character"
+    And I should not see the "Make Main" button within ".exiled .main-character"
+
     And I should see "Stabby" within ".mindcrush .main-character"
+    And I should not see the "Make Main" button within ".mindcrush .main-character"
 
   Scenario: User cannot "main" an unguilded character
     Given I am signed in as "raid_leader"

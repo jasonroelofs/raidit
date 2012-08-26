@@ -130,6 +130,12 @@ Then /^I should not see the "(.*?)" button$/ do |name|
   assert page.has_no_css?("input[value='#{name}']")
 end
 
+Then /^I should not see the "(.*?)" button within "(.*?)"$/ do |name, element|
+  within(element) do
+    assert page.has_no_css?("input[value='#{name}']")
+  end
+end
+
 Then /^the "([^"]*)" field should contain "([^"]*)"$/ do |field, value|
   field = find_field(field)
   field_value = (field.tag_name == 'textarea') ? field.text : field.value

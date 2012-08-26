@@ -2,7 +2,7 @@
   <%= character_icon character %>
   <div class="name"><%= character.name %></div>
   <div class="extra"><%= character.region %> - <%= character.server %></div>
-  <% if character.guild %>
+  <% if character.guild && !character.main? %>
     <div class="actions">
       <%= form_tag make_main_character_path(character), :method => :put do %>
         <%= submit_tag "Make Main", :class => 'btn btn-small' %>
