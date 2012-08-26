@@ -64,10 +64,10 @@ class UpdateSignup
 
     def available_actions
       [
-        (:accept   if can_accept_signup?),
-        (:unaccept if can_unaccept_signup?),
+        (:cancel   if can_cancel_signup?),
         (:enqueue  if can_enqueue_signup?),
-        (:cancel   if can_cancel_signup?)
+        (:unaccept if can_unaccept_signup?),
+        (:accept   if can_accept_signup?)
       ].compact
     end
 
