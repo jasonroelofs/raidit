@@ -4,7 +4,7 @@
       <h3><%= guild.name %></h3>
     </div>
 
-    <%= render :partial => "character", :collection => characters %>
+    <%= render :partial => "character", :collection => sorted_characters_main_first(characters) %>
   </div>
 <% end %>
 

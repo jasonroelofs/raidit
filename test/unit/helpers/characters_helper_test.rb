@@ -38,4 +38,24 @@ describe CharactersHelper do
     end
   end
 
+  describe "#sorted_characters_main_first" do
+    it "orders the characters by name" do
+      c1 = Character.new name: "Weemoo"
+      c2 = Character.new name: "Aenoix"
+      c3 = Character.new name: "Monster"
+
+      results = sorted_characters_main_first [c1, c2, c3]
+      results.must_equal [c2, c3, c1]
+    end
+
+    it "forces the main character to the front" do
+      c1 = Character.new name: "Weemoo", is_main: true
+      c2 = Character.new name: "Aenoix"
+      c3 = Character.new name: "Monster"
+
+      results = sorted_characters_main_first [c1, c2, c3]
+      results.must_equal [c1, c2, c3]
+    end
+  end
+
 end
