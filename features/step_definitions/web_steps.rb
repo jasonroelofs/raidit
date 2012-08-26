@@ -1,15 +1,9 @@
 require 'uri'
 require 'cgi'
 
-Then /^I should not see "(.*?)" within "(.*?)"$/ do |text, element|
+When /(.*?) within "(.*?)"$/ do |step_to_execute, element|
   within(element) do
-    assert page.has_no_content?(text)
-  end
-end
-
-Then /^I should see "(.*?)" within "(.*?)"$/ do |text, element|
-  within(element) do
-    assert page.has_content?(text), %|Unable to find "#{text}" inside of #{element}|
+    step step_to_execute
   end
 end
 
@@ -29,20 +23,8 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
-When /^(?:|I )press "(.*?)" within "(.*?)"$/ do |button, element|
-  within(element) do
-    click_button(button)
-  end
-end
-
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
-end
-
-When /^(?:|I )follow "(.*?)" within "(.*?)"$/ do |link, element|
-  within(element) do
-    click_link(link)
-  end
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
@@ -128,12 +110,6 @@ end
 
 Then /^I should not see the "(.*?)" button$/ do |name|
   assert page.has_no_css?("input[value='#{name}']")
-end
-
-Then /^I should not see the "(.*?)" button within "(.*?)"$/ do |name, element|
-  within(element) do
-    assert page.has_no_css?("input[value='#{name}']")
-  end
 end
 
 Then /^the "([^"]*)" field should contain "([^"]*)"$/ do |field, value|
