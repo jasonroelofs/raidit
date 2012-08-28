@@ -7,6 +7,8 @@ Raidit::Application.routes.draw do
     end
   end
 
+  resources :users
+
   resources :sessions
   resource :profile, :controller => :profile
 

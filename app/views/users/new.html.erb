@@ -1,0 +1,14 @@
+<h2>Sign Up!</h2>
+
+<%= simple_form_for @user do |f| %>
+
+  <%= f.input :login %>
+  <%= f.input :email %>
+
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+  </div>
+<% end %>
