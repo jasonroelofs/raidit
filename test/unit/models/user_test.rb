@@ -17,6 +17,27 @@ describe User do
     u.password.must_be :==, "pass"
   end
 
+  it "requires a login" do
+    u = User.new
+    assert !u.valid?
+
+    u.errors.get(:login).must_equal ["can't be blank"]
+  end
+
+  it "requires an email" do
+    u = User.new
+    assert !u.valid?
+
+    u.errors.get(:email).must_equal ["can't be blank"]
+  end
+
+  it "requires a password" do
+    u = User.new
+    assert !u.valid?
+
+    u.errors.get(:password).must_equal ["can't be blank"]
+  end
+
   describe "passwords" do
     it "hashes the incoming password using bcrypt" do
       u = User.new
@@ -33,6 +54,18 @@ describe User do
       # See test above
       u.password.must_be :==, "anewpass"
       u.password.wont_be :==, "someotherpass"
+    end
+
+    it "doesn't allow setting a nil password" do
+      u = User.new
+      u.password = nil
+      u.password_hash.must_be_nil
+    end
+
+    it "doesn't allow setting empty password" do
+      u = User.new
+      u.password = ""
+      u.password_hash.must_be_nil
     end
   end
 

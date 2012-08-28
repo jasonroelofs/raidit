@@ -5,8 +5,13 @@ class User
   include Entity
 
   attr_accessor :email, :login
-
   attr_reader :password_hash
+
+  validates_presence_of :login, :email
+
+  validate :password_hash do |record|
+    record.errors.add(:password, "can't be blank") unless record.password_hash
+  end
 
   def initialize(attrs = {})
     super
@@ -20,7 +25,10 @@ class User
   ##
   def password=(new_password)
     @password = nil
-    @password_hash = BCrypt::Password.create new_password
+
+    if new_password.present?
+      @password_hash = BCrypt::Password.create new_password
+    end
   end
 
   ##
