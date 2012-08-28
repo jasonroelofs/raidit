@@ -1,6 +1,6 @@
-Feature: User Signs In
+Feature: User Logs In
 
-Scenario: User can sign into the app
+Scenario: User can log into the app
   Given I am at the home page
   And I follow "Log In"
 
@@ -13,7 +13,7 @@ Scenario: User can sign into the app
 
   Then I should see "Characters"
 
-Scenario: Unknown user sees error when trying to sign in
+Scenario: Unknown user sees error when trying to log in
   Given I am at the home page
   And I follow "Log In"
 
