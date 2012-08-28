@@ -14,12 +14,7 @@ class SessionsController < ApplicationController
 
     if user = action.run(params[:login], params[:password])
       previous_path = session[:login_redirect_to]
-
-      reset_session
-      cookies[:web_session_token] = {
-        value: user.login_token(:web),
-        httponly: true
-      }
+      set_new_user_session user
 
       redirect_to previous_path || root_path
     else

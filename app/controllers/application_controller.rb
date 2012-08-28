@@ -99,4 +99,12 @@ class ApplicationController < ActionController::Base
     FindGuild.by_name "Exiled"
   end
 
+  def set_new_user_session(user)
+    reset_session
+    cookies[:web_session_token] = {
+      value: user.login_token(:web),
+      httponly: true
+    }
+  end
+
 end
