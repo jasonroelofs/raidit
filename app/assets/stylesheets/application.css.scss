@@ -122,12 +122,11 @@ $linkColor: lighten($blue, 20%);
     padding: 5px 0px;
   }
 
-  section {
+  .raid-role {
     margin-bottom: 1em;
   }
 
   .status {
-    clear: both;
     @extend .bordered-tab;
     @extend .tab-above;
 
@@ -143,7 +142,6 @@ $linkColor: lighten($blue, 20%);
 
   .accepted {
     @include tab-content("Accepted", $accepted, $acceptedLight);
-
   }
 
   .available {
@@ -170,8 +168,8 @@ $linkColor: lighten($blue, 20%);
     padding: 5px 0px;
     margin: 5px 5px 0px 5px;
 
-    &.real {
-      border-top: 1px solid $darkGrey;
+    &.real:hover {
+      background-color: $lightGrey;
     }
 
     img {
