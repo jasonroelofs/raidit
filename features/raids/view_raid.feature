@@ -14,9 +14,6 @@ Feature: Viewing a Raid
     And I should see "Invites start at 7:45 PM"
     And I should see "Raid starts at 8:00 PM"
     And I should see "ICC"
-    And I should see "Accepted"
-    And I should see "Available"
-    And I should see "Cancelled"
 
   Scenario: Can view a raid from the Raids page
     Given today is "2012/04/01"
