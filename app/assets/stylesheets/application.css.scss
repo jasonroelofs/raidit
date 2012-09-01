@@ -1,6 +1,26 @@
-$bodyBackground: #eee;
-$lightBlue: #2F96B4;
+// Blue Triad
+// http://colorschemedesigner.com/#3x323w0w0w0w0
+
+// Green Tetrad
+// http://colorschemedesigner.com/#2O42xw0w0w0w0
+
 $thePastBackground: grey;
+$lightGrey: #ddd;
+
+$blue: #1729b0;
+$lightBlue: #4b5cd7;
+
+$accepted: #0acf00;
+$available: #ffb800;
+$cancelled: #fd0006;
+
+$acceptedLight: fade-out($accepted, 0.7);
+$availableLight: fade-out($available, 0.7);
+$cancelledLight: fade-out($cancelled, 0.7);
+
+// The following colors are for changing bootstrap styles
+$bodyBackground: #eee;
+$linkColor: lighten($blue, 20%);
 
 @import "bootstrap";
 
@@ -104,12 +124,64 @@ $thePastBackground: grey;
     margin-bottom: 1em;
   }
 
-  .accepted, .available, .cancelled {
+  .status {
+    clear: both;
+    @include border-radius(0px 4px 4px 4px);
+    position: relative;
+    border: 1px solid $lightGrey;
+    padding-top: 10px;
+    margin-bottom: 34px;
 
+    section {
+      margin-left: 8px;
+      display: inline-block;
+      width: 299px;
+    }
+  }
+
+  .status::after {
+    position: absolute;
+    top: -28px;
+    left: -1px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: whiteSmoke;
+    border: 1px solid $lightGrey;
+    @include border-radius(4px 4px 0px 0px);
+  }
+
+  .accepted {
+    border-color: $accepted;
+
+    &::after {
+      content: "Accepted";
+      background-color: $acceptedLight;
+      border-color: $accepted;
+    }
+  }
+
+  .available {
+    border-color: $available;
+
+    &::after {
+      content: "Available";
+      background-color: $availableLight;
+      border-color: $available;
+    }
+  }
+
+  .cancelled {
+    border-color: $cancelled;
+
+    &::after {
+      content: "Cancelled";
+      background-color: $cancelledLight;
+      border-color: $cancelled;
+    }
   }
 
   .signup {
-    border: 1px solid red;
     padding: 2px 5px;
   }
 
