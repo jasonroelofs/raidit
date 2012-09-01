@@ -6,6 +6,7 @@
 
 $thePastBackground: grey;
 $lightGrey: #ddd;
+$darkGrey: darken($lightGrey, 20%);
 
 $blue: #1729b0;
 $lightBlue: #4b5cd7;
@@ -142,6 +143,7 @@ $linkColor: lighten($blue, 20%);
 
   .accepted {
     @include tab-content("Accepted", $accepted, $acceptedLight);
+
   }
 
   .available {
@@ -165,7 +167,12 @@ $linkColor: lighten($blue, 20%);
   }
 
   .signup {
-    padding: 2px 5px;
+    padding: 5px 0px;
+    margin: 5px 5px 0px 5px;
+
+    &.real {
+      border-top: 1px solid $darkGrey;
+    }
   }
 
   .signup-actions {
