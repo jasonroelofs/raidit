@@ -1,0 +1,38 @@
+// A set of generic elements for ease of re-use across the site
+
+.bordered-tab {
+  position: relative;
+  border: 1px solid $lightGrey;
+
+  &.tab-above {
+    @include border-radius(0px 4px 4px 4px);
+    padding-top: 10px;
+    margin-bottom: 34px;
+  }
+
+  &.tab-inside {
+    @include border-radius(4px);
+    padding-top: 34px;
+    padding-bottom: 10px;
+  }
+}
+
+.bordered-tab::after {
+  position: absolute;
+  left: -1px;
+  padding: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: whiteSmoke;
+  border: 1px solid $lightGrey;
+}
+
+.bordered-tab.tab-above::after {
+  top: -28px;
+  @include border-radius(4px 4px 0px 0px);
+}
+
+.bordered-tab.tab-inside::after {
+  top: -1px;
+  @include border-radius(4px 0px 4px 0px);
+}

@@ -23,6 +23,7 @@ $bodyBackground: #eee;
 $linkColor: lighten($blue, 20%);
 
 @import "bootstrap";
+@import "elements";
 
 .container {
   margin-top: 30px;
@@ -126,29 +127,17 @@ $linkColor: lighten($blue, 20%);
 
   .status {
     clear: both;
-    @include border-radius(0px 4px 4px 4px);
-    position: relative;
-    border: 1px solid $lightGrey;
-    padding-top: 10px;
-    margin-bottom: 34px;
+    @extend .bordered-tab;
+    @extend .tab-above;
 
-    section {
-      margin-left: 8px;
+    .raid-role {
+      @extend .bordered-tab;
+      @extend .tab-inside;
+
+      margin-left: 7px;
       display: inline-block;
       width: 299px;
     }
-  }
-
-  .status::after {
-    position: absolute;
-    top: -28px;
-    left: -1px;
-    padding: 4px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: whiteSmoke;
-    border: 1px solid $lightGrey;
-    @include border-radius(4px 4px 0px 0px);
   }
 
   .accepted {
