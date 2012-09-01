@@ -173,6 +173,17 @@ $linkColor: lighten($blue, 20%);
     &.real {
       border-top: 1px solid $darkGrey;
     }
+
+    img {
+      width: 24px;
+      height: 24px;
+      margin-top: -5px;
+    }
+
+    .character-name {
+      font-weight: bold;
+      font-size: 16px;
+    }
   }
 
   .signup-actions {
