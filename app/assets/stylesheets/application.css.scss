@@ -141,33 +141,27 @@ $linkColor: lighten($blue, 20%);
   }
 
   .accepted {
-    border-color: $accepted;
-
-    &::after {
-      content: "Accepted";
-      background-color: $acceptedLight;
-      border-color: $accepted;
-    }
+    @include tab-content("Accepted", $accepted, $acceptedLight);
   }
 
   .available {
-    border-color: $available;
-
-    &::after {
-      content: "Available";
-      background-color: $availableLight;
-      border-color: $available;
-    }
+    @include tab-content("Available", $available, $availableLight);
   }
 
   .cancelled {
-    border-color: $cancelled;
+    @include tab-content("Cancelled", $cancelled, $cancelledLight);
+  }
 
-    &::after {
-      content: "Cancelled";
-      background-color: $cancelledLight;
-      border-color: $cancelled;
-    }
+  .tank::after {
+    content: "Tanks";
+  }
+
+  .healer::after {
+    content: "Healers";
+  }
+
+  .dps::after {
+    content: "DPS";
   }
 
   .signup {

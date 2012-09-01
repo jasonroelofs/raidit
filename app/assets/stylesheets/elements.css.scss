@@ -36,3 +36,13 @@
   top: -1px;
   @include border-radius(4px 0px 4px 0px);
 }
+
+@mixin tab-content($text, $borderColor, $tabColor) {
+  border-color: $borderColor;
+
+  &::after {
+    content: $text;
+    background-color: $tabColor;
+    border-color: $borderColor;
+  }
+}

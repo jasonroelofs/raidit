@@ -13,24 +13,37 @@
 
   <section class="status accepted">
     <% @raid.roles.each do |role| %>
-      <section class="<%= role %>">
-        <%= render :partial => "signup", :collection => @signups.accepted(role) %>
+      <section class="raid-role <%= role %>">
+        <% if @signups.accepted(role).any? %>
+          <%= render :partial => "signup", :collection => @signups.accepted(role) %>
+        <% else %>
+          <%# There needs to be content or the boxes don't line up /shrug %>
+          <div class="signup">&nbsp;</div>
+        <% end %>
       </section>
     <% end %>
   </section>
 
   <section class="status available">
     <% @raid.roles.each do |role| %>
-      <section class="<%= role %>">
-        <%= render :partial => "signup", :collection => @signups.available(role) %>
+      <section class="raid-role <%= role %>">
+        <% if @signups.available(role).any? %>
+          <%= render :partial => "signup", :collection => @signups.available(role) %>
+        <% else %>
+          <div class="signup">&nbsp;</div>
+        <% end %>
       </section>
     <% end %>
   </section>
 
   <section class="status cancelled">
     <% @raid.roles.each do |role| %>
-      <section class="<%= role %>">
-        <%= render :partial => "signup", :collection => @signups.cancelled(role) %>
+      <section class="raid-role <%= role %>">
+        <% if @signups.cancelled(role).any? %>
+          <%= render :partial => "signup", :collection => @signups.cancelled(role) %>
+        <% else %>
+          <div class="signup">&nbsp;</div>
+        <% end %>
       </section>
     <% end %>
   </section>
