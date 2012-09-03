@@ -7,6 +7,10 @@ class ListSignups
     Repository.for(Signup).find_all_for_user_and_raid(user, raid)
   end
 
+  def self.for_raid(raid)
+    new.for_raid(raid)
+  end
+
   def for_raid(raid)
     signups = find_signups_for_raid(raid)
     group_signups_by_status(signups)

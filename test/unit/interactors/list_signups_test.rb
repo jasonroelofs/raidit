@@ -30,7 +30,7 @@ describe ListSignups do
     end
   end
 
-  describe "#for_raid" do
+  describe ".for_raid" do
     before do
       @raid = Raid.new
     end
@@ -45,8 +45,7 @@ describe ListSignups do
       Repository.for(Signup).save(s1)
       Repository.for(Signup).save(s2)
 
-      action = ListSignups.new
-      signups = action.for_raid(@raid)
+      signups = ListSignups.for_raid(@raid)
 
       signups.accepted("healer").must_equal [s1]
       signups.available("healer").must_equal [s2]
@@ -54,8 +53,7 @@ describe ListSignups do
     end
 
     it "returns empty set if no signups found" do
-      action = ListSignups.new
-      signups = action.for_raid(@raid)
+      signups = ListSignups.for_raid(@raid)
 
       signups.accepted("tank").must_equal []
       signups.available("healer").must_equal []

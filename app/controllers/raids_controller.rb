@@ -10,7 +10,7 @@ class RaidsController < ApplicationController
 
   def show
     @raid = find_raid params[:id]
-    @signups = ListSignups.new.for_raid(@raid)
+    @signups = ListSignups.for_raid(@raid)
 
     @current_user_characters = ListCharacters.new(current_user).run
     @choosable_characters = @current_user_characters.reject do |character|
