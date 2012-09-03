@@ -61,22 +61,35 @@ Feature: Managing Raid Signups
 
     Then I should not see "Cancel" within ".tank"
 
-#  Scenario: Raider can sign up but not accept
-#    Given I am signed in as "raider"
-#    And "raider" has the following characters
-#      | game | region | server    | name     |
-#      | wow  | US     | Detheroc  | Phouchg  |
-#    And "raider" signed up "Phouchg" for "ICC" as "tank"
-#
-#    When I am at the home page
-#    And I follow "ICC"
-#
-#    Then I should see "Weemuu"
-#    And I should see "Weemuu"
-#    And I should not see "Accept"
-#    And I should not see "Cancel" within ".dps"
-#
-#    And I should see "Cancel" within ".tank"
-#
-#  Scenario: Raider can cancel and requeue their characters
-#
+  Scenario: Raider can sign up but not accept
+    Given I am signed in as "raider"
+    And "raider" has the following characters
+      | game | region | server    | name     |
+      | wow  | US     | Detheroc  | Phouchg  |
+    And "raider" signed up "Phouchg" for "ICC" as "tank"
+
+    When I am at the home page
+    And I follow "ICC"
+
+    Then I should see "Weemuu"
+    And I should see "Weemuu"
+    And I should not see "Accept"
+    And I should not see "Cancel" within ".available .dps"
+    And I should see "Cancel" within ".available .tank"
+
+  Scenario: Raider can cancel and requeue their characters
+    Given I am signed in as "raider"
+    And "raider" has the following characters
+      | game | region | server    | name     |
+      | wow  | US     | Detheroc  | Phouchg  |
+    And "raider" signed up "Phouchg" for "ICC" as "tank"
+
+    When I am at the home page
+    And I follow "ICC"
+
+    And I follow "Cancel"
+    Then I should see "Phouchg" within ".cancelled"
+    And I should see "Enqueue" within ".cancelled .tank"
+    When I follow "Enqueue"
+    Then I should see "Phouchg" within ".available"
+
