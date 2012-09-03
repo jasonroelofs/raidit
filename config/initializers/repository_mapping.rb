@@ -31,28 +31,28 @@ Raidit::Application.configure do
       )
 
       Repository.for(Character).save(
-        weemuu = Character.new(:name => "Weemuu", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => jason, character_class: "Mage", guild: exiled)
+        weemuu = Character.new(:name => "Weemuu", :user => jason,
+                               :character_class => "Mage", :guild =>  exiled)
       )
 
       Repository.for(Character).save(
-        wonko = Character.new(:name => "Wonko", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => jason, character_class: "Warrior", guild: mind_crush)
+        wonko = Character.new(:name => "Wonko",
+          :user => jason, :character_class => "Warrior", :guild => mind_crush)
       )
 
       Repository.for(Character).save(
-        weemoo = Character.new(:name => "Weemoo", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => jason, character_class: "Shaman", guild: mind_crush)
+        weemoo = Character.new(:name => "Weemoo",
+          :user => jason, :character_class => "Shaman", :guild => mind_crush)
       )
 
       Repository.for(Character).save(
-        weemoo = Character.new(:name => "Pandy", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => jason, character_class: "Druid")
+        weemoo = Character.new(:name => "Pandy",
+          :user => jason, :character_class => "Druid")
       )
 
       Repository.for(Character).save(
-        phouchg = Character.new(:name => "Phouchg", :game => "wow", :server => "Kil'Jaeden",
-          :region => "US", :user => raider, character_class: "Hunter", guild: exiled)
+        phouchg = Character.new(:name => "Phouchg",
+          :user => raider, :character_class => "Hunter", :guild => exiled)
       )
 
       Repository.for(Permission).save(

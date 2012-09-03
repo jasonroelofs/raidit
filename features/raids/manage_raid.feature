@@ -6,8 +6,8 @@ Feature: Managing Raid Signups
       | where     | when        | start | invite_offset |
       | ICC       | 2012/07/01  | 20:00 | 15            |
     And "raid_leader" has the following characters
-      | game | region | server    | name    |
-      | wow  | US     | Detheroc  | Weemuu  |
+      | name    |
+      | Weemuu  |
     And "raid_leader" signed up "Weemuu" for "ICC" as "dps"
 
   Scenario: Raid leader can manage signup acceptance
@@ -53,8 +53,8 @@ Feature: Managing Raid Signups
   Scenario: Raid leader cannot cancel signups they don't own
     Given I am signed in as "raid_leader"
     And "raider" has the following characters
-      | game | region | server    | name     |
-      | wow  | US     | Detheroc  | Phouchg  |
+      | name     |
+      | Phouchg  |
     And "raider" signed up "Phouchg" for "ICC" as "tank"
     When I am at the home page
     And I follow "ICC"
@@ -64,8 +64,8 @@ Feature: Managing Raid Signups
   Scenario: Raider can sign up but not accept
     Given I am signed in as "raider"
     And "raider" has the following characters
-      | game | region | server    | name     |
-      | wow  | US     | Detheroc  | Phouchg  |
+      | name     |
+      | Phouchg  |
     And "raider" signed up "Phouchg" for "ICC" as "tank"
 
     When I am at the home page
@@ -80,8 +80,8 @@ Feature: Managing Raid Signups
   Scenario: Raider can cancel and requeue their characters
     Given I am signed in as "raider"
     And "raider" has the following characters
-      | game | region | server    | name     |
-      | wow  | US     | Detheroc  | Phouchg  |
+      | name     |
+      | Phouchg  |
     And "raider" signed up "Phouchg" for "ICC" as "tank"
 
     When I am at the home page
@@ -107,8 +107,8 @@ Feature: Managing Raid Signups
     Given today is "2012/07/02"
     And I am signed in as "raid_leader"
     And "raider" has the following characters
-      | game | region | server    | name     |
-      | wow  | US     | Detheroc  | Phouchg  |
+      | name     |
+      | Phouchg  |
     And "raider" signed up "Phouchg" for "ICC" as "tank"
     And I am at the home page
     And I follow "ICC"

@@ -4,9 +4,6 @@ Given /^"(.*?)" has the following characters$/ do |login, table|
 
   table.hashes.each do |row|
     c = Character.new(
-      region: row[:region],
-      server: row[:server],
-      game: row[:game],
       name: row[:name],
       user: current_user,
       character_class: row[:character_class]

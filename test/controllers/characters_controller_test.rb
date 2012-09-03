@@ -63,8 +63,8 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     it "creates a new character for the current user and redirects to index" do
-      AddCharacter.any_instance.expects(:run).with("wow", "US", "Detheroc", "Weemuu")
-      post :create, :game => "wow", :region => "US", :server => "Detheroc", :name => "Weemuu"
+      AddCharacter.any_instance.expects(:run).with("Weemuu")
+      post :create, :name => "Weemuu"
 
       must_redirect_to characters_path
     end

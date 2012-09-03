@@ -14,7 +14,7 @@ describe CharactersHelper do
         image_path.must_equal "wow/mage.png"
       end
 
-      character_icon Character.new(game: "wow", character_class: "Mage")
+      character_icon Character.new(character_class: "Mage")
     end
 
     it "handles character classes with spaces in the name" do
@@ -22,19 +22,13 @@ describe CharactersHelper do
         image_path.must_equal "wow/deathknight.png"
       end
 
-      character_icon Character.new(game: "wow", character_class: "Death Knight")
-    end
-
-    it "renders nothing if no known game" do
-      self.expects(:image_tag).never
-
       character_icon Character.new(character_class: "Death Knight")
     end
 
     it "renders nothing if no character_class" do
       self.expects(:image_tag).never
 
-      character_icon Character.new(game: "wow")
+      character_icon Character.new
     end
   end
 

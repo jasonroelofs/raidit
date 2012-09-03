@@ -6,9 +6,6 @@
 
 <div class="wow">
   <%= form_tag characters_path, :class => "form-inline" do %>
-    <%= hidden_field_tag :game, "wow" %>
-    <%= select_tag :region, options_for_select(["US", "EU"]), :width => 3 %>
-    <%= text_field_tag :server, "", :placeholder => "Server" %>
     <%= text_field_tag :name, "", :placeholder => "Character Name" %>
     <%= button_tag "Add Character", :class => "btn" %>
   <% end %>

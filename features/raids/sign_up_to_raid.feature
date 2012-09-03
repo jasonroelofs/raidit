@@ -14,8 +14,8 @@ Feature: Signing up to a Raid
 
   Scenario: User signs up to a raid, is "Available" for selected role
     When "raid_leader" has the following characters
-      | game | region | server    | name    |
-      | wow  | US     | Detheroc  | Weemuu  |
+      | name    |
+      | Weemuu  |
     And I am at the home page
     And I follow "ICC"
 
@@ -33,10 +33,10 @@ Feature: Signing up to a Raid
 
   Scenario: User can sign up multiple of his own characters
     When "raid_leader" has the following characters
-      | game | region | server    | name    |
-      | wow  | US     | Detheroc  | Weemuu  |
-      | wow  | US     | Detheroc  | Wonko   |
-      | wow  | US     | Detheroc  | Stabby  |
+      | name    |
+      | Weemuu  |
+      | Wonko   |
+      | Stabby  |
 
     And I am at the home page
     And I follow "ICC"

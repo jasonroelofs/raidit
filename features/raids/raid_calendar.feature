@@ -2,8 +2,8 @@ Feature: Viewing the Raid Calendar
 
 Background:
   Given "raid_leader" has the following characters
-    | game | region | server    | name    |
-    | wow  | US     | Detheroc  | Weemuu  |
+    | name    |
+    | Weemuu  |
 
 Scenario: User with characters sees calendar as home page
   When I am signed in as "raid_leader"

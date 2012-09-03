@@ -20,11 +20,11 @@ Scenario: A user can see raids he has scheduled
 Scenario: A raider can see raids for his guild
   Given I am signed in as "raider"
   And "raid_leader" has the following characters
-    | game | region | server    | name    | guild  |
-    | wow  | US     | Detheroc  | Weemuu  | Exiled |
+    | name    | guild  |
+    | Weemuu  | Exiled |
   And "raider" has the following characters
-    | game | region | server    | name    | guild  |
-    | wow  | US     | Detheroc  | Phouchg | Exiled |
+    | name    | guild  |
+    | Phouchg | Exiled |
 
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |

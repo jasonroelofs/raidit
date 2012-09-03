@@ -4,9 +4,9 @@ Feature: Listing a user's characters
     Given I am signed in as "raid_leader"
     And I am at the home page
     And "raid_leader" has the following characters
-      | game | region | server    | name    | guild   |
-      | wow  | US     | Detheroc  | Weemuu  | Exiled  |
-      | wow  | US     | Kil'Jaeden  | Weemoo   | Mind Crush |
+      | name    | guild   |
+      | Weemuu  | Exiled  |
+      | Weemoo   | Mind Crush |
 
     When I follow "Characters"
     Then I should see "Weemuu" within ".guilded.exiled"
@@ -16,21 +16,21 @@ Feature: Listing a user's characters
     Given I am signed in as "raid_leader"
     And I am at the home page
     And "raid_leader" has the following characters
-      | game | region | server    | name    | character_class |
-      | wow  | US     | Detheroc  | Weemuu  | Mage            |
+      | name    | character_class |
+      | Weemuu  | Mage            |
 
     When I follow "Characters"
     Then I should see "Unguilded"
-    And I should see "Weemuu US - Detheroc" within ".unguilded"
+    And I should see "Weemuu" within ".unguilded"
 
   Scenario: User can specify a main character in a guild
     Given I am signed in as "raid_leader"
     And I am at the home page
     And "raid_leader" has the following characters
-      | game | region | server    | name    | character_class | guild |
-      | wow  | US     | Detheroc  | Weemuu  | Mage            | Exiled |
-      | wow  | US     | Detheroc  | Weemoo  | Shaman          | Exiled |
-      | wow  | US     | Detheroc  | Johnson | Warrior         | Exiled |
+      | name    | character_class | guild |
+      | Weemuu  | Mage            | Exiled |
+      | Weemoo  | Shaman          | Exiled |
+      | Johnson | Warrior         | Exiled |
     And I follow "Characters"
 
     When I press "Make Main" for the character "Weemoo"
@@ -45,11 +45,11 @@ Feature: Listing a user's characters
     Given I am signed in as "raid_leader"
     And I am at the home page
     And "raid_leader" has the following characters
-      | game | region | server    | name    | character_class | guild |
-      | wow  | US     | Detheroc  | Weemuu  | Mage            | Exiled |
-      | wow  | US     | Detheroc  | Weemoo  | Shaman          | Exiled |
-      | wow  | US     | Detheroc  | Johnson | Warrior         | Mind Crush |
-      | wow  | US     | Detheroc  | Stabby  | Rogue           | Mind Crush |
+      | name    | character_class | guild |
+      | Weemuu  | Mage            | Exiled |
+      | Weemoo  | Shaman          | Exiled |
+      | Johnson | Warrior         | Mind Crush |
+      | Stabby  | Rogue           | Mind Crush |
     And I follow "Characters"
 
     When I press "Make Main" for the character "Weemoo"
@@ -65,9 +65,9 @@ Feature: Listing a user's characters
     Given I am signed in as "raid_leader"
     And I am at the home page
     And "raid_leader" has the following characters
-      | game | region | server    | name    | character_class |
-      | wow  | US     | Detheroc  | Weemuu  | Mage            |
-      | wow  | US     | Detheroc  | Weemoo  | Shaman          |
-      | wow  | US     | Detheroc  | Johnson | Warrior         |
+      | name    | character_class |
+      | Weemuu  | Mage            |
+      | Weemoo  | Shaman          |
+      | Johnson | Warrior         |
     When I follow "Characters"
     Then I should not see the "Make Main" button

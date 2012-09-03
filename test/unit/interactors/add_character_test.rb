@@ -18,16 +18,13 @@ describe AddCharacter do
     end
 
     it "creates a new character for the user" do
-      @action.run "wow", "US", "Detheroc", "Wonko"
+      @action.run "Wonko"
 
       characters = Repository.for(Character).find_all_for_user(@user)
       characters.length.must_equal 1
 
       c = characters.first
 
-      c.game.must_equal "wow"
-      c.region.must_equal "US"
-      c.server.must_equal "Detheroc"
       c.name.must_equal "Wonko"
     end
   end
