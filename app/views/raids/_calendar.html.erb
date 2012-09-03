@@ -22,7 +22,7 @@
                   <%= link_to raid.where, [raid] %>
                 </span>
                 <div class="invite-time">
-                  <%= raid.invite_at.to_s(:with_am_pm) %>
+                  <%= raid.invite_at.to_s(:with_am_pm_tz) %>
                 </div>
               </div>
             <% end %>

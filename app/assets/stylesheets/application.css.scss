@@ -70,7 +70,7 @@ $linkColor: lighten($blue, 20%);
 }
 
 .section-header {
-  border-bottom: 1px solid $bodyBackground;
+  border-bottom: 1px solid $darkGrey;
   margin-bottom: 1em;
 }
 
@@ -109,7 +109,7 @@ $linkColor: lighten($blue, 20%);
     clear: both;
     margin: 4px;
     margin-bottom: 8px;
-    border-top: 1px dotted $lightBlue;
+    border-top: 1px dotted $darkGrey;
   }
 
   .invite-time {
@@ -249,10 +249,6 @@ $linkColor: lighten($blue, 20%);
 
   .extra {
     color: $gray;
-  }
-
-  &.main-character {
-    border: 1px solid $black;
   }
 
   margin-bottom: 1em;
