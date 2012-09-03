@@ -81,6 +81,12 @@ module InMemory
     def find_all_for_raid(raid)
       records.select {|s| s.raid == raid }
     end
+
+    def find_all_for_user_and_raid(user, raid)
+      records.select {|s|
+        s.raid == raid && s.user == user
+      }
+    end
   end
 
   class PermissionRepo < IndexedRepo

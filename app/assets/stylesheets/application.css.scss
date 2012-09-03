@@ -92,7 +92,6 @@ $linkColor: lighten($blue, 20%);
   }
 
   td.today {
-    border: 2px solid black;
   }
 
   td.past {
@@ -110,6 +109,20 @@ $linkColor: lighten($blue, 20%);
     margin: 4px;
     margin-bottom: 8px;
     border-top: 1px dotted $darkGrey;
+    padding-left: 2px;
+    padding-right: 2px;
+
+    &.available {
+      background-color: $availableLight;
+    }
+
+    &.accepted {
+      background-color: $acceptedLight;
+    }
+
+    &.cancelled {
+      background-color: $cancelledLight;
+    }
   }
 
   .invite-time {

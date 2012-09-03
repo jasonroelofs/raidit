@@ -17,7 +17,7 @@
           <td data-date="<%= day.to_s(:ymd) %>" class="<%= presenter.class_for(day) %>">
             <div class="day"><%= day.day %></div>
             <% presenter.raids_on(day).each do |raid| %>
-              <div class="raid">
+              <div class="raid <%= presenter.signup_status_for(current_user, raid) %>">
                 <span class="location">
                   <%= link_to raid.where, [raid] %>
                 </span>

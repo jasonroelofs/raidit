@@ -1,7 +1,10 @@
 require 'unit/test_helper'
 require 'presenters/raid_calendar_presenter'
+require 'models/user'
 require 'models/raid'
 require 'models/guild'
+require 'models/signup'
+require 'interactors/list_signups'
 
 describe RaidCalendarPresenter do
 
@@ -97,6 +100,65 @@ describe RaidCalendarPresenter do
       )
 
       @presenter.raids_on(Date.parse("2012/07/01")).must_equal [r1, r2]
+    end
+  end
+
+  describe "#my_signup_status_for" do
+    before do
+      @raid = Raid.new
+      @user = User.new
+      @guild = Guild.new
+      @presenter = RaidCalendarPresenter.new @guild
+      @presenter.start_date = Date.parse("2012/07/01")
+    end
+
+    it "returns :accepted if current user has an accepted character" do
+      signup = Signup.new
+      signup.acceptance_status = :accepted
+
+      ListSignups.expects(:for_raid_and_user).with(@raid, @user).returns([signup])
+
+      @presenter.signup_status_for(@user, @raid).must_equal :accepted
+    end
+
+    it "returns :available if current user has a queued character" do
+      signup = Signup.new
+      signup.acceptance_status = :available
+
+      ListSignups.expects(:for_raid_and_user).with(@raid, @user).returns([signup])
+
+      @presenter.signup_status_for(@user, @raid).must_equal :available
+    end
+
+    it "returns :cancelled if current user has a cancelled character" do
+      signup = Signup.new
+      signup.acceptance_status = :cancelled
+
+      ListSignups.expects(:for_raid_and_user).with(@raid, @user).returns([signup])
+
+      @presenter.signup_status_for(@user, @raid).must_equal :cancelled
+    end
+
+    it "returns the best status if there are multiple for this raid" do
+      signup1 = Signup.new
+      signup1.acceptance_status = :cancelled
+
+      signup2 = Signup.new
+      signup2.acceptance_status = :available
+
+      signup3 = Signup.new
+      signup3.acceptance_status = :accepted
+
+      ListSignups.expects(:for_raid_and_user).with(@raid, @user).returns([
+        signup1, signup2, signup3
+      ])
+
+      @presenter.signup_status_for(@user, @raid).must_equal :accepted
+    end
+
+    it "returns empty string if no signup for current user" do
+      ListSignups.expects(:for_raid_and_user).with(@raid, @user).returns([])
+      @presenter.signup_status_for(@user, @raid).must_equal ""
     end
   end
 end

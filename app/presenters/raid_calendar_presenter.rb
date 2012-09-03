@@ -58,6 +58,24 @@ class RaidCalendarPresenter
     ListRaids.for_guild_on_date(@current_guild, date)
   end
 
+  ##
+  # Returns the following status symbols if the current user has
+  # a signup in the given raid
+  ##
+  def signup_status_for(user, raid)
+    statuses = ListSignups.for_raid_and_user(raid, user).map &:acceptance_status
+
+    if statuses.include?(:accepted)
+      :accepted
+    elsif statuses.include?(:available)
+      :available
+    elsif statuses.include?(:cancelled)
+      :cancelled
+    else
+      ""
+    end
+  end
+
   # Represent a given week in the raid calendar
   class Week < Struct.new(:start_date, :end_date)
   end
