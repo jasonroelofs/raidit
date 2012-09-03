@@ -1,14 +1,15 @@
 <div class="raid span12">
-  <h2>Raid on <%= @raid.when.to_s(:full) %> to <%= @raid.where %></h2>
-
   <div class="row">
-    <section class="invites span6">
-      <span>Invites start at <%= @raid.invite_at.to_s(:with_am_pm) %></span>
-    </section>
-
-    <section class="start span6">
-      <span>Raid starts at <%= @raid.start_at.to_s(:with_am_pm) %></span>
-    </section>
+    <div class="span3 info-block left">
+      <div class="lesser-info"><%= @raid.size %>-man</div>
+      <div class="major-info"><%= @raid.where %></div>
+      <div class="lesser-info">&nbsp;</div>
+    </div>
+    <div class="span3 offset6 info-block">
+      <div class="lesser-info"><%= @raid.when.to_s(:full) %></div>
+      <div class="major-info"><%= @raid.invite_at.to_s(:with_am_pm_tz) %></div>
+      <div class="lesser-info">Starts at <%= @raid.start_at.to_s(:with_am_pm) %></div>
+    </div>
   </div>
 
   <section class="status accepted">

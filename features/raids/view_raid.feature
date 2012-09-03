@@ -11,8 +11,8 @@ Feature: Viewing a Raid
 
     When I follow "ICC"
     Then I should see "April 1, 2012"
-    And I should see "Invites start at 7:45 PM"
-    And I should see "Raid starts at 8:00 PM"
+    And I should see "7:45 PM"
+    And I should see "Starts at 8:00 PM"
     And I should see "ICC"
 
   Scenario: Can view a raid from the Raids page
@@ -25,4 +25,4 @@ Feature: Viewing a Raid
     And I follow "Raids"
     And I follow "View"
 
-    Then I should see "Invites start at"
+    Then I should see "Starts at"

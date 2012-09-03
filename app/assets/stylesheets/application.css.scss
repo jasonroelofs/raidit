@@ -121,11 +121,6 @@ $linkColor: lighten($blue, 20%);
 }
 
 .raid {
-  .invites, .start {
-    text-align: center;
-    padding: 5px 0px;
-  }
-
   .raid-role {
     margin-bottom: 1em;
   }
@@ -210,6 +205,27 @@ $linkColor: lighten($blue, 20%);
     a.command-enqueue {
       @extend .btn-info;
     }
+  }
+}
+
+.info-block {
+  text-align: right;
+  margin-bottom: 2em;
+
+  &.left {
+    text-align: left;
+  }
+
+  .lesser-info {
+    font-size: 14px;
+    color: $darkGrey;
+  }
+
+  .major-info {
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 }
 
