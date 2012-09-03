@@ -72,4 +72,14 @@ describe Raid do
       r.size.must_be_nil
     end
   end
+
+  describe "#past?" do
+    it "returns true if the raid is now in the past" do
+      r1 = Raid.new :when => 2.days.from_now
+      r2 = Raid.new :when => 2.days.ago
+
+      assert !r1.past?
+      assert r2.past?
+    end
+  end
 end

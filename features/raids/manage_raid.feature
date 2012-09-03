@@ -93,3 +93,25 @@ Feature: Managing Raid Signups
     When I follow "Enqueue"
     Then I should see "Phouchg" within ".available"
 
+  Scenario: Raid Leader can't modify a raid in the past
+    Given today is "2012/07/02"
+    And I am signed in as "raid_leader"
+    And I am at the home page
+    And I follow "ICC"
+
+    Then I should not see "Cancel"
+    And I should not see "Accept"
+    And I should see "Cannot sign up to raids in the past"
+
+  Scenario: Raider can't modify signups in a raid in the past
+    Given today is "2012/07/02"
+    And I am signed in as "raid_leader"
+    And "raider" has the following characters
+      | game | region | server    | name     |
+      | wow  | US     | Detheroc  | Phouchg  |
+    And "raider" signed up "Phouchg" for "ICC" as "tank"
+    And I am at the home page
+    And I follow "ICC"
+
+    Then I should not see "Cancel"
+    And I should see "Cannot sign up to raids in the past"

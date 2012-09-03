@@ -50,4 +50,10 @@ class Raid
     end
   end
 
+  ##
+  # Is this raid now in the past?
+  def past?
+    self.when.to_date < Date.today
+  end
+
 end

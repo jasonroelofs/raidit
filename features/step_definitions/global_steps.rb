@@ -13,6 +13,7 @@ When "I debug" do
 end
 
 Given /^today is "(.*?)"$/ do |date|
+  Timecop.return
   Timecop.travel Date.parse(date)
 end
 
