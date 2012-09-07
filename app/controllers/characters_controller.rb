@@ -18,7 +18,7 @@ class CharactersController < ApplicationController
 
   def create
     action = AddCharacter.new current_user
-    action.run(params[:name])
+    action.run(params[:name], params[:character_class])
 
     redirect_to action: "index"
   end

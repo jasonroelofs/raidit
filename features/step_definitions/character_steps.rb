@@ -21,3 +21,7 @@ end
 When /^I (follow|press) "(.*?)" for the character "(.*?)"$/ do |action, link_text, char_name|
   step %|I #{action} "#{link_text}" within "div[data-character-name=#{char_name.downcase}]"|
 end
+
+Then /^I should see the "(.*?)" icon$/ do |icon_name|
+  assert page.has_css?("img[src='/assets/wow/#{icon_name}.png']")
+end

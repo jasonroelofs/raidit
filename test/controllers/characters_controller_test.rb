@@ -63,8 +63,8 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     it "creates a new character for the current user and redirects to index" do
-      AddCharacter.any_instance.expects(:run).with("Weemuu")
-      post :create, :name => "Weemuu"
+      AddCharacter.any_instance.expects(:run).with("Weemuu", "shaman")
+      post :create, :name => "Weemuu", :character_class => "shaman"
 
       must_redirect_to characters_path
     end
