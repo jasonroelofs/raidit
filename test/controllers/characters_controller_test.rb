@@ -55,6 +55,14 @@ class CharactersControllerTest < ActionController::TestCase
       get :new
       must_render_template "new"
     end
+
+    it "builds a list of guilds the current user is a member of" do
+      guild = Guild.new
+      ListGuilds.expects(:by_user).returns([guild])
+      get :new
+
+      assigns(:current_guilds).must_equal [guild]
+    end
   end
 
   describe "#create" do
@@ -63,8 +71,8 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     it "creates a new character for the current user and redirects to index" do
-      AddCharacter.any_instance.expects(:run).with("Weemuu", "shaman")
-      post :create, :name => "Weemuu", :character_class => "shaman"
+      AddCharacter.any_instance.expects(:run).with("Weemuu", "shaman", 10)
+      post :create, :name => "Weemuu", :character_class => "shaman", :guild_id => 10
 
       must_redirect_to characters_path
     end

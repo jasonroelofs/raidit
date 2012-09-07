@@ -31,3 +31,21 @@ Feature: User can add a character
     Then I should see "Weemuu" within ".unguilded"
     And I should see "Krood" within ".unguilded"
     And I should see the "druid" icon
+
+  Scenario: User can auto-add character to an existing guild
+    Given I am signed in as "raid_leader"
+    And I am at the home page
+    And "raid_leader" has the following characters
+      | name    | character_class | guild   |
+      | Weemuu  | mage            | Exiled  |
+
+    When I follow "Characters"
+    And I follow "Add New Character"
+
+    When I fill in "Panduu" for "name"
+    And I select "Monk" from "character_class"
+    And I select "Exiled" from "guild_id"
+    And I press "Add Character"
+
+    Then I should see "Panduu" within ".guilded.exiled"
+

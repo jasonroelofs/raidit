@@ -1,6 +1,7 @@
 require 'unit/test_helper'
 require 'interactors/add_character'
 require 'models/user'
+require 'models/guild'
 require 'models/character'
 
 describe AddCharacter do
@@ -27,6 +28,16 @@ describe AddCharacter do
 
       c.name.must_equal "Wonko"
       c.character_class.must_equal "warrior"
+    end
+
+    it "associates character to given guild if a guild_id is given" do
+      guild = Guild.new
+      Repository.for(Guild).save(guild)
+
+      @action.run "Wonko", "warrior", guild.id
+
+      wonko = Repository.for(Character).find_all_for_user(@user).first
+      wonko.guild.must_equal guild
     end
   end
 

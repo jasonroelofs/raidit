@@ -5,6 +5,11 @@
     <%= hidden_field_tag :game, "wow" %>
     <%= text_field_tag :name, "", :placeholder => "Character Name" %>
     <%= select_tag "character_class", options_for_select(character_classes_for_game("wow")) %>
+
+    <% if @current_guilds.any? %>
+      <%= select_tag "guild_id", options_for_select([["Add to existing guild", ""]] + @current_guilds.map {|g| [g.name, g.id]}) %>
+    <% end %>
+
     <%= button_tag "Add Character", :class => "btn" %>
   <% end %>
 </div>
