@@ -10,7 +10,7 @@ Feature: User can add a character
     And I select "Shaman" from "character_class"
     And I press "Add Character"
 
-    Then I should see "Weemoo"
+    Then I should see "Weemoo" within ".unguilded"
     And I should see the "shaman" icon
 
   Scenario: User can add another character to the account
@@ -28,6 +28,6 @@ Feature: User can add a character
     And I select "Druid" from "character_class"
     And I press "Add Character"
 
-    Then I should see "Weemuu"
-    And I should see "Krood"
+    Then I should see "Weemuu" within ".unguilded"
+    And I should see "Krood" within ".unguilded"
     And I should see the "druid" icon
