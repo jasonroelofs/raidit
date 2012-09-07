@@ -1,4 +1,10 @@
 module CharactersHelper
+  def character_classes_for_game(game)
+    Game.by_short_name(game).character_classes.map {|klass|
+      [klass, normalize_name(klass)]
+    }
+  end
+
   def character_icon(character)
     if character.character_class.present?
       image_tag ["wow", normalize_name(character.character_class)].join("/") + ".png"

@@ -1,5 +1,6 @@
 require 'unit/test_helper'
 require 'models/character'
+require 'models/game'
 
 require 'helpers/application_helper'
 require 'helpers/characters_helper'
@@ -7,6 +8,15 @@ require 'helpers/characters_helper'
 describe CharactersHelper do
   include ApplicationHelper
   include CharactersHelper
+
+  describe "#character_classes_for_game" do
+    it "returns list of option tags for all classes in the given game" do
+      output = character_classes_for_game("wow")
+
+      output.length.must_equal 11
+      output[0].must_equal ["Death Knight", "deathknight"]
+    end
+  end
 
   describe "#character_icon" do
     it "finds the character class icon for the character" do

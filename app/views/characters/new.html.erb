@@ -1,12 +1,10 @@
 <h2>Add A Character!</h2>
 
-<h3>First, choose which game this character is in</h3>
-
-<%= link_to "World of Warcraft", "#", "data-game" => "wow" %>
-
 <div class="wow">
   <%= form_tag characters_path, :class => "form-inline" do %>
+    <%= hidden_field_tag :game, "wow" %>
     <%= text_field_tag :name, "", :placeholder => "Character Name" %>
+    <%= select_tag "character_class", options_for_select(character_classes_for_game("wow")) %>
     <%= button_tag "Add Character", :class => "btn" %>
   <% end %>
 </div>
