@@ -19,7 +19,7 @@ describe AddCharacter do
     end
 
     it "creates a new character for the user" do
-      assert @action.run("Wonko", "warrior")
+      assert @action.run(:name => "Wonko", :character_class => "warrior")
 
       characters = Repository.for(Character).find_all_for_user(@user)
       characters.length.must_equal 1
@@ -34,14 +34,14 @@ describe AddCharacter do
       guild = Guild.new
       Repository.for(Guild).save(guild)
 
-      @action.run "Wonko", "warrior", guild.id
+      @action.run :name => "Wonko", :character_class => "warrior", :guild_id => "#{guild.id}"
 
       wonko = Repository.for(Character).find_all_for_user(@user).first
       wonko.guild.must_equal guild
     end
 
     it "returns false and doesn't save if invalid" do
-      assert !@action.run("", "warrior")
+      assert !@action.run(:name => "", :character_class => "warrior")
 
       characters = Repository.for(Character).find_all_for_user(@user)
       characters.length.must_equal 0

@@ -20,10 +20,7 @@ class CharactersController < ApplicationController
 
   def create
     action = AddCharacter.new current_user
-    if action.run(params[:character][:name],
-        params[:character][:character_class],
-        params[:character][:guild_id].try(:to_i))
-
+    if action.run params[:character]
       redirect_to action: "index"
     else
       new

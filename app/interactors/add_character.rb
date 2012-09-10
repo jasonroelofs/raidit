@@ -11,13 +11,21 @@ class AddCharacter
   end
 
   ##
-  # Given the current_user, add a Character to this user
+  # Given the current_user, add a Character to this user.
+  # Expected attributes:
+  #
+  #   :name
+  #   :character_class
+  #   :guild_id
+  #
   ##
-  def run(name, character_class, guild_id = nil)
-    guild = guild_id ? FindGuild.by_id(guild_id) : nil
+  def run(attributes)
+    name, character_class, guild_id = attributes.values_at :name, :character_class, :guild_id
 
-    @character = Character.new name: name, user: @current_user, character_class: character_class,
-      guild: guild
+    guild = guild_id.present? ? FindGuild.by_id(guild_id.to_i) : nil
+
+    @character = Character.new name: name, user: @current_user,
+      character_class: character_class, guild: guild
 
     if @character.valid?
       Repository.for(Character).save @character
