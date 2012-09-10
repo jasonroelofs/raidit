@@ -54,6 +54,8 @@ class CharactersControllerTest < ActionController::TestCase
     it "renders the new character page" do
       get :new
       must_render_template "new"
+
+      assigns(:character).wont_be_nil
     end
 
     it "builds a list of guilds the current user is a member of" do
@@ -71,10 +73,22 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     it "creates a new character for the current user and redirects to index" do
-      AddCharacter.any_instance.expects(:run).with("Weemuu", "shaman", 10)
-      post :create, :name => "Weemuu", :character_class => "shaman", :guild_id => 10
+      AddCharacter.any_instance.expects(:run).with("Weemuu", "shaman", 10).returns(true)
+      post :create, :character => {
+        :name => "Weemuu", :character_class => "shaman", :guild_id => 10
+      }
 
       must_redirect_to characters_path
+    end
+
+    it "re-renders the form if creation failed" do
+      AddCharacter.any_instance.expects(:run).returns(false)
+      AddCharacter.any_instance.expects(:character).returns(Character.new)
+
+      post :create, :character => { }
+
+      must_render_template "new"
+      assigns(:character).wont_be_nil
     end
   end
 

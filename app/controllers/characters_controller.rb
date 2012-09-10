@@ -15,13 +15,21 @@ class CharactersController < ApplicationController
 
   def new
     @current_guilds = ListGuilds.by_user current_user
+    @character = Character.new
   end
 
   def create
     action = AddCharacter.new current_user
-    action.run params[:name], params[:character_class], params[:guild_id].try(:to_i)
+    if action.run(params[:character][:name],
+        params[:character][:character_class],
+        params[:character][:guild_id].try(:to_i))
 
-    redirect_to action: "index"
+      redirect_to action: "index"
+    else
+      new
+      @character = action.character
+      render "new"
+    end
   end
 
   def edit

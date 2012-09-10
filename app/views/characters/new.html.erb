@@ -1,15 +1,17 @@
 <h2>Add A Character!</h2>
 
-<div class="wow">
-  <%= form_tag characters_path, :class => "form-inline" do %>
-    <%= hidden_field_tag :game, "wow" %>
-    <%= text_field_tag :name, "", :placeholder => "Character Name" %>
-    <%= select_tag "character_class", options_for_select(character_classes_for_game("wow")) %>
+<%= simple_form_for @character, :html => {:class => "form-horizontal"} do |f| %>
+  <%= hidden_field_tag :game, "wow" %>
 
-    <% if @current_guilds.any? %>
-      <%= select_tag "guild_id", options_for_select([["Add to existing guild", ""]] + @current_guilds.map {|g| [g.name, g.id]}) %>
+  <%= render "form", :f => f %>
+
+  <% if @current_guilds.any? %>
+    <%= f.input :guild_id, :label => "Choose Guild" do %>
+      <%= f.select :guild_id, [["Add to existing guild", ""]] + @current_guilds.map {|g| [g.name, g.id]} %>
     <% end %>
-
-    <%= button_tag "Add Character", :class => "btn" %>
   <% end %>
-</div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Add Character</button>
+  </div>
+<% end %>

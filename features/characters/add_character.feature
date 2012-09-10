@@ -6,8 +6,8 @@ Feature: User can add a character
     When I follow "Characters"
 
     Then I should see "Add A Character"
-    When I fill in "Weemoo" for "name"
-    And I select "Shaman" from "character_class"
+    When I fill in "Weemoo" for "Name"
+    And I select "Shaman" from "Character class"
     And I press "Add Character"
 
     Then I should see "Weemoo" within ".unguilded"
@@ -24,8 +24,8 @@ Feature: User can add a character
     And I follow "Add New Character"
 
     Then I should see "Add A Character"
-    When I fill in "Krood" for "name"
-    And I select "Druid" from "character_class"
+    When I fill in "Krood" for "Name"
+    And I select "Druid" from "Character class"
     And I press "Add Character"
 
     Then I should see "Weemuu" within ".unguilded"
@@ -42,10 +42,19 @@ Feature: User can add a character
     When I follow "Characters"
     And I follow "Add New Character"
 
-    When I fill in "Panduu" for "name"
-    And I select "Monk" from "character_class"
-    And I select "Exiled" from "guild_id"
+    When I fill in "Panduu" for "Name"
+    And I select "Monk" from "Character class"
+    And I select "Exiled" from "Choose Guild"
     And I press "Add Character"
 
     Then I should see "Panduu" within ".guilded.exiled"
 
+  Scenario: Handles error cases
+    Given I am signed in as "raid_leader"
+    And I am at the home page
+    And I follow "Characters"
+
+    When I press "Add Character"
+
+    Then I should see "can't be blank"
+    And I should see "Add A Character!"

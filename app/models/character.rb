@@ -13,4 +13,8 @@ class Character
     !!@is_main
   end
 
+  def guild_id
+    guild.try(:id)
+  end
+
 end

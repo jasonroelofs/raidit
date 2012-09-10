@@ -1,0 +1,10 @@
+<fieldset>
+  <legend>Basic Information</legend>
+
+  <%= f.input :name %>
+  <%= f.input :character_class do %>
+    <%= f.select :character_class, character_classes_for_game("wow") %>
+  <% end %>
+
+</fieldset>
+
