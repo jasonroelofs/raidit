@@ -28,7 +28,7 @@ describe SelectMainCharacter do
 
     SelectMainCharacter.run new_main
 
-    assert !old_main.main?
+    assert !Repository.for(Character).find(old_main.id).main?
   end
 
   it "does nothing if the character has no guild" do

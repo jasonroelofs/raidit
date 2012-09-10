@@ -104,7 +104,7 @@ class CharactersControllerTest < ActionController::TestCase
       FindCharacter.expects(:by_id).with(10).returns(character)
 
       UpdateCharacter.any_instance.expects(:run).with(
-        :name => "New Char Name", :character_class => "deathknight")
+        'name' => "New Char Name", 'character_class' => "deathknight")
 
       put :update, :id => 10, :character => {
         :name => "New Char Name",

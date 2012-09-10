@@ -45,7 +45,7 @@ Before do
   )
 
   Repository.for(User).save(
-    raid_leader = User.new(:login => "raid_leader", :password => "password",
+    User.new(:login => "raid_leader", :password => "password",
                            :email => "raid_leader@raidit.org")
   )
 
@@ -55,7 +55,7 @@ Before do
   )
 
   Repository.for(Guild).save(
-    exiled = Guild.new(:name => "Exiled")
+    Guild.new(:name => "Exiled")
   )
 
   Repository.for(Guild).save(
@@ -63,7 +63,8 @@ Before do
   )
 
   Repository.for(Permission).save(
-    Permission.new(:user => raid_leader, :guild => exiled,
+    Permission.new(:user => Repository.for(User).find_by_login("raid_leader"),
+                   :guild => Repository.for(Guild).find_by_name("Exiled"),
                     :permissions => Permission::RAID_LEADER)
   )
 end

@@ -32,8 +32,7 @@ module InMemory
       elsif result_or_array.is_a?(Array)
         result_or_array.map {|r| copy_and_return(r) }
       else
-        # Dup over Clone, dup drops deep objects, like the Errors hash
-        result_or_array.dup
+        result_or_array.clone
       end
     end
 

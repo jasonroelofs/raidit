@@ -21,6 +21,7 @@ describe ListCharacters do
 
       Repository.for(Character).save(@char1)
       Repository.for(Character).save(@char2)
+
       @action = ListCharacters.new @user
     end
 
@@ -28,8 +29,8 @@ describe ListCharacters do
       found = @action.guilded
 
       found.wont_be_nil
-      found.size.must_equal 1
-      found[@guild].must_equal [@char1]
+      found.guilds.must_equal [@guild]
+      found.characters.must_equal({@guild.id => [@char1]})
     end
 
     it "groups results by guild" do

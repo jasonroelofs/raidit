@@ -32,13 +32,45 @@ class ListCharacters
   private :find_guilded_characters
 
   def map_characters_by_guild(characters)
-    characters.inject({}) do |memo, character|
-      memo[character.guild] ||= []
-      memo[character.guild] << character
-      memo
+    mapping = CharactersByGuild.new
+
+    characters.each do |character|
+      mapping.add_character_to_guild character, character.guild
     end
+
+    mapping
   end
   private :map_characters_by_guild
+
+  class CharactersByGuild
+    attr_reader :characters
+
+    def initialize
+      @guild_id_map = {}
+      @characters = {}
+    end
+
+    def add_character_to_guild(character, guild)
+      @guild_id_map[guild.id] ||= guild
+
+      @characters[guild.id] ||= []
+      @characters[guild.id] << character
+    end
+
+    def empty?
+      @guild_id_map.empty?
+    end
+
+    def guilds
+      @guild_id_map.values
+    end
+
+    def each
+      guilds.each do |guild|
+        yield guild, @characters[guild.id]
+      end
+    end
+  end
 
   ##
   # Find all characters for this user who are *not* in a guild.

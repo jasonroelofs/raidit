@@ -10,9 +10,9 @@ describe ListGuilds do
     before do
       @user = User.new
 
-      @guild1 = Guild.new
-      @guild2 = Guild.new
-      @guild3 = Guild.new
+      @guild1 = Guild.new id: 1
+      @guild2 = Guild.new id: 2
+      @guild3 = Guild.new id: 3
 
       @char1 = Character.new user: @user, guild: @guild1
       @char2 = Character.new user: @user, guild: @guild2
