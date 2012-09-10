@@ -18,6 +18,18 @@ module Entity
     end if params
   end
 
+
+  ##
+  # From ActiveRecord::Base
+  ##
+  def ==(other_entity)
+    super ||
+      other_entity.instance_of?(self.class) &&
+      id.present? &&
+      other_entity.id == id
+  end
+  alias :eql? :==
+
   ##
   # Required activemodel API calls
   ##

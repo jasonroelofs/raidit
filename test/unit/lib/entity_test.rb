@@ -41,4 +41,16 @@ describe Entity do
     TestEntity.new(:id => 14).persisted?.must_equal true
   end
 
+  it "compares equality like ActiveRecord does, by id and instance type" do
+    obj1 = TestEntity.new :id => 1, :field1 => "Fielder", :field2 => "Johnson"
+    obj2 = obj1.clone
+
+    obj2.must_equal obj1
+
+    obj2.field1 = "Something Else"
+    obj2.must_equal obj1
+
+    obj2.id = 10
+    obj2.wont_equal obj1
+  end
 end
