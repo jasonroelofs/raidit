@@ -1,18 +1,40 @@
 module InMemory
   class IndexedRepo
-    attr_reader :records
-
     def initialize
       @id_counter = 0
       @records = []
     end
 
     def all
-      @records
+      copy_and_return @records
     end
 
     def find(id)
-      @records.find {|r| r.id == id }
+      find_one {|r| r.id == id }
+    end
+
+    def find_one(&block)
+      copy_and_return @records.find(&block)
+    end
+
+    def find_all(&block)
+      copy_and_return @records.select(&block)
+    end
+
+    ##
+    # We make sure to always clone the object being returned
+    # so that it's an exact copy but changing it doesn't change
+    # the True Value stored in @records
+    ##
+    def copy_and_return(result_or_array)
+      if result_or_array.nil?
+        nil
+      elsif result_or_array.is_a?(Array)
+        result_or_array.map {|r| copy_and_return(r) }
+      else
+        # Dup over Clone, dup drops deep objects, like the Errors hash
+        result_or_array.dup
+      end
     end
 
     ##
@@ -22,39 +44,45 @@ module InMemory
     ##
     def save(obj)
       if obj.errors.empty?
-        obj.id ||= (@id_counter += 1)
-        @records << obj
-        @records.uniq!
+        set_or_replace_record obj
         true
       else
         false
       end
     end
+
+    def set_or_replace_record(obj)
+      @records.delete_if {|record| record.id == obj.id }
+      obj.id ||= (@id_counter += 1)
+
+      # Dup to clean up any extra added pieces, like Errors
+      @records << obj.dup
+    end
   end
 
   class GuildRepo < IndexedRepo
     def find_by_name(name)
-      records.find {|g| g.name == name }
+      find_one {|g| g.name == name }
     end
   end
 
   class UserRepo < IndexedRepo
     def find_by_login(login)
-      records.find {|u| u.login == login }
+      find_one {|u| u.login == login }
     end
 
     def find_by_login_token(type, token)
-      records.find {|u| u.login_token(type) == token }
+      find_one {|u| u.login_token(type) == token }
     end
   end
 
   class CharacterRepo < IndexedRepo
     def find_all_for_user(user)
-      records.select {|c| c.user == user }
+      find_all {|c| c.user == user }
     end
 
     def find_main_character(user, guild)
-      records.find {|c|
+      find_one {|c|
         c.user == user &&
           c.guild == guild &&
           c.main?
@@ -64,7 +92,7 @@ module InMemory
 
   class RaidRepo < IndexedRepo
     def find_raids_for_guild(guild)
-      records.select {|r| r.owner == guild }
+      find_all {|r| r.owner == guild }
     end
 
     def find_raids_for_guild_and_day(guild, day)
@@ -79,11 +107,11 @@ module InMemory
 
   class SignupRepo < IndexedRepo
     def find_all_for_raid(raid)
-      records.select {|s| s.raid == raid }
+      find_all {|s| s.raid == raid }
     end
 
     def find_all_for_user_and_raid(user, raid)
-      records.select {|s|
+      find_all {|s|
         s.raid == raid && s.user == user
       }
     end
@@ -91,7 +119,7 @@ module InMemory
 
   class PermissionRepo < IndexedRepo
     def find_by_user_and_guild(user, guild)
-      records.find {|perm|
+      find_one {|perm|
         perm.user == user && perm.guild == guild
       }
     end
