@@ -1,0 +1,17 @@
+<h2>Edit <%= @character.name %></h2>
+
+<%= simple_form_for @character, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <legend>Basic Information</legend>
+
+    <%= f.input :name %>
+    <%= f.input :character_class do %>
+      <%= f.select :character_class, character_classes_for_game("wow") %>
+    <% end %>
+
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Update Character</button>
+  </div>
+<% end %>

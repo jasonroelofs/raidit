@@ -24,6 +24,17 @@ class CharactersController < ApplicationController
     redirect_to action: "index"
   end
 
+  def edit
+    @character = FindCharacter.by_id params[:id].to_i
+  end
+
+  def update
+    @character = FindCharacter.by_id params[:id].to_i
+    action = UpdateCharacter.new @character
+    action.run params[:character]
+
+    redirect_to action: "index"
+  end
 
   def make_main
     character = FindCharacter.by_id params[:id].to_i

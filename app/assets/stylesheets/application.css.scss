@@ -264,5 +264,18 @@ $linkColor: lighten($blue, 20%);
     color: $gray;
   }
 
+  .actions {
+    float: right;
+    text-align: right;
+
+    a {
+      font-size: 16px;
+    }
+
+    form {
+      margin-top: 5px;
+    }
+  }
+
   margin-bottom: 1em;
 }

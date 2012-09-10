@@ -20,6 +20,13 @@ describe Character do
     c.character_class.must_equal "Mage"
   end
 
+  it "requires a name" do
+    c = Character.new
+    assert !c.valid?
+
+    c.errors.get(:name).must_equal ["can't be blank"]
+  end
+
   it "knows if it's a main character or not" do
     c = Character.new
     c.main?.must_equal false
@@ -27,4 +34,5 @@ describe Character do
     c.is_main = true
     c.main?.must_equal true
   end
+
 end

@@ -7,6 +7,8 @@ class Character
 
   attr_accessor :name, :character_class, :is_main
 
+  validates_presence_of :name
+
   def main?
     !!@is_main
   end

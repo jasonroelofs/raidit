@@ -78,6 +78,43 @@ class CharactersControllerTest < ActionController::TestCase
     end
   end
 
+  describe "#edit" do
+    before do
+      login_as_user
+    end
+
+    it "renders the edit form for the given character" do
+      character = Character.new
+      FindCharacter.expects(:by_id).with(10).returns(character)
+
+      get :edit, :id => 10
+
+      must_render_template "edit"
+      assigns(:character).must_equal character
+    end
+  end
+
+  describe "#update" do
+    before do
+      login_as_user
+    end
+
+    it "updates the given character with new information" do
+      character = Character.new
+      FindCharacter.expects(:by_id).with(10).returns(character)
+
+      UpdateCharacter.any_instance.expects(:run).with(
+        :name => "New Char Name", :character_class => "deathknight")
+
+      put :update, :id => 10, :character => {
+        :name => "New Char Name",
+        :character_class => "deathknight"
+      }
+
+      must_redirect_to characters_path
+    end
+  end
+
   describe "#make_main" do
     it "triggers a main change for the give character" do
       login_as_user
