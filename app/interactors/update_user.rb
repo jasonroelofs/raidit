@@ -28,13 +28,13 @@ class UpdateUser
   # Should this object know about changing the password or should
   # the use of ChangePassword be pulled out to the controller?
   ##
-  def run(params)
-    @current_user.login = params[:login] if params[:login].present?
-    @current_user.email = params[:email] if params[:email].present?
+  def run(attributes)
+    @current_user.login = attributes[:login] if attributes[:login].present?
+    @current_user.email = attributes[:email] if attributes[:email].present?
 
-    if password_change_requested?(params)
+    if password_change_requested?(attributes)
       action = ChangePassword.new(@current_user)
-      @current_user = action.run *explode_password_params(params)
+      @current_user = action.run *explode_password_attributes(attributes)
     end
 
     Repository.for(User).save(@current_user)
@@ -42,14 +42,14 @@ class UpdateUser
 
   protected
 
-  def password_change_requested?(params)
-    params[:current_password].present? &&
-      params[:new_password].present? &&
-      params[:confirm_new_password].present?
+  def password_change_requested?(attributes)
+    attributes[:current_password].present? &&
+      attributes[:new_password].present? &&
+      attributes[:confirm_new_password].present?
   end
 
-  def explode_password_params(params)
-    params.values_at :current_password, :new_password, :confirm_new_password
+  def explode_password_attributes(attributes)
+    attributes.values_at :current_password, :new_password, :confirm_new_password
   end
 
 end

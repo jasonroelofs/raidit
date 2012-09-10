@@ -5,13 +5,13 @@ class SignUpUser
 
   attr_reader :user
 
-  def run(user_params)
-    @user = User.new :login => user_params[:login],
-      :email => user_params[:email],
-      :password => user_params[:password].presence
+  def run(attributes)
+    @user = User.new :login => attributes[:login],
+      :email => attributes[:email],
+      :password => attributes[:password].presence
 
     if @user.valid?
-      if @user.password != user_params[:password_confirmation].presence
+      if @user.password != attributes[:password_confirmation].presence
         @user.errors.add(:password, "does not match confirmation")
         false
       else
