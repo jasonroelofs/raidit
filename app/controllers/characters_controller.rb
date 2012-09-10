@@ -30,11 +30,11 @@ class CharactersController < ApplicationController
   end
 
   def edit
-    @character = FindCharacter.by_id params[:id].to_i
+    @character = find_character params[:id].to_i
   end
 
   def update
-    @character = FindCharacter.by_id params[:id].to_i
+    @character = find_character params[:id].to_i
     action = UpdateCharacter.new @character
     if action.run params[:character]
       redirect_to action: "index"
@@ -45,9 +45,16 @@ class CharactersController < ApplicationController
   end
 
   def make_main
-    character = FindCharacter.by_id params[:id].to_i
+    character = find_character params[:id].to_i
     SelectMainCharacter.run character
 
     redirect_to action: "index"
+  end
+
+  protected
+
+  def find_character(character_id)
+    action = FindCharacter.new current_user
+    action.by_id character_id
   end
 end

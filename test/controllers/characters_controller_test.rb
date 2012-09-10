@@ -102,7 +102,7 @@ class CharactersControllerTest < ActionController::TestCase
 
     it "renders the edit form for the given character" do
       character = Character.new
-      FindCharacter.expects(:by_id).with(10).returns(character)
+      FindCharacter.any_instance.expects(:by_id).with(10).returns(character)
 
       get :edit, :id => 10
 
@@ -118,7 +118,7 @@ class CharactersControllerTest < ActionController::TestCase
 
     it "updates the given character with new information" do
       character = Character.new
-      FindCharacter.expects(:by_id).with(10).returns(character)
+      FindCharacter.any_instance.expects(:by_id).with(10).returns(character)
 
       UpdateCharacter.any_instance.expects(:run).with(
         'name' => "New Char Name", 'character_class' => "deathknight").returns(true)
@@ -133,7 +133,7 @@ class CharactersControllerTest < ActionController::TestCase
 
     it "re-renders the form if there were errors" do
       character = Character.new
-      FindCharacter.expects(:by_id).with(10).returns(character)
+      FindCharacter.any_instance.expects(:by_id).with(10).returns(character)
 
       UpdateCharacter.any_instance.expects(:run).returns(false)
 
@@ -149,7 +149,7 @@ class CharactersControllerTest < ActionController::TestCase
       login_as_user
       character = Character.new
 
-      FindCharacter.expects(:by_id).with(10).returns(character)
+      FindCharacter.any_instance.expects(:by_id).with(10).returns(character)
       SelectMainCharacter.expects(:run).with(character)
 
       put :make_main, :id => 10

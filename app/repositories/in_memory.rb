@@ -76,6 +76,13 @@ module InMemory
   end
 
   class CharacterRepo < IndexedRepo
+    def find_by_user_and_id(user, id)
+      find_one {|c|
+        c.id == id &&
+        c.user.id == user.id
+      }
+    end
+
     def find_all_for_user(user)
       find_all {|c| c.user == user }
     end

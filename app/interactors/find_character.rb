@@ -1,13 +1,14 @@
 require 'repository'
 require 'models/character'
 
-# TODO FIXME Not checking permissions on if the current user is allowed
-# to even see this character.
-
 class FindCharacter
 
-  def self.by_id(id)
-    Repository.for(Character).find(id)
+  def initialize(current_user)
+    @current_user = current_user
+  end
+
+  def by_id(id)
+    Repository.for(Character).find_by_user_and_id(@current_user, id)
   end
 
 end

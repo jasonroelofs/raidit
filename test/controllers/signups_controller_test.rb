@@ -18,7 +18,7 @@ class SignupsControllerTest < ActionController::TestCase
 
       it "creates a new signup for the given user's character in the given raid" do
         FindRaid.expects(:by_id).with(7).returns(@raid)
-        FindCharacter.expects(:by_id).with(4).returns(@character)
+        FindCharacter.any_instance.expects(:by_id).with(4).returns(@character)
         SignUpToRaid.any_instance.expects(:run).with(@raid, @character, "dps")
 
         post :create, :raid_id => 7, :character_id => 4, :role => "dps"

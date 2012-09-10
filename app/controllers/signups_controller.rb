@@ -7,7 +7,7 @@ class SignupsController < ApplicationController
   # Sign a character up to the given Raid
   def create
     raid = FindRaid.by_id params[:raid_id].to_i
-    character = FindCharacter.by_id params[:character_id].to_i
+    character = FindCharacter.new(current_user).by_id params[:character_id].to_i
 
     action = SignUpToRaid.new(current_user)
     action.run(raid, character, params[:role])
