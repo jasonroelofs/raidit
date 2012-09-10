@@ -104,7 +104,7 @@ class CharactersControllerTest < ActionController::TestCase
       FindCharacter.expects(:by_id).with(10).returns(character)
 
       UpdateCharacter.any_instance.expects(:run).with(
-        'name' => "New Char Name", 'character_class' => "deathknight")
+        'name' => "New Char Name", 'character_class' => "deathknight").returns(true)
 
       put :update, :id => 10, :character => {
         :name => "New Char Name",
@@ -112,6 +112,18 @@ class CharactersControllerTest < ActionController::TestCase
       }
 
       must_redirect_to characters_path
+    end
+
+    it "re-renders the form if there were errors" do
+      character = Character.new
+      FindCharacter.expects(:by_id).with(10).returns(character)
+
+      UpdateCharacter.any_instance.expects(:run).returns(false)
+
+      put :update, :id => 10
+
+      must_render_template "edit"
+      assigns(:character).must_equal character
     end
   end
 

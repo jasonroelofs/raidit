@@ -10,7 +10,7 @@ Feature: Editing an existing character
     When I follow "Characters"
     And I follow "Edit" within ".guilded.exiled"
 
-    Then I should see "Edit Weemuu"
+    Then I should see "Edit Character"
     When I fill in "Weeboo" for "Name"
     And I select "Shaman" from "Character class"
     And I press "Update Character"
@@ -28,10 +28,8 @@ Feature: Editing an existing character
 
     When I follow "Characters"
     And I follow "Edit" within ".guilded.exiled"
-
-    Then I should see "Edit Weemuu"
-    When I fill in "" for "Name"
+    And I fill in "" for "Name"
     And I press "Update Character"
 
-    Then I should see "Name can't be blank"
-    And I should see "Edit Weemuu"
+    Then I should see "can't be blank"
+    And I should see "Edit Character"

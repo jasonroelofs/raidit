@@ -3,6 +3,8 @@ require 'models/character'
 
 class UpdateCharacter
 
+  attr_reader :current_character
+
   def initialize(current_character)
     @current_character = current_character
   end
