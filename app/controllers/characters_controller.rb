@@ -14,7 +14,6 @@ class CharactersController < ApplicationController
   end
 
   def new
-    @current_guilds = ListGuilds.by_user current_user
     @character = Character.new
   end
 
@@ -23,7 +22,6 @@ class CharactersController < ApplicationController
     if action.run params[:character]
       redirect_to action: "index"
     else
-      new
       @character = action.character
       render "new"
     end

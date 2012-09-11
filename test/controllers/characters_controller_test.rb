@@ -57,14 +57,6 @@ class CharactersControllerTest < ActionController::TestCase
 
       assigns(:character).wont_be_nil
     end
-
-    it "builds a list of guilds the current user is a member of" do
-      guild = Guild.new
-      ListGuilds.expects(:by_user).returns([guild])
-      get :new
-
-      assigns(:current_guilds).must_equal [guild]
-    end
   end
 
   describe "#create" do
