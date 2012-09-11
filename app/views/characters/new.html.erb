@@ -5,12 +5,6 @@
 
   <%= render "form", :f => f %>
 
-  <% if @current_guilds.any? %>
-    <%= f.input :guild_id, :label => "Choose Guild" do %>
-      <%= f.select :guild_id, [["Add to existing guild", ""]] + @current_guilds.map {|g| [g.name, g.id]} %>
-    <% end %>
-  <% end %>
-
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">Add Character</button>
   </div>

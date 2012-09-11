@@ -28,4 +28,18 @@ describe UpdateCharacter do
     char.name.must_equal "Charizard"
   end
 
+  it "updates the character's guild if guild_id given" do
+    Repository.for(Guild).save(
+      Guild.new(:name => "Stealer")
+    )
+    guild = Repository.for(Guild).all.first
+
+    action = UpdateCharacter.new @character
+    assert action.run(:name => "Johnson", :character_class => "druid", :guild_id => guild.id)
+
+    char = Repository.for(Character).find(@character.id)
+    char.guild.wont_be_nil
+    char.guild.id.must_equal guild.id
+  end
+
 end
