@@ -25,6 +25,7 @@ $linkColor: lighten($blue, 20%);
 
 @import "bootstrap";
 @import "elements";
+@import "select2";
 
 * {
   vertical-align: top;
@@ -244,6 +245,11 @@ $linkColor: lighten($blue, 20%);
 
 .character-list {
   margin-bottom: 1em;
+}
+
+img.class-icon-small {
+  width: 16px;
+  height: 16px;
 }
 
 .character {

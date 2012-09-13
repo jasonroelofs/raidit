@@ -3,11 +3,11 @@
 
   <%= f.input :name %>
   <%= f.input :character_class do %>
-    <%= f.select :character_class, character_classes_for_game("wow") %>
+    <%= f.select :character_class, character_classes_for_game("wow"), {}, {:class => "character-select"} %>
   <% end %>
 
   <%= f.input :guild_id, :label => "Choose Guild" do %>
-    <%= f.select :guild_id, grouped_options_for_select(guild_selection_list, f.object.guild_id) %>
+    <%= f.select :guild_id, grouped_options_for_select(guild_selection_list, f.object.guild_id), {}, {:class => "guild-select"} %>
   <% end %>
 
 </fieldset>
