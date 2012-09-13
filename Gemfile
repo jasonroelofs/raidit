@@ -31,4 +31,5 @@ end
 group :cucumber do
   gem "cucumber-rails", :require => false
   gem "timecop"
+  gem "poltergeist", :require => false
 end

@@ -6,6 +6,9 @@
 
 require 'cucumber/rails'
 require 'timecop'
+require 'capybara/poltergeist'
+
+Capybara.current_driver = :poltergeist
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -67,4 +70,12 @@ Before do
                    :guild => Repository.for(Guild).find_by_name("Exiled"),
                     :permissions => Permission::RAID_LEADER)
   )
+end
+
+Before do
+  Capybara.use_default_driver
+end
+
+Before("@javascript") do
+  Capybara.javascript_driver = :poltergeist
 end
