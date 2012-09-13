@@ -6,5 +6,11 @@ class @CharacterSelect
     )
 
   formatCharacter: (character) ->
-    "<img src='/assets/wow/#{character.id}.png' class='class-icon-small'> #{character.text}"
+    char_class =
+      if character.element
+        $(character.element).data("character-class")
+      else
+        character.id
+
+    "<img src='/assets/wow/#{char_class}.png' class='class-icon class-icon-small'> #{character.text}"
 

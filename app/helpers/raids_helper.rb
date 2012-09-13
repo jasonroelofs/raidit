@@ -4,7 +4,9 @@ module RaidsHelper
   end
 
   def option_list_of_characters(characters)
-    options_from_collection_for_select(characters, :id, :name)
+    options_for_select(characters.map {|c|
+      [c.name, c.id, {"data-character-class" => c.character_class}]
+    })
   end
 
   SignupAction = Struct.new(:name, :action)

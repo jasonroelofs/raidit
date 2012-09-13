@@ -14,7 +14,7 @@ describe CharactersHelper do
       output = character_classes_for_game("wow")
 
       output.length.must_equal 11
-      output[0].must_equal ["Death Knight", "deathknight"]
+      output[0].must_equal ["Death Knight", "deathknight", {"data-character-class" => "deathknight"}]
     end
   end
 

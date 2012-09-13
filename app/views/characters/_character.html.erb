@@ -1,5 +1,5 @@
 <div class="character span4 <%= character.main? ? "main-character" : "" %>" data-character-name="<%= normalize_name character.name %>">
-  <%= character_icon character %>
+  <%= character_icon character, :large %>
   <div class="actions">
     <%= link_to "Edit", edit_character_path(character) %>
     <% if character.guild && !character.main? %>
