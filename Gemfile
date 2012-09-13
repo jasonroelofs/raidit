@@ -7,11 +7,14 @@ gem "bcrypt-ruby", :require => "bcrypt"
 gem "simple_form"
 gem "state_machine", "~> 1.1.0"
 
+# Assets
+gem "select2-rails"
+gem "jquery-rails"
+
 group :assets do
   gem "sass-rails", "~> 3.2.0"
-#  gem "coffee-rails", "~> 3.2.0"
+  gem "coffee-rails", "~> 3.2.0"
   gem "uglifier", ">= 1.0.3"
-
   gem "bootstrap-sass", "~> 2.0.3"
 end
 
