@@ -3,11 +3,13 @@
 //= require_tree .
 
 $(function() {
-  $(".guild-select").each(function(i, e) {
-    new GuildSelect($(e));
-  });
+  $.fn.select2.defaults.width = "element";
 
   $(".character-select").each(function(i, e) {
     new CharacterSelect($(e));
+  });
+
+  $("select:not(.character-select)").each(function(i, e) {
+    new CustomSelect($(e));
   });
 });

@@ -1,7 +1,6 @@
 class @CharacterSelect
   constructor: (@element) ->
     @element.select2(
-      width: "element"
       formatResult: @formatCharacter
       formatSelection: @formatCharacter
     )

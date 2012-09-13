@@ -60,7 +60,7 @@
       <h4>Sign Up for this Raid</h4>
 
       <%= form_tag raid_signups_path(@raid) do %>
-        <%= select_tag :character_id, option_list_of_characters(@choosable_characters) %>
+        <%= select_tag :character_id, option_list_of_characters(@choosable_characters), :class => "character-select" %>
         <%= select_tag :role, options_for_select([["DPS", "dps"], ["Healer", "healer"], ["Tank", "tank"]]) %>
         <%= submit_tag "Sign Up" %>
       <% end %>
