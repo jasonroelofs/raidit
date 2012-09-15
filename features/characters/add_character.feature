@@ -32,6 +32,7 @@ Feature: User can add a character
     And I should see "Krood" within ".unguilded"
     And I should see the "druid" icon
 
+  @javascript
   Scenario: User can auto-add character to an existing guild
     Given I am signed in as "raid_leader"
     And I am at the home page
@@ -43,8 +44,24 @@ Feature: User can add a character
     And I follow "Add New Character"
 
     When I fill in "Panduu" for "Name"
-    And I select "Monk" from "Character class"
-    And I select "Exiled" from "Choose Guild"
+    And I select "Monk" from the class selector
+    And I select "Exiled" from the guild selector
+    And I press "Add Character"
+
+    Then I should see "Panduu" within ".guilded.exiled"
+
+  @javascript
+  Scenario: User can add character to guild he's not yet a member of
+    Given I am signed in as "raider"
+    And I am at the home page
+    And "raid_leader" has the following characters
+      | name    | character_class | guild   |
+      | Weemuu  | mage            | Exiled  |
+    When I follow "Characters"
+
+    And I fill in "Panduu" for "Name"
+    And I select "Monk" from the class selector
+    And I select "Exiled" from the guild selector
     And I press "Add Character"
 
     Then I should see "Panduu" within ".guilded.exiled"

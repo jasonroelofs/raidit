@@ -25,3 +25,8 @@ end
 Then /^I should see the "(.*?)" icon$/ do |icon_name|
   assert page.has_css?("img[src='/assets/wow/#{icon_name}.png']")
 end
+
+When /^I select "(.*?)" from the (class|character) selector$/ do |name, type|
+  page.find(".character-select a.select2-choice").click
+  page.find(".select2-results .select2-result-label", :text => name).click
+end

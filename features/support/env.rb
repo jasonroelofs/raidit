@@ -8,7 +8,10 @@ require 'cucumber/rails'
 require 'timecop'
 require 'capybara/poltergeist'
 
-Capybara.current_driver = :poltergeist
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new app, :inspector => true
+end
+Capybara.javascript_driver = :poltergeist
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -77,5 +80,5 @@ Before do
 end
 
 Before("@javascript") do
-  Capybara.javascript_driver = :poltergeist
+  Capybara.current_driver = :poltergeist
 end

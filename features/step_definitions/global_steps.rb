@@ -12,6 +12,10 @@ When "I debug" do
   true
 end
 
+When "I js debug" do
+  page.driver.debug
+end
+
 Given /^today is "(.*?)"$/ do |date|
   Timecop.return
   Timecop.travel Date.parse(date)

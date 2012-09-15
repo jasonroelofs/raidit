@@ -34,6 +34,7 @@ Feature: Editing an existing character
     Then I should see "can't be blank"
     And I should see "Edit Character"
 
+  @javascript
   Scenario: Can change guild of character
     Given I am signed in as "raid_leader"
     And I am at the home page
@@ -44,7 +45,7 @@ Feature: Editing an existing character
 
     When I follow "Characters"
     And I follow "Edit" within ".guilded.exiled"
-    And I select "Mind Crush" from "Choose Guild"
+    And I select "Mind Crush" from the guild selector
     And I press "Update Character"
 
     Then I should see "Weemuu" within ".guilded.mindcrush"
