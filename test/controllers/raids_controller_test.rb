@@ -120,8 +120,8 @@ class RaidsControllerTest < ActionController::TestCase
       ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
         Time.parse("20:00"))
 
-      post :create, :where => "Dragon Soul", :when => "2012/01/01",
-        :start => "20:00"
+      post :create, :raid => { :where => "Dragon Soul", :when => "2012/01/01",
+        :start_at => "20:00" }
 
       must_redirect_to raids_path
     end
@@ -130,10 +130,10 @@ class RaidsControllerTest < ActionController::TestCase
       login_as_raid_leader
 
       ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
-        Time.parse("20:00"), {:tank => 10, :dps => 20, :heal => 100})
+        Time.parse("20:00"), {:tank => 10, :dps => 20, :healer => 100})
 
-      post :create, :where => "Dragon Soul", :when => "2012/01/01",
-        :start => "20:00", :tank => 10, :dps => 20, :heal => 100
+      post :create, :raid => {:where => "Dragon Soul", :when => "2012/01/01",
+        :start_at => "20:00", :tank => 10, :dps => 20, :healer => 100}
 
       must_redirect_to raids_path
     end
@@ -181,10 +181,10 @@ class RaidsControllerTest < ActionController::TestCase
       login_as_raid_leader
 
       ScheduleRaid.any_instance.expects(:run).with("Dragon Soul", Date.parse("2012/01/01"),
-        Time.parse("20:00"), {:tank => 10, :dps => 20, :heal => 100})
+        Time.parse("20:00"), {:tank => 10, :dps => 20, :healer => 100})
 
-      put :update, :where => "Dragon Soul", :when => "2012/01/01",
-        :start => "20:00", :tank => 10, :dps => 20, :heal => 100
+      put :update, :id => 10, :raid => {:where => "Dragon Soul", :when => "2012/01/01",
+        :start_at => "20:00", :tank => 10, :dps => 20, :healer => 100}
 
       must_redirect_to raids_path
     end

@@ -1,15 +1,26 @@
-<%= form_for raid, :class => "form-inline" do |f| %>
-  <%= text_field_tag :where, raid.where, :placeholder => "Where" %>
-  <%= text_field_tag :when, raid.when, :placeholder => "What Day" %>
-  <%= text_field_tag :start, raid.start_at, :placeholder => "Starting At" %>
-  <br/>
-  <br/>
+<%= simple_form_for raid, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <legend>When and Where</legend>
 
-  <%= text_field_tag :tank, raid.role_limit(:tank), :placeholder => "Tanks" %>
-  <%= text_field_tag :dps, raid.role_limit(:dps), :placeholder => "DPS" %>
-  <%= text_field_tag :heal, raid.role_limit(:heal), :placeholder => "Healers" %>
+    <%= f.input :where %>
+    <%= f.input :when %>
+    <%= f.input :start_at %>
+  </fieldset>
 
-  <br/>
-  <br/>
-  <%= button_tag raid.persisted? ? "Update Raid" : "Schedule" , :class => "btn" %>
+  <fieldset>
+    <legend>Role Limits</legend>
+    <%= f.input :tank %>
+    <%= f.input :dps %>
+    <%= f.input :healer %>
+  </fieldset>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">
+      <% if raid.persisted? %>
+        Update Raid
+      <% else %>
+        Schedule
+      <% end %>
+    </button>
+  </div>
 <% end %>

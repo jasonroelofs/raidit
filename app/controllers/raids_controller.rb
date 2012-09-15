@@ -59,15 +59,17 @@ class RaidsController < ApplicationController
     action = ScheduleRaid.new current_guild
     action.current_raid = raid
 
+    raid_attrs = params[:raid]
+
     action_params = [
-      params[:where], Date.parse(params[:when]), Time.parse(params[:start])
+      raid_attrs[:where], Date.parse(raid_attrs[:when]), Time.parse(raid_attrs[:start_at])
     ]
 
-    if params[:tank]
+    if raid_attrs[:tank]
       action_params << {
-        :tank => params[:tank].to_i,
-        :dps => params[:dps].to_i,
-        :heal => params[:heal].to_i
+        :tank => raid_attrs[:tank].to_i,
+        :dps => raid_attrs[:dps].to_i,
+        :healer => raid_attrs[:healer].to_i
       }
     end
 

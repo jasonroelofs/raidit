@@ -22,9 +22,9 @@ Scenario: A raid leader can edit a guild's raid
 
   Then I should see "Edit Raid"
 
-  When I fill in "Dragon Soul" for "where"
-  And I fill in "2012/07/15" for "when"
-  And I fill in "17:30" for "start"
+  When I fill in "Dragon Soul" for "Where"
+  And I fill in "2012/07/15" for "When"
+  And I fill in "17:30" for "Start at"
 
   And I press "Update Raid"
 

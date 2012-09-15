@@ -34,6 +34,18 @@ class Raid
     @role_limits[role]
   end
 
+  def tank
+    role_limit :tank
+  end
+
+  def healer
+    role_limit :healer
+  end
+
+  def dps
+    role_limit :dps
+  end
+
   def has_role?(role)
     ROLES.include?(role.to_s)
   end

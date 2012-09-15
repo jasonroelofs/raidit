@@ -49,7 +49,7 @@ describe ScheduleRaid do
       roles = {
         :tank => 5,
         :dps => 4,
-        :heal => 3
+        :healer => 3
       }
 
       @action.run @where, @when, @start, roles
@@ -59,7 +59,7 @@ describe ScheduleRaid do
 
       raid.role_limit(:tank).must_equal 5
       raid.role_limit(:dps).must_equal 4
-      raid.role_limit(:heal).must_equal 3
+      raid.role_limit(:healer).must_equal 3
     end
 
     describe "updating an existing raid" do
@@ -72,7 +72,7 @@ describe ScheduleRaid do
         @action.current_raid = @raid
 
         @action.run "Ulduar", Date.parse("2010/01/01"), Time.parse("10:30"), {
-          :tank => 1, :dps => 2, :heal => 3
+          :tank => 1, :dps => 2, :healer => 3
         }
 
         raids = Repository.for(Raid).all
@@ -81,7 +81,7 @@ describe ScheduleRaid do
 
         raid.role_limit(:tank).must_equal 1
         raid.role_limit(:dps).must_equal 2
-        raid.role_limit(:heal).must_equal 3
+        raid.role_limit(:healer).must_equal 3
       end
     end
 
