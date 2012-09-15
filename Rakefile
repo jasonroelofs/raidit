@@ -8,7 +8,7 @@ task :default => "test:all"
 
 namespace :test do
   desc "Run all tests"
-  task :all => [:units, :controllers, :features]
+  task :all => [:units, :controllers, :features, :features_slow]
 
   desc "Run all unit tests"
   Rake::TestTask.new :units do |t|
@@ -22,8 +22,13 @@ namespace :test do
     t.libs = ["lib", "app", "test"]
   end
 
-  desc "Run the cucumber features"
+  desc "Run the fast cucumber features"
   Cucumber::Rake::Task.new(:features) do |t|
-    t.cucumber_opts = "features --format progress"
+    t.cucumber_opts = "features --tags ~@javascript --format progress"
+  end
+
+  desc "Run the slow cucumber features"
+  Cucumber::Rake::Task.new(:features_slow) do |t|
+    t.cucumber_opts = "features --tags @javascript --format progress"
   end
 end
