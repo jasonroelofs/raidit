@@ -63,6 +63,12 @@ module InMemory
     def find_by_name(name)
       find_one {|g| g.name == name }
     end
+
+    def search_by_name(query)
+      find_all {|g|
+        g.name =~ /#{query}/i
+      }
+    end
   end
 
   class UserRepo < IndexedRepo

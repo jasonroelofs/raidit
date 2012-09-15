@@ -1,7 +1,6 @@
 require 'unit/test_helper'
 require 'interactors/list_guilds'
 require 'models/user'
-require 'models/guild'
 require 'models/character'
 
 describe ListGuilds do
@@ -23,6 +22,23 @@ describe ListGuilds do
 
     it "lists all guilds the given user is a member of" do
       ListGuilds.by_user(@user).must_equal [@guild1, @guild2]
+    end
+  end
+
+  describe ".by_partial_name" do
+    before do
+      @guild1 = Guild.new name: "Exiled"
+      @guild2 = Guild.new name: "MindCrush"
+      @guild3 = Guild.new name: "Exiled Minds"
+
+      Repository.for(Guild).save(@guild1)
+      Repository.for(Guild).save(@guild2)
+      Repository.for(Guild).save(@guild3)
+    end
+
+    it "searches for guilds who's name match the query" do
+      ListGuilds.by_partial_name("exil").must_equal [@guild1, @guild3]
+      ListGuilds.by_partial_name("Mind").must_equal [@guild2, @guild3]
     end
   end
 end
