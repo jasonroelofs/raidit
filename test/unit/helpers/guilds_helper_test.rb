@@ -19,7 +19,7 @@ describe GuildsHelper do
       guild = Guild.new name: "Guildolocks", id: 1
       ListGuilds.expects(:by_user).with(current_user).returns([guild])
 
-      guild_selection_list.must_equal [["Your Guilds", [["Guildolocks", 1]]]]
+      guild_selection_list.must_equal [["Unguilded"], ["Guildolocks", 1]]
     end
 
   end

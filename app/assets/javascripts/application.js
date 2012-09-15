@@ -9,7 +9,11 @@ $(function() {
     new CharacterSelect($(e));
   });
 
-  $("select:not(.character-select)").each(function(i, e) {
+  $(".guild-select").each(function(i, e) {
+    new GuildSelect($(e));
+  });
+
+  $("select:not(.character-select):not(.guild-select)").each(function(i, e) {
     new CustomSelect($(e));
   });
 });
