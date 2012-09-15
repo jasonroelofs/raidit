@@ -10,6 +10,16 @@
 
 </fieldset>
 
+<fieldset class="add-guild">
+  <legend>Add a Guild</legend>
+
+  <div>
+    <%= f.simple_fields_for :guild do |g| %>
+      <%= g.input :region, :input_html => {:maxlength => 2, :class => "input-two-char"} %>
+      <%= g.input :server %>
+      <%= g.input :name %>
+    <% end %>
+  </div>
 
 </fieldset>
 

@@ -18,11 +18,23 @@ class AddCharacter
   #   :character_class
   #   :guild_id
   #
+  # If :guild_id == "new_guild" then will try to create a new guild
+  # with the given attributes:
+  #
+  #   :guild :name
+  #   :guild :region
+  #   :guild :server
+  #
   ##
   def run(attributes)
     name, character_class, guild_id = attributes.values_at :name, :character_class, :guild_id
 
-    guild = guild_id.present? ? FindGuild.by_id(guild_id.to_i) : nil
+    if attributes[:guild] && guild_id == "new_guild"
+      guild = Guild.new attributes[:guild]
+      Repository.for(Guild).save(guild)
+    else
+      guild = guild_id.present? ? FindGuild.by_id(guild_id.to_i) : nil
+    end
 
     @character = Character.new name: name, user: @current_user,
       character_class: character_class, guild: guild

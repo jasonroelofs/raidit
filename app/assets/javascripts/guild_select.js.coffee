@@ -18,7 +18,7 @@ class @GuildSelect
 
   processGuilds: (data, page) ->
     data.push({name: "", id: null})
-    data.push({name: "[Add Your Guild]", id: -1 })
+    data.push({name: "[Add Your Guild]", id: "new_guild" })
 
     { results: data }
 
@@ -29,7 +29,7 @@ class @GuildSelect
     guild.name
 
   checkIfAddGuildSelected: () ->
-    if $(this).val() == "-1"
+    if $(this).val() == "new_guild"
       $(".add-guild").slideDown()
       $("#character_guild_region").focus()
     else

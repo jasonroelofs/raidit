@@ -31,6 +31,10 @@ $linkColor: lighten($blue, 20%);
   vertical-align: top;
 }
 
+.input-two-char {
+  width: 30px;
+}
+
 .container {
   margin-top: 30px;
   width: 980px;
@@ -288,4 +292,8 @@ $linkColor: lighten($blue, 20%);
   }
 
   margin-bottom: 1em;
+}
+
+.add-guild {
+  display: none;
 }

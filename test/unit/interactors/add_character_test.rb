@@ -50,6 +50,18 @@ describe AddCharacter do
       char.name.must_equal ""
       char.character_class.must_equal "warrior"
     end
+
+    it "can create a new guild and associate the character to that guild if requested" do
+      assert @action.run(:name => "Guildy", :character_class => "mage", :guild_id => "new_guild",
+                         :guild => {:region => "US", :server => "Johnson", :name => "BlastOff"})
+
+      guild = Repository.for(Guild).find_by_name("BlastOff")
+      guild.region.must_equal "US"
+      guild.server.must_equal "Johnson"
+
+      guildy = Repository.for(Character).find_all_for_user(@user).first
+      guildy.guild.must_equal guild
+    end
   end
 
 end
