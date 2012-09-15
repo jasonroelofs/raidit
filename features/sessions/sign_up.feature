@@ -17,8 +17,8 @@ Feature: User signs up for raidit
     # See that new login / password is saved
     When I follow "Log Out"
     And I follow "Log In"
-    And I fill in "tester" for "login"
-    And I fill in "passwordy" for "password"
+    And I fill in "tester" for "Login"
+    And I fill in "passwordy" for "Password"
     And I press "Log In"
 
     Then I should see "Characters"

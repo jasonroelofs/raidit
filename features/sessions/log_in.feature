@@ -7,8 +7,8 @@ Scenario: User can log into the app
   Then I should see "Login"
   And I should see "Password"
 
-  When I fill in "raid_leader" for "login"
-  And I fill in "password" for "password"
+  When I fill in "raid_leader" for "Login"
+  And I fill in "password" for "Password"
   And I press "Log In"
 
   Then I should see "Characters"
@@ -20,8 +20,8 @@ Scenario: Unknown user sees error when trying to log in
   Then I should see "Login"
   And I should see "Password"
 
-  When I fill in "baduser" for "login"
-  And I fill in "stupidpass" for "password"
+  When I fill in "baduser" for "Login"
+  And I fill in "stupidpass" for "Password"
   And I press "Log In"
 
   Then I should see "Login"
@@ -34,8 +34,8 @@ Scenario: System redirects user to the page they attempted to hit
   Then I should see "Login"
   And I should see "Password"
 
-  When I fill in "raid_leader" for "login"
-  And I fill in "password" for "password"
+  When I fill in "raid_leader" for "Login"
+  And I fill in "password" for "Password"
   And I press "Log In"
 
   Then I should be on /raids

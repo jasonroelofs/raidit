@@ -1,10 +1,8 @@
-<%= form_tag sessions_path, :method => :post do %>
-  <label for='login'>Login</label>
-  <input type="text" name="login">
-  <br/>
-  <br/>
-  <label for='password'>Password</label>
-  <input type="password" name="password">
+<%= simple_form_for @session, :html => {:class => "form-horizontal"} do |f| %>
+  <%= f.input :login %>
+  <%= f.input :password %>
 
-  <input type="submit" value="Log In">
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Log In</button>
+  </div>
 <% end %>

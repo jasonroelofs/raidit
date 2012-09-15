@@ -8,6 +8,8 @@ class SessionsControllerTest < ActionController::TestCase
       get :new
       must_respond_with 200
       must_render_template "new"
+
+      assigns(:session).wont_be_nil
     end
   end
 
@@ -20,7 +22,7 @@ class SessionsControllerTest < ActionController::TestCase
       @user.set_login_token(:web, "1234")
       LogUserIn.any_instance.expects(:run).with("testing", "johnson").returns(@user)
 
-      post :create, :login => "testing", :password => "johnson"
+      post :create, :session => {:login => "testing", :password => "johnson"}
       must_redirect_to root_path
 
       cookies[:web_session_token].must_equal "1234"
@@ -30,7 +32,7 @@ class SessionsControllerTest < ActionController::TestCase
       LogUserIn.any_instance.expects(:run).with("testing", "johnson").returns(@user)
       session[:login_redirect_to] = characters_path
 
-      post :create, :login => "testing", :password => "johnson"
+      post :create, :session => {:login => "testing", :password => "johnson"}
       must_redirect_to characters_path
       session[:login_redirect_to].must_be_nil
     end
@@ -38,7 +40,7 @@ class SessionsControllerTest < ActionController::TestCase
     it "saves the login token on the user" do
       LogUserIn.any_instance.expects(:run).with("testing", "johnson").returns(@user)
 
-      post :create, :login => "testing", :password => "johnson"
+      post :create, :session => {:login => "testing", :password => "johnson"}
 
       token = cookies[:web_session_token]
       @user.login_token(:web).must_equal token
@@ -47,7 +49,7 @@ class SessionsControllerTest < ActionController::TestCase
     it "re-renders with an error if no user found" do
       LogUserIn.any_instance.expects(:run).with("sandwich", "poodoo").returns(nil)
 
-      post :create, :login => "sandwich", :password => "poodoo"
+      post :create, :session => {:login => "sandwich", :password => "poodoo"}
       must_respond_with 200
       must_render_template "new"
 

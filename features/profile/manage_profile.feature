@@ -28,8 +28,8 @@ Feature: User can manage their personal information
     When I follow "Log Out"
     And I follow "Log In"
 
-    Then I fill in "raid_leader" for "login"
-    And I fill in "newPass" for "password"
+    Then I fill in "raid_leader" for "Login"
+    And I fill in "newPass" for "Password"
     And I press "Log In"
     Then I should see "Characters"
 

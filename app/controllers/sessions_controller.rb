@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   # Render the login form
   ##
   def new
+    @session = Session.new
   end
 
   ##
@@ -11,8 +12,9 @@ class SessionsController < ApplicationController
   ##
   def create
     action = LogUserIn.new :web
+    @session = Session.new params[:session]
 
-    if user = action.run(params[:login], params[:password])
+    if user = action.run(@session.login, @session.password)
       previous_path = session[:login_redirect_to]
       set_new_user_session user
 
