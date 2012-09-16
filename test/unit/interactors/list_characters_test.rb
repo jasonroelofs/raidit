@@ -12,32 +12,28 @@ describe ListCharacters do
     action.user.must_equal user
   end
 
-  describe "#guilded and #unguilded" do
+  describe "#all_grouped_by_guild" do
     before do
       @user = User.new
-      @guild = Guild.new
+      @guild = Guild.new id: 1, name: "My Guild"
       @char1 = Character.new name: "Wonko", user: @user, guild: @guild
       @char2 = Character.new name: "Feeler", user: @user, guild: nil
 
-      Repository.for(Character).save(@char1)
       Repository.for(Character).save(@char2)
+      Repository.for(Character).save(@char1)
 
       @action = ListCharacters.new @user
     end
 
     it "finds all characters in a guild" do
-      found = @action.guilded
+      found = @action.all_grouped_by_guild
 
       found.wont_be_nil
-      found.guilds.must_equal [@guild]
-      found.characters.must_equal({@guild.id => [@char1]})
-    end
-
-    it "groups results by guild" do
-      found = @action.unguilded
-
-      found.wont_be_nil
-      found.must_equal [@char2]
+      found.guilds.must_equal [@guild, Guild.new(id: -1, name: "Unguilded")]
+      found.characters.must_equal({
+        @guild.id => [@char1],
+        -1 => [@char2]
+      })
     end
   end
 

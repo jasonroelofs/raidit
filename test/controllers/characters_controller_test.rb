@@ -24,21 +24,22 @@ class CharactersControllerTest < ActionController::TestCase
     it "renders the list of guilded and unguilded characters the current user has" do
       guild1 = Guild.new
       guild2 = Guild.new
-      guilded = {guild1 => [Character.new(id: 1)], guild2 => [Character.new(id: 2)]}
-      unguilded = [Character.new(id: 3)]
+      guild3 = Guild.new name: "Unguilded"
+      char_map = {
+        guild1 => [Character.new(id: 1)],
+        guild2 => [Character.new(id: 2)],
+        guild3 => [Character.new(id: 3)]
+      }
 
-      ListCharacters.any_instance.expects(:guilded).returns(guilded)
-      ListCharacters.any_instance.expects(:unguilded).returns(unguilded)
+      ListCharacters.any_instance.expects(:all_grouped_by_guild).returns(char_map)
 
       get :index
 
-      assigns(:guilded_characters).must_equal guilded
-      assigns(:unguilded_characters).must_equal unguilded
+      assigns(:characters_by_guild).must_equal char_map
     end
 
     it "redirects to #new if there are no characters" do
-      ListCharacters.any_instance.expects(:guilded).returns({})
-      ListCharacters.any_instance.expects(:unguilded).returns([])
+      ListCharacters.any_instance.expects(:all_grouped_by_guild).returns({})
 
       get :index
 

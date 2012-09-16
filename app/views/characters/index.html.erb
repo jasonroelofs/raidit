@@ -1,20 +1,10 @@
-<% @guilded_characters.each do |guild, characters| %>
-  <div class="guilded character-list row <%= normalize_name(guild.name) %>">
+<% @characters_by_guild.each do |guild, characters| %>
+  <div class="character-list row <%= normalize_name(guild.name) %>">
     <div class="section-header span12">
       <h3><%= guild.name %></h3>
     </div>
 
     <%= render :partial => "character", :collection => sorted_characters_main_first(characters) %>
-  </div>
-<% end %>
-
-<% if @unguilded_characters.any? %>
-  <div class="unguilded character-list row">
-    <div class="section-header span12">
-      <h3>Unguilded</h3>
-    </div>
-
-    <%= render :partial => "character", :collection => @unguilded_characters %>
   </div>
 <% end %>
 

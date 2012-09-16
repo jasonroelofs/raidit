@@ -1,4 +1,3 @@
-require 'interactors/list_characters'
 require 'repository'
 require 'models/guild'
 
@@ -8,7 +7,10 @@ class ListGuilds
   # Find all guilds this user is a member of
   ##
   def self.by_user(user)
-    ListCharacters.new(user).guilded.guilds
+    # Ick...
+    Repository.for(Character).find_all_for_user(user).select do |char|
+      char.guild.present?
+    end.map(&:guild).uniq
   end
 
   ##

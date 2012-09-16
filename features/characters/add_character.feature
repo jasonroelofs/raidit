@@ -48,7 +48,7 @@ Feature: User can add a character
     And I select "Exiled" from the guild selector
     And I press "Add Character"
 
-    Then I should see "Panduu" within ".guilded.exiled"
+    Then I should see "Panduu" within ".exiled"
 
   @javascript
   Scenario: User can add character to guild he's not yet a member of
@@ -64,7 +64,7 @@ Feature: User can add a character
     And I select "Exiled" from the guild selector
     And I press "Add Character"
 
-    Then I should see "Panduu" within ".guilded.exiled"
+    Then I should see "Panduu" within ".exiled"
 
   @javascript
   Scenario: User can start a new guild from the Add Character screen
@@ -83,7 +83,7 @@ Feature: User can add a character
 
     And I press "Add Character"
 
-    Then I should see "Panduu" within ".guilded.weemopolis"
+    Then I should see "Panduu" within ".weemopolis"
 
   Scenario: Handles error cases
     Given I am signed in as "raid_leader"

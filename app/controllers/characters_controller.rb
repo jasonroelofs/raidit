@@ -5,10 +5,9 @@ class CharactersController < ApplicationController
 
   def index
     action = ListCharacters.new current_user
-    @guilded_characters = action.guilded
-    @unguilded_characters = action.unguilded
+    @characters_by_guild = action.all_grouped_by_guild
 
-    if @guilded_characters.empty? && @unguilded_characters.empty?
+    if @characters_by_guild.empty?
       redirect_to action: "new"
     end
   end

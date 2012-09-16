@@ -9,8 +9,8 @@ Feature: Listing a user's characters
       | Weemoo   | Mind Crush |
 
     When I follow "Characters"
-    Then I should see "Weemuu" within ".guilded.exiled"
-    And I should see "Weemoo" within ".guilded.mindcrush"
+    Then I should see "Weemuu" within ".exiled"
+    And I should see "Weemoo" within ".mindcrush"
 
   Scenario: User sees his unguilded characters
     Given I am signed in as "raid_leader"

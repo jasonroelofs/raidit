@@ -14,22 +14,18 @@ class ListCharacters
   end
 
   ##
-  # Find all characters for this user who are in a guild.
+  # Find all characters owned by the current user, mapped by
+  # the guild the characters are in.
+  #
+  # Unguilded characters will be put in a pseudo-guild named Unguilded
+  #
   # Returned is a hash of:
   #
   #   guild => [list of characters]
   ##
-  def guilded
-    characters = find_guilded_characters
-    map_characters_by_guild characters
+  def all_grouped_by_guild
+    map_characters_by_guild self.run
   end
-
-  def find_guilded_characters
-    self.run.select do |character|
-      character.guild.present?
-    end
-  end
-  private :find_guilded_characters
 
   def map_characters_by_guild(characters)
     mapping = CharactersByGuild.new
@@ -48,9 +44,12 @@ class ListCharacters
     def initialize
       @guild_id_map = {}
       @characters = {}
+      @unguilded = Guild.new id: -1, name: "Unguilded"
     end
 
     def add_character_to_guild(character, guild)
+      guild ||= @unguilded
+
       @guild_id_map[guild.id] ||= guild
 
       @characters[guild.id] ||= []
@@ -61,8 +60,21 @@ class ListCharacters
       @guild_id_map.empty?
     end
 
+    ##
+    # Return the list of known guilds, sorted alphabetically
+    # though ensuring the "Unguilded" guild is at the bottom
+    # of the list.
+    ##
     def guilds
-      @guild_id_map.values
+      @guild_id_map.values.sort do |a, b|
+        if a.name == "Unguilded"
+          1
+        elsif b.name == "Unguilded"
+          -1
+        else
+          a.name <=> b.name
+        end
+      end
     end
 
     def each
@@ -71,21 +83,5 @@ class ListCharacters
       end
     end
   end
-
-  ##
-  # Find all characters for this user who are *not* in a guild.
-  #
-  # Returns an array of found Characters
-  ##
-  def unguilded
-    find_unguilded_characters
-  end
-
-  def find_unguilded_characters
-    self.run.select do |character|
-      character.guild.nil?
-    end
-  end
-  private :find_unguilded_characters
 
 end

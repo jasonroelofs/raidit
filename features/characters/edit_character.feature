@@ -8,14 +8,14 @@ Feature: Editing an existing character
       | Weemuu  | Exiled  |
 
     When I follow "Characters"
-    And I follow "Edit" within ".guilded.exiled"
+    And I follow "Edit" within ".exiled"
 
     Then I should see "Edit Character"
     When I fill in "Weeboo" for "Name"
     And I select "Shaman" from "Character class"
     And I press "Update Character"
 
-    Then I should see "Weeboo" within ".guilded.exiled"
+    Then I should see "Weeboo" within ".exiled"
     And I should not see "Weemuu"
     And I should see the "shaman" icon
 
@@ -27,7 +27,7 @@ Feature: Editing an existing character
       | Weemuu  | Exiled  |
 
     When I follow "Characters"
-    And I follow "Edit" within ".guilded.exiled"
+    And I follow "Edit" within ".exiled"
     And I fill in "" for "Name"
     And I press "Update Character"
 
@@ -44,11 +44,11 @@ Feature: Editing an existing character
       | Johnson | Mind Crush |
 
     When I follow "Characters"
-    And I follow "Edit" within ".guilded.exiled"
+    And I follow "Edit" within ".exiled"
     And I select "Mind Crush" from the guild selector
     And I press "Update Character"
 
-    Then I should see "Weemuu" within ".guilded.mindcrush"
+    Then I should see "Weemuu" within ".mindcrush"
 
   @javascript
   Scenario: Can set up a new guild for an existing character
@@ -59,7 +59,7 @@ Feature: Editing an existing character
       | Weemuu  | Exiled  |
 
     When I follow "Characters"
-    And I follow "Edit" within ".guilded.exiled"
+    And I follow "Edit" within ".exiled"
     And I select "[Add Your Guild]" from the guild selector
 
     Then I should see "Add a Guild"
@@ -68,4 +68,4 @@ Feature: Editing an existing character
     And I fill in "Weemopolis" for "character_guild_name"
     And I press "Update Character"
 
-    Then I should see "Weemuu" within ".guilded.weemopolis"
+    Then I should see "Weemuu" within ".weemopolis"
