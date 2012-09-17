@@ -6,27 +6,21 @@ require 'models/character'
 
 describe ListCharacters do
 
-  it "takes a user on construction" do
-    user = User.new
-    action = ListCharacters.new user
-    action.user.must_equal user
-  end
-
-  describe "#run" do
+  describe "#all" do
     it "finds all characters for the given user" do
       user = User.new
       character = Character.new name: "Johnson", user: user
       Repository.for(Character).save character
-      action = ListCharacters.new user
 
-      action.run.must_equal [character]
+      list = ListCharacters.all_for_user user
+      list.must_equal [character]
     end
 
     it "returns the empty list if no characters found" do
       user = User.new
-      action = ListCharacters.new user
 
-      action.run.must_equal []
+      list = ListCharacters.all_for_user user
+      list.must_equal []
     end
   end
 

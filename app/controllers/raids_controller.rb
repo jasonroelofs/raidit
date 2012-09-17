@@ -12,7 +12,7 @@ class RaidsController < ApplicationController
     @raid = find_raid params[:id]
     @signups = ListSignups.for_raid(@raid)
 
-    @current_user_characters = ListCharacters.new(current_user).run
+    @current_user_characters = ListCharacters.all_for_user(current_user)
 
     # Possibly move this logic elsewhere? Feels too much like implementation
     # details in the controller.

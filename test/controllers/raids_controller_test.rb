@@ -38,7 +38,7 @@ class RaidsControllerTest < ActionController::TestCase
 
         @raid = Raid.new id: 10, when: Date.today, start_at: Time.now, invite_at: Time.now
         FindRaid.expects(:by_id).with(10).returns(@raid)
-        ListCharacters.any_instance.stubs(:run).returns([])
+        ListCharacters.stubs(:all_for_user).returns([])
         ListSignups.stubs(:for_raid).returns ListSignups::Signups.new
       end
 
@@ -60,7 +60,7 @@ class RaidsControllerTest < ActionController::TestCase
 
       it "grabs the current user's list of characters" do
         list = [Character.new]
-        ListCharacters.any_instance.expects(:run).returns(list)
+        ListCharacters.expects(:all_for_user).with(@user).returns(list)
 
         get :show, :id => 10
 
@@ -70,7 +70,7 @@ class RaidsControllerTest < ActionController::TestCase
 
       it "removes characters already signed up from the current user's list" do
         list = [Character.new]
-        ListCharacters.any_instance.stubs(:run).returns(list)
+        ListCharacters.stubs(:all_for_user).with(@user).returns(list)
 
         signups = ListSignups::Signups.new
         signups.add_signup Signup.new(character: list[0])

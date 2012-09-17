@@ -28,7 +28,7 @@ class CharactersControllerTest < ActionController::TestCase
         Character.new(id: 3)
       ]
 
-      ListCharacters.any_instance.expects(:run).returns(characters)
+      ListCharacters.expects(:all_for_user).with(@user).returns(characters)
 
       get :index
 
@@ -36,7 +36,7 @@ class CharactersControllerTest < ActionController::TestCase
     end
 
     it "redirects to #new if there are no characters" do
-      ListCharacters.any_instance.expects(:run).returns([])
+      ListCharacters.expects(:all_for_user).with(@user).returns([])
 
       get :index
 

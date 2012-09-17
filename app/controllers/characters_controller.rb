@@ -4,8 +4,7 @@ class CharactersController < ApplicationController
   navigation :characters
 
   def index
-    action = ListCharacters.new current_user
-    @characters_by_guild = CharactersByGuild.new action.run
+    @characters_by_guild = CharactersByGuild.new ListCharacters.all_for_user(current_user)
 
     if @characters_by_guild.empty?
       redirect_to action: "new"
