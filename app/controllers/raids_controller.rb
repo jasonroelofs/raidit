@@ -13,15 +13,17 @@ class RaidsController < ApplicationController
     @signups = ListSignups.for_raid(@raid)
 
     @current_user_characters = ListCharacters.new(current_user).run
-    @choosable_characters = @current_user_characters.reject do |character|
+
+    # Possibly move this logic elsewhere? Feels too much like implementation
+    # details in the controller.
+    choosable_characters = @current_user_characters.reject do |character|
       @signups.contains? character
     end
+
+    @choosable_characters_by_guild = CharactersByGuild.new(choosable_characters)
   end
 
   def new
-    # NOTE Hmm, direct access to domain model here...
-    # At the same time this is only for presenting the form to the user
-    # so it's not really app-specific logic.
     @raid = Raid.new
   end
 

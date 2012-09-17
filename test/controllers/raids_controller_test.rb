@@ -65,7 +65,7 @@ class RaidsControllerTest < ActionController::TestCase
         get :show, :id => 10
 
         assigns(:current_user_characters).must_equal list
-        assigns(:choosable_characters).must_equal list
+        assigns(:choosable_characters_by_guild).wont_be_nil
       end
 
       it "removes characters already signed up from the current user's list" do
@@ -80,7 +80,7 @@ class RaidsControllerTest < ActionController::TestCase
         get :show, :id => 10
 
         assigns(:current_user_characters).must_equal list
-        assigns(:choosable_characters).must_equal []
+        assigns(:choosable_characters_by_guild).wont_be_nil
       end
 
     end

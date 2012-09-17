@@ -3,10 +3,16 @@ module RaidsHelper
     render partial: "raids/calendar", locals: { presenter: presenter }
   end
 
-  def option_list_of_characters(characters)
-    options_for_select(characters.map {|c|
-      [c.name, c.id, {"data-character-class" => c.character_class}]
+  def option_list_of_characters(character_guild_map)
+    grouped_options_for_select(character_guild_map.map {|guild, characters|
+      [guild.name, build_options_from_character_list(characters)]
     })
+  end
+
+  def build_options_from_character_list(characters)
+    characters.map do |c|
+      [c.name, c.id, {"data-character-class" => c.character_class}]
+    end
   end
 
   SignupAction = Struct.new(:name, :action)

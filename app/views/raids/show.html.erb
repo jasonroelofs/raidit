@@ -52,15 +52,15 @@
   <section class="signup">
     <% if @raid.past? %>
       <p>Cannot sign up to raids in the past</p>
-    <% elsif @current_user_characters.empty? && @choosable_characters.empty? %>
+    <% elsif @current_user_characters.empty? %>
       <p>You need a character to sign up to raid</p>
-    <% elsif @choosable_characters.empty? %>
+    <% elsif @choosable_characters_by_guild.empty? %>
       <p>You have no more characters to sign up!</p>
     <% else %>
       <h4>Sign Up for this Raid</h4>
 
       <%= form_tag raid_signups_path(@raid) do %>
-        <%= select_tag :character_id, option_list_of_characters(@choosable_characters), :class => "character-select" %>
+        <%= select_tag :character_id, option_list_of_characters(@choosable_characters_by_guild), :class => "character-select" %>
         <%= select_tag :role, options_for_select([["DPS", "dps"], ["Healer", "healer"], ["Tank", "tank"]]) %>
         <%= submit_tag "Sign Up" %>
       <% end %>
