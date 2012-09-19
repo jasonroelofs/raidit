@@ -28,5 +28,4 @@ Scenario: A raid leader can edit a guild's raid
 
   And I press "Update Raid"
 
-  Then I should see "Your Raids"
-  And I should see "Dragon Soul July 15, 2012 5:30 PM Server"
+  Then I should see "Dragon Soul July 15, 2012 5:30 PM Server"

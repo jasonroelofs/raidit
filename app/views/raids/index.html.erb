@@ -1,4 +1,8 @@
-<h1>Your Raids</h1>
+<h2>Scheduled Raids</h2>
+
+<% permission :schedule_raid do %>
+  <%= link_to "Schedule a Raid", new_raid_path, :class => "btn btn-large btn-primary" %>
+<% end %>
 
 <div class="raids">
   <table class="table">
@@ -35,5 +39,5 @@
 </div>
 
 <% permission :schedule_raid do %>
-  <%= link_to "Schedule a Raid", new_raid_path %>
+  <%= link_to "Schedule a Raid", new_raid_path, :class => "btn btn-large btn-primary" %>
 <% end %>
