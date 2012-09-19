@@ -15,11 +15,11 @@ Raidit::Application.configure do
     # Set up our seed data for the development setup
     if Rails.env.development?
       Repository.for(Guild).save(
-        exiled = Guild.new(:name => "Exiled")
+        exiled = Guild.new(:name => "Exiled", :region => "US", :server => "Detheroc")
       )
 
       Repository.for(Guild).save(
-        mind_crush = Guild.new(:name => "Mind Crush")
+        mind_crush = Guild.new(:name => "Mind Crush", :region => "US", :server => "Kil'Jaeden")
       )
 
       Repository.for(User).save(
