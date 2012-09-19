@@ -11,6 +11,8 @@ Given /^"(.*?)" has the following characters$/ do |login, table|
 
     if row[:guild]
       guild = FindGuild.by_name row[:guild]
+      guild ||= AddGuild.from_attributes name: row[:guild]
+
       c.guild = guild
     end
 
