@@ -18,9 +18,7 @@ Scenario: A raid leader can schedule a one-time raid
   And I fill in "20:00" for "Start at"
   And I press "Schedule"
 
-  Then I should see "ICC on June 4, 2012"
-  And I should see "8:00 PM Server"
-  And I should see "Invites start at 7:45 PM Server"
+  Then I should see "ICC June 4, 2012 8:00 PM Server 7:45 PM Server"
 
 Scenario: A user can add role limits to a raid
   Given I am signed in as "raid_leader"
@@ -38,9 +36,4 @@ Scenario: A user can add role limits to a raid
   And I fill in "12" for "Dps"
   And I press "Schedule"
 
-  Then I should see "ICC on June 4, 2012"
-  And I should see "8:00 PM Server"
-  And I should see "Invites start at 7:45 PM Server"
-  And I should see "Tanks: 10"
-  And I should see "Healers: 5"
-  And I should see "DPS: 12"
+  Then I should see "ICC June 4, 2012 8:00 PM Server 7:45 PM Server 10 5 12"

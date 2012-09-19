@@ -1,21 +1,37 @@
 <h1>Your Raids</h1>
 
 <div class="raids">
-  <% @raids.each do |raid| %>
-    <div class="raid">
-      <span class="actions">
-        <%= link_to "Edit", [:edit, raid] if permission? :schedule_raid %>
-        <%= link_to "View", [raid] %>
-      </span>
-      <%= raid.where %> on <%= raid.when.to_s(:full) %> at <%= raid.start_at.to_s(:with_am_pm) %> Server
-      <span class="invites">Invites start at <%= raid.invite_at.to_s(:with_am_pm) %> Server</span>
-      <span class="limits">
-        Tanks: <%= raid.tank %>
-        DPS: <%= raid.dps %>
-        Healers: <%= raid.healer %>
-      </span>
-    </div>
-  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Where</th>
+        <th>Date</th>
+        <th>When</th>
+        <th>Invites</th>
+        <th>Tanks</th>
+        <th>Healers</th>
+        <th>DPS</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @raids.each do |raid| %>
+        <tr>
+          <td><%= raid.where %></td>
+          <td><%= raid.when.to_s(:full) %></td>
+          <td><%= raid.start_at.to_s(:with_am_pm) %> Server</td>
+          <td><%= raid.invite_at.to_s(:with_am_pm) %> Server</td>
+          <td><%= raid.tank %></td>
+          <td><%= raid.healer %></td>
+          <td><%= raid.dps %></td>
+          <td>
+            <%= link_to "Edit", [:edit, raid] if permission? :schedule_raid %>
+            <%= link_to "View", [raid] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <% permission :schedule_raid do %>

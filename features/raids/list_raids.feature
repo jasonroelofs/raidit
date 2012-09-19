@@ -9,13 +9,8 @@ Scenario: A user can see raids he has scheduled
     | Firelands | 2012/07/02  | 21:00 | 30            |
 
   When I follow "Raids"
-  Then I should see "ICC on July 1, 2012"
-  And I should see "8:00 PM Server"
-  And I should see "Invites start at 7:45 PM Server"
-
-  And I should see "Firelands on July 2, 2012"
-  And I should see "9:00 PM Server"
-  And I should see "Invites start at 8:30 PM Server"
+  Then I should see "ICC July 1, 2012 8:00 PM Server 7:45 PM Server"
+  And I should see "Firelands July 2, 2012 9:00 PM Server 8:30 PM Server"
 
 Scenario: A raider can see raids for his guild
   Given I am signed in as "raider"
@@ -32,5 +27,5 @@ Scenario: A raider can see raids for his guild
     | Firelands | 2012/07/02  | 21:00 | 30            |
 
   When I follow "Raids"
-  Then I should see "ICC on July 1, 2012"
-  And I should see "Firelands on July 2, 2012"
+  Then I should see "ICC July 1, 2012"
+  And I should see "Firelands July 2, 2012"
