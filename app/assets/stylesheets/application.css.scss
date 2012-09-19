@@ -297,3 +297,26 @@ $linkColor: lighten($blue, 20%);
 .add-guild {
   display: none;
 }
+
+.guild {
+  .guild-name {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .guild-info {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: normal;
+    color: $gray;
+  }
+}
+
+.choose-guild {
+  margin-bottom: 1em;
+}
