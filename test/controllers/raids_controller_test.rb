@@ -64,7 +64,6 @@ class RaidsControllerTest < ActionController::TestCase
 
         get :show, :id => 10
 
-        assigns(:current_user_characters).must_equal list
         assigns(:choosable_characters_by_guild).wont_be_nil
       end
 
@@ -79,7 +78,6 @@ class RaidsControllerTest < ActionController::TestCase
 
         get :show, :id => 10
 
-        assigns(:current_user_characters).must_equal list
         assigns(:choosable_characters_by_guild).wont_be_nil
       end
 

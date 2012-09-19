@@ -23,7 +23,6 @@ Feature: Signing up to a Raid
     Then I should see "Weemuu" within ".available .dps"
 
     And I should not see "Sign Up for this Raid"
-    And I should not see "You need a character to sign up to raid"
     And I should see "You have no more characters to sign up!"
 
   Scenario: User can sign up multiple of his own characters

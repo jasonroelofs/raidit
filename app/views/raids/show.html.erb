@@ -52,8 +52,6 @@
   <section class="signup">
     <% if @raid.past? %>
       <p>Cannot sign up to raids in the past</p>
-    <% elsif @current_user_characters.empty? %>
-      <p>You need a character to sign up to raid</p>
     <% elsif @choosable_characters_by_guild.empty? %>
       <p>You have no more characters to sign up!</p>
     <% else %>

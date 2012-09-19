@@ -12,11 +12,11 @@ class RaidsController < ApplicationController
     @raid = find_raid params[:id]
     @signups = ListSignups.for_raid(@raid)
 
-    @current_user_characters = ListCharacters.all_for_user(current_user)
+    current_user_characters = ListCharacters.all_for_user(current_user)
 
     # Possibly move this logic elsewhere? Feels too much like implementation
     # details in the controller.
-    choosable_characters = @current_user_characters.reject do |character|
+    choosable_characters = current_user_characters.reject do |character|
       @signups.contains? character
     end
 
