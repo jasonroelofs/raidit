@@ -1,5 +1,6 @@
 require 'repository'
 require 'models/guild'
+require 'models/character'
 
 class ListGuilds
 
