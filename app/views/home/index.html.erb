@@ -1,35 +1,3 @@
-<%#= guild_selector :title => "Raids" %>
-
-<% if current_user && current_guild %>
-  <div class="btn-group choose-guild">
-    <a class="btn dropdown-toggle btn-large current-guild" data-toggle="dropdown" href="#">
-      <span class="guild">
-        <span class="guild-name">
-          <%= current_guild.name %>
-        </span>
-        <span class="guild-info">
-          <%= current_guild.region %>-<%= current_guild.server %>
-        </span>
-      </span>
-      <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu available-guilds">
-      <% available_guilds.each do |guild| %>
-        <li>
-          <a href="<%= make_current_guild_path(guild) %>">
-            <span class="guild">
-              <span class="guild-name">
-                <%= guild.name %>
-              </span>
-              <span class="guild-info">
-                <%= guild.region %>-<%= guild.server %>
-              </span>
-            </span>
-          </a>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= current_guild_chooser %>
 
 <%= render_raid_calendar @raid_calendar_presenter %>
