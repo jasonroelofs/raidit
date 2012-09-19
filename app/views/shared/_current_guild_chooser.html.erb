@@ -13,7 +13,7 @@
   <ul class="dropdown-menu available-guilds">
     <% available_guilds.each do |guild| %>
       <li>
-        <a href="<%= make_current_guild_path(guild) %>">
+        <a href="<%= make_current_guild_path(guild, :back_to => request.path) %>">
           <span class="guild">
             <span class="guild-name">
               <%= guild.name %>
