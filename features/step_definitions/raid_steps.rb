@@ -6,9 +6,8 @@ Given /^"(.*?)" has scheduled the following raids$/ do |guild_name, table|
   current_guild = FindGuild.by_name(guild_name)
   repo = Repository.for(Raid)
 
-  table.hashes.each_with_index do |row, i|
+  table.hashes.each do |row|
     r = Raid.new(
-      :id => i,
       :owner => current_guild,
       :where => row[:where],
       :when => Date.parse(row[:when]),
