@@ -2,12 +2,18 @@ Feature: Scheduling Raids
 
 Scenario: A regular user cannot schedule a raid
   Given I am signed in as "raider"
+  And "raider" has the following characters
+    | name    | guild  |
+    | Weemuu  | Exiled |
   And I am at the home page
   When I follow "Raids"
   Then I should not see "Schedule a Raid"
 
 Scenario: A raid leader can schedule a one-time raid
   Given I am signed in as "raid_leader"
+  And "raid_leader" has the following characters
+    | name    | guild  |
+    | Weemuu  | Exiled |
   And I am at the home page
   When I follow "Raids"
   And I follow "Schedule a Raid"
@@ -22,6 +28,9 @@ Scenario: A raid leader can schedule a one-time raid
 
 Scenario: A user can add role limits to a raid
   Given I am signed in as "raid_leader"
+  And "raid_leader" has the following characters
+    | name    | guild  |
+    | Weemuu  | Exiled |
   And I am at the home page
   When I follow "Raids"
   And I follow "Schedule a Raid"

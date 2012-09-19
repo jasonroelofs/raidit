@@ -91,12 +91,12 @@ class ApplicationController < ActionController::Base
     FindUser.by_login_token :web, cookies[:web_session_token]
   end
 
-  ##
-  # TODO Update this to not be a static choice when the guild
-  # selector is built
-  ##
   def find_current_guild
-    FindGuild.by_name "Exiled"
+    if session[:current_guild_id]
+      FindGuild.by_user_and_id(current_user, session[:current_guild_id])
+    else
+      ListGuilds.by_user(current_user).first
+    end
   end
 
   def set_new_user_session(user)

@@ -2,6 +2,9 @@ Feature: Editing Raids
 
 Scenario: A raider cannot edit a raid
   Given I am signed in as "raider"
+  And "raider" has the following characters
+    | name    | guild  |
+    | Weemuu  | Exiled |
   And I am at the home page
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |
@@ -12,6 +15,9 @@ Scenario: A raider cannot edit a raid
 
 Scenario: A raid leader can edit a guild's raid
   Given I am signed in as "raid_leader"
+  And "raid_leader" has the following characters
+    | name    | guild  |
+    | Weemuu  | Exiled |
   And I am at the home page
   And "Exiled" has scheduled the following raids
     | where     | when        | start | invite_offset |

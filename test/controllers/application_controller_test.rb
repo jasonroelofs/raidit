@@ -31,11 +31,23 @@ class ApplicationControllerTest < ActionController::TestCase
       @controller.current_guild.must_be_nil
     end
 
-    it "finds the Exiled guild" do
+    it "returns the first known guild if no id set in the session" do
       login_as_user
 
+      guild = Guild.new
+      guild2 = Guild.new
+
+      FindGuild.expects(:by_user_and_id).never
+      ListGuilds.expects(:by_user).returns([guild, guild2])
+
+      @controller.current_guild.must_equal guild
+    end
+
+    it "finds the guild by id and in the current user's ownership" do
+      login_as_user
       g = Guild.new
-      FindGuild.expects(:by_name).with("Exiled").returns(g)
+      session[:current_guild_id] = 10
+      FindGuild.expects(:by_user_and_id).with(@user, 10).returns(g)
 
       @controller.current_guild.must_equal g
     end

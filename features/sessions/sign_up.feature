@@ -11,7 +11,7 @@ Feature: User signs up for raidit
     And I fill in "passwordy" for "Password confirmation"
     And I press "Sign Up"
 
-    Then I should see "Raid Calendar"
+    Then I should see "Home"
     And I should see "Characters"
 
     # See that new login / password is saved

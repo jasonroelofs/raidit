@@ -16,7 +16,11 @@ Raidit::Application.routes.draw do
     resources :signups
   end
 
-  resources :guilds
+  resources :guilds do
+    member do
+      get :make_current
+    end
+  end
 
   match "/signups/:id/:command", :to => "signups#update", :as => "update_signup"
 
