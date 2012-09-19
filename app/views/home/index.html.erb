@@ -1,3 +1,17 @@
-<h1>Raid Calendar</h1>
+<%#= guild_selector :title => "Raids" %>
+
+<% if current_user && current_guild %>
+  <div class="btn-group choose-guild">
+    <a class="btn dropdown-toggle btn-large current-guild" data-toggle="dropdown" href="#">
+      <strong><%= current_guild.name %></strong>
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu available-guilds">
+      <% available_guilds.each do |guild| %>
+        <li><%= link_to guild.name, make_current_guild_path(guild) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <%= render_raid_calendar @raid_calendar_presenter %>

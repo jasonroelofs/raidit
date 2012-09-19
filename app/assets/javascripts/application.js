@@ -1,5 +1,6 @@
 //= require jquery
 //= require select2
+//= require bootstrap-dropdown
 //= require_tree .
 
 $(function() {
