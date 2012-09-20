@@ -1,6 +1,5 @@
 require 'models/character'
-require 'interactors/find_guild'
-require 'interactors/add_guild'
+require 'interactors/find_or_add_guild'
 require 'repository'
 
 class AddCharacter
@@ -30,7 +29,7 @@ class AddCharacter
   def run(attributes)
     name, character_class = attributes.values_at :name, :character_class
 
-    guild = find_or_create_guild attributes
+    guild = FindOrAddGuild.new(@current_user).from_attributes(attributes)
 
     @character = Character.new name: name, user: @current_user,
       character_class: character_class, guild: guild
@@ -42,17 +41,4 @@ class AddCharacter
     end
   end
 
-  protected
-
-  def find_or_create_guild(attributes)
-    guild_id, guild_attrs = attributes.values_at :guild_id, :guild
-
-    if guild_attrs && guild_id == "new_guild"
-      AddGuild.from_attributes(guild_attrs)
-    elsif guild_id.present?
-      FindGuild.by_id(guild_id.to_i)
-    else
-      nil
-    end
-  end
 end
