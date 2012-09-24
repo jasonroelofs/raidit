@@ -6,7 +6,7 @@ require 'models/character'
 
 describe ListCharacters do
 
-  describe "#all" do
+  describe ".all_for_user" do
     it "finds all characters for the given user" do
       user = User.new
       character = Character.new name: "Johnson", user: user
