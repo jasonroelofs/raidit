@@ -22,7 +22,10 @@ class UsersController < ApplicationController
 
   def show
     @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
-    @characters = ListCharacters.for_user_in_guild(@user, current_guild)
+    characters = ListCharacters.for_user_in_guild(@user, current_guild)
+
+    @main_character = characters.first
+    @alt_characters = characters[1..-1]
   end
 
 end

@@ -55,7 +55,11 @@ class UsersControllerTest < ActionController::TestCase
       login_as_user
       set_main_guild
 
-      chars = [ Character.new, Character.new ]
+      main_char = Character.new
+      alt1 = Character.new
+      alt2 = Character.new
+
+      chars = [ main_char, alt1, alt2 ]
 
       FindUser.expects(:by_guild_and_id).with(@guild, 10).returns(@user)
       ListCharacters.expects(:for_user_in_guild).with(@user, @guild).returns(chars)
@@ -63,7 +67,8 @@ class UsersControllerTest < ActionController::TestCase
       get :show, :id => 10
 
       assigns(:user).must_equal @user
-      assigns(:characters).must_equal chars
+      assigns(:main_character).must_equal main_char
+      assigns(:alt_characters).must_equal [alt1, alt2]
     end
   end
 end

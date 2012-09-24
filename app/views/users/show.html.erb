@@ -2,17 +2,16 @@
 
 <div class="character-info">
   <div class="main span5">
-    <% character = @characters.first %>
-    <div class="character span4" data-character-name="<%= normalize_name character.name %>">
-      <%= character_icon character, :large %>
+    <div class="character span4" data-character-name="<%= normalize_name @main_character.name %>">
+      <%= character_icon @main_character, :large %>
       <div class="name">
-        <%= character.name %>
+        <%= @main_character.name %>
       </div>
     </div>
   </div>
 
   <div class="alts span5">
-    <% @characters[1..-1].each do |character| %>
+    <% @alt_characters.each do |character| %>
       <div class="character span4" data-character-name="<%= normalize_name character.name %>">
         <%= character_icon character, :large %>
         <div class="name">
