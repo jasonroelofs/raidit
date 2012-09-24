@@ -99,11 +99,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_new_user_session(user)
+  def set_new_user_session(user, remember = false)
     reset_session
     cookies[:web_session_token] = {
       value: user.login_token(:web),
-      httponly: true
+      httponly: true,
+      expires: (remember ? 2.weeks.from_now : nil)
     }
   end
 

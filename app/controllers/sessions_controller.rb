@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
     if user = action.run(@session.login, @session.password)
       previous_path = session[:login_redirect_to]
-      set_new_user_session user
+      set_new_user_session user, @session.remember_me
 
       redirect_to previous_path || root_path
     else

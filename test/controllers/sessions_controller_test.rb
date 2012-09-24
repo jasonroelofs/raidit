@@ -56,8 +56,6 @@ class SessionsControllerTest < ActionController::TestCase
       flash[:login_error].must_equal true
       cookies[:web_session_token].must_be_nil
     end
-
-    it "makes the cookie permanent if remember_me passed in"
   end
 
   describe "#destroy" do
