@@ -69,6 +69,8 @@ class UsersControllerTest < ActionController::TestCase
       assigns(:user).must_equal @user
       assigns(:main_character).must_equal main_char
       assigns(:alt_characters).must_equal [alt1, alt2]
+
+      assigns(:current_navigation).must_equal :guilds
     end
   end
 end

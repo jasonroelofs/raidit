@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   requires_user :only => [:show]
+  navigation :guilds, :only => [:show]
 
   def new
     @user = User.new

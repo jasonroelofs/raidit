@@ -36,8 +36,8 @@ class ApplicationController < ActionController::Base
     ##
     # Set the current navigation section controller-wide
     ##
-    def navigation(nav_key)
-      before_filter do |controller|
+    def navigation(nav_key, options = {})
+      before_filter(options) do |controller|
         controller.current_navigation = nav_key
       end
     end
