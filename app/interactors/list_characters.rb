@@ -12,7 +12,16 @@ class ListCharacters
   end
 
   def self.for_user_in_guild(user, guild)
-    Repository.for(Character).find_all_for_user_in_guild(user, guild)
+    Repository.for(Character).find_all_for_user_in_guild(user, guild).sort do |c1, c2|
+      # Sort block duplicated in a helper. Push sorting down lower in the stack?
+      if c1.main?
+        -1
+      elsif c2.main?
+        1
+      else
+        c1.name <=> c2.name
+      end
+    end
   end
 
 end
