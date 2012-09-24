@@ -46,11 +46,11 @@ class GuildsControllerTest < ActionController::TestCase
 
     it "finds the list of characters for the guild" do
       chars = [
-        Character.new,
-        Character.new
+        Character.new(user: @user),
+        Character.new(user: @user)
       ]
 
-      ListCharacters.expects(:all_in_guild).with(@guild).returns chars
+      ListCharacters.expects(:all_in_guild).with(@guild).returns(chars)
 
       get :show, :id => 10
 
