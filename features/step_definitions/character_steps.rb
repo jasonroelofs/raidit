@@ -6,7 +6,8 @@ Given /^"(.*?)" has the following characters$/ do |login, table|
     c = Character.new(
       name: row[:name],
       user: current_user,
-      character_class: row[:character_class]
+      character_class: row[:character_class],
+      is_main: row[:is_main] == "true"
     )
 
     if row[:guild]
