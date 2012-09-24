@@ -7,4 +7,8 @@ class ListCharacters
     Repository.for(Character).find_all_for_user user
   end
 
+  def self.all_in_guild(guild)
+    Repository.for(Character).find_all_in_guild(guild)
+  end
+
 end

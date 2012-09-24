@@ -24,4 +24,27 @@ describe ListCharacters do
     end
   end
 
+  describe ".all_in_guild" do
+    it "finds all Main characters in the given guild" do
+      user = User.new
+      Repository.for(User).save(user)
+
+      guild = Guild.new
+      Repository.for(Guild).save(guild)
+
+      char1 = Character.new name: "John", user: user, guild: guild
+      char2 = Character.new name: "Mark", user: user, guild: guild
+      char3 = Character.new name: "Meeps", guild: guild
+      char4 = Character.new name: "Dot"
+
+      Repository.for(Character).save(char1)
+      Repository.for(Character).save(char2)
+      Repository.for(Character).save(char3)
+      Repository.for(Character).save(char4)
+
+      list = ListCharacters.all_in_guild(guild)
+      list.must_equal [char1, char2, char3]
+    end
+  end
+
 end
