@@ -31,12 +31,12 @@ Raidit::Application.configure do
       )
 
       Repository.for(Character).save(
-        weemuu = Character.new(:name => "Weemuu", :user => jason,
+        weemuu = Character.new(:name => "Weemuu", :user => jason, is_main: true,
                                :character_class => "mage", :guild =>  exiled)
       )
 
       Repository.for(Character).save(
-        wonko = Character.new(:name => "Wonko",
+        wonko = Character.new(:name => "Wonko", is_main: true,
           :user => jason, :character_class => "warrior", :guild => mind_crush)
       )
 
@@ -51,7 +51,7 @@ Raidit::Application.configure do
       )
 
       Repository.for(Character).save(
-        phouchg = Character.new(:name => "Phouchg",
+        phouchg = Character.new(:name => "Phouchg", is_main: true,
           :user => raider, :character_class => "hunter", :guild => exiled)
       )
 
