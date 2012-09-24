@@ -26,7 +26,7 @@ class MiniTest::Unit::TestCase
   end
 
   def login_as_user
-    @user = User.new login: "test", password: "password"
+    @user = User.new id: 4, login: "test", password: "password"
     @user.set_login_token(:web, "1234")
     @request.cookies[:web_session_token] = "1234"
 
