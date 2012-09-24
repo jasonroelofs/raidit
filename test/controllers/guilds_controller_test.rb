@@ -10,6 +10,12 @@ class GuildsControllerTest < ActionController::TestCase
     end
   end
 
+  it "sets the site section to :guilds" do
+    login_as_user
+    get :index
+    assigns(:current_navigation).must_equal :guilds
+  end
+
   describe "#index" do
     it "does a search for guilds based on query, returning json" do
       login_as_user
@@ -22,6 +28,35 @@ class GuildsControllerTest < ActionController::TestCase
       assigns(:guilds).must_equal [g]
 
       response.body.must_equal ActiveSupport::JSON.encode([g])
+    end
+  end
+
+  describe "#show" do
+    before do
+      login_as_user
+      @guild = Guild.new id: 1
+      FindGuild.stubs(:by_user_and_id).returns(@guild)
+      session[:current_guild_id] = 1
+    end
+
+    it "renders details of the current guild" do
+      get :show, :id => 10
+      must_render_template "show"
+
+      assigns(:guild).must_equal @guild
+    end
+
+    it "finds the list of characters for the guild" do
+      chars = [
+        Character.new,
+        Character.new
+      ]
+
+      ListCharacters.expects(:all_in_guild).with(@guild).returns chars
+
+      get :show, :id => 10
+
+      assigns(:characters).must_equal chars
     end
   end
 

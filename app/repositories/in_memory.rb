@@ -100,6 +100,10 @@ module InMemory
           c.main?
       }
     end
+
+    def find_all_in_guild(guild)
+      find_all {|c| c.guild == guild }
+    end
   end
 
   class RaidRepo < IndexedRepo

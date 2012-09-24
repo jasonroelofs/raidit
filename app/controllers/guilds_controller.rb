@@ -1,12 +1,18 @@
 class GuildsController < ApplicationController
 
   requires_user
+  navigation :guilds
 
   respond_to :json
 
   def index
     @guilds = ListGuilds.by_partial_name(params[:q])
     respond_with @guilds
+  end
+
+  def show
+    @guild = current_guild
+    @characters = ListCharacters.all_in_guild(@guild)
   end
 
   ##

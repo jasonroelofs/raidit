@@ -25,6 +25,11 @@
               <li class="<%= nav_link_class(:raids) %>">
                 <%= link_to "Raids", raids_path %>
               </li>
+              <% if current_guild %>
+                <li class="<%= nav_link_class(:guilds) %>">
+                  <%= link_to "Guild", guild_path(current_guild) %>
+                </li>
+              <% end %>
             </ul>
           <% end %>
 
