@@ -104,6 +104,12 @@ module InMemory
     def find_all_in_guild(guild)
       find_all {|c| c.guild == guild }
     end
+
+    def find_all_for_user_in_guild(user, guild)
+      find_all { |char|
+        char.user == user && char.guild == guild
+      }
+    end
   end
 
   class RaidRepo < IndexedRepo

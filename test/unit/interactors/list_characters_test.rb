@@ -47,4 +47,25 @@ describe ListCharacters do
     end
   end
 
+  describe ".for_user_in_guild" do
+    it "finds only the characters for the given user in the current guild, main first" do
+      user = User.new
+      guild = Guild.new
+
+      char1 = Character.new name: "John", user: user, guild: guild, is_main: true
+      char2 = Character.new name: "Mark", user: user, guild: guild
+      char3 = Character.new name: "Meeps", guild: guild
+      char4 = Character.new name: "Dot", user: user
+
+      Repository.for(Character).save(char1)
+      Repository.for(Character).save(char2)
+      Repository.for(Character).save(char3)
+      Repository.for(Character).save(char4)
+
+      list = ListCharacters.for_user_in_guild(user, guild)
+      list.must_equal [char1, char2]
+
+    end
+  end
+
 end
