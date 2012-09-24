@@ -7,6 +7,7 @@
 $thePastBackground: grey;
 $lightGrey: #ddd;
 $darkGrey: darken($lightGrey, 20%);
+$black: #333;
 
 $blue: #1729b0;
 $lightBlue: #4b5cd7;
@@ -331,6 +332,11 @@ $linkColor: lighten($blue, 20%);
 
   .roster {
     @include tab-content("Characters", $darkGrey, $lightGrey, 20px);
+
+    a {
+      color: $black;
+      text-decoration: underline;
+    }
   }
 
   .events {
