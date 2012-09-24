@@ -44,4 +44,26 @@ class UsersControllerTest < ActionController::TestCase
       assigns(:user).wont_be_nil
     end
   end
+
+  describe "#show" do
+    it "requires a user" do
+      get :show, :id => 1
+      must_redirect_to login_path
+    end
+
+    it "finds the user and his characters in the current guild" do
+      login_as_user
+      set_main_guild
+
+      chars = [ Character.new, Character.new ]
+
+      FindUser.expects(:by_guild_and_id).with(@guild, 10).returns(@user)
+      ListCharacters.expects(:for_user_in_guild).with(@user, @guild).returns(chars)
+
+      get :show, :id => 10
+
+      assigns(:user).must_equal @user
+      assigns(:characters).must_equal chars
+    end
+  end
 end

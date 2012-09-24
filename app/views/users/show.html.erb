@@ -1,0 +1,24 @@
+<h2>Character Info</h2>
+
+<div class="character-info">
+  <div class="main span5">
+    <% character = @characters.first %>
+    <div class="character span4" data-character-name="<%= normalize_name character.name %>">
+      <%= character_icon character, :large %>
+      <div class="name">
+        <%= character.name %>
+      </div>
+    </div>
+  </div>
+
+  <div class="alts span5">
+    <% @characters[1..-1].each do |character| %>
+      <div class="character span4" data-character-name="<%= normalize_name character.name %>">
+        <%= character_icon character, :large %>
+        <div class="name">
+          <%= character.name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,9 @@
     <% @characters.each do |character| %>
       <div class="character span4" data-character-name="<%= normalize_name character.name %>">
         <%= character_icon character, :large %>
-        <div class="name"><%= character.name %></div>
+        <div class="name">
+          <%= link_to character.name, user_path(character.user) %>
+        </div>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  requires_user :only => [:show]
+
   def new
     @user = User.new
   end
@@ -16,6 +18,11 @@ class UsersController < ApplicationController
       @user = action.user
       render "new"
     end
+  end
+
+  def show
+    @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
+    @characters = ListCharacters.for_user_in_guild(@user, current_guild)
   end
 
 end
