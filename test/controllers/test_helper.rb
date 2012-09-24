@@ -39,6 +39,12 @@ class MiniTest::Unit::TestCase
       CheckUserPermissions.any_instance.stubs(:allowed?).with(permission).returns(true)
     end
   end
+
+  def set_main_guild
+    @guild = Guild.new id: 1
+    session[:current_guild_id] = 1
+    FindGuild.stubs(:by_user_and_id).returns(@guild)
+  end
 end
 
 if ENV["NO_COLOR_OUTPUT"].nil?

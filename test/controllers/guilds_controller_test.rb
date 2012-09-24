@@ -34,9 +34,7 @@ class GuildsControllerTest < ActionController::TestCase
   describe "#show" do
     before do
       login_as_user
-      @guild = Guild.new id: 1
-      FindGuild.stubs(:by_user_and_id).returns(@guild)
-      session[:current_guild_id] = 1
+      set_main_guild
     end
 
     it "renders details of the current guild" do
