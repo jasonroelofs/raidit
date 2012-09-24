@@ -343,3 +343,19 @@ $linkColor: lighten($blue, 20%);
     @include tab-content("Events", $darkGrey, $lightGrey, 20px);
   }
 }
+
+.character-info {
+  .main, .alts {
+    margin-top: 30px;
+    @extend .bordered-tab;
+    @extend .tab-above;
+  }
+
+  .main {
+    @include tab-content("Main Character", $darkGrey, $lightGrey);
+  }
+
+  .alts {
+    @include tab-content("Alt Characters", $darkGrey, $lightGrey);
+  }
+}
