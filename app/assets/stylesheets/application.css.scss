@@ -321,3 +321,19 @@ $linkColor: lighten($blue, 20%);
 .choose-guild {
   margin-bottom: 1em;
 }
+
+.guild-info {
+  .roster, .events {
+    margin-top: 30px;
+    @extend .bordered-tab;
+    @extend .tab-above;
+  }
+
+  .roster {
+    @include tab-content("Characters", $darkGrey, $lightGrey, 20px);
+  }
+
+  .events {
+    @include tab-content("Events", $darkGrey, $lightGrey, 20px);
+  }
+}

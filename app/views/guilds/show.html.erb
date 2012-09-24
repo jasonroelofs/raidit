@@ -2,8 +2,6 @@
 
 <div class="guild-info row">
   <div class="roster span5">
-    <h3>Roster</h3>
-
     <% @characters.each do |character| %>
       <div class="character span4" data-character-name="<%= normalize_name character.name %>">
         <%= character_icon character, :large %>
@@ -13,6 +11,5 @@
   </div>
 
   <div class="events span5 offset2">
-    <h3>Events</h3>
   </div>
 </div>

@@ -21,7 +21,6 @@
   position: absolute;
   left: -1px;
   padding: 4px;
-  font-size: 14px;
   font-weight: bold;
   background-color: whiteSmoke;
   border: 1px solid $lightGrey;
@@ -37,12 +36,13 @@
   @include border-radius(4px 0px 4px 0px);
 }
 
-@mixin tab-content($text, $borderColor, $tabColor) {
+@mixin tab-content($text, $borderColor, $tabColor, $fontSize: 14px) {
   border-color: $borderColor;
 
   &::after {
     content: $text;
     background-color: $tabColor;
     border-color: $borderColor;
+    font-size: $fontSize;
   }
 }
