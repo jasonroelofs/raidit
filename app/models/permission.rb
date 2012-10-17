@@ -3,12 +3,17 @@ require 'entity'
 class Permission
   include Entity
 
-  RAID_LEADER = [:manage_signups, :schedule_raid].freeze
+  RAID_LEADER = [
+    :manage_signups,
+    :schedule_raid,
+    :manage_guild_members
+  ].freeze
   ALL_PERMISSIONS = RAID_LEADER
 
   FRIENDLY_NAMES = {
     :manage_signups => "Manage Signups",
-    :schedule_raid => "Schedule Raid"
+    :schedule_raid => "Schedule Raids",
+    :manage_guild_members => "Manage Guild Members"
   }.freeze
 
   def self.friendly_name(permission)
