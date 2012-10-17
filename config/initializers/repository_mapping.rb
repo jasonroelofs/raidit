@@ -57,7 +57,7 @@ Raidit::Application.configure do
 
       Repository.for(Permission).save(
         Permission.new(:user => jason, :guild => exiled,
-                       :permissions => Permission::RAID_LEADER)
+                       :permissions => Permission::ALL_PERMISSIONS)
       )
 
       (1.week.ago.to_date..2.weeks.from_now.to_date).each do |day|

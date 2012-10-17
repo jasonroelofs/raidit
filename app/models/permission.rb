@@ -5,10 +5,15 @@ class Permission
 
   RAID_LEADER = [
     :manage_signups,
-    :schedule_raid,
-    :manage_guild_members
+    :schedule_raid
   ].freeze
-  ALL_PERMISSIONS = RAID_LEADER
+
+  GUILD_LEADER = [
+    RAID_LEADER,
+    :manage_guild_members
+  ].flatten.freeze
+
+  ALL_PERMISSIONS = GUILD_LEADER
 
   FRIENDLY_NAMES = {
     :manage_signups => "Manage Signups",
