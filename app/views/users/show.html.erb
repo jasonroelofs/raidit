@@ -24,8 +24,14 @@
       <% end %>
     </div>
 
-    <div class="permissions span5 offset2">
-      Guild Permissions Here
-    </div>
+    <% if @permissions %>
+      <div class="permissions span5 offset2">
+        <ul>
+          <% @permissions.permissions.each do |permission| %>
+            <li><%= Permission.friendly_name(permission) %></li>
+          <% end %>
+      </ul>
+      </div>
+    <% end %>
   </div>
 </div>
