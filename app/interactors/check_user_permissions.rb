@@ -1,5 +1,4 @@
-require 'repository'
-require 'models/permission'
+require 'interactors/list_permissions'
 
 class CheckUserPermissions
 
@@ -11,8 +10,7 @@ class CheckUserPermissions
   end
 
   def allowed?(permission_key)
-    user_permissions = Repository.for(Permission).
-      find_by_user_and_guild(@current_user, @current_guild)
+    user_permissions = ListPermissions.for_user_in_guild(@current_user, @current_guild)
     user_permissions ? user_permissions.allows?(permission_key) : false
   end
 end
