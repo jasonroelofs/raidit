@@ -30,9 +30,9 @@ describe UpdateSignup do
       Repository.for(Permission).save(@perm)
     end
 
-    it "includes :accept if signup available and user has :accept permissions" do
+    it "includes :accept if signup available and user has manage permissions" do
       @signup.acceptance_status = :available
-      @perm.allow :accept_signup
+      @perm.allow :manage_signups
 
       actions = @action.available_actions @signup
       actions.must_include :accept
@@ -42,7 +42,7 @@ describe UpdateSignup do
 
     it "does not include :accept if signup is cancelled" do
       @signup.acceptance_status = :cancelled
-      @perm.allow :accept_signup
+      @perm.allow :manage_signups
 
       actions = @action.available_actions @signup
       actions.wont_include :accept
@@ -66,9 +66,9 @@ describe UpdateSignup do
       actions.wont_include :unaccept
     end
 
-    it "includes :unaccept if signup accepted and user has :unaccept permissions" do
+    it "includes :unaccept if signup accepted and user has :manage permissions" do
       @signup.acceptance_status = :accepted
-      @perm.allow :unaccept_signup
+      @perm.allow :manage_signups
 
       actions = @action.available_actions @signup
       actions.must_include :unaccept
@@ -107,14 +107,14 @@ describe UpdateSignup do
       end
 
       it "moves the signup to accepted" do
-        @perm.allow :accept_signup
+        @perm.allow :manage_signups
         @action.run @signup, :accept
 
         @signup.acceptance_status.must_equal :accepted
       end
 
       it "saves the changes" do
-        @perm.allow :accept_signup
+        @perm.allow :manage_signups
         @action.run @signup, :accept
 
         s = Repository.for(Signup).all.first
@@ -139,7 +139,7 @@ describe UpdateSignup do
       end
 
       it "updates the signup accordingly" do
-        @perm.allow :unaccept_signup
+        @perm.allow :manage_signups
         @action.run @signup, :unaccept
 
         @signup.acceptance_status.must_equal :available

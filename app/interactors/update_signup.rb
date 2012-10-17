@@ -72,11 +72,11 @@ class UpdateSignup
     end
 
     def can_accept_signup?
-      @signup.available? && @permissions.allowed?(:accept_signup)
+      @signup.available? && @permissions.allowed?(:manage_signups)
     end
 
     def can_unaccept_signup?
-      @signup.accepted? && @permissions.allowed?(:unaccept_signup)
+      @signup.accepted? && @permissions.allowed?(:manage_signups)
     end
 
     def can_enqueue_signup?
