@@ -345,17 +345,17 @@ $linkColor: lighten($blue, 20%);
 }
 
 .character-info {
-  .main, .alts {
+  .characters, .permissions {
     margin-top: 30px;
     @extend .bordered-tab;
     @extend .tab-above;
   }
 
-  .main {
-    @include tab-content("Main Character", $darkGrey, $lightGrey);
+  .characters {
+    @include tab-content("Characters", $darkGrey, $lightGrey);
   }
 
-  .alts {
-    @include tab-content("Alt Characters", $darkGrey, $lightGrey);
+  .permissions {
+    @include tab-content("Guild Permissions", $darkGrey, $lightGrey);
   }
 }

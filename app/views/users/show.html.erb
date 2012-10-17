@@ -1,29 +1,31 @@
 <h2>Character Info</h2>
 
-<div class="character-info">
-  <div class="row">
-    <div class="main span5">
+<div class="row">
+  <div class="character-info">
+    <div class="characters span5">
       <div class="character span4" data-character-name="<%= normalize_name @main_character.name %>">
         <%= character_icon @main_character, :large %>
         <div class="name">
           <%= @main_character.name %>
         </div>
       </div>
+
+      <% if @alt_characters.any? %>
+        <div class="alts">
+          <% @alt_characters.each do |character| %>
+            <div class="character span4" data-character-name="<%= normalize_name character.name %>">
+              <%= character_icon character, :large %>
+              <div class="name">
+                <%= character.name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="permissions span5 offset2">
+      Guild Permissions Here
     </div>
   </div>
-
-  <% if @alt_characters.any? %>
-    <div class="row">
-      <div class="alts span5">
-        <% @alt_characters.each do |character| %>
-          <div class="character span4" data-character-name="<%= normalize_name character.name %>">
-            <%= character_icon character, :large %>
-            <div class="name">
-              <%= character.name %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
 </div>

@@ -15,8 +15,8 @@ Feature: Viewing guild member details
     When I follow "Guild"
     And I follow "Weemuu"
 
-    Then I should see "Weemuu" within ".main"
-    And I should see "Stabby" within ".alts"
+    Then I should see "Weemuu" within ".characters"
+    And I should see "Stabby" within ".characters"
     And I should not see "Weemoo"
 
   Scenario: Viewing an Alt shows the main
@@ -33,5 +33,5 @@ Feature: Viewing guild member details
     When I follow "Guild"
     And I follow "Stabby"
 
-    Then I should see "Weemuu" within ".main"
-    And I should see "Stabby" within ".alts"
+    Then I should see "Weemuu" within ".characters"
+    And I should see "Stabby" within ".characters"
