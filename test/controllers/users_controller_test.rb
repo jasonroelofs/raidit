@@ -76,8 +76,7 @@ class UsersControllerTest < ActionController::TestCase
       get :show, :id => 10
 
       assigns(:user).must_equal @user
-      assigns(:main_character).must_equal @main_char
-      assigns(:alt_characters).must_equal [@alt1, @alt2]
+      assigns(:characters).must_equal [@main_char, @alt1, @alt2]
 
       assigns(:current_navigation).must_equal :guilds
     end

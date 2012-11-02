@@ -23,10 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
-    characters = ListCharacters.for_user_in_guild(@user, current_guild)
-
-    @main_character = characters.first
-    @alt_characters = characters[1..-1]
+    @characters = ListCharacters.for_user_in_guild(@user, current_guild)
 
     if @user == current_user || current_user_has_permission?(:manage_guild_members)
       @permissions = ListPermissions.for_user_in_guild(@user, current_guild)
