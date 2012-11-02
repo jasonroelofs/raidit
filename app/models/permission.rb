@@ -25,6 +25,9 @@ class Permission
     FRIENDLY_NAMES[permission]
   end
 
+  def self.empty(user, guild)
+    Permission.new(:user => user, :guild => guild)
+  end
 
   attr_accessor :user, :guild, :permissions
 
@@ -41,4 +44,11 @@ class Permission
     @permissions.include?(perm)
   end
 
+  def reset!
+    @permissions = []
+  end
+
+  def empty?
+    @permissions.empty?
+  end
 end

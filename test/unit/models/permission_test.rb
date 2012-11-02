@@ -31,6 +31,16 @@ describe Permission do
     p.permissions.must_equal [:accept, :deny]
   end
 
+  it "can be asked for an empty permission set for given user and guild" do
+    user = User.new
+    guild = Guild.new
+
+    empty_permission = Permission.empty(user, guild)
+    empty_permission.permissions.must_equal []
+    empty_permission.user.must_equal user
+    empty_permission.guild.must_equal guild
+  end
+
   describe "#allow" do
     it "adds a new permission to the list" do
       p = Permission.new

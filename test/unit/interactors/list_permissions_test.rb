@@ -22,11 +22,18 @@ describe ListPermissions do
     ListPermissions.for_user_in_guild(@user, @guild).must_equal @permission
   end
 
-  it "returns an empty list of user isn't in guild" do
+  it "returns No Permissions if user isn't in guild" do
     @permission.guild = nil
     Repository.for(Permission).save(@permission)
 
-    ListPermissions.for_user_in_guild(@user, @guild).must_be_nil
+    assert ListPermissions.for_user_in_guild(@user, @guild).empty?
+  end
+
+  it "returns No Permissions if none have been set for the current user" do
+    user = User.new
+    guild = Guild.new
+
+    assert ListPermissions.for_user_in_guild(user, guild).empty?
   end
 
 end

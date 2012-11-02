@@ -10,7 +10,6 @@ class CheckUserPermissions
   end
 
   def allowed?(permission_key)
-    user_permissions = ListPermissions.for_user_in_guild(@current_user, @current_guild)
-    user_permissions ? user_permissions.allows?(permission_key) : false
+    ListPermissions.for_user_in_guild(@current_user, @current_guild).allows?(permission_key)
   end
 end
