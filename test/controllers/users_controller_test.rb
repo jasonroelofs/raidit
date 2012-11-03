@@ -101,17 +101,26 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     it "redirects to edit if the current user has :manage_guild_members" do
-      other_user = User.new id: 4
-      char = Character.new
+      login_as_guild_leader
+      set_main_guild
 
-      perm = Permission.new :permissions => [:perm2]
-
-      CheckUserPermissions.any_instance.expects(:allowed?).with(:manage_guild_members).returns(true)
+      other_user = User.new id: 12
       FindUser.stubs(:by_guild_and_id).returns(other_user)
 
       get :show, :id => 12
 
-      must_redirect_to edit_user_path(other_user)
+      assert_redirected_to edit_user_path(other_user)
+    end
+
+    it "does not redirect if the selected user is the current user" do
+      char = Character.new
+      perm = Permission.new :permissions => [:perm2]
+
+      FindUser.stubs(:by_guild_and_id).returns(@user)
+
+      get :show, :id => 12
+
+      must_render_template "show"
     end
 
     it "does not show any permissions otherwise" do
@@ -135,7 +144,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     it "lists all current guild permissions for the current user" do
-      other_user = User.new id: 4
+      other_user = User.new id: 5
       char = Character.new
 
       perm = Permission.new :permissions => [:perm2]
@@ -148,6 +157,13 @@ class UsersControllerTest < ActionController::TestCase
 
       assigns(:all_permissions).must_equal Permission::ALL_PERMISSIONS
       assigns(:user_permissions).must_equal perm
+    end
+
+    it "redirects to #show if the requested user is the current user" do
+      FindUser.stubs(:by_guild_and_id).returns(@user)
+      get :edit, :id => 14
+
+      assert_redirected_to user_path(@user)
     end
   end
 

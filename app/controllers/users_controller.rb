@@ -26,12 +26,12 @@ class UsersController < ApplicationController
   def show
     @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
 
-    if current_user_has_permission?(:manage_guild_members)
+    if @user != current_user && current_user_has_permission?(:manage_guild_members)
       redirect_to edit_user_path(@user)
     else
       @characters = ListCharacters.for_user_in_guild(@user, current_guild)
 
-      if @user == current_user || current_user_has_permission?(:manage_guild_members)
+      if @user == current_user
         @permissions = ListPermissions.for_user_in_guild(@user, current_guild)
       end
     end
@@ -39,6 +39,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
+
+    if @user == current_user
+      redirect_to user_path(@user)
+      return
+    end
+
     @characters = ListCharacters.for_user_in_guild(@user, current_guild)
 
     @all_permissions = Permission::ALL_PERMISSIONS

@@ -57,5 +57,3 @@ Feature: Managing guild member permissions
     Then I should see "Panduu" within ".characters"
     And the "Manage Signups" checkbox should not be checked
     And the "Schedule Raid" checkbox should not be checked
-
-  Scenario: Guild leader cannot change their own permissions
