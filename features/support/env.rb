@@ -60,6 +60,11 @@ Before do
              :email => "raider@raidit.org")
   )
 
+  Repository.for(User).save(
+    User.new(:login => "guild_leader", :password => "password",
+             :email => "gm@raidit.org")
+  )
+
   Repository.for(Guild).save(
     Guild.new(:name => "Exiled")
   )
@@ -72,6 +77,12 @@ Before do
     Permission.new(:user => Repository.for(User).find_by_login("raid_leader"),
                    :guild => Repository.for(Guild).find_by_name("Exiled"),
                     :permissions => Permission::RAID_LEADER)
+  )
+
+  Repository.for(Permission).save(
+    Permission.new(:user => Repository.for(User).find_by_login("guild_leader"),
+                   :guild => Repository.for(Guild).find_by_name("Exiled"),
+                    :permissions => Permission::GUILD_LEADER)
   )
 end
 

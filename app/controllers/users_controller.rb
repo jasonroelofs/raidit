@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
-  requires_user :only => [:show]
+  requires_user :only => [:edit, :show]
+  requires_permission :manage_guild_members, :only => [:edit]
+
   navigation :guilds, :only => [:show]
 
   def new
@@ -23,11 +25,30 @@ class UsersController < ApplicationController
 
   def show
     @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
+
+    if current_user_has_permission?(:manage_guild_members)
+      redirect_to edit_user_path(@user)
+    else
+      @characters = ListCharacters.for_user_in_guild(@user, current_guild)
+
+      if @user == current_user || current_user_has_permission?(:manage_guild_members)
+        @permissions = ListPermissions.for_user_in_guild(@user, current_guild)
+      end
+    end
+  end
+
+  def edit
+    @user = FindUser.by_guild_and_id(current_guild, params[:id].to_i)
     @characters = ListCharacters.for_user_in_guild(@user, current_guild)
 
-    if @user == current_user || current_user_has_permission?(:manage_guild_members)
-      @permissions = ListPermissions.for_user_in_guild(@user, current_guild)
-    end
+    @all_permissions = Permission::ALL_PERMISSIONS
+    @user_permissions = ListPermissions.for_user_in_guild(@user, current_guild)
+  end
+
+  protected
+
+  def permission_denied_path
+    guilds_path
   end
 
 end

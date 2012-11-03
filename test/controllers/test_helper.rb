@@ -40,6 +40,13 @@ class MiniTest::Unit::TestCase
     end
   end
 
+  def login_as_guild_leader
+    login_as_user
+    Permission::GUILD_LEADER.each do |permission|
+      CheckUserPermissions.any_instance.stubs(:allowed?).with(permission).returns(true)
+    end
+  end
+
   def set_main_guild
     @guild = Guild.new id: 1
     session[:current_guild_id] = 1

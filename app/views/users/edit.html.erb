@@ -1,0 +1,32 @@
+<h2>Character Info</h2>
+
+<div class="row">
+  <div class="character-info">
+    <div class="characters span5">
+      <% @characters.each do |character| %>
+        <div class="character span4" data-character-name="<%= normalize_name character.name %>">
+          <%= character_icon character, :large %>
+          <div class="name">
+            <%= character.name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="permissions span5 offset2">
+      <%= form_tag user_permission_path(@user), :method => :put, :class => "form-inline" do %>
+        <ul>
+          <% @all_permissions.each do |permission| %>
+            <li>
+              <%= check_box_tag permission, "1", @user_permissions.allows?(permission) %>
+              <%= label_tag permission, Permission.friendly_name(permission) %>
+            </li>
+          <% end %>
+        </ul>
+        <div class="actions">
+          <%= submit_tag "Update Permissions" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

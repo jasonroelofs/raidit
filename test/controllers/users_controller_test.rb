@@ -8,6 +8,17 @@ class UsersControllerTest < ActionController::TestCase
       get :show, :id => 1
       must_redirect_to login_path
     end
+
+    it "requires a user for #edit" do
+      get :edit, :id => 1
+      must_redirect_to login_path
+    end
+
+    it "requires :manage_guild_members for #edit" do
+      login_as_user
+      get :edit, :id => 1
+      must_redirect_to guilds_path
+    end
   end
 
   describe "#new" do
@@ -53,7 +64,6 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   describe "#show" do
-
     before do
       login_as_user
       set_main_guild
@@ -90,20 +100,18 @@ class UsersControllerTest < ActionController::TestCase
       assigns(:permissions).must_equal perm
     end
 
-    it "lists all current guild permissions if user has manage_users permission" do
-      other_user = User.new
+    it "redirects to edit if the current user has :manage_guild_members" do
+      other_user = User.new id: 4
       char = Character.new
 
       perm = Permission.new :permissions => [:perm2]
 
       CheckUserPermissions.any_instance.expects(:allowed?).with(:manage_guild_members).returns(true)
       FindUser.stubs(:by_guild_and_id).returns(other_user)
-      ListCharacters.stubs(:for_user_in_guild).returns([char])
-      ListPermissions.expects(:for_user_in_guild).with(other_user, @guild).returns(perm)
 
-      get :show, :id => 14
+      get :show, :id => 12
 
-      assigns(:permissions).must_equal perm
+      must_redirect_to edit_user_path(other_user)
     end
 
     it "does not show any permissions otherwise" do
@@ -119,4 +127,28 @@ class UsersControllerTest < ActionController::TestCase
       assigns(:permissions).must_be_nil
     end
   end
+
+  describe "#edit" do
+    before do
+      login_as_guild_leader
+      set_main_guild
+    end
+
+    it "lists all current guild permissions for the current user" do
+      other_user = User.new id: 4
+      char = Character.new
+
+      perm = Permission.new :permissions => [:perm2]
+
+      FindUser.stubs(:by_guild_and_id).returns(other_user)
+      ListCharacters.stubs(:for_user_in_guild).returns([char])
+      ListPermissions.expects(:for_user_in_guild).with(other_user, @guild).returns(perm)
+
+      get :edit, :id => 14
+
+      assigns(:all_permissions).must_equal Permission::ALL_PERMISSIONS
+      assigns(:user_permissions).must_equal perm
+    end
+  end
+
 end
