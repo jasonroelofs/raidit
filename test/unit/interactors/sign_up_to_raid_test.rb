@@ -22,14 +22,6 @@ describe SignUpToRaid do
       @action = SignUpToRaid.new @user
     end
 
-    it "errors if can't find the raid"
-
-    it "errors if can't find the character"
-
-    it "doesn't let users sign up characters they don't own"
-
-    it "doesn't let users sign up to raids they don't have access to"
-
     it "creates a signup record for the information given" do
       @action.run @raid, @character
 

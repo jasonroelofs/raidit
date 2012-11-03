@@ -25,10 +25,6 @@ class SignupsControllerTest < ActionController::TestCase
 
         must_redirect_to raid_path(@raid)
       end
-
-      it "returns to raid page if signup failed"
-
-      it "returns to home page if signup threw an error"
     end
   end
 
