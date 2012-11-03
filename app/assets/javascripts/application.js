@@ -1,6 +1,7 @@
 //= require jquery
 //= require select2
 //= require bootstrap-dropdown
+//= require jquery.qtip.js
 //= require_tree .
 
 $(function() {

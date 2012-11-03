@@ -10,6 +10,7 @@ gem "state_machine", "~> 1.1.0"
 # Assets
 gem "select2-rails"
 gem "jquery-rails"
+gem "jquery-qtip2-rails"
 
 group :assets do
   gem "sass-rails", "~> 3.2.0"
