@@ -18,4 +18,8 @@ $(function() {
   $("select:not(.character-select):not(.guild-select)").each(function(i, e) {
     new CustomSelect($(e));
   });
+
+  $(".raid .signup").each(function(i, e) {
+    new SignupDetails($(e));
+  });
 });
