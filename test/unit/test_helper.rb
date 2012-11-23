@@ -32,7 +32,8 @@ class MiniTest::Unit::TestCase
       "Character"   => InMemory::CharacterRepo.new,
       "Raid"        => InMemory::RaidRepo.new,
       "Signup"      => InMemory::SignupRepo.new,
-      "Permission"  => InMemory::PermissionRepo.new
+      "Permission"  => InMemory::PermissionRepo.new,
+      "Comment"     => InMemory::CommentRepo.new
     )
   end
 end

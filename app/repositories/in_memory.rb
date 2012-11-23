@@ -146,4 +146,8 @@ module InMemory
       }
     end
   end
+
+  class CommentRepo < IndexedRepo
+
+  end
 end
