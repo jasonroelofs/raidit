@@ -1,0 +1,13 @@
+<div class="signup-details <%= normalize_name(@signup.character_name) %>">
+  <h3>Comments</h3>
+
+  <div class="comments">
+    <div class="comment new">
+      <%= form_for [@signup, Comment.new] do |f| %>
+        <%= f.label :comment %>
+        <%= f.text_field :comment %>
+        <%= f.submit "Add Comment" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,27 @@ require 'controllers/test_helper'
 class SignupsControllerTest < ActionController::TestCase
   tests SignupsController
 
+  describe "#show" do
+    it "requires a logged in user" do
+      get :show, {}
+      must_redirect_to login_path
+    end
+
+    it "renders all known comments of the given signup" do
+      login_as_user
+
+      signup = Signup.new id: 4
+      raid = Raid.new id: 7
+      FindRaid.expects(:by_id).returns(raid)
+      FindSignup.expects(:by_raid_and_id).with(raid, 4).returns(signup)
+
+      get :show, :raid_id => 7, :id => 4
+      must_render_template "show"
+
+      assigns(:signup).must_equal signup
+    end
+  end
+
   describe "#create" do
     it "requires a logged in user" do
       post :create, {}

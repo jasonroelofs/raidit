@@ -1,5 +1,5 @@
 <% raid = signup.raid %>
-<div class="signup real">
+<div class="signup real" data-url="<%= raid_signup_path(raid, signup) %>">
   <%= character_icon signup.character %>
   <span class="character-name"><%= signup.character_name %></span>
   <% if !raid.past? %>

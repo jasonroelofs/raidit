@@ -1,6 +1,12 @@
 class SignupsController < ApplicationController
 
   requires_user
+  layout false
+
+  def show
+    raid = FindRaid.by_id params[:raid_id].to_i
+    @signup = FindSignup.by_raid_and_id raid, params[:id].to_i
+  end
 
   # /raids/:raid_id/signups
   #

@@ -137,6 +137,12 @@ module InMemory
         s.raid == raid && s.user == user
       }
     end
+
+    def find_by_raid_and_id(raid, id)
+      find_one {|s|
+        s.id == id && s.raid == raid
+      }
+    end
   end
 
   class PermissionRepo < IndexedRepo

@@ -17,6 +17,10 @@ Raidit::Application.routes.draw do
     resources :signups
   end
 
+  resources :signups do
+    resources :comments
+  end
+
   resources :guilds do
     member do
       get :make_current
