@@ -35,3 +35,7 @@ Given /^"(.*?)" signed up "(.*?)" for "(.*?)" as "(.*?)"$/ do |login, char_name,
   action = SignUpToRaid.new current_user
   action.run raid, character, role
 end
+
+When /^I click on the signup for "(.*?)"$/ do |character_name|
+  page.find("div.signup.real", :text => character_name).click
+end
