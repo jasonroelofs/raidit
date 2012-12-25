@@ -23,4 +23,5 @@ Feature: Commenting on Raid Signups
     When I fill in "Comment" with "Are you going to make it tonight?"
     And I press "Add Comment"
 
+    When I click on the signup for "Weemuu"
     Then I should see "Are you going to make it tonight?" within ".signup-details .comments"

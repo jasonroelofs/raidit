@@ -2,6 +2,13 @@
   <h3>Comments</h3>
 
   <div class="comments">
+    <% @comments.each do |comment| %>
+      <div class="comment">
+        <%= comment.comment %>
+        <br/>
+        <br/>
+      </div>
+    <% end %>
     <div class="comment new">
       <%= form_for [@signup, Comment.new] do |f| %>
         <%= f.label :comment %>

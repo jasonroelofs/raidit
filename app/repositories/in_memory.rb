@@ -154,6 +154,10 @@ module InMemory
   end
 
   class CommentRepo < IndexedRepo
-
+    def find_all_by_signup(signup)
+      find_all {|c|
+        c.signup == signup
+      }
+    end
   end
 end

@@ -14,13 +14,16 @@ class SignupsControllerTest < ActionController::TestCase
 
       signup = Signup.new id: 4
       raid = Raid.new id: 7
+      comments = [Comment.new(comment: "ERMAGHERD")]
       FindRaid.expects(:by_id).returns(raid)
       FindSignup.expects(:by_raid_and_id).with(raid, 4).returns(signup)
+      ListComments.expects(:by_signup).with(signup).returns(comments)
 
       get :show, :raid_id => 7, :id => 4
       must_render_template "show"
 
       assigns(:signup).must_equal signup
+      assigns(:comments).must_equal comments
     end
   end
 

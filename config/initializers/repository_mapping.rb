@@ -9,7 +9,8 @@ Raidit::Application.configure do
       "Character"   => InMemory::CharacterRepo.new,
       "Raid"        => InMemory::RaidRepo.new,
       "Signup"      => InMemory::SignupRepo.new,
-      "Permission"  => InMemory::PermissionRepo.new
+      "Permission"  => InMemory::PermissionRepo.new,
+      "Comment"     => InMemory::CommentRepo.new
     )
 
     # Set up our seed data for the development setup

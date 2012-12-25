@@ -6,6 +6,7 @@ class SignupsController < ApplicationController
   def show
     raid = FindRaid.by_id params[:raid_id].to_i
     @signup = FindSignup.by_raid_and_id raid, params[:id].to_i
+    @comments = ListComments.by_signup @signup
   end
 
   # /raids/:raid_id/signups
