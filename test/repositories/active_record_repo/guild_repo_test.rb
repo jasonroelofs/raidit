@@ -6,53 +6,8 @@ describe ActiveRecordRepo::GuildRepo do
     @repo = ActiveRecordRepo::GuildRepo.new
   end
 
-  describe "#find" do
-    it "finds the guild by id and convers to domain model" do
-      ar_guild = ActiveRecordRepo::Models::Guild.create(
-        :name => "Johnson", :region => "US", :server => "hashor")
-
-      guild = @repo.find(ar_guild.id)
-      guild.wont_be_nil
-
-      guild.must_be_kind_of ::Guild
-      guild.id.must_equal ar_guild.id
-      guild.name.must_equal "Johnson"
-      guild.region.must_equal "US"
-      guild.server.must_equal "hashor"
-    end
-  end
-
-  describe "#save" do
-    it "takes the Guild, stores it in the db" do
-      guild = ::Guild.new(:name => "myxo", :region => "US", :server => "Detheroc")
-      @repo.save(guild)
-
-      ar_guild = ActiveRecordRepo::Models::Guild.all.first
-      ar_guild.wont_be_nil
-      ar_guild.name.must_equal "myxo"
-      ar_guild.region.must_equal "US"
-      ar_guild.server.must_equal "Detheroc"
-
-      guild.id.must_equal ar_guild.id
-    end
-
-    it "updates an existing Guild in the db with the same id" do
-      guild = ::Guild.new(:name => "myxo", :region => "US", :server => "Detheroc")
-      @repo.save(guild)
-
-      guild.region = "EU"
-      guild.name = "partyboy"
-
-      @repo.save(guild)
-
-      ActiveRecordRepo::Models::Guild.count.must_equal 1
-
-      ar_guild = ActiveRecordRepo::Models::Guild.find(guild.id)
-      ar_guild.region.must_equal "EU"
-      ar_guild.name.must_equal "partyboy"
-      ar_guild.server.must_equal "Detheroc"
-    end
-  end
+  it_must_be_a_repo_wrapping ActiveRecordRepo::Models::Guild, ::Guild,
+    [:name, :region, :server]
 
   describe "#find_by_name" do
     before do
