@@ -39,7 +39,32 @@ ActionController::Base.allow_rescue = false
 require 'bcrypt'
 Kernel.silence_warnings { BCrypt::Engine::DEFAULT_COST = 1 }
 
+if ENV["REAL_DB"]
+
+end
+
 Before do
+  if ENV["REAL_DB"]
+    reset_and_configure_real_db
+  else
+    reset_and_configure_in_memory
+  end
+end
+
+def reset_and_configure_real_db
+  Repository.reset!
+  Repository.configure(
+    "User"        => ActiveRecordRepo::UserRepo.new,
+    "Guild"       => ActiveRecordRepo::GuildRepo.new,
+    "Character"   => ActiveRecordRepo::CharacterRepo.new,
+    "Raid"        => ActiveRecordRepo::RaidRepo.new,
+    "Signup"      => ActiveRecordRepo::SignupRepo.new,
+    "Permission"  => ActiveRecordRepo::PermissionRepo.new,
+    "Comment"     => ActiveRecordRepo::CommentRepo.new
+  )
+end
+
+def reset_and_configure_in_memory
   Repository.reset!
   Repository.configure(
     "User"        => InMemory::UserRepo.new,
