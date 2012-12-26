@@ -43,6 +43,37 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: guilds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guilds (
+    id integer NOT NULL,
+    name character varying(255),
+    region character varying(255),
+    server character varying(255)
+);
+
+
+--
+-- Name: guilds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guilds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guilds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guilds_id_seq OWNED BY guilds.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -87,7 +118,22 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY guilds ALTER COLUMN id SET DEFAULT nextval('guilds_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: guilds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guilds
+    ADD CONSTRAINT guilds_pkey PRIMARY KEY (id);
 
 
 --
@@ -114,3 +160,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121226192603');
 INSERT INTO schema_migrations (version) VALUES ('20121226200052');
 
 INSERT INTO schema_migrations (version) VALUES ('20121226200118');
+
+INSERT INTO schema_migrations (version) VALUES ('20121226203936');

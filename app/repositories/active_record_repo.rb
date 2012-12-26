@@ -59,16 +59,58 @@ module ActiveRecordRepo
     end
   end
 
-  class GuildRepo < IndexedRepo
+  class GuildRepo
+    def find(id)
+      convert_to_domain ActiveRecordRepo::Models::Guild.find(id), ::Guild
+    end
+
+    def save(domain_model)
+      ar_model = convert_to_ar_model(domain_model)
+      ar_model.save.tap do |success|
+        domain_model.id = ar_model.id if success
+      end
+    end
+
     def find_by_name(name)
-      find_one {|g| g.name == name }
+      convert_to_domain ActiveRecordRepo::Models::Guild.first_by_name(name), ::Guild
     end
 
     def search_by_name(query)
-      find_all {|g|
-        g.name =~ /#{query}/i
-      }
+      convert_all_to_domain ActiveRecordRepo::Models::Guild.search_by_name(query), ::Guild
     end
+
+    private
+
+    def convert_to_domain(record, domain_class)
+      domain_class.new record.attributes if record
+    end
+
+    def convert_all_to_domain(records, domain_class)
+      domain_models = []
+
+      records.find_each do |record|
+        domain_models << convert_to_domain(record, domain_class)
+      end
+
+      domain_models
+    end
+
+    def convert_to_ar_model(domain_model)
+      if domain_model.persisted?
+        ActiveRecordRepo::Models::Guild.find(domain_model.id).tap do |ar_model|
+          ar_model.name = domain_model.name
+          ar_model.region = domain_model.region
+          ar_model.server = domain_model.server
+        end
+      else
+        ActiveRecordRepo::Models::Guild.new(
+          :name => domain_model.name,
+          :region => domain_model.region,
+          :server => domain_model.server
+        )
+      end
+    end
+
   end
 
   class UserRepo
