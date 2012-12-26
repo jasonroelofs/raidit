@@ -12,7 +12,10 @@ gem "select2-rails"
 gem "jquery-rails"
 gem "jquery-qtip2-rails"
 
+# Database gems
 gem "pg"
+gem "activerecord-postgres-hstore"
+
 
 group :assets do
   gem "sass-rails", "~> 3.2.0"

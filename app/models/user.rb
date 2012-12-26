@@ -4,8 +4,7 @@ require 'bcrypt'
 class User
   include Entity
 
-  attr_accessor :email, :login
-  attr_reader :password_hash
+  attr_accessor :email, :login, :password_hash, :login_tokens
 
   validates_presence_of :login, :email
 
@@ -16,7 +15,7 @@ class User
   def initialize(attrs = {})
     super
 
-    @login_tokens = {}
+    @login_tokens ||= {}
     @onboarding = {}
   end
 

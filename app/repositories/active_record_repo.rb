@@ -71,13 +71,48 @@ module ActiveRecordRepo
     end
   end
 
-  class UserRepo < IndexedRepo
+  class UserRepo
+    def find(id)
+      convert_to_domain ActiveRecordRepo::Models::User.find(id), ::User
+    end
+
+    def save(domain_model)
+      ar_model = convert_to_ar_model(domain_model)
+      ar_model.save.tap do |success|
+        domain_model.id = ar_model.id if success
+      end
+    end
+
     def find_by_login(login)
-      find_one {|u| u.login == login }
+      convert_to_domain ActiveRecordRepo::Models::User.first_by_login(login), ::User
     end
 
     def find_by_login_token(type, token)
-      find_one {|u| u.login_token(type) == token }
+      convert_to_domain ActiveRecordRepo::Models::User.first_by_login_token(type, token), ::User
+    end
+
+    private
+
+    def convert_to_domain(record, domain_class)
+      domain_class.new record.attributes if record
+    end
+
+    def convert_to_ar_model(domain_model)
+      if domain_model.persisted?
+        ActiveRecordRepo::Models::User.find(domain_model.id).tap do |ar_model|
+          ar_model.login = domain_model.login
+          ar_model.email = domain_model.email
+          ar_model.password_hash = domain_model.password_hash
+          ar_model.login_tokens = domain_model.login_tokens
+        end
+      else
+        ActiveRecordRepo::Models::User.new(
+          :login => domain_model.login,
+          :email => domain_model.email,
+          :password_hash => domain_model.password_hash,
+          :login_tokens => domain_model.login_tokens
+        )
+      end
     end
   end
 
