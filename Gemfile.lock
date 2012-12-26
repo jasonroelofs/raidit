@@ -72,6 +72,7 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     daemons (1.1.8)
+    database_cleaner (0.8.0)
     debugger (1.1.4)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.1.1)
@@ -195,6 +196,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.0.3)
   coffee-rails (~> 3.2.0)
   cucumber-rails
+  database_cleaner
   debugger
   jquery-qtip2-rails
   jquery-rails

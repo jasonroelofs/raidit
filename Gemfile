@@ -32,6 +32,7 @@ group :test do
   gem "minitest"
   gem "minitest-spec-rails"
   gem "mocha"
+  gem "database_cleaner", :require => false
 end
 
 group :cucumber do
