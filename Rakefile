@@ -8,7 +8,7 @@ task :default => "test:all"
 
 namespace :test do
   desc "Run all tests"
-  task :all => [:units, :controllers, :features, :features_slow]
+  task :all => [:units, :controllers, :features, :features_slow, :repositories]
 
   desc "Run all unit tests"
   Rake::TestTask.new :units do |t|
@@ -19,6 +19,12 @@ namespace :test do
   desc "Run all controller tests"
   Rake::TestTask.new :controllers do |t|
     t.pattern = "test/controllers/**/*_test.rb"
+    t.libs = ["lib", "app", "test"]
+  end
+
+  desc "Run all repository tests"
+  Rake::TestTask.new :repositories do |t|
+    t.pattern = "test/repositories/**/*_test.rb"
     t.libs = ["lib", "app", "test"]
   end
 
