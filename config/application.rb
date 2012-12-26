@@ -1,10 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
-if ENV["REAL_DB"]
-  require "active_record/railtie"
-end
-
+require "active_record/railtie"
 require "action_controller/railtie"
 require "sprockets/railtie"
 
@@ -47,7 +43,7 @@ module Raidit
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
-    # config.active_record.schema_format = :sql
+    config.active_record.schema_format = :sql
 
     # Enforce whitelist mode for mass assignment.
     # This will create an empty whitelist of attributes available for mass-assignment for all models
