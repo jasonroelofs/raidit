@@ -1,9 +1,10 @@
 module ActiveRecordRepo
   class BaseRepo
-    def initialize(ar_class, domain_class, mapped_attributes = [])
+    def initialize(ar_class, domain_class, raw_attributes = [], associations = {})
       @ar_class = ar_class
       @domain_class = domain_class
-      @mapped_attributes = mapped_attributes
+      @raw_attributes = [:id, raw_attributes].flatten
+      @associations = associations
     end
 
     def find(id)
@@ -20,41 +21,70 @@ module ActiveRecordRepo
     protected
 
     def find_one(query)
-      convert_to_domain query, @domain_class
+      convert_to_domain query
     end
 
     def find_all(query)
-      convert_all_to_domain query, @domain_class
+      convert_all_to_domain query
     end
 
-    def convert_to_domain(record, domain_class)
-      domain_class.new record.attributes if record
+    def find_or_initialize(object_id)
+      @ar_class.where(:id => object_id).first_or_initialize
     end
 
-    def convert_all_to_domain(records, domain_class)
+    def convert_all_to_domain(records)
       domain_models = []
 
       records.find_each do |record|
-        domain_models << convert_to_domain(record, domain_class)
+        domain_models << convert_to_domain(record)
       end
 
       domain_models
     end
 
+    def convert_to_domain(record)
+      @domain_class.new map_attributes_and_associations(record) if record
+    end
+
+    def map_attributes_and_associations(ar_record)
+      attributes_hash = {}
+      @raw_attributes.each do |attribute|
+        attributes_hash[attribute] = ar_record.send(attribute)
+      end
+
+      @associations.each do |association, association_repo|
+        attributes_hash[association] = association_repo.convert_to_domain(
+          ar_record.send(association))
+      end
+
+      attributes_hash
+    end
+
     def convert_to_ar_model(domain_model)
+      return unless domain_model
       if domain_model.persisted?
         @ar_class.find(domain_model.id).tap do |ar_model|
-          @mapped_attributes.each do |attr|
-            ar_model[attr] = domain_model.send(attr)
+          @raw_attributes.each do |attribute|
+            ar_model.send("#{attribute}=", domain_model.send(attribute))
+          end
+
+          @associations.each do |association, association_repo|
+            ar_model.send("#{association}=", association_repo.convert_to_ar_model(
+              domain_model.send(association)))
           end
         end
       else
-        attrs = @mapped_attributes.inject({}) do |hash, attr|
-          hash[attr] = domain_model.send(attr)
-          hash
+        attributes_hash = {}
+        @raw_attributes.each do |attribute|
+          attributes_hash[attribute] = domain_model.send(attribute)
         end
 
-        @ar_class.new(attrs)
+        @associations.each do |association, association_repo|
+          attributes_hash[association] = association_repo.convert_to_ar_model(
+            domain_model.send(association))
+        end
+
+        @ar_class.new(attributes_hash)
       end
     end
   end
@@ -151,7 +181,13 @@ module ActiveRecordRepo
     end
   end
 
-  class PermissionRepo
+  class PermissionRepo < BaseRepo
+    def initialize
+      super(ActiveRecordRepo::Models::Permission, ::Permission,
+            [:permissions],
+            {:user => UserRepo.new, :guild => GuildRepo.new})
+    end
+
     def find_by_user_and_guild(user, guild)
       find_one {|perm|
         perm.user == user && perm.guild == guild
