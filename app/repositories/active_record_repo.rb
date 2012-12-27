@@ -192,9 +192,7 @@ module ActiveRecordRepo
     end
 
     def find_by_user_and_guild(user, guild)
-      find_one {|perm|
-        perm.user == user && perm.guild == guild
-      }
+      find_one @ar_class.first_by_user_and_guild(user, guild)
     end
   end
 

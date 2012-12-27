@@ -39,10 +39,20 @@ describe ActiveRecordRepo::PermissionRepo do
     end
   end
 
-  describe "permissions" do
-    it "converts permissions array to a comma delimited string on save"
+  describe "#find_by_user_and_guild" do
+    before do
+      @user = ActiveRecordRepo::Models::User.create
+      @guild = ActiveRecordRepo::Models::Guild.create
 
-    it "converts delimited string to array on find"
+      @p1 = ActiveRecordRepo::Models::Permission.create(:user => @user)
+      @p2 = ActiveRecordRepo::Models::Permission.create(:guild => @guild)
+      @p3 = ActiveRecordRepo::Models::Permission.create(:user => @user, :guild => @guild)
+    end
+
+    it "returns the permission matching the user and guild" do
+      found = @repo.find_by_user_and_guild(@user, @guild)
+      found.id.must_equal @p3.id
+    end
   end
 
   describe ActiveRecordRepo::Models::Permission do
