@@ -9,9 +9,11 @@ class Raid
 
   attr_accessor :start_at, :invite_at
 
+  attr_accessor :role_limits
+
   def initialize(params = {})
     super
-    @role_limits = {}
+    @role_limits ||= {}
   end
 
   ##

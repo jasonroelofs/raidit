@@ -148,18 +148,19 @@ module ActiveRecordRepo
     end
   end
 
-  class RaidRepo
+  class RaidRepo < BaseRepo
+    def initialize
+      super(ActiveRecordRepo::Models::Raid, ::Raid,
+            [:role_limits, :when, :where, :start_at, :invite_at],
+            {:owner => GuildRepo.new})
+    end
+
     def find_raids_for_guild(guild)
-      find_all {|r| r.owner == guild }
+      find_all @ar_class.for_guild(guild)
     end
 
     def find_raids_for_guild_and_day(guild, day)
-      raids = find_raids_for_guild(guild)
-      if day
-        raids.select {|raid| raid.when == day }
-      else
-        raids
-      end
+      find_all @ar_class.for_guild_and_day(guild, day)
     end
   end
 

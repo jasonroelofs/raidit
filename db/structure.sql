@@ -105,6 +105,40 @@ ALTER SEQUENCE permissions_id_seq OWNED BY permissions.id;
 
 
 --
+-- Name: raids; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE raids (
+    id integer NOT NULL,
+    role_limits hstore,
+    "where" character varying(255),
+    owner_id integer,
+    "when" timestamp without time zone,
+    start_at timestamp without time zone,
+    invite_at timestamp without time zone
+);
+
+
+--
+-- Name: raids_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE raids_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: raids_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE raids_id_seq OWNED BY raids.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -180,6 +214,14 @@ ALTER TABLE ONLY guilds
 
 ALTER TABLE ONLY permissions
     ADD CONSTRAINT permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: raids_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY raids
+    ADD CONSTRAINT raids_pkey PRIMARY KEY (id);
 
 
 --
