@@ -148,6 +148,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: signups; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE signups (
+    id integer NOT NULL,
+    raid_id integer,
+    character_id integer,
+    user_id integer,
+    acceptance_status character varying(255),
+    role character varying(255)
+);
+
+
+--
+-- Name: signups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE signups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: signups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE signups_id_seq OWNED BY signups.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -222,6 +255,14 @@ ALTER TABLE ONLY permissions
 
 ALTER TABLE ONLY raids
     ADD CONSTRAINT raids_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: signups_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY signups
+    ADD CONSTRAINT signups_pkey PRIMARY KEY (id);
 
 
 --

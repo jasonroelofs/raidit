@@ -164,21 +164,23 @@ module ActiveRecordRepo
     end
   end
 
-  class SignupRepo
+  class SignupRepo < BaseRepo
+    def initialize
+      super(ActiveRecordRepo::Models::Signup, ::Signup,
+            [:acceptance_status, :role],
+            {:raid => RaidRepo.new, :user => UserRepo.new}) #:character
+    end
+
     def find_all_for_raid(raid)
-      find_all {|s| s.raid == raid }
+      find_all @ar_class.for_raid(raid)
     end
 
     def find_all_for_user_and_raid(user, raid)
-      find_all {|s|
-        s.raid == raid && s.user == user
-      }
+      find_all @ar_class.for_user_and_raid(user, raid)
     end
 
     def find_by_raid_and_id(raid, id)
-      find_one {|s|
-        s.id == id && s.raid == raid
-      }
+      find_one @ar_class.first_by_id_and_raid(id, raid)
     end
   end
 
