@@ -198,11 +198,15 @@ module ActiveRecordRepo
     end
   end
 
-  class CommentRepo
+  class CommentRepo < BaseRepo
+    def initialize
+      super(ActiveRecordRepo::Models::Comment, ::Comment,
+            [:comment],
+            {:user => UserRepo.new, :signup => SignupRepo.new})
+    end
+
     def find_all_by_signup(signup)
-      find_all {|c|
-        c.signup == signup
-      }
+      find_all @ar_class.for_signup(signup)
     end
   end
 end
