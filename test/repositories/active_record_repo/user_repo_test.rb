@@ -7,7 +7,7 @@ describe ActiveRecordRepo::UserRepo do
   end
 
   it_must_be_a_repo_wrapping ActiveRecordRepo::Models::User, ::User,
-    [:login, :email, :password_hash]
+    {:login => "Login", :email => "email@example.com", :password_hash => "hashie"}
 
   describe "#save" do
     it "sets login tokens on the user" do

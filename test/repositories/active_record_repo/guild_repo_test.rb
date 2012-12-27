@@ -7,7 +7,7 @@ describe ActiveRecordRepo::GuildRepo do
   end
 
   it_must_be_a_repo_wrapping ActiveRecordRepo::Models::Guild, ::Guild,
-    [:name, :region, :server]
+    {:name => "Guildy", :region => "US", :server => "Medivh"}
 
   describe "#find_by_name" do
     before do
