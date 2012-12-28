@@ -165,7 +165,7 @@ module ActiveRecordRepo
     def initialize
       super(ActiveRecordRepo::Models::Signup, ::Signup,
             [:acceptance_status, :role],
-            {:raid => RaidRepo.new, :user => UserRepo.new}) #:character
+            {:raid => RaidRepo.new, :user => UserRepo.new, :character => CharacterRepo.new})
     end
 
     def find_all_for_raid(raid)

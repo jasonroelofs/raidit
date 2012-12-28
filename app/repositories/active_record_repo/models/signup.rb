@@ -5,7 +5,7 @@ module ActiveRecordRepo::Models
 
     belongs_to :raid
     belongs_to :user
-    # belongs_to :character
+    belongs_to :character
 
     def self.for_raid(raid)
       where(:raid_id => raid.id)

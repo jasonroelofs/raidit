@@ -10,16 +10,18 @@ describe ActiveRecordRepo::SignupRepo do
     {:acceptance_status => :available, :role => "tank"}
 
   describe "#save" do
-    it "saves the user and raid recursively" do
-      perm = ::Signup.new :user => ::User.new, :raid => ::Raid.new
-      @repo.save(perm)
+    it "saves the user and raid and character recursively" do
+      signup = ::Signup.new :user => ::User.new, :raid => ::Raid.new, :character => ::Character.new
+      @repo.save(signup)
 
       ActiveRecordRepo::Models::Raid.count.must_equal 1
       ActiveRecordRepo::Models::User.count.must_equal 1
+      ActiveRecordRepo::Models::Character.count.must_equal 1
 
-      permission = ActiveRecordRepo::Models::Signup.first
-      permission.user.must_equal ActiveRecordRepo::Models::User.first
-      permission.raid.must_equal ActiveRecordRepo::Models::Raid.first
+      signup = ActiveRecordRepo::Models::Signup.first
+      signup.user.must_equal ActiveRecordRepo::Models::User.first
+      signup.raid.must_equal ActiveRecordRepo::Models::Raid.first
+      signup.character.must_equal ActiveRecordRepo::Models::Character.first
     end
   end
 
@@ -94,9 +96,9 @@ describe ActiveRecordRepo::SignupRepo do
       record.raid.must_be_nil
     end
 
-#    it "belongs to a character" do
-#      record = ActiveRecordRepo::Models::Signup.new
-#      record.character.must_be_nil
-#    end
+    it "belongs to a character" do
+      record = ActiveRecordRepo::Models::Signup.new
+      record.character.must_be_nil
+    end
   end
 end
