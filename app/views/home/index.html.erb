@@ -1,3 +1,5 @@
 <%= current_guild_chooser %>
 
-<%= render_raid_calendar @raid_calendar_presenter %>
+<% if @raid_calendar_presenter %>
+  <%= render_raid_calendar @raid_calendar_presenter %>
+<% end %>
