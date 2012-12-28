@@ -5,7 +5,7 @@ Then %r{^I should see a calendar for the next (\d+) weeks$} do |number_of_weeks|
     end_of_week = today.end_of_week(:sunday).to_date
 
     (beginning_of_week..end_of_week).each do |weekday|
-      assert page.has_content?(weekday.day.to_s), "Unable to find #{weekday} on the page"
+      assert page.has_content?(weekday.day.to_s), "Unable to find #{weekday.day} on the page"
     end
   end
 end

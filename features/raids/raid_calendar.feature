@@ -1,6 +1,9 @@
 Feature: Viewing the Raid Calendar
 
 Scenario: User with characters sees calendar as home page
+  Given "raider" has the following characters
+    | name    | guild  |
+    | Weemuu  | Exiled |
   When I am signed in as "raider"
   Then I should see a calendar for the next 4 weeks
 
