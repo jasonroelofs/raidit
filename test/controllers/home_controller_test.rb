@@ -9,6 +9,11 @@ class HomeControllerTest < ActionController::TestCase
   end
 
   describe "#index" do
+    before do
+      login_as_user
+      set_main_guild
+    end
+
     it "renders the home page" do
       get :index
       must_respond_with 200
