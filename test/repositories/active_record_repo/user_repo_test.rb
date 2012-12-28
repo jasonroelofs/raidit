@@ -50,14 +50,21 @@ describe ActiveRecordRepo::UserRepo do
     it "finds the User by given login token" do
       user = @repo.find_by_login_token(:web, "12345")
       user.wont_be_nil
-      user.login_token("web").must_equal "12345"
-      user.login_token("mobile").must_equal "09876"
+      user.login_token(:web).must_equal "12345"
+      user.login_token(:mobile).must_equal "09876"
     end
 
     it "returns nil if no user found w/ login token type and value" do
       @repo.find_by_login_token(:mobile, "12345").must_be_nil
       @repo.find_by_login_token(:iphone, "09988").must_be_nil
     end
+  end
+
+  it "converts login tokens to indifferent access on load" do
+    ActiveRecordRepo::Models::User.create :login_tokens => {:web => "token"}
+
+    user = ActiveRecordRepo::Models::User.all.first
+    user.login_tokens[:web].must_equal "token"
   end
 
 end
