@@ -10,7 +10,7 @@ class Signup
   def initialize(attrs = {})
     super
 
-    self.acceptance_status = :available
+    self.acceptance_status ||= :available
   end
 
   def character_name
