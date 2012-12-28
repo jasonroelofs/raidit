@@ -117,34 +117,31 @@ module ActiveRecordRepo
     end
   end
 
-  class CharacterRepo
+  class CharacterRepo < BaseRepo
+    def initialize
+      super(ActiveRecordRepo::Models::Character, ::Character,
+            [:name, :character_class, :is_main],
+            {:user => UserRepo.new, :guild => GuildRepo.new})
+    end
+
     def find_by_user_and_id(user, id)
-      find_one {|c|
-        c.id == id &&
-        c.user.id == user.id
-      }
+      find_one @ar_class.first_by_user_and_id(user, id)
     end
 
     def find_all_for_user(user)
-      find_all {|c| c.user == user }
+      find_all @ar_class.for_user(user)
     end
 
     def find_main_character(user, guild)
-      find_one {|c|
-        c.user == user &&
-          c.guild == guild &&
-          c.main?
-      }
+      find_one @ar_class.user_main_in_guild(user, guild)
     end
 
     def find_all_in_guild(guild)
-      find_all {|c| c.guild == guild }
+      find_all @ar_class.in_guild(guild)
     end
 
     def find_all_for_user_in_guild(user, guild)
-      find_all { |char|
-        char.user == user && char.guild == guild
-      }
+      find_all @ar_class.for_user_in_guild(user, guild)
     end
   end
 

@@ -43,6 +43,39 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: characters; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE characters (
+    id integer NOT NULL,
+    user_id integer,
+    guild_id integer,
+    name character varying(255),
+    character_class character varying(255),
+    is_main boolean
+);
+
+
+--
+-- Name: characters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE characters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: characters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE characters_id_seq OWNED BY characters.id;
+
+
+--
 -- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -247,6 +280,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY characters ALTER COLUMN id SET DEFAULT nextval('characters_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
@@ -283,6 +323,14 @@ ALTER TABLE ONLY signups ALTER COLUMN id SET DEFAULT nextval('signups_id_seq'::r
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: characters_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY characters
+    ADD CONSTRAINT characters_pkey PRIMARY KEY (id);
 
 
 --
@@ -359,3 +407,5 @@ INSERT INTO schema_migrations (version) VALUES ('20121227210844');
 INSERT INTO schema_migrations (version) VALUES ('20121227211356');
 
 INSERT INTO schema_migrations (version) VALUES ('20121227214022');
+
+INSERT INTO schema_migrations (version) VALUES ('20121227220231');
