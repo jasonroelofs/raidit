@@ -8,7 +8,7 @@ describe ActiveRecordRepo::RaidRepo do
 
   it_must_be_a_repo_wrapping ActiveRecordRepo::Models::Raid, ::Raid,
     {:where => "ICC", :when => Time.now, :start_at => Time.now, :invite_at => 1.day.from_now,
-      :role_limits => {"tank" => "1"}}
+      :role_limits => {:tank => 1}}
 
   describe "#save" do
     it "saves the guild recursively" do
@@ -71,6 +71,14 @@ describe ActiveRecordRepo::RaidRepo do
     it "belongs to a guild through owner" do
       record = ActiveRecordRepo::Models::Raid.new
       record.owner.must_be_nil
+    end
+
+    it "converts raid roles to Fixnums when loading from DB" do
+      ActiveRecordRepo::Models::Raid.create :role_limits => {:tank => 4, :dps => 3}
+
+      raid = ActiveRecordRepo::Models::Raid.all.first
+      raid.role_limits[:tank].must_equal 4
+      raid.role_limits[:dps].must_equal 3
     end
   end
 end
