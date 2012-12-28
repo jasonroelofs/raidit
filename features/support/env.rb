@@ -40,7 +40,9 @@ require 'bcrypt'
 Kernel.silence_warnings { BCrypt::Engine::DEFAULT_COST = 1 }
 
 if ENV["REAL_DB"]
-
+  # Cucumber already hooks into database cleaner for us,
+  # we just need to specify the strategy
+  DatabaseCleaner.strategy = :transaction
 end
 
 Before do
@@ -49,6 +51,8 @@ Before do
   else
     reset_and_configure_in_memory
   end
+
+  setup_base_data
 end
 
 def reset_and_configure_real_db
@@ -75,7 +79,9 @@ def reset_and_configure_in_memory
     "Permission"  => InMemory::PermissionRepo.new,
     "Comment"     => InMemory::CommentRepo.new
   )
+end
 
+def setup_base_data
   Repository.for(User).save(
     User.new(:login => "raid_leader", :password => "password",
                            :email => "raid_leader@raidit.org")
