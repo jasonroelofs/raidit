@@ -12,6 +12,7 @@ module ActiveRecordRepo
     end
 
     def save(domain_model)
+      return false unless domain_model.errors.empty?
       ar_model = convert_to_ar_model(domain_model)
       ar_model.save.tap do |success|
         domain_model.id = ar_model.id if success
