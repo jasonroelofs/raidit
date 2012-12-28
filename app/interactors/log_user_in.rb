@@ -16,6 +16,7 @@ class LogUserIn
     user = FindUser.by_login login
     if user && user.password == password
       user.set_login_token @login_type, new_login_token
+      Repository.for(User).save(user)
       user
     else
       nil
