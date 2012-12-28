@@ -7,6 +7,10 @@ module ActiveRecordRepo
       @associations = associations
     end
 
+    def all
+      find_all @ar_class
+    end
+
     def find(id)
       find_one @ar_class.find(id)
     end
