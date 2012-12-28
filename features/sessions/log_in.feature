@@ -29,7 +29,7 @@ Scenario: Unknown user sees error when trying to log in
 
 Scenario: System redirects user to the page they attempted to hit
   Given I am at the home page
-  When I visit /raids
+  When I visit /profile
 
   Then I should see "Login"
   And I should see "Password"
@@ -38,4 +38,4 @@ Scenario: System redirects user to the page they attempted to hit
   And I fill in "password" for "Password"
   And I press "Log In"
 
-  Then I should be on /raids
+  Then I should be on /profile
