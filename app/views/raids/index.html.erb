@@ -22,7 +22,7 @@
       <% @raids.each do |raid| %>
         <tr>
           <td><%= raid.where %></td>
-          <td><%= raid.when.to_s(:full) %></td>
+          <td><%= raid.when.to_date.to_s(:full) %></td>
           <td><%= raid.start_at.to_s(:with_am_pm) %> Server</td>
           <td><%= raid.invite_at.to_s(:with_am_pm) %> Server</td>
           <td><%= raid.tank %></td>

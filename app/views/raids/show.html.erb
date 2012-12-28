@@ -6,7 +6,7 @@
       <div class="lesser-info">&nbsp;</div>
     </div>
     <div class="span3 offset6 info-block">
-      <div class="lesser-info"><%= @raid.when.to_s(:full) %></div>
+      <div class="lesser-info"><%= @raid.when.to_date.to_s(:full) %></div>
       <div class="major-info"><%= @raid.invite_at.to_s(:with_am_pm_tz) %></div>
       <div class="lesser-info">Starts at <%= @raid.start_at.to_s(:with_am_pm) %></div>
     </div>
