@@ -65,6 +65,13 @@ describe ActiveRecordRepo::PermissionRepo do
       record = ActiveRecordRepo::Models::Permission.new
       record.guild.must_be_nil
     end
+
+    it "serializes permissions list" do
+      ActiveRecordRepo::Models::Permission.create :permissions => [:create_role, :comment]
+
+      perm = ActiveRecordRepo::Models::Permission.all.first
+      perm.permissions.must_equal [:create_role, :comment]
+    end
   end
 
 end

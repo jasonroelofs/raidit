@@ -1,5 +1,7 @@
 module ActiveRecordRepo::Models
   class Permission < ActiveRecord::Base
+    serialize :permissions
+
     belongs_to :user
     belongs_to :guild
 
