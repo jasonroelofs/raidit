@@ -68,29 +68,37 @@ module ActiveRecordRepo
     def convert_to_ar_model(domain_model)
       return unless domain_model
       if domain_model.persisted?
-        @ar_class.find(domain_model.id).tap do |ar_model|
-          @raw_attributes.each do |attribute|
-            ar_model.send("#{attribute}=", domain_model.send(attribute))
-          end
-
-          @associations.each do |association, association_repo|
-            ar_model.send("#{association}=", association_repo.convert_to_ar_model(
-              domain_model.send(association)))
-          end
-        end
+        convert_to_saved_ar_model(domain_model)
       else
-        attributes_hash = {}
+        convert_to_new_ar_model(domain_model)
+      end
+    end
+
+    def convert_to_saved_ar_model(domain_model)
+      @ar_class.find(domain_model.id).tap do |ar_model|
         @raw_attributes.each do |attribute|
-          attributes_hash[attribute] = domain_model.send(attribute)
+          ar_model.send("#{attribute}=", domain_model.send(attribute))
         end
 
         @associations.each do |association, association_repo|
-          attributes_hash[association] = association_repo.convert_to_ar_model(
-            domain_model.send(association))
+          ar_model.send("#{association}=", association_repo.convert_to_ar_model(
+            domain_model.send(association)))
         end
-
-        @ar_class.new(attributes_hash)
       end
+    end
+
+    def convert_to_new_ar_model(domain_model)
+      attributes_hash = {}
+      @raw_attributes.each do |attribute|
+        attributes_hash[attribute] = domain_model.send(attribute)
+      end
+
+      @associations.each do |association, association_repo|
+        attributes_hash[association] = association_repo.convert_to_ar_model(
+          domain_model.send(association))
+      end
+
+      @ar_class.new(attributes_hash)
     end
   end
 
