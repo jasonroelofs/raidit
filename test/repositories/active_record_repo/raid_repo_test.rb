@@ -7,7 +7,7 @@ describe ActiveRecordRepo::RaidRepo do
   end
 
   it_must_be_a_repo_wrapping ActiveRecordRepo::Models::Raid, ::Raid,
-    {:where => "ICC", :when => Time.now, :start_at => Time.now, :invite_at => 1.day.from_now,
+    {:where => "ICC", :when => Time.now.utc, :start_at => Time.now.utc, :invite_at => 1.day.from_now,
       :role_limits => {:tank => 1}}
 
   describe "#save" do

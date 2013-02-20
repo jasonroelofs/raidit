@@ -2,12 +2,12 @@ development:
   adapter: postgresql
   encoding: utf8
   database: raidit_dev
-  username:
+  username: postgres
   password:
 
 test:
   adapter: postgresql
   encoding: utf8
   database: raidit_test
-  username:
+  username: postgres
   password:

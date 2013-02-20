@@ -1,2 +1,9 @@
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database raidit_test;' -U postgres
+  - psql -c 'create database raidit_dev;' -U postgres
+  - bundle exec rake db:structure:load
+  - bundle exec rake db:test:prepare
 rvm:
   - 1.9.3
