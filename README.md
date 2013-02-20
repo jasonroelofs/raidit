@@ -16,6 +16,4 @@ I blogged my thoughts and process under the series "Designing a Rails App". The 
 
 This project is complete and I don't plan on any more updates to this repository.
 
-The Travis project builds status [![Build Status](https://travis-ci.org/jasonroelofs/raidit.png?branch=master)](https://travis-ci.org/jasonroelofs/raidit)
-
-And code climate shows an almost perfect score! [![Code Climate](https://codeclimate.com/github/jasonroelofs/raidit.png)](https://codeclimate.com/github/jasonroelofs/raidit)
+And code climate shows a perfect score! [![Code Climate](https://codeclimate.com/github/jasonroelofs/raidit.png)](https://codeclimate.com/github/jasonroelofs/raidit)
